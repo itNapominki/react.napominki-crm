@@ -1,0 +1,36 @@
+// breakpoints
+$grid-breakpoints: (
+  'lg': 1300px,
+  'xs': 650px,
+);
+
+$theme-fonts: (
+  'default': 'gotham',
+);
+
+$theme-colors: (
+  'default': #252527,
+  'bg': #f4f5fb,
+
+  'input': #f2f3f9,
+
+  'tabs-text': #4d516c,
+  'tabs-bg': #f2f3f9,
+
+  'error': #c82929,
+  'primary': #4a59a9,
+  'link': #2847c1,
+  'overlay': rgba(0, 0, 0, 0.2),
+);
+
+$theme-gradients: (
+  'primary': linear-gradient(98.14deg, #7acd47 7.55%, #67b437 89.96%),
+);
+
+$input-radius: 2px;
+$button-radius: $input-radius;
+$tabs-radius: $input-radius;
+
+$droplist-shadow: 0px 10px 25px rgba(32, 33, 37, 0.1);
+
+$transition-time: 0.3s;

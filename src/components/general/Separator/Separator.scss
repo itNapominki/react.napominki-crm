@@ -1,0 +1,8 @@
+.separator {
+  @include desktop(
+    (
+      'height': 1px,
+      'background': get-theme-color('bg'),
+    )
+  );
+}

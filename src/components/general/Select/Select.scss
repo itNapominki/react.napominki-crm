@@ -1,0 +1,54 @@
+.select {
+  @extend .input;
+
+  &__label {
+    @extend .input__label;
+
+    &_big {
+      @extend .input__label_big;
+    }
+  }
+
+  &__fluid {
+    @extend .input__fluid;
+
+    @include desktop(
+      (
+        'position': relative,
+
+        'display': flex,
+        'align-items': center,
+
+        'cursor': pointer,
+      )
+    );
+  }
+
+  &__chevron {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'right': 20px,
+
+        'width': 10px,
+        'height': 5px,
+
+        'transform': translateY(-50%),
+        'fill': get-theme-color('primary'),
+      )
+    );
+  }
+
+  &__droplist {
+    @include desktop(
+      (
+        'top': 100%,
+
+        'left': 0,
+        'right': 0,
+      )
+    );
+  }
+}

@@ -1,0 +1,16 @@
+.wrapper {
+  @include desktop(
+    (
+      'max-width': 1270px,
+      'margin': 0 auto,
+    )
+  );
+}
+
+.page {
+  @include desktop(
+    (
+      'padding-bottom': 40px,
+    )
+  );
+}

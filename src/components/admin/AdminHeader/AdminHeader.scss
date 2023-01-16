@@ -1,0 +1,28 @@
+.admin-header {
+  @include desktop(
+    (
+      'padding-top': 20px,
+      'margin-bottom': 40px,
+    )
+  );
+
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+        'align-items': center,
+        'justify-content': space-between,
+      )
+    );
+  }
+
+  &__button {
+    @include desktop(
+      (
+        'height': 40px,
+
+        'font-size': 12px,
+      )
+    );
+  }
+}

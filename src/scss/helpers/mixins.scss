@@ -1,0 +1,143 @@
+@mixin card {
+  background: #fff;
+
+  @include desktop(
+    (
+      'padding': 40px,
+    )
+  );
+}
+
+@mixin h2 {
+  @include desktop(
+    (
+      'font-size': 24px,
+      'font-weight': 700,
+    )
+  );
+}
+
+@mixin h3 {
+  @include desktop(
+    (
+      'font-size': 16px,
+      'font-weight': 700,
+    )
+  );
+}
+
+@mixin link($color: get-theme-color('link')) {
+  @include desktop(
+    (
+      'position': relative,
+
+      'color': $color,
+
+      'cursor': pointer,
+      'transition': $transition-time,
+    )
+  );
+
+  &:before {
+    @include desktop(
+      (
+        'position': absolute,
+        'content': '',
+
+        'bottom': -4px,
+        'left': 0,
+        'right': 0,
+
+        'height': 1px,
+
+        'background': $color,
+        'opacity': 0.2,
+
+        'transition': inherit,
+      )
+    );
+  }
+
+  &:hover {
+    color: darken($color, 5%);
+
+    &:before {
+      opacity: 0.4;
+    }
+  }
+}
+
+@mixin fl-reset {
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin at-root($tagname) {
+  @at-root {
+    #{$tagname}#{&} {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-down($key) {
+  $max: map-get($grid-breakpoints, $key);
+
+  @media (max-width: $max) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-up($key) {
+  $min: map-get($grid-breakpoints, $key);
+
+  @media (min-width: ($min + 1px)) {
+    @content;
+  }
+}
+
+@mixin desktop($properties) {
+  $maxWidth: map-get($grid-breakpoints, 'lg');
+
+  @each $property, $value in $properties {
+    #{$property}: $value;
+  }
+
+  @media (max-width: $maxWidth) {
+    @each $property, $value in $properties {
+      @if (type-of($value) == 'list') {
+        $list: ();
+
+        @each $key in $value {
+          @if (type-of($key) == 'number' and unit($key) == 'px') {
+            $vw-value: $key / $maxWidth * 100 + vw;
+            $list: append($list, $vw-value);
+          } @else {
+            $list: append($list, $key);
+          }
+        }
+
+        #{$property}: $list;
+      } @else if (type-of($value) == 'number' and unit($value) == 'px') {
+        #{$property}: $value / $maxWidth * 100 + vw;
+      }
+    }
+  }
+}
+
+@mixin mobile($properties) {
+  $maxWidth: map-get($grid-breakpoints, 'xs');
+
+  @media (max-width: $maxWidth) {
+    @each $property, $value in $properties {
+      #{$property}: $value;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.tabs {
+  @include desktop(
+    (
+      'max-width': fit-content,
+      'padding': 4px,
+
+      'background': #fff,
+      'border-radius': $tabs-radius,
+    )
+  );
+
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 0 -2px,
+      )
+    );
+  }
+
+  &__button {
+    @include desktop(
+      (
+        'margin': 0 2px,
+
+        'height': 50px,
+        'padding': 0 32px,
+
+        'background': get-theme-color('tabs-bg'),
+        'border-radius': $tabs-radius,
+
+        'font-size': 16px,
+        'font-weight': 700,
+        'color': get-theme-color('tabs-text'),
+      )
+    );
+
+    &:hover,
+    &_active {
+      background: get-theme-color('primary');
+      color: #fff;
+    }
+  }
+}

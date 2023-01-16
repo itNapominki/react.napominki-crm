@@ -1,0 +1,70 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100%;
+
+  background: get-theme-color('bg');
+
+  font-family: 'Lato', sans-serif;
+  color: get-theme-color('default');
+
+  @include desktop(
+    (
+      'font-size': 14px,
+    )
+  );
+}
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+a {
+  text-decoration: none;
+  transition: $transition-time;
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+      'margin-left': -10px,
+      'margin-right': -10px,
+    )
+  );
+}
+
+.col {
+  @include desktop(
+    (
+      'margin-left': 10px,
+      'margin-right': 10px,
+    )
+  );
+}
+
+@for $size from 1 through 12 {
+  .col-#{$size} {
+    width: calc(100% / 12 * $size - 20px);
+  }
+}

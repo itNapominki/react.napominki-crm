@@ -1,0 +1,62 @@
+input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.input {
+  @include desktop(
+    (
+      'display': block,
+    )
+  );
+
+  &__label {
+    @include desktop(
+      (
+        'margin-bottom': 6px,
+
+        'font-size': 14px,
+      )
+    );
+
+    &_big {
+      @include h3;
+
+      @include desktop(
+        (
+          'margin-bottom': 16px,
+        )
+      );
+    }
+  }
+
+  &__fluid {
+    @include desktop(
+      (
+        'display': block,
+
+        'width': 100%,
+        'height': 60px,
+        'padding': 0 20px,
+
+        'background': get-theme-color('input'),
+        'border-radius': $input-radius,
+      )
+    );
+  }
+
+  &__action {
+    @include link();
+
+    @include desktop(
+      (
+        'margin-top': 6px,
+
+        'max-width': fit-content,
+
+        'font-size': 12px,
+      )
+    );
+  }
+}

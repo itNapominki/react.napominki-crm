@@ -1,0 +1,12 @@
+.admin-layout {
+  &__card {
+    @include card;
+
+    @include desktop(
+      (
+        'position': relative,
+        'margin-top': -4px,
+      )
+    );
+  }
+}

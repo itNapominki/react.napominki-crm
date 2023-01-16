@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+@import 'helpers/variables.scss';
+@import 'helpers/functions.scss';
+@import 'helpers/mixins.scss';
+
+@import 'base/base.scss';
+
+@import '../components/general/Alert/Alert.scss';
+@import '../components/general/Button/Button.scss';
+@import '../components/general/Droplist/Droplist.scss';
+@import '../components/general/Input/Input.scss';
+@import '../components/general/Layout/Layout.scss';
+@import '../components/general/Select/Select.scss';
+@import '../components/general/Separator/Separator.scss';
+@import '../components/general/Tabs/Tabs.scss';
+@import '../components/general/Textarea/Textarea.scss';
+
+@import '../components/admin/DataTable/DataTable.scss';
+@import '../components/admin/AdminForm/AdminForm.scss';
+@import '../components/admin/AdminHeader/AdminHeader.scss';
+@import '../components/admin/AdminLayout/AdminLayout.scss';
+@import '../components/admin/AdminModal/AdminModal.scss';
+
+@import 'pages/AuthPage.scss';
+@import 'pages/AdminPage.scss';

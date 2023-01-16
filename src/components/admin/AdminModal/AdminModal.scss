@@ -1,0 +1,45 @@
+@import './components/Metro/Metro.scss';
+
+.admin-modal {
+  @include desktop(
+    (
+      'position': fixed,
+      'z-index': 50,
+
+      'top': 0,
+      'left': 0,
+      'right': 0,
+      'bottom': 0,
+    )
+  );
+
+  &__overlay {
+    @include desktop(
+      (
+        'position': absolute,
+        'z-index': -1,
+
+        'top': 0,
+        'left': 0,
+        'right': 0,
+        'bottom': 0,
+
+        'background': get-theme-color('overlay'),
+      )
+    );
+  }
+
+  &__content {
+    @include desktop(
+      (
+        'width': 400px,
+        'height': 100%,
+
+        'margin-left': auto,
+        'padding': 24px,
+
+        'background': #fff,
+      )
+    );
+  }
+}

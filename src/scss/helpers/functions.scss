@@ -1,0 +1,11 @@
+@function get-theme-color($key) {
+  @return map-get($theme-colors, $key);
+}
+
+@function get-theme-gradient($key) {
+  @return map-get($theme-gradients, $key);
+}
+
+@function get-theme-font($key) {
+  @return map-get($theme-fonts, $key);
+}

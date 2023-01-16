@@ -1,0 +1,35 @@
+@import './Confirm/Confirm.scss';
+
+.alert-layout {
+  @include desktop(
+    (
+      'position': fixed,
+      'z-index': 51,
+
+      'top': 0,
+      'left': 0,
+      'right': 0,
+      'bottom': 0,
+
+      'display': flex,
+      'align-items': center,
+      'justify-content': center,
+    )
+  );
+
+  &__overlay {
+    @include desktop(
+      (
+        'position': absolute,
+        'z-index': -1,
+
+        'top': 0,
+        'left': 0,
+        'right': 0,
+        'bottom': 0,
+
+        'background': get-theme-color('overlay'),
+      )
+    );
+  }
+}
