@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm, AdminLayout, Alert, Input, Select } from 'components'
+import { AdminForm, AdminLayout, Input, Select } from 'components'
 import { api, generatePassword } from 'utils'
 import { useFetch } from 'hooks'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -62,8 +62,13 @@ export default function EditUser() {
     navigate('/admin')
   }
 
-  function handleRemove() {
-    alert('Удалить')
+  async function handleRemove() {
+    if (window.confirm('Подтвердите удаление пользователя')) {
+      await api.users.remove(id).then((res) => {
+        console.log(res)
+        navigate('/admin')
+      })
+    }
   }
 
   const formTitle = isEdit
@@ -76,7 +81,6 @@ export default function EditUser() {
 
   return (
     <AdminLayout>
-      <Alert.Confirm success={''} cancel={''} />
       <AdminForm
         title={formTitle}
         onSave={handleSave}

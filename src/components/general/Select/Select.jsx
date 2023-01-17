@@ -6,6 +6,8 @@ import { Droplist } from 'components'
 import chevron from 'sprites/chevron.svg'
 
 export default function Select(data) {
+  console.log('render Select')
+
   const {
     className,
     label,
@@ -16,11 +18,7 @@ export default function Select(data) {
   } = data
 
   const [droplistVisible, setDroplistVisible] = React.useState(false)
-  const [value, setValue] = useSelect({
-    defaultValue,
-    options,
-    callback: onChange,
-  })
+  const [value, setValue] = useSelect(defaultValue, onChange)
 
   function handleChangeOption(value) {
     setValue(value)

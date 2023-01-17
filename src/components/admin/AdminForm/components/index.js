@@ -1,5 +1,5 @@
 export { default as Group } from './Group'
-export { default as Address } from './Address'
+export { default as Address } from './Address/Address'
 export { default as Comment } from './Comment'
 export { default as Metro } from './Metro'
 export { default as RestaurantName } from './RestaurantName'
