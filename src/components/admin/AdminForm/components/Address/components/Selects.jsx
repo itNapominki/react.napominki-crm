@@ -4,7 +4,7 @@ import { convertServerData } from '../utils'
 import { useSelectChange } from '../hooks'
 
 export default function Selects(data) {
-  const { serverData, setSelectsValues } = data
+  const { initialAddress, serverData, setSelectsValues } = data
 
   const [loaded, setLoaded] = React.useState(false)
   const [regions, setRegions] = React.useState([])
@@ -28,6 +28,17 @@ export default function Selects(data) {
   React.useEffect(() => {
     return setSelectsValues(updateDependencies)
   }, updateDependencies)
+
+  React.useState(() => {
+    if (initialAddress) {
+      const { region, city, county, district } = initialAddress
+
+      setRegion(region)
+      setCity(city)
+      setCounty(county)
+      setDistrict(district)
+    }
+  }, initialAddress)
 
   React.useEffect(() => {
     if (serverData && !loaded) {

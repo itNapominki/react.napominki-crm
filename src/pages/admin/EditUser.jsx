@@ -1,7 +1,8 @@
 import React from 'react'
-import { AdminForm, AdminLayout, Input, Select } from 'components'
-import { api, generatePassword } from 'utils'
-import { useFetch } from 'hooks'
+import { AdminForm, AdminLayout } from 'components'
+import { api } from 'utils'
+import { useFetch, useSaveData } from 'hooks'
+import { EditUserContext } from 'context'
 import { useParams, useNavigate } from 'react-router-dom'
 
 export default function EditUser() {
@@ -10,135 +11,60 @@ export default function EditUser() {
   const navigate = useNavigate()
 
   const { id } = useParams()
-  const data = id ? useFetch('/users/' + id) : null
   const isEdit = id ? true : false
 
-  const [role, setRole] = React.useState({ text: 'Менеджер', value: 'MANAGER' })
-  const [fullname, setFullname] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [phone, setPhone] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [repeatPassword, setRepeatPassword] = React.useState('')
+  // const data = id ? useFetch('/users/' + id) : null
 
-  React.useEffect(() => {
-    if (data) {
-      setRole(data.role)
-      setFullname(data.fullname)
-      setEmail(data.email)
-      setPhone(data.phone)
-    }
-  }, [data])
+  const serverRoles = useFetch('/users-roles', [], handleRolesLoad)
+  const [localRoles, setLocalRoles] = React.useState()
+  const [data, setData] = React.useState(null)
 
-  function handleGeneratePassword() {
-    const password = generatePassword()
+  function handleRolesLoad(data) {
+    const arr = data.map((elem) => {
+      return {
+        id: elem.id,
+        text: elem.single_value,
+        value: elem,
+      }
+    })
 
-    setPassword(password)
-    setRepeatPassword(password)
+    setLocalRoles(arr)
   }
 
-  async function handleSave() {
-    const data = { role: role, fullname, email, phone, password }
-
-    if (id) {
-      return await api.users
-        .update(id, data)
-        .then((res) => {
-          console.log(res)
-          navigate('/admin')
-        })
-        .catch((error) => console.log(error))
-    }
-
-    await api.users
-      .create(data)
-      .then((res) => {
-        console.log(res)
-        navigate('/admin')
-      })
-      .catch((error) => console.log(error))
-  }
-
-  function handleCancel() {
-    navigate('/admin')
-  }
-
-  async function handleRemove() {
-    if (window.confirm('Подтвердите удаление пользователя')) {
-      await api.users.remove(id).then((res) => {
-        console.log(res)
-        navigate('/admin')
-      })
-    }
-  }
+  const [errors, setErrors] = React.useState()
+  const handleSave = useSaveData({
+    data,
+    apiMethod: api.users.create,
+    onSuccess: (res) => {},
+    onError: ({ message, errors }) => {
+      setErrors({ message, errors })
+    },
+  })
 
   const formTitle = isEdit
     ? 'Редактирование пользователя'
     : 'Добавление пользователя'
 
   const removeBtn = isEdit
-    ? { text: 'Удалить пользователя', onClick: handleRemove }
+    ? { text: 'Удалить пользователя', onClick: handleDelete }
     : null
+
+  const onCancel = {
+    message: 'Отменить редактирование и вернуться на главную?',
+    route: '/admin/users',
+  }
 
   return (
     <AdminLayout>
       <AdminForm
         title={formTitle}
         onSave={handleSave}
-        onCancel={handleCancel}
+        onCancel={onCancel}
         removeBtn={removeBtn}
       >
-        <AdminForm.Group>
-          <Select
-            label="Тип пользователя"
-            value={role}
-            options={[
-              { text: 'Менеджер', value: 'MANAGER' },
-              { text: 'Редактор', value: 'REDAKTOR' },
-              { text: 'Админ', value: 'ADMIN' },
-            ]}
-            onChange={setRole}
-            className="col col-12 "
-          />
-          <Input
-            type="text"
-            label="ФИО"
-            value={fullname}
-            onInput={setFullname}
-            className="col col-12 "
-          />
-          <Input
-            type="email"
-            label="Email"
-            value={email}
-            onInput={setEmail}
-            className="col col-6"
-          />
-          <Input
-            type="tel"
-            label="Телефон"
-            value={phone}
-            onInput={setPhone}
-            className="col col-6"
-          />
-          <Input
-            type="text"
-            label="Пароль"
-            action={{
-              text: 'Сгенерировать пароль',
-              onClick: handleGeneratePassword,
-            }}
-            value={password}
-            onInput={setPassword}
-            className="col col-6"
-          />
-          <Input
-            type="text"
-            label="Повторите пароль"
-            value={repeatPassword}
-            onInput={setRepeatPassword}
-            className="col col-6"
-          />
-        </AdminForm.Group>
+        <EditUserContext.Provider value={{ localRoles, setData, errors }}>
+          <AdminForm.EditUser />
+        </EditUserContext.Provider>
       </AdminForm>
     </AdminLayout>
   )

@@ -1,9 +1,19 @@
 import React from 'react'
-import { Button } from '../..'
-import { Group, Address, Comment, Metro, RestaurantName } from './components'
+import { Button } from 'components'
+import {
+  Address,
+  Comment,
+  EditUser,
+  Group,
+  Metro,
+  RestaurantName,
+} from './components'
+import { useCancel } from './hooks'
 
 export default function AdminForm(data) {
   const { title, children, onSave, onCancel, removeBtn } = data
+
+  const handleCancel = useCancel(onCancel)
 
   return (
     <div className="admin-form">
@@ -24,7 +34,7 @@ export default function AdminForm(data) {
           mode="light"
           text="Отменить"
           className="admin-form__button col col-2"
-          onClick={onCancel}
+          onClick={handleCancel}
         />
       </div>
     </div>
@@ -36,3 +46,5 @@ AdminForm.Address = Address
 AdminForm.Comment = Comment
 AdminForm.Metro = Metro
 AdminForm.RestaurantName = RestaurantName
+
+AdminForm.EditUser = EditUser

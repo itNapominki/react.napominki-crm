@@ -2,18 +2,53 @@ import React from 'react'
 import { Input } from 'components'
 
 export default function Inputs(data) {
-  const { addressString, showFloor, setInputsValue } = data
+  const { initialAddress, addressString, showFloor, setInputsValue } = data
+
+  const [inputsObj, setInputsObj] = React.useState({})
 
   const [street, setStreet] = React.useState('')
   const [house, setHouse] = React.useState('')
-  const [floor, setFloor] = React.useState('')
+  const [floor, setFloor] = React.useState(showFloor ? '' : null)
   const [coordinates, setCoordinates] = React.useState('')
 
-  const updateDependencies = [street, house, floor, coordinates]
+  React.useEffect(() => {
+    if (initialAddress !== null) {
+      const { street, house, floor, coordinates } = initialAddress
+
+      setStreet(street)
+      setHouse(house)
+      setFloor(floor)
+      setCoordinates(coordinates)
+    }
+  }, [initialAddress])
 
   React.useEffect(() => {
-    setInputsValue(updateDependencies)
-  }, updateDependencies)
+    setInputsObj((prev) => {
+      return { ...prev, street }
+    })
+  }, [street])
+
+  React.useEffect(() => {
+    setInputsObj((prev) => {
+      return { ...prev, house }
+    })
+  }, [house])
+
+  React.useEffect(() => {
+    setInputsObj((prev) => {
+      return { ...prev, floor }
+    })
+  }, [floor])
+
+  React.useEffect(() => {
+    setInputsObj((prev) => {
+      return { ...prev, coordinates }
+    })
+  }, [coordinates])
+
+  React.useEffect(() => {
+    setInputsValue(inputsObj)
+  }, [inputsObj])
 
   function handleOpenMap() {
     const url = 'https://yandex.ru/maps/?text={' + addressString + '}'
@@ -40,7 +75,7 @@ export default function Inputs(data) {
         <Input
           type="number"
           label="Этаж"
-          value={floor}
+          value={floor ? floor : ''}
           onInput={setFloor}
           className="col col-4"
         />

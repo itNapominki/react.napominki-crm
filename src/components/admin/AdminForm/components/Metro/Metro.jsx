@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm, Input, AdminModal } from '../../../'
+import { AdminForm, Input, AdminModal } from '../../../..'
 
 export default function Metro(data) {
   const { relatedMetro, setRelatedMetro } = data

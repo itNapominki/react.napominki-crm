@@ -10,7 +10,13 @@ const api = {
     remove: (id) => axios.delete('/users/' + id),
   },
   objects: {
+    create: (data) => axios.post('/objects', data),
     getAll: () => fetch.get('/objects'),
+    getById: (id) => fetch.get('/objects/', id),
+    update: (id, data) => axios.put('/objects/' + id, data),
+    remove: (id) => axios.delete('/objects/' + id),
+
+    getTypes: () => fetch.get('/objects-types'),
 
     metro: {
       getAll: () => fetch.get('/objects?type=metro'),

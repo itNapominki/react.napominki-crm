@@ -11,6 +11,29 @@ input {
     )
   );
 
+  &__top {
+  }
+
+  &__top-row {
+    @include desktop(
+      (
+        'display': flex,
+        'justify-content': space-between,
+      )
+    );
+  }
+
+  &__error {
+    @include desktop(
+      (
+        'margin-bottom': 6px,
+
+        'font-size': 14px,
+        'color': get-theme-color('error'),
+      )
+    );
+  }
+
   &__label {
     @include desktop(
       (

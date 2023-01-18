@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm, Textarea } from '../../..'
+import { AdminForm, Textarea } from '../../../..'
 
 export default function AdminFormComment(data) {
   const { comment, setComment } = data

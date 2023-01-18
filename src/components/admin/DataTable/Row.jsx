@@ -9,9 +9,11 @@ export default function Row(data) {
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
   const droplistWithId = droplist.map((item) => {
+    const { onClick } = item
+
     return {
       ...item,
-      onClick: id && item.onClick ? item.onClick.bind(null, id) : item.onClick,
+      onClick: id && onClick ? onClick.bind(null, id) : onClick,
     }
   })
 

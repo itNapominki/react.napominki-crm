@@ -2,18 +2,57 @@ import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { DataTable } from 'components'
 import { useFetch } from 'hooks'
-
-// async function getUsers() {
-//   const res = await fetch('http://localhost:5544/users')
-//   const data = await res.json()
-//   return data
-// }
+import { api } from 'utils'
 
 export default function Users() {
   console.log('render Users')
 
-  const users = useFetch('/users')
   const navigate = useNavigate()
+
+  const users = useFetch('/users', [])
+  const serverRoles = useFetch('/users-roles', [], handleRolesLoad)
+  const [localRoles, setLocalRoles] = React.useState([])
+  const [data, setData] = React.useState()
+
+  function handleRolesLoad(data) {
+    const arr = data.map((elem) => {
+      return {
+        id: elem.id,
+        title: elem.plural_value,
+      }
+    })
+
+    setLocalRoles(arr)
+  }
+
+  React.useEffect(() => {
+    if (users.length > 0 && serverRoles.length > 0) {
+      const data = localRoles
+        .map((role) => {
+          const arr = users.filter(({ role_id }) => role_id === role.id)
+
+          if (arr.length > 0) {
+            return {
+              ...role,
+              users: arr,
+            }
+          }
+
+          return null
+        })
+        .filter((role) => role != null)
+
+      setData(data)
+    }
+  }, [users, localRoles])
+
+  async function handleRemove(id) {
+    if (window.confirm('Подтвердите удаление пользователя')) {
+      await api.users.remove(id).then((res) => {
+        console.log(res)
+      })
+    }
+  }
 
   const cols = [
     {
@@ -33,26 +72,32 @@ export default function Users() {
     },
   ]
 
+  const droplist = [
+    {
+      text: 'Редактировать',
+      onClick: (id) => navigate('/admin/edit-user/' + id),
+    },
+    { text: 'Копировать данные для входа' },
+    {
+      text: 'Удалить',
+      color: 'red',
+      onClick: (id) => handleRemove(id),
+    },
+  ]
+
   return (
     <React.Fragment>
       <Link className="admin-data__add-link" to="/admin/add-user">
         Добавить пользователя
       </Link>
-      {users?.map((roles) => {
+      {data?.map((roles) => {
         return (
-          <div key={roles.role.value} className="admin-data__table">
+          <div key={roles.id} className="admin-data__table">
             <DataTable
-              title={roles.role.text}
+              title={roles.title}
               rows={roles.users}
               cols={cols}
-              droplist={[
-                {
-                  text: 'Редактировать',
-                  onClick: (id) => navigate('/admin/edit-user/' + id),
-                },
-                { text: 'Копировать данные для входа' },
-                { text: 'Удалить', color: 'red' },
-              ]}
+              droplist={droplist}
             />
           </div>
         )
