@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm, Input } from '../../../..'
+import { AdminForm, Input } from 'components'
 
 export default function RestaurantName(data) {
   const { name, setName, title, setTitle } = data

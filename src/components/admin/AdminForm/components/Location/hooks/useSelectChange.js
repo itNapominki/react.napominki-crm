@@ -30,11 +30,11 @@ export default function useSelectChange(
     if (selected) {
       const PARENT_ID_OBJ_VALUE =
         ref === 'cities'
-          ? 'region_id'
+          ? 'regionId'
           : ref === 'counties'
-          ? 'city_id'
+          ? 'cityId'
           : ref === 'districts'
-          ? 'county_id'
+          ? 'countyId'
           : console.error('Ошибка при смене селектов (AdminForm Address)')
 
       const selectedId = selected.id

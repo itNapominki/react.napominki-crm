@@ -1,4 +1,4 @@
-import { classNames } from '../../../utils'
+import { classNames } from 'utils'
 
 export default function Droplist(data) {
   console.log('render Droplist')

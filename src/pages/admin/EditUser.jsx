@@ -1,68 +1,46 @@
 import React from 'react'
 import { AdminForm, AdminLayout } from 'components'
-import { api } from 'utils'
-import { useFetch, useSaveData } from 'hooks'
+import { useFetch } from 'hooks'
 import { EditUserContext } from 'context'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export default function EditUser() {
   console.log('render EditUser')
 
-  const navigate = useNavigate()
-
   const { id } = useParams()
   const isEdit = id ? true : false
 
-  // const data = id ? useFetch('/users/' + id) : null
-
-  const serverRoles = useFetch('/users-roles', [], handleRolesLoad)
-  const [localRoles, setLocalRoles] = React.useState()
+  const serverData = id ? useFetch('/users/' + id) : null
   const [data, setData] = React.useState(null)
-
-  function handleRolesLoad(data) {
-    const arr = data.map((elem) => {
-      return {
-        id: elem.id,
-        text: elem.single_value,
-        value: elem,
-      }
-    })
-
-    setLocalRoles(arr)
-  }
-
   const [errors, setErrors] = React.useState()
-  const handleSave = useSaveData({
+
+  const onSave = {
+    id,
     data,
-    apiMethod: api.users.create,
-    onSuccess: (res) => {},
-    onError: ({ message, errors }) => {
-      setErrors({ message, errors })
-    },
-  })
+    onSuccess: () => setErrors(),
+    onError: ({ message, errors }) => setErrors({ message, errors }),
+  }
 
   const formTitle = isEdit
     ? 'Редактирование пользователя'
     : 'Добавление пользователя'
 
-  const removeBtn = isEdit
-    ? { text: 'Удалить пользователя', onClick: handleDelete }
+  const deleteBtn = isEdit
+    ? {
+        text: 'Удалить пользователя',
+        onDelete: { id, message: 'Подтвердите удаление пользователя' },
+      }
     : null
-
-  const onCancel = {
-    message: 'Отменить редактирование и вернуться на главную?',
-    route: '/admin/users',
-  }
 
   return (
     <AdminLayout>
       <AdminForm
+        model="users"
         title={formTitle}
-        onSave={handleSave}
-        onCancel={onCancel}
-        removeBtn={removeBtn}
+        onSave={onSave}
+        deleteBtn={deleteBtn}
       >
-        <EditUserContext.Provider value={{ localRoles, setData, errors }}>
+        <EditUserContext.Provider value={{ serverData, setData, errors }}>
           <AdminForm.EditUser />
         </EditUserContext.Provider>
       </AdminForm>

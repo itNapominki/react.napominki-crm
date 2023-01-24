@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 
-export default function useCancel({ message, route }) {
+export default function useCancel(settings) {
+  const { message = 'Отменить редактирование?', model } = settings
   const navigate = useNavigate()
 
-  async function handleCancel() {
+  function handleCancel() {
     if (window.confirm(message)) {
-      navigate(route)
+      navigate('/admin/' + model)
     }
   }
 

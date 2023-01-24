@@ -8,42 +8,60 @@ export default function Objects() {
   console.log('render Objects')
 
   const navigate = useNavigate()
+
   const objects = useFetch('/objects')
-  const types = useFetch('/objects-types')
+  const [data, setData] = React.useState()
 
-  const data = types
-    ?.map((type) => {
-      let arr = objects.filter(
-        ({ object_type_id }) => object_type_id === type.id
-      )
+  React.useEffect(() => {
+    if (objects) {
+      const types = [
+        {
+          title: 'Кладбища',
+          slug: 'cemetery',
+          objects: setObjects('cemetery'),
+        },
+        {
+          title: 'Крематории',
+          slug: 'crematory',
+          objects: setObjects('crematory'),
+        },
+        {
+          title: 'Морги',
+          slug: 'morgue',
+          objects: setObjects('morgue'),
+        },
+        {
+          title: 'Метро',
+          slug: 'metro',
+          objects: setObjects('metro'),
+        },
+      ].filter(({ objects }) => objects.length > 0)
 
-      arr = arr.map((elem) => {
-        const {
-          region: { value: region },
-          city: { value: city },
-          county: { value: county },
-          district: { value: district },
-          street,
-          house,
-        } = elem.address
+      setData(types)
+    }
+  }, [objects])
+
+  function setObjects(objectsType) {
+    return objects
+      .map((object) => {
+        let { region, city, county, district, street, house } = object.address
+
+        region = region === null ? null : region.title
+        city = city === null ? null : city.title
+        county = county === null ? null : county.title
+        district = district === null ? null : district.title
 
         return {
-          ...elem,
+          ...object,
           address: joinStrings([region, city, county, district, street, house]),
         }
       })
-
-      return {
-        id: type.id,
-        title: type.plural_value,
-        objects: arr.length > 0 ? arr : null,
-      }
-    })
-    .filter((type) => type.objects)
+      .filter(({ type }) => type === objectsType)
+  }
 
   const cols = [
     {
-      key: 'name',
+      key: 'title',
       name: 'Название',
       percentWidth: 42,
     },
@@ -82,7 +100,7 @@ export default function Objects() {
 
       {data?.map((type) => {
         return (
-          <div key={type.id} className="admin-data__table">
+          <div key={type.slug} className="admin-data__table">
             <DataTable
               title={type.title}
               rows={type.objects}

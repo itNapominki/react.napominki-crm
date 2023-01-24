@@ -1,6 +1,7 @@
 export { default as Group } from './Group/Group'
-export { default as Address } from './Address/Address'
 export { default as Comment } from './Comment/Comment'
+export { default as EditObject } from './EditObject/EditObject'
 export { default as EditUser } from './EditUser/EditUser'
+export { default as Location } from './Location/Location'
 export { default as Metro } from './Metro/Metro'
 export { default as RestaurantName } from './RestaurantName/RestaurantName'

@@ -1,4 +1,4 @@
-import { classNames } from '../../../utils'
+import { classNames } from 'utils'
 
 export default function Layout(data) {
   const { children, pageClass = false } = data

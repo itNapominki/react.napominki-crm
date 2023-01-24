@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { classNames } from '../../../utils'
+import { classNames } from 'utils'
 
 export default function Tabs(data) {
   const { children, className, buttons } = data

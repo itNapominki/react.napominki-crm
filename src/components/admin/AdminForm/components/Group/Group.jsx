@@ -1,4 +1,4 @@
-import { Separator } from '../../../..'
+import { Separator } from 'components'
 
 export default function Group(data) {
   const { button, children, title } = data

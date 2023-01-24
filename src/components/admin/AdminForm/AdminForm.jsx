@@ -1,25 +1,28 @@
 import React from 'react'
 import { Button } from 'components'
 import {
-  Address,
   Comment,
+  EditObject,
   EditUser,
   Group,
+  Location,
   Metro,
   RestaurantName,
 } from './components'
-import { useCancel } from './hooks'
+import { useCancel, useDelete, useSave } from './hooks'
 
 export default function AdminForm(data) {
-  const { title, children, onSave, onCancel, removeBtn } = data
+  const { children, deleteBtn, model, onSave, onCancel, title } = data
 
-  const handleCancel = useCancel(onCancel)
+  const handleCancel = useCancel({ ...onCancel, model })
+  const handleDelete = useDelete({ ...onSave, model })
+  const handleSave = useSave({ ...onSave, model })
 
   return (
     <div className="admin-form">
-      {removeBtn && (
-        <div className="admin-form__remove-btn" onClick={removeBtn.onClick}>
-          {removeBtn.text}
+      {deleteBtn && (
+        <div className="admin-form__remove-btn" onClick={handleDelete}>
+          {deleteBtn.text}
         </div>
       )}
       {title && <div className="admin-form__title">{title}</div>}
@@ -28,7 +31,7 @@ export default function AdminForm(data) {
         <Button
           text="Сохранить"
           className="admin-form__button col col-2"
-          onClick={onSave}
+          onClick={handleSave}
         />
         <Button
           mode="light"
@@ -42,9 +45,10 @@ export default function AdminForm(data) {
 }
 
 AdminForm.Group = Group
-AdminForm.Address = Address
 AdminForm.Comment = Comment
+AdminForm.Location = Location
 AdminForm.Metro = Metro
 AdminForm.RestaurantName = RestaurantName
 
+AdminForm.EditObject = EditObject
 AdminForm.EditUser = EditUser

@@ -1,4 +1,4 @@
-import { classNames } from '../../../utils'
+import { classNames } from 'utils'
 
 export default function Button(data) {
   const { text, className, mode, ...props } = data

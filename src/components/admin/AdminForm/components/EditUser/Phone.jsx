@@ -1,13 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
 import { EditUserContext } from 'context'
-import { useErrors } from 'hooks'
+import { useErrors, useServerData } from 'hooks'
 
 export default function Phone() {
   const context = React.useContext(EditUserContext)
-  const { errors, setData } = context
+  const { serverData, errors, setData } = context
 
-  const [phone, setPhone] = React.useState('')
+  const [phone, setPhone] = useServerData(serverData, 'phone', '')
   const error = useErrors(errors, 'phone')
 
   React.useEffect(() => {

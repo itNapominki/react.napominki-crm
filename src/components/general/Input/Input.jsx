@@ -1,7 +1,7 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
-import { useInput } from '../../../hooks'
-import { classNames } from '../../../utils'
+import { useInput } from 'hooks'
+import { classNames } from 'utils'
 
 export default React.memo(function Input(data) {
   const {

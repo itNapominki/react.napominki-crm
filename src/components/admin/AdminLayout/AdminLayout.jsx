@@ -1,4 +1,4 @@
-import { AdminHeader, Layout, Tabs } from '../../'
+import { AdminHeader, Layout, Tabs } from 'components'
 
 export default function AdminLayout(data) {
   const { children, pageClass, navigation } = data

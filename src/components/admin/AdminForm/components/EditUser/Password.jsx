@@ -10,6 +10,7 @@ export default function Password() {
 
   const [password, setPassword] = React.useState('')
   const [repeatPassword, setRepeatPassword] = React.useState('')
+
   const error = useErrors(errors, 'password')
   const repeatError = useErrors(errors, 'repeatPassword')
 

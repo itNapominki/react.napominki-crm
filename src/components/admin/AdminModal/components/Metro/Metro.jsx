@@ -1,7 +1,7 @@
 import React from 'react'
-import { Input, Separator, AdminModal } from '../../../../'
-import { useApi } from '../../../../../hooks'
-import { api } from '../../../../../utils'
+import { Input, Separator, AdminModal } from 'components'
+import { useApi } from 'hooks'
+import { api } from 'utils'
 import Station from './Station'
 
 export default function Metro(data) {

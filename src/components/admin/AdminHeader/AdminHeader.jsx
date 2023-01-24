@@ -1,4 +1,4 @@
-import Button from '../../general/Button/Button'
+import { Button } from 'components'
 
 export default function AdminHeader(data) {
   const { userEmail } = data

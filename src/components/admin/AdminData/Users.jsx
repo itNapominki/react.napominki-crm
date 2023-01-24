@@ -9,54 +9,49 @@ export default function Users() {
 
   const navigate = useNavigate()
 
-  const users = useFetch('/users', [])
-  const serverRoles = useFetch('/users-roles', [], handleRolesLoad)
-  const [localRoles, setLocalRoles] = React.useState([])
+  const users = useFetch('/users')
   const [data, setData] = React.useState()
 
-  function handleRolesLoad(data) {
-    const arr = data.map((elem) => {
-      return {
-        id: elem.id,
-        title: elem.plural_value,
-      }
-    })
-
-    setLocalRoles(arr)
-  }
-
   React.useEffect(() => {
-    if (users.length > 0 && serverRoles.length > 0) {
-      const data = localRoles
-        .map((role) => {
-          const arr = users.filter(({ role_id }) => role_id === role.id)
+    if (users) {
+      const roles = [
+        {
+          title: 'Админы',
+          slug: 'admin',
+          users: users.filter(({ role }) => role === 'admin'),
+        },
+        {
+          title: 'Менеджеры',
+          slug: 'manager',
+          users: users.filter(({ role }) => role === 'manager'),
+        },
+        {
+          title: 'Редакторы',
+          slug: 'redaktor',
+          users: users.filter(({ role }) => role === 'redaktor'),
+        },
+      ].filter(({ users }) => users.length > 0)
 
-          if (arr.length > 0) {
-            return {
-              ...role,
-              users: arr,
-            }
-          }
-
-          return null
-        })
-        .filter((role) => role != null)
-
-      setData(data)
+      setData(roles)
     }
-  }, [users, localRoles])
+  }, [users])
 
-  async function handleRemove(id) {
+  const handleDelete = async (id) => {
     if (window.confirm('Подтвердите удаление пользователя')) {
-      await api.users.remove(id).then((res) => {
-        console.log(res)
-      })
+      await api.users
+        .delete(id)
+        .then(() => navigate('/admin/users'))
+        .catch(({ response }) => {
+          const { message } = response.data
+
+          alert(message)
+        })
     }
   }
 
   const cols = [
     {
-      key: 'fullname',
+      key: 'firstName',
       name: 'ФИО',
       percentWidth: 42,
     },
@@ -81,7 +76,7 @@ export default function Users() {
     {
       text: 'Удалить',
       color: 'red',
-      onClick: (id) => handleRemove(id),
+      onClick: (id) => handleDelete(id),
     },
   ]
 
@@ -92,7 +87,7 @@ export default function Users() {
       </Link>
       {data?.map((roles) => {
         return (
-          <div key={roles.id} className="admin-data__table">
+          <div key={roles.slug} className="admin-data__table">
             <DataTable
               title={roles.title}
               rows={roles.users}

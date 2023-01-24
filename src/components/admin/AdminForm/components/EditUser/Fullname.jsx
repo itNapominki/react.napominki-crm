@@ -1,31 +1,44 @@
 import React from 'react'
 import { Input } from 'components'
 import { EditUserContext } from 'context'
-import { useErrors } from 'hooks'
+import { useErrors, useServerData } from 'hooks'
 
 export default function Fullname() {
   const context = React.useContext(EditUserContext)
-  const { setData, errors } = context
+  const { serverData, setData, errors } = context
 
-  const [fullname, setFullname] = React.useState('')
-  const error = useErrors(errors, 'fullname')
+  const [firstName, setFirstName] = useServerData(serverData, 'firstName', '')
+  const [lastName, setLastName] = useServerData(serverData, 'lastName', '')
+
+  const firstNameError = useErrors(errors, 'firstName')
+  const lastNameError = useErrors(errors, 'lastName')
 
   React.useEffect(() => {
     setData((prev) => {
       return {
         ...prev,
-        fullname,
+        firstName,
+        lastName,
       }
     })
-  }, [fullname])
+  }, [firstName, lastName])
 
   return (
-    <Input
-      label="ФИО"
-      error={error}
-      value={fullname}
-      onInput={setFullname}
-      className="col col-12 "
-    />
+    <React.Fragment>
+      <Input
+        label="Имя"
+        error={firstNameError}
+        value={firstName}
+        onInput={setFirstName}
+        className="col col-6 "
+      />
+      <Input
+        label="Фамилия"
+        error={lastNameError}
+        value={lastName}
+        onInput={setLastName}
+        className="col col-6 "
+      />
+    </React.Fragment>
   )
 }

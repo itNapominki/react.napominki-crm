@@ -1,6 +1,6 @@
 import React from 'react'
-import { useInput } from '../../../hooks'
-import { classNames } from '../../../utils'
+import { useInput } from 'hooks'
+import { classNames } from 'utils'
 
 export default function Textarea(data) {
   const {
