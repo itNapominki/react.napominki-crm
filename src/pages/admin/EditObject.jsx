@@ -8,7 +8,6 @@ export default function EditObject() {
   console.log('render EditObject')
 
   const { id } = useParams()
-  const isEdit = id ? true : false
 
   const serverData = id ? useFetch('/objects/' + id) : null
   const [data, setData] = React.useState(null)
@@ -21,9 +20,9 @@ export default function EditObject() {
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
-  const formTitle = isEdit ? 'Редактирование объекта' : 'Добавление объекта'
+  const formTitle = id ? 'Редактирование объекта' : 'Добавление объекта'
 
-  const deleteBtn = isEdit
+  const deleteBtn = id
     ? {
         text: 'Удалить объект',
         onDelete: { id, message: 'Подтвердите удаление объекта' },

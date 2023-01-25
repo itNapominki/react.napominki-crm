@@ -8,7 +8,6 @@ export default function EditUser() {
   console.log('render EditUser')
 
   const { id } = useParams()
-  const isEdit = id ? true : false
 
   const serverData = id ? useFetch('/users/' + id) : null
   const [data, setData] = React.useState(null)
@@ -21,11 +20,11 @@ export default function EditUser() {
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
-  const formTitle = isEdit
+  const formTitle = id
     ? 'Редактирование пользователя'
     : 'Добавление пользователя'
 
-  const deleteBtn = isEdit
+  const deleteBtn = id
     ? {
         text: 'Удалить пользователя',
         onDelete: { id, message: 'Подтвердите удаление пользователя' },

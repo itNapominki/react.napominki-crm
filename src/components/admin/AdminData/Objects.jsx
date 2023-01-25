@@ -44,16 +44,16 @@ export default function Objects() {
   function setObjects(objectsType) {
     return objects
       .map((object) => {
-        let { region, city, county, district, street, house } = object.address
+        let { city, county, district, street, house } = object.address
 
-        region = region === null ? null : region.title
+        // region = region === null ? null : region.title
         city = city === null ? null : city.title
         county = county === null ? null : county.title
         district = district === null ? null : district.title
 
         return {
           ...object,
-          address: joinStrings([region, city, county, district, street, house]),
+          address: joinStrings([city, county, district, street, house]),
         }
       })
       .filter(({ type }) => type === objectsType)

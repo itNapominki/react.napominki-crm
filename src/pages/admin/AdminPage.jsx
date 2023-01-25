@@ -1,11 +1,10 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { AdminData, AdminLayout } from 'components'
 
 export default function AdminPage() {
   console.log('render AdminPage')
 
-  const { pathname: location } = useLocation()
   const navigate = useNavigate()
 
   const navigation = [
@@ -26,9 +25,11 @@ export default function AdminPage() {
   return (
     <AdminLayout navigation={navigation}>
       <div className="admin-data">
-        {location.includes('users') && <AdminData.Users />}
-        {location.includes('objects') && <AdminData.Objects />}
-        {location.includes('restaurants') && <AdminData.Restaurants />}
+        <Routes>
+          <Route path="users" element={<AdminData.Users />} />
+          <Route path="restaurants" element={<AdminData.Restaurants />} />
+          <Route path="objects" element={<AdminData.Objects />} />
+        </Routes>
       </div>
     </AdminLayout>
   )

@@ -1,0 +1,6 @@
+export { default as Address } from './Address/Address'
+export { default as Comment } from './Comment/Comment'
+export { default as DisabilityInfo } from './DisabilityInfo/DisabilityInfo'
+export { default as Heading } from './Heading/Heading'
+export { default as Info } from './Info/Info'
+export { default as Shedule } from './Shedule/Shedule'

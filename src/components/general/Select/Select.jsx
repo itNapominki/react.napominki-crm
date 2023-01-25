@@ -1,8 +1,8 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { classNames } from 'utils'
-import { useSelect } from 'hooks'
 import { Droplist } from 'components'
+import { useMultiple, useSelect } from './hooks'
 import chevron from 'sprites/chevron.svg'
 
 export default function Select(data) {
@@ -12,26 +12,16 @@ export default function Select(data) {
     className,
     label,
     bigLabel,
+    multiple,
     onChange,
-    options = [],
+    options,
     value: defaultValue,
   } = data
 
   const [droplistVisible, setDroplistVisible] = React.useState(false)
-  const [value, setValue] = useSelect(defaultValue, onChange)
-
-  function handleChangeOption(value) {
-    setValue(value)
-  }
-
-  const o = options.map((option) => {
-    return {
-      ...option,
-      onClick: () => {
-        handleChangeOption(option)
-      },
-    }
-  })
+  const [value, droplist] = multiple
+    ? useMultiple(defaultValue, options, onChange)
+    : useSelect(defaultValue, options, onChange)
 
   return (
     <div className={classNames('select', [className])}>
@@ -46,11 +36,18 @@ export default function Select(data) {
       )}
       <div
         className="select__fluid"
-        onClick={() => setDroplistVisible(!droplistVisible)}
+        onClick={() => setDroplistVisible(true)}
+        // onClick={() => setDroplistVisible(!droplistVisible)}
       >
-        {value.text}
+        {multiple
+          ? value
+              ?.map((elem) => (elem.short ? elem.short : elem.text))
+              .join(', ')
+          : value.text}
         <HandySvg src={chevron} className="select__chevron" />
-        {droplistVisible && <Droplist className="select__droplist" items={o} />}
+        {droplistVisible && (
+          <Droplist className="select__droplist" items={droplist} />
+        )}
       </div>
     </div>
   )

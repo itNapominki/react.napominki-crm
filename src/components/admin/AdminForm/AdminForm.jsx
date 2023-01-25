@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button } from 'components'
 import {
-  Comment,
+  Address,
   EditObject,
   EditUser,
   Group,
-  Location,
+  Inputlist,
   Metro,
-  RestaurantName,
+  Shedule,
 } from './components'
 import { useCancel, useDelete, useSave } from './hooks'
 
@@ -45,10 +45,10 @@ export default function AdminForm(data) {
 }
 
 AdminForm.Group = Group
-AdminForm.Comment = Comment
-AdminForm.Location = Location
+AdminForm.Address = Address
+AdminForm.Inputlist = Inputlist
 AdminForm.Metro = Metro
-AdminForm.RestaurantName = RestaurantName
+AdminForm.Shedule = Shedule
 
 AdminForm.EditObject = EditObject
 AdminForm.EditUser = EditUser

@@ -1,3 +1,4 @@
+import React from 'react'
 import { classNames } from 'utils'
 
 export default function Droplist(data) {
@@ -7,17 +8,19 @@ export default function Droplist(data) {
 
   return (
     <div className={classNames('droplist', [className])}>
-      {items.map((item, i) => (
-        <div
-          key={i}
-          className={classNames('droplist__item', [
-            item.color ? 'droplist__item_' + item.color : '',
-          ])}
-          onClick={item.onClick}
-        >
-          {item.text}
-        </div>
-      ))}
+      {items.map((item, i) => {
+        return (
+          <div
+            key={i}
+            className={classNames('droplist__item', [
+              item.color ? 'droplist__item_' + item.color : '',
+            ])}
+            onClick={item.onClick}
+          >
+            {item.text}
+          </div>
+        )
+      })}
     </div>
   )
 }

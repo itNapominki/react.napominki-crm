@@ -1,0 +1,49 @@
+.admin-form {
+  &__inputlist-item {
+    @include desktop(
+      (
+        'position': relative,
+
+        'overflow': hidden,
+      )
+    );
+
+    &:hover {
+      .admin-form__inputlist-remove {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__inputlist-remove {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 0,
+        'right': 0,
+
+        'width': 60px,
+        'height': 60px,
+
+        'background': get-theme-color('error'),
+        'text-align': center,
+
+        'cursor': pointer,
+        'transition': $transition-time,
+        'transform': translateX(100%),
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 17px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+  }
+}

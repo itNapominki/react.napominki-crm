@@ -5,6 +5,8 @@
       'z-index': 5,
 
       'padding': 10px 0,
+      'max-height': 250px,
+      'overflow-y': auto,
 
       'background': #fff,
       'box-shadow': $droplist-shadow,
@@ -23,7 +25,8 @@
       )
     );
 
-    &:hover {
+    &:hover,
+    &.selected {
       background: get-theme-color('bg');
     }
 

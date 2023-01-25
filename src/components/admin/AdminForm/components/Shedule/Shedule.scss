@@ -1,0 +1,53 @@
+.admin-form {
+  &__shedule-item {
+    @include desktop(
+      (
+        'position': relative,
+        'display': flex,
+      )
+    );
+  }
+
+  &__shedule .select {
+    @include desktop(
+      (
+        'flex-shrink': 0,
+
+        'width': 220px,
+        'margin-right': 10px,
+      )
+    );
+  }
+
+  &__shedule-remove {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 0,
+        'right': 0,
+
+        'width': 60px,
+        'height': 60px,
+
+        'background': get-theme-color('error'),
+        'text-align': center,
+
+        'cursor': pointer,
+        'transition': $transition-time,
+        'transform': translateX(100%),
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 17px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+  }
+}

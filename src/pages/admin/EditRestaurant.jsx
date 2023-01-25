@@ -1,29 +1,9 @@
 import React from 'react'
-import {
-  AdminLayout,
-  RestarauntSettings,
-  // AddRestaurantHalls,
-  // AddRestaurantMenus,
-  // AddRestaurantManagerInfo,
-} from '../../components'
-import { useParams } from 'react-router-dom'
-import { useApi } from '../../hooks'
-import { api } from '../../utils'
+import { AdminLayout, EditRestaurantForms } from 'components'
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
 
-const FORM = {
-  INFO: 'INFO',
-  HALLS: 'HALLS',
-  MENUS: 'MENUS',
-  MANAGER_INFO: 'MANAGER_INFO',
-}
-
-export default function AddRestaurant() {
+export default function EditRestaurant() {
   let { id } = useParams()
-  const restaurantInfo = useApi({
-    request: api.restaurants.getById,
-    params: id,
-  })
-  const [visibleForm, setVisibleForm] = React.useState(FORM.INFO)
 
   const navigation = [
     {
@@ -45,13 +25,8 @@ export default function AddRestaurant() {
   ]
 
   return (
-    <AdminLayout navigation={navigation}>
-      {visibleForm === FORM.INFO && (
-        <RestarauntSettings.Info data={restaurantInfo} />
-      )}
-      {/* {visibleForm === FORM.HALLS && <AddRestaurantHalls />} */}
-      {/* {visibleForm === FORM.MENUS && <AddRestaurantMenus />} */}
-      {/* {visibleForm === FORM.MANAGER_INFO && <AddRestaurantManagerInfo />} */}
+    <AdminLayout navigation={id ? navigation : null}>
+      <EditRestaurantForms />
     </AdminLayout>
   )
 }

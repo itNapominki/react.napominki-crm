@@ -1,11 +1,13 @@
 import { Separator } from 'components'
+import React from 'react'
+import { classNames } from 'utils'
 
 export default function Group(data) {
-  const { button, children, title } = data
+  const { className, button, children, title } = data
 
   return (
-    <>
-      <div className="admin-form__group">
+    <React.Fragment>
+      <div className={classNames('admin-form__group', [className])}>
         {title && <div className="admin-form__group-title">{title}</div>}
         <div className="admin-form__group-row row">{children}</div>
         {button && (
@@ -14,8 +16,7 @@ export default function Group(data) {
           </button>
         )}
       </div>
-
       <Separator />
-    </>
+    </React.Fragment>
   )
 }

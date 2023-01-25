@@ -5,7 +5,6 @@ export default function District(data) {
   const { label, locations, referal, type, value, setValue } = data
 
   const [options, setOptions] = React.useState()
-  const [loaded, setLoaded] = React.useState()
 
   React.useEffect(() => {
     if (options) {
