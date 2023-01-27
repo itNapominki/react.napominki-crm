@@ -1,7 +1,4 @@
-import React from 'react'
-import { Select } from 'components'
-
-const options = [
+export default [
   { text: 'Понедельник', short: 'Пн' },
   { text: 'Вторник', short: 'Вт' },
   { text: 'Среда', short: 'Ср' },
@@ -10,17 +7,3 @@ const options = [
   { text: 'Суббота', short: 'Сб' },
   { text: 'Воскресенье', short: 'Вс' },
 ]
-
-export default function SheduleSelect(data) {
-  const { onChange, value = [] } = data
-
-  return (
-    <Select
-      multiple
-      label="Дни недели"
-      value={value}
-      options={options}
-      onChange={onChange}
-    />
-  )
-}

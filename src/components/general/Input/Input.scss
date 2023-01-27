@@ -12,13 +12,33 @@ input {
   );
 
   &__top {
+    @include desktop(
+      (
+        'margin-bottom': 6px,
+      )
+    );
   }
 
   &__top-row {
     @include desktop(
       (
         'display': flex,
-        'justify-content': space-between,
+      )
+    );
+  }
+
+  &__bottom {
+    @include desktop(
+      (
+        'margin-top': 6px,
+      )
+    );
+  }
+
+  &__bottom-row {
+    @include desktop(
+      (
+        'display': flex,
       )
     );
   }
@@ -26,7 +46,7 @@ input {
   &__error {
     @include desktop(
       (
-        'margin-bottom': 6px,
+        'margin-left': auto,
 
         'font-size': 14px,
         'color': get-theme-color('error'),
@@ -74,10 +94,6 @@ input {
 
     @include desktop(
       (
-        'margin-top': 6px,
-
-        'max-width': fit-content,
-
         'font-size': 12px,
       )
     );

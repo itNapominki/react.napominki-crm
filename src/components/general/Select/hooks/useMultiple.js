@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function useMultiple(defaultValue = [], options = [], callback) {
   const [value, setValue] = React.useState(defaultValue)
+  const [visible, setVisible] = React.useState(false)
 
   React.useEffect(() => {
     if (callback) {
@@ -39,5 +40,5 @@ export default function useMultiple(defaultValue = [], options = [], callback) {
     e.target.classList.toggle('selected')
   }
 
-  return [value, droplist]
+  return [value, droplist, visible, setVisible]
 }

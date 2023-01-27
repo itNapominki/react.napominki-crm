@@ -1,5 +1,0 @@
-export { default as Email } from './Email'
-export { default as Fullname } from './Fullname'
-export { default as Password } from './Password'
-export { default as Phone } from './Phone'
-export { default as Role } from './Role'

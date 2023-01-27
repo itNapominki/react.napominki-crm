@@ -4,8 +4,7 @@ import { useErrors } from 'hooks'
 
 export default function Street(data) {
   const [street, setStreet] = React.useState('')
-  const { context, setAddress } = data
-  const { errors } = context
+  const { setAddress, errors } = data
 
   const error = useErrors(errors, 'address.street')
 

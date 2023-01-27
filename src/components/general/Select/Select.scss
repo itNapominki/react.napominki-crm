@@ -1,12 +1,40 @@
 .select {
   @extend .input;
 
+  &__top {
+    @extend .input__top;
+  }
+
+  &__top-row {
+    @extend .input__top-row;
+  }
+
+  &__bottom {
+    @extend .input__bottom;
+  }
+
+  &__bottom-row {
+    @extend .input__bottom-row;
+  }
+
+  &__error {
+    @extend .input__error;
+  }
+
   &__label {
     @extend .input__label;
 
     &_big {
       @extend .input__label_big;
     }
+  }
+
+  &__wrap {
+    @include desktop(
+      (
+        'position': relative,
+      )
+    );
   }
 
   &__fluid {

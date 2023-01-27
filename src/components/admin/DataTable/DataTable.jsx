@@ -1,5 +1,6 @@
-import Col from './Col'
-import Row from './Row'
+import './DataTable.scss'
+
+import { Col, Row } from './components'
 
 export default function DataTable(data) {
   const { title, rows = [], cols = [], droplist } = data

@@ -1,3 +1,5 @@
+import './AdminLayout.scss'
+
 import { AdminHeader, Layout, Tabs } from 'components'
 
 export default function AdminLayout(data) {

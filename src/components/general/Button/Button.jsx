@@ -1,3 +1,4 @@
+import './Button.scss'
 import { classNames } from 'utils'
 
 export default function Button(data) {

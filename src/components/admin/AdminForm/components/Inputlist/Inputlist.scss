@@ -1,21 +1,19 @@
-.admin-form {
-  &__inputlist-item {
-    @include desktop(
-      (
-        'position': relative,
+.admin-form-inputlist {
+  @include desktop(
+    (
+      'position': relative,
 
-        'overflow': hidden,
-      )
-    );
+      'overflow': hidden,
+    )
+  );
 
-    &:hover {
-      .admin-form__inputlist-remove {
-        transform: translateX(0);
-      }
+  &:hover {
+    .admin-form-inputlist__remove {
+      transform: translateX(0);
     }
   }
 
-  &__inputlist-remove {
+  &__remove {
     @include desktop(
       (
         'position': absolute,

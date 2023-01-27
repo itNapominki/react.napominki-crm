@@ -1,5 +1,3 @@
-@import './components/Metro/Metro.scss';
-
 .admin-modal {
   @include desktop(
     (
@@ -39,6 +37,14 @@
         'padding': 24px,
 
         'background': #fff,
+      )
+    );
+  }
+
+  &__search {
+    @include desktop(
+      (
+        'margin-bottom': 32px,
       )
     );
   }

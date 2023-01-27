@@ -1,3 +1,5 @@
+import './AdminForm.scss'
+
 import React from 'react'
 import { Button } from 'components'
 import {
@@ -6,7 +8,6 @@ import {
   EditUser,
   Group,
   Inputlist,
-  Metro,
   Shedule,
 } from './components'
 import { useCancel, useDelete, useSave } from './hooks'
@@ -47,7 +48,6 @@ export default function AdminForm(data) {
 AdminForm.Group = Group
 AdminForm.Address = Address
 AdminForm.Inputlist = Inputlist
-AdminForm.Metro = Metro
 AdminForm.Shedule = Shedule
 
 AdminForm.EditObject = EditObject

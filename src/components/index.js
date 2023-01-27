@@ -1,5 +1,6 @@
 export * as Alert from './general/Alert'
 export { default as Button } from './general/Button/Button'
+export { default as DottedButton } from './general/DottedButton/DottedButton'
 export { default as Droplist } from './general/Droplist/Droplist'
 export { default as Input } from './general/Input/Input'
 export { default as Layout } from './general/Layout/Layout'

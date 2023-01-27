@@ -1,6 +1,6 @@
 import React from 'react'
 import { Droplist } from 'components'
-import Col from './Col'
+import Col from '../Col/Col'
 
 export default function Row(data) {
   console.log('render Row')

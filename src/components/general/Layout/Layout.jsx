@@ -1,3 +1,4 @@
+import './Layout.scss'
 import { classNames } from 'utils'
 
 export default function Layout(data) {

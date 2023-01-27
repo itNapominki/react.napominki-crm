@@ -1,12 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
 import { useErrors } from 'hooks'
+import { useString } from './hooks'
 
 export default function Coordinates(data) {
   const [coordinates, setCoordinates] = React.useState('')
-  const { addressString, context, setAddress } = data
-  const { errors } = context
+  const { address, setAddress, errors } = data
 
+  const string = useString(address)
   const error = useErrors(errors, 'address.coordinates')
 
   React.useEffect(() => {
@@ -16,7 +17,7 @@ export default function Coordinates(data) {
   }, [coordinates])
 
   function handleOpenMap() {
-    const url = 'https://yandex.ru/maps/?text={' + addressString + '}'
+    const url = 'https://yandex.ru/maps/?text={' + string + '}'
     return window.open(url, '_blank')
   }
 

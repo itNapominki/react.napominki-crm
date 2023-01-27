@@ -7,14 +7,6 @@
     );
   }
 
-  &__search {
-    @include desktop(
-      (
-        'margin-bottom': 32px,
-      )
-    );
-  }
-
   &__group-title {
     @include h3;
   }

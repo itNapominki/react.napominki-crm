@@ -1,3 +1,5 @@
+import './AdminHeader.scss'
+
 import { Button } from 'components'
 
 export default function AdminHeader(data) {

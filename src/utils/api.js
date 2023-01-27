@@ -21,6 +21,7 @@ const api = {
     },
   },
   restaurants: {
+    create: (data) => axios.post('/restaurants', data),
     getAll: () => fetch.get('/restaurants'),
     getById: (id) => fetch.get('/restaurants?_id=' + id),
   },

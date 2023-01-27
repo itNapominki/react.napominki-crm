@@ -1,3 +1,4 @@
+import './Tabs.scss'
 import { useState } from 'react'
 import { classNames } from 'utils'
 

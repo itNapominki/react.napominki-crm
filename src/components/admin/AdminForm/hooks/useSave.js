@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom'
 import { api } from 'utils'
 
 export default function useSave(settings) {
   const { data, model, onSuccess, onError, id = null } = settings
-  const navigate = useNavigate()
 
   async function handleSave() {
     if (id) {
@@ -21,7 +19,6 @@ export default function useSave(settings) {
     function handleSuccess(res) {
       if (onSuccess) {
         onSuccess(res)
-        navigate('/admin/' + model)
       }
     }
 
