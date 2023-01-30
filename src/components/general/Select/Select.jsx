@@ -3,7 +3,7 @@ import React from 'react'
 import { classNames } from 'utils'
 import { SelectBottom, SelectFluid, SelectTop } from './components'
 
-export default function Select(data) {
+export default React.memo(function Select(data) {
   console.log('render Select')
 
   const {
@@ -36,4 +36,4 @@ export default function Select(data) {
       <SelectBottom action={action} error={error} errorDown={errorDown} />
     </div>
   )
-}
+})

@@ -7,7 +7,7 @@ import { options } from '../../data'
 import { handleInput, handleRemove, handleSelectChange } from '../../utils'
 
 export default function SheduleItem(data) {
-  const { i, list, setList, errors, formName } = data
+  const { i, shedule, setShedule, errors, formName } = data
 
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
@@ -28,27 +28,28 @@ export default function SheduleItem(data) {
             {
               text: 'Удалить',
               color: 'red',
-              onClick: () => handleRemove(setList, i),
+              onClick: () => handleRemove(setShedule, i),
             },
           ]}
         />
         <Select
           multiple
           label="Дни недели"
-          value={list[i].days}
+          value={shedule[i].days}
           options={options}
-          onChange={(arr) => handleSelectChange(setList, arr, i)}
+          onChange={(arr) => handleSelectChange(setShedule, arr, i)}
           className="admin-form-shedule__select"
           error={selectError}
           errorDown
         />
         <Input
           label="Время"
-          value={list[i].time}
-          onInput={(value) => handleInput(setList, value, i)}
+          value={shedule[i].time}
+          onInput={(value) => handleInput(setShedule, value, i)}
           className="admin-form-shedule__input"
           error={inputError}
           errorDown
+          mask={['99:99 - 99:99']}
         />
       </div>
     </div>

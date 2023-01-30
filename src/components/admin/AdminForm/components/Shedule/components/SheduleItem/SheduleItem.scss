@@ -19,6 +19,14 @@
     );
   }
 
+  &__input {
+    @include desktop(
+      (
+        'text-align': center,
+      )
+    );
+  }
+
   &__burger {
     @include desktop(
       (

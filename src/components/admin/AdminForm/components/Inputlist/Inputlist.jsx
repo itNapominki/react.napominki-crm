@@ -8,10 +8,18 @@ import { handleAdd, handleInput, handleRemove } from './utils'
 import removeIcon from 'sprites/remove.svg'
 
 export default function Inputlist(data) {
-  const { buttonText = 'Добавить', title, onChange, errors, formName } = data
-  const [list, setList] = React.useState([])
+  const {
+    buttonText = 'Добавить',
+    title,
+    onChange,
+    errors,
+    formName,
+    initialState,
+  } = data
+  const [list, setList] = React.useState(initialState)
 
   React.useEffect(() => onChange(list), [list])
+  React.useEffect(() => setList(initialState), [initialState])
 
   return (
     <AdminForm.Group

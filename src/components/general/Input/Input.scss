@@ -57,20 +57,12 @@ input {
   &__label {
     @include desktop(
       (
-        'margin-bottom': 6px,
-
         'font-size': 14px,
       )
     );
 
     &_big {
       @include h3;
-
-      @include desktop(
-        (
-          'margin-bottom': 16px,
-        )
-      );
     }
   }
 
@@ -85,6 +77,8 @@ input {
 
         'background': get-theme-color('input'),
         'border-radius': $input-radius,
+
+        'text-align': inherit,
       )
     );
   }

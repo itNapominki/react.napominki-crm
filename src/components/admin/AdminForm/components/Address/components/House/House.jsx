@@ -3,10 +3,12 @@ import { Input } from 'components'
 import { useErrors } from 'hooks'
 
 export default function House(data) {
-  const [house, setHouse] = React.useState('')
-  const { setAddress, errors } = data
+  const { initialState, setAddress, errors } = data
 
+  const [house, setHouse] = React.useState('')
   const error = useErrors(errors, 'address.house')
+
+  React.useEffect(() => setHouse(initialState.house), [initialState])
 
   React.useEffect(() => {
     setAddress((prev) => {

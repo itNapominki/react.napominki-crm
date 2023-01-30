@@ -28,7 +28,6 @@ export default function Phone() {
       onInput={setPhone}
       className="col col-6"
       mask={['8 (999) 999 99-99']}
-      alwaysShowMask={true}
     />
   )
 }

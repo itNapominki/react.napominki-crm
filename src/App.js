@@ -2,7 +2,7 @@ import {
   AdminPage,
   AuthPage,
   EditObject,
-  EditRestaurant,
+  EditRestaurantPage,
   EditUser,
 } from 'pages'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -20,8 +20,11 @@ function App() {
         <Route path="/admin/add-object/" element={<EditObject />} />
         <Route path="/admin/edit-object/:id" element={<EditObject />} />
 
-        <Route path="/admin/add-restaurant" element={<EditRestaurant />} />
-        <Route path="/admin/edit-restaurant/:id" element={<EditRestaurant />} />
+        <Route path="/admin/add-restaurant" element={<EditRestaurantPage />} />
+        <Route
+          path="/admin/edit-restaurant/:id/*"
+          element={<EditRestaurantPage />}
+        />
       </Routes>
     </Router>
   )

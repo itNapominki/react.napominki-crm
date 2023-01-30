@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from 'components'
 import {
   Address,
+  Contacts,
   EditObject,
   EditUser,
   Group,
@@ -47,6 +48,7 @@ export default function AdminForm(data) {
 
 AdminForm.Group = Group
 AdminForm.Address = Address
+AdminForm.Contacts = Contacts
 AdminForm.Inputlist = Inputlist
 AdminForm.Shedule = Shedule
 

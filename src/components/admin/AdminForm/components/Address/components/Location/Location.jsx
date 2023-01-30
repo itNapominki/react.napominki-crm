@@ -4,12 +4,21 @@ import { GroupedSelect } from './components'
 
 export default function Location(data) {
   const locations = useFetch('/addresses')
-  const { context, setAddress } = data
+  const { initialState, setAddress } = data
 
   const [region, setRegion] = React.useState(null)
   const [city, setCity] = React.useState(null)
   const [county, setCounty] = React.useState(null)
   const [district, setDistrict] = React.useState(null)
+
+  React.useEffect(() => {
+    if (initialState) {
+      setRegion(initialState.region)
+      setCity(initialState.city)
+      setCounty(initialState.county)
+      setDistrict(initialState.district)
+    }
+  }, [initialState])
 
   React.useEffect(() => {
     setAddress((prev) => {

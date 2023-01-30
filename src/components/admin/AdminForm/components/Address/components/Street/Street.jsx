@@ -3,10 +3,12 @@ import { Input } from 'components'
 import { useErrors } from 'hooks'
 
 export default function Street(data) {
-  const [street, setStreet] = React.useState('')
-  const { setAddress, errors } = data
+  const { initialState, setAddress, errors } = data
 
+  const [street, setStreet] = React.useState('')
   const error = useErrors(errors, 'address.street')
+
+  React.useEffect(() => setStreet(initialState.street), [initialState])
 
   React.useEffect(() => {
     setAddress((prev) => {

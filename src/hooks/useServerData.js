@@ -5,7 +5,14 @@ export default function useServerData(serverData, key, defaultValue) {
 
   React.useEffect(() => {
     if (serverData) {
-      setValue(serverData[key])
+      const keys = key.split('.')
+      let data = serverData
+
+      for (let key of keys) {
+        data = data[key]
+      }
+
+      setValue(data)
     }
   }, [serverData])
 

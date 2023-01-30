@@ -1,30 +1,30 @@
 import './Tabs.scss'
-import { useState } from 'react'
 import { classNames } from 'utils'
+import { useNavigate, useLocation } from 'react-router-dom'
+
+const checkLocation = (pathname, navigateTo) => pathname.includes(navigateTo)
 
 export default function Tabs(data) {
   const { children, className, buttons } = data
-  const [activeTab, setActiveTab] = useState(0)
+
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
   return (
     <div className={classNames('tabs', [className])}>
       <div className="tabs__row">
         {buttons &&
-          buttons.map((button, i) => (
+          buttons.map((button) => (
             <button
-              key={i}
+              key={button.to}
               className={classNames(
                 'tabs__button',
-                i === activeTab ? ['tabs__button_active'] : ''
+                checkLocation(pathname, button.to)
+                  ? ['tabs__button_active']
+                  : ''
               )}
-              disabled={i === activeTab ? true : null}
-              onClick={() => {
-                setActiveTab(i)
-
-                if (button.callback()) {
-                  button.callback()
-                }
-              }}
+              disabled={checkLocation(pathname, button.to)}
+              onClick={() => navigate(button.to, { state: button.data })}
             >
               {button.text}
             </button>

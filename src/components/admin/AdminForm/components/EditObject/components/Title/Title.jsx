@@ -3,7 +3,7 @@ import { Input } from 'components'
 import { EditObjectContext } from 'context'
 import { useErrors, useServerData } from 'hooks'
 
-export default function Email() {
+export default function Title() {
   const context = React.useContext(EditObjectContext)
   const { serverData, errors, setData } = context
 

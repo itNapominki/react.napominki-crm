@@ -1,5 +1,10 @@
 import React from 'react'
 
+const stringify = (obj) => JSON.stringify(obj)
+const checkOption = (arr, obj) => {
+  return arr.map((option) => stringify(option)).indexOf(stringify(obj))
+}
+
 export default function useMultiple(defaultValue = [], options = [], callback) {
   const [value, setValue] = React.useState(defaultValue)
   const [visible, setVisible] = React.useState(false)
@@ -10,10 +15,6 @@ export default function useMultiple(defaultValue = [], options = [], callback) {
     }
   }, [value])
 
-  React.useEffect(() => {
-    setValue(defaultValue)
-  }, [defaultValue])
-
   const droplist = options.map((option, i) => {
     return {
       ...option,
@@ -23,10 +24,12 @@ export default function useMultiple(defaultValue = [], options = [], callback) {
 
   function handleChooseOption(option, index, e) {
     setValue((prev) => {
-      const indexes = prev.map((item) => options.indexOf(item))
+      let indexes = prev.map((item) => {
+        return checkOption(options, item)
+      })
 
       if (indexes.includes(index)) {
-        return prev.filter((elem) => elem != option)
+        return prev.filter((elem) => stringify(elem) != stringify(option))
       }
 
       indexes.push(index)
@@ -36,8 +39,6 @@ export default function useMultiple(defaultValue = [], options = [], callback) {
 
       return [...prev.slice(0, position), option, ...prev.slice(position)]
     })
-
-    e.target.classList.toggle('selected')
   }
 
   return [value, droplist, visible, setVisible]

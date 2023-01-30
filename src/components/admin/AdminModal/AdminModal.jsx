@@ -2,7 +2,7 @@ import './AdminModal.scss'
 
 import React from 'react'
 import { Input, Separator } from 'components'
-import { Metro } from './components'
+import { Metro, Restaurants } from './components'
 
 export default function AdminModal(data) {
   const { children, onClose, search } = data
@@ -29,3 +29,4 @@ export default function AdminModal(data) {
 }
 
 AdminModal.Metro = Metro
+AdminModal.Restaurants = Restaurants
