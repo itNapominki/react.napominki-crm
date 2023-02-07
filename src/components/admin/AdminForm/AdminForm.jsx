@@ -5,10 +5,9 @@ import { Button } from 'components'
 import {
   Address,
   Contacts,
-  EditObject,
-  EditUser,
   Group,
   Inputlist,
+  Image,
   Shedule,
 } from './components'
 import { useCancel, useDelete, useSave } from './hooks'
@@ -50,7 +49,5 @@ AdminForm.Group = Group
 AdminForm.Address = Address
 AdminForm.Contacts = Contacts
 AdminForm.Inputlist = Inputlist
+AdminForm.Image = Image
 AdminForm.Shedule = Shedule
-
-AdminForm.EditObject = EditObject
-AdminForm.EditUser = EditUser

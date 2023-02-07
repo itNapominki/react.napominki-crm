@@ -18,8 +18,8 @@ export default function InputFluid(data) {
   React.useEffect(() => {
     if (mask) {
       const nodeInput = inputRef.current
+      const im = new Inputmask(mask[0], mask[1])
 
-      var im = new Inputmask(mask[0], mask[1])
       im.mask(nodeInput)
     }
   }, [inputRef, mask])

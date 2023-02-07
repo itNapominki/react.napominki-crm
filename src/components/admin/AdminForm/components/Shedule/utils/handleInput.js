@@ -7,6 +7,7 @@ export default function handleInput(setList, value, i) {
           time: value,
         }
       }
+
       return elem
     })
   )

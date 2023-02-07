@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFetch } from 'hooks'
 import { DataTable } from 'components'
+import { joinStrings } from 'utils'
 
 export default function Restaurants() {
   console.log('render Restaurants')
@@ -9,9 +10,11 @@ export default function Restaurants() {
   const data = useFetch('/restaurants')
   const navigate = useNavigate()
 
+  console.log(data)
+
   const cols = [
     {
-      key: 'name',
+      key: 'title',
       name: 'Название',
       percentWidth: 42,
     },
@@ -21,16 +24,19 @@ export default function Restaurants() {
       percentWidth: 29,
     },
     {
-      key: 'status',
+      key: 'isPublished',
       name: 'Статус',
       percentWidth: 36,
     },
   ]
 
   const restaurants = data?.map((restaurant) => {
-    const address = Object.values(restaurant.address).join(', ')
+    const { city, county, district, street, house } = restaurant.address
+    const address = joinStrings([city, county, district, street, house])
+
     return {
       ...restaurant,
+      isPublished: restaurant.isPublished ? 'Опубликован' : 'Не опубликован',
       address,
     }
   })
@@ -41,10 +47,10 @@ export default function Restaurants() {
         Добавить ресторан
       </Link>
       {restaurants?.map((restaurant) => {
-        const { _id } = restaurant
+        const { id } = restaurant
 
         return (
-          <div key={_id} className="admin-data__table">
+          <div key={id} className="admin-data__table">
             <DataTable
               title="Рестораны"
               rows={restaurants}
@@ -52,7 +58,8 @@ export default function Restaurants() {
               droplist={[
                 {
                   text: 'Редактировать',
-                  onClick: () => navigate('/admin/add-restaurant/' + _id),
+                  onClick: () =>
+                    navigate('/admin/edit-restaurant/' + id + '/info'),
                 },
                 { text: 'Смотреть карточку' },
                 { text: 'Удалить', color: 'red' },

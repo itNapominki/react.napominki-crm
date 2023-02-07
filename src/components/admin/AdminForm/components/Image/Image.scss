@@ -1,0 +1,27 @@
+.admin-form-image {
+  input {
+    @include desktop(
+      (
+        'display': none,
+      )
+    );
+  }
+
+  &__label {
+    @extend .input__top;
+    @extend .input__label;
+  }
+
+  &__fluid {
+    @include desktop(
+      (
+        'height': 159px,
+
+        'background-size': cover,
+        'background-position': center,
+        'background-color': get-theme-color('input'),
+        'border-radius': $input-radius,
+      )
+    );
+  }
+}

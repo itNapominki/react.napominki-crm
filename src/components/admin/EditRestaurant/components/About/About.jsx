@@ -10,9 +10,12 @@ import {
   Shedule,
 } from './components'
 import { EditRestaurantContext } from 'context'
+import { useNavigate } from 'react-router-dom'
 
 export default function About() {
-  console.log('render EditObject')
+  console.log('render EditRestaurant About')
+
+  const navigate = useNavigate()
 
   const context = React.useContext(EditRestaurantContext)
   const { id, data, setErrors } = context
@@ -20,9 +23,8 @@ export default function About() {
   const onSave = {
     id,
     data,
-    onSuccess: (res) => {
-      console.log(res)
-    },
+    onSuccess: ({ data }) =>
+      navigate('/admin/edit-restaurant/' + data.id + '/info'),
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
@@ -30,7 +32,7 @@ export default function About() {
 
   const deleteBtn = id
     ? {
-        text: 'Удалить объект',
+        text: 'Удалить ресторан',
         onDelete: { id, message: 'Подтвердите удаление ресторана' },
       }
     : null

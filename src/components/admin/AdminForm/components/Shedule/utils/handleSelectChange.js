@@ -7,6 +7,7 @@ export default function handleSelectChange(setList, arr, i) {
           days: arr,
         }
       }
+
       return elem
     })
   )

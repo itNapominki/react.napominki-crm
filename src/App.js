@@ -1,9 +1,9 @@
 import {
   AdminPage,
   AuthPage,
-  EditObject,
+  EditObjectPage,
   EditRestaurantPage,
-  EditUser,
+  EditUserPage,
 } from 'pages'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -14,11 +14,11 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/admin/*" element={<AdminPage />} />
 
-        <Route path="/admin/add-user/" element={<EditUser />} />
-        <Route path="/admin/edit-user/:id" element={<EditUser />} />
+        <Route path="/admin/add-user/" element={<EditUserPage />} />
+        <Route path="/admin/edit-user/:id" element={<EditUserPage />} />
 
-        <Route path="/admin/add-object/" element={<EditObject />} />
-        <Route path="/admin/edit-object/:id" element={<EditObject />} />
+        <Route path="/admin/add-object/" element={<EditObjectPage />} />
+        <Route path="/admin/edit-object/:id" element={<EditObjectPage />} />
 
         <Route path="/admin/add-restaurant" element={<EditRestaurantPage />} />
         <Route

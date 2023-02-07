@@ -34,7 +34,9 @@ export default function Row(data) {
         </button>
       )}
 
-      {droplistVisible && <Droplist items={droplistWithId} />}
+      {droplistVisible && (
+        <Droplist visible={droplistVisible} items={droplistWithId} />
+      )}
     </div>
   )
 }

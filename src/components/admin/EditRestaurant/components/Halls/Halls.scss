@@ -1,0 +1,50 @@
+.admin-form-halls {
+  &__image {
+    @include desktop(
+      (
+        'position': relative,
+
+        'margin-bottom': 16px,
+      )
+    );
+
+    img {
+      @include desktop(
+        (
+          'width': 100%,
+          'height': 200px,
+        )
+      );
+    }
+  }
+
+  &__image-remove {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 16px,
+        'right': 16px,
+
+        'width': 40px,
+        'height': 40px,
+
+        'background': get-theme-color('error'),
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+  }
+}

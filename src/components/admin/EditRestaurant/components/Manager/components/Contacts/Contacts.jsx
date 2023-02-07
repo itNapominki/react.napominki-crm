@@ -10,8 +10,6 @@ export default function Shedule() {
   const [contacts, setContacts] = React.useState([])
   const [initialState] = useServerData(serverData, 'managerInfo.contacts', [])
 
-  console.log(contacts)
-
   React.useEffect(() => {
     setData((prev) => {
       return { ...prev, managerInfo: { ...prev.managerInfo, contacts } }

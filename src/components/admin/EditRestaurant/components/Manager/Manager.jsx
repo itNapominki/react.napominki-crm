@@ -11,12 +11,10 @@ import {
 import { EditRestaurantContext } from 'context'
 
 export default function Manager() {
-  console.log('render EditObject')
+  console.log('render EditRestaurant ManagerInfo')
 
   const context = React.useContext(EditRestaurantContext)
   const { id, data, setErrors } = context
-
-  console.log(data)
 
   const onSave = {
     id,

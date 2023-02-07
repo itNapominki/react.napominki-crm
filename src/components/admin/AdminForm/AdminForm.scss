@@ -43,7 +43,9 @@
       )
     );
 
-    & > * {
+    .input,
+    .select,
+    .textarea {
       @include desktop(
         (
           'margin-bottom': 16px,

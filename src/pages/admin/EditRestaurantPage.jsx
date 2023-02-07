@@ -6,7 +6,7 @@ import { useFetch } from 'hooks'
 
 export default React.memo(function EditRestaurantPage() {
   const { id } = useParams()
-  const { state } = useLocation()
+  // const { state } = useLocation()
 
   const serverData = id ? useFetch('/restaurants/' + id) : null
   const [data, setData] = React.useState({})
