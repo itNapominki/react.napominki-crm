@@ -14,19 +14,19 @@ export default function Prepay(data) {
   const error = useErrors(errors, 'prepay')
 
   React.useEffect(() => {
-    if (initial != null) {
+    if (initial) {
       setPrepay({ text: initial, value: initial })
     }
   }, [initial])
 
-  React.useEffect(() => {
+  function handleChange(value) {
     setData((prev) => {
       return {
         ...prev,
-        prepay: prepay.value,
+        prepay: value,
       }
     })
-  }, [prepay])
+  }
 
   return (
     <Select
@@ -34,7 +34,7 @@ export default function Prepay(data) {
       bigLabel
       value={prepay}
       options={options}
-      onChange={setPrepay}
+      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

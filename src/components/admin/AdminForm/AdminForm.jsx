@@ -1,7 +1,7 @@
 import './AdminForm.scss'
-
 import React from 'react'
 import { Button } from 'components'
+import { classNames } from 'utils'
 import {
   Address,
   Contacts,
@@ -13,14 +13,15 @@ import {
 import { useCancel, useDelete, useSave } from './hooks'
 
 export default function AdminForm(data) {
-  const { children, deleteBtn, model, onSave, onCancel, title } = data
+  const { children, className, deleteBtn, model, onSave, onCancel, title } =
+    data
 
   const handleCancel = useCancel({ ...onCancel, model })
   const handleDelete = useDelete({ ...onSave, model })
   const handleSave = useSave({ ...onSave, model })
 
   return (
-    <div className="admin-form">
+    <div className={classNames('admin-form', [className])}>
       {deleteBtn && (
         <div className="admin-form__remove-btn" onClick={handleDelete}>
           {deleteBtn.text}

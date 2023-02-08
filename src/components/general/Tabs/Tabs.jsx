@@ -1,36 +1,39 @@
 import './Tabs.scss'
+import React from 'react'
 import { classNames } from 'utils'
-import { useNavigate, useLocation } from 'react-router-dom'
 
-const checkLocation = (pathname, navigateTo) => pathname.includes(navigateTo)
-
-export default function Tabs(data) {
-  const { children, className, buttons } = data
-
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+export default function Tabs({ initial = 0, buttons, children, className }) {
+  const [activeIndex, setActiveIndex] = React.useState(initial)
 
   return (
     <div className={classNames('tabs', [className])}>
       <div className="tabs__row">
-        {buttons &&
-          buttons.map((button) => (
+        {buttons.map((button, i) => {
+          const isActive = activeIndex === i
+
+          function handleClick() {
+            setActiveIndex(i)
+
+            if (button.onClick) {
+              button.onClick(i)
+            }
+          }
+
+          return (
             <button
-              key={button.to}
-              className={classNames(
-                'tabs__button',
-                checkLocation(pathname, button.to)
-                  ? ['tabs__button_active']
-                  : ''
-              )}
-              disabled={checkLocation(pathname, button.to)}
-              onClick={() => navigate(button.to, { state: button.data })}
+              key={i}
+              className={classNames('tabs__button', [
+                isActive ? 'tabs__button_active' : '',
+              ])}
+              disabled={isActive}
+              onClick={handleClick}
             >
               {button.text}
             </button>
-          ))}
+          )
+        })}
       </div>
-      {children && <div className="tabs__content"></div>}
+      {children && <div className="tabs__content">{children}</div>}
     </div>
   )
 }

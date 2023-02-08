@@ -4,6 +4,7 @@ import {
   EditObjectPage,
   EditRestaurantPage,
   EditUserPage,
+  RestaurantPage,
 } from 'pages'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -25,6 +26,8 @@ function App() {
           path="/admin/edit-restaurant/:id/*"
           element={<EditRestaurantPage />}
         />
+
+        <Route path="/restaurant/:id" element={<RestaurantPage />} />
       </Routes>
     </Router>
   )

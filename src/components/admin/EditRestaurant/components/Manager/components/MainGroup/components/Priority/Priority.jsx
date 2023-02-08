@@ -17,19 +17,19 @@ export default function Priority(data) {
   const error = useErrors(errors, 'priority')
 
   React.useEffect(() => {
-    if (initial != null) {
+    if (initial) {
       setPriority({ text: initial.toString(), value: initial.toString() })
     }
   }, [initial])
 
-  React.useEffect(() => {
+  function handleChange(value) {
     setData((prev) => {
       return {
         ...prev,
-        priority: parseInt(priority.value),
+        priority: parseInt(value),
       }
     })
-  }, [priority])
+  }
 
   return (
     <Select
@@ -37,7 +37,7 @@ export default function Priority(data) {
       bigLabel
       value={priority}
       options={options}
-      onChange={setPriority}
+      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

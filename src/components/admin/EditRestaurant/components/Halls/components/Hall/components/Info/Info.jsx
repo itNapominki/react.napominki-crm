@@ -27,7 +27,7 @@ export default function Info(data) {
       title="Информация"
       buttonText="Добавить информацию"
       onChange={(arr) => handleChange(arr)}
-      formName="clientInfo.info"
+      formName={`halls[${i}].info`}
       errors={errors}
       initialState={initialState}
     />

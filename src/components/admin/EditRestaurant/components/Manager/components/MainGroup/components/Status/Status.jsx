@@ -16,19 +16,19 @@ export default function Status(data) {
   const error = useErrors(errors, 'status')
 
   React.useEffect(() => {
-    if (initial != null) {
+    if (initial) {
       setStatus({ text: initial, value: initial })
     }
   }, [initial])
 
-  React.useEffect(() => {
+  function handleChange(value) {
     setData((prev) => {
       return {
         ...prev,
-        status: status.value,
+        status: value,
       }
     })
-  }, [status])
+  }
 
   return (
     <Select
@@ -36,7 +36,7 @@ export default function Status(data) {
       bigLabel
       value={status}
       options={options}
-      onChange={setStatus}
+      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

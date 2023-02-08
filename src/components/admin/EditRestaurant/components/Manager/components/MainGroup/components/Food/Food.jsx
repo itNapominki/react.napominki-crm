@@ -2,22 +2,53 @@ import React from 'react'
 import { Select } from 'components'
 import { useErrors } from 'hooks'
 
-const options = [
-  { text: 'Не возим', value: 'Не возим' },
-  { text: 'Возим от', value: 'Возим от' },
-]
-
 export default function Food(data) {
   const { initial, setData, errors } = data
+
+  // function getFrom() {
+  //   if (initial) {
+  //     if (initial.includes('Возим')) {
+  //       const regExp = /от\s+(.*)\s+рублей/
+  //       const from = initial.match(regExp)[1]
+
+  //       return from
+  //     }
+  //   }
+
+  //   return '...'
+  // }
+
+  const [from, setFrom] = React.useState('...')
+
+  const options = [
+    {
+      text: 'Не возим',
+      value: 'Не возим',
+      onClick: () => setFrom('...'),
+    },
+    {
+      text: `Возим от ${from} рублей`,
+      value: `Возим от ${from} рублей`,
+      onClick: () => setFrom(prompt('Введите значение')),
+    },
+  ]
 
   const [food, setFood] = React.useState(options[0])
   const error = useErrors(errors, 'food')
 
   React.useEffect(() => {
-    if (initial != null) {
+    if (initial) {
       setFood({ text: initial, value: initial })
     }
   }, [initial])
+
+  React.useEffect(() => {
+    if (from === '...') {
+      setFood(options[0])
+    } else {
+      setFood(options[1])
+    }
+  }, [from])
 
   React.useEffect(() => {
     setData((prev) => {

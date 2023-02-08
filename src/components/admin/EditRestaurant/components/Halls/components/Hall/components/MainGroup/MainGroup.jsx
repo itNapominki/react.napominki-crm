@@ -9,9 +9,9 @@ export default function MainGroup(data) {
   const context = React.useContext(EditRestaurantContext)
   const { errors } = context
 
-  const titleError = useErrors(errors, '')
-  const boardingError = useErrors(errors, '')
-  const fitError = useErrors(errors, '')
+  const titleError = useErrors(errors, 'halls[' + i + '].title')
+  const boardingError = useErrors(errors, 'halls[' + i + '].boarding')
+  const fitError = useErrors(errors, 'halls[' + i + '].fit')
 
   function handleInput(key, value) {
     setHalls((prev) =>

@@ -25,6 +25,10 @@ $theme-colors: (
 
 $theme-gradients: (
   'primary': linear-gradient(98.14deg, #7acd47 7.55%, #67b437 89.96%),
+  'whatsapp': linear-gradient(129.9deg, #43d62b 13.98%, #26b91c 84.54%),
+  'telegram':
+    linear-gradient(154.15deg, rgba(107, 191, 236, 0.7) 1.86%, #21a0e1 126.15%),
+  'viber': linear-gradient(180deg, #9b64bf 0%, #7f4da0 100%),
 );
 
 $input-radius: 2px;

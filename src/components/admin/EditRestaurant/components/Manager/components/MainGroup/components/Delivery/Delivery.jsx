@@ -14,19 +14,19 @@ export default function Delivery(data) {
   const error = useErrors(errors, 'delivery')
 
   React.useEffect(() => {
-    if (initial != null) {
+    if (initial) {
       setDelivery({ text: initial, value: initial })
     }
   }, [initial])
 
-  React.useEffect(() => {
+  function handleChange(value) {
     setData((prev) => {
       return {
         ...prev,
-        delivery: delivery.value,
+        delivery: value,
       }
     })
-  }, [delivery])
+  }
 
   return (
     <Select
@@ -34,7 +34,7 @@ export default function Delivery(data) {
       bigLabel
       value={delivery}
       options={options}
-      onChange={setDelivery}
+      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

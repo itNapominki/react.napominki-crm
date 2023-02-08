@@ -11,6 +11,15 @@
 @mixin input {
 }
 
+@mixin h1 {
+  @include desktop(
+    (
+      'font-size': 36px,
+      'font-weight': 700,
+    )
+  );
+}
+
 @mixin h2 {
   @include desktop(
     (

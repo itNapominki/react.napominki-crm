@@ -1,0 +1,270 @@
+.cm-restaurant {
+  $self: &;
+
+  &__title {
+    @include h1;
+  }
+
+  &__subtitle {
+    @include h2;
+  }
+
+  &__list {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 0 -16px,
+      )
+    );
+  }
+
+  &__list-item {
+    @include desktop(
+      (
+        'margin': 16px 16px 0,
+      )
+    );
+  }
+
+  &__hall {
+    @include desktop(
+      (
+        'margin-top': 32px,
+      )
+    );
+  }
+
+  &__gallery {
+    @include desktop(
+      (
+        'position': relative,
+
+        'margin-bottom': 16px,
+
+        'height': 260px,
+      )
+    );
+
+    img {
+      @include desktop(
+        (
+          'height': 260px,
+          'width': 100%,
+        )
+      );
+    }
+  }
+
+  &__gallery-arrow {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'margin-top': -30px,
+      )
+    );
+
+    &_prev {
+      @include desktop(
+        (
+          'left': -30px,
+        )
+      );
+    }
+
+    &_next {
+      @include desktop(
+        (
+          'right': -30px,
+        )
+      );
+    }
+  }
+
+  .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+
+  &__location-row {
+    @include desktop(
+      (
+        'display': flex,
+        'flex-wrap': wrap,
+
+        'margin': 0 -20px,
+      )
+    );
+  }
+
+  &__location-item {
+    @include desktop(
+      (
+        'display': flex,
+        'align-items': center,
+
+        'margin': 16px 20px 0,
+      )
+    );
+  }
+
+  &__location-icon {
+    @include desktop(
+      (
+        'align-self': flex-start,
+        'margin-right': 15px,
+
+        'width': 32px,
+        'height': 32px,
+
+        'background': get-theme-color('primary'),
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+
+    #{$self}__location-item:nth-child(2) & svg {
+      @include desktop(
+        (
+          'width': 12px,
+        )
+      );
+    }
+
+    #{$self}__location-item:nth-child(3) & svg {
+      @include desktop(
+        (
+          'width': 16px,
+        )
+      );
+    }
+  }
+
+  &__offer-title {
+    @include desktop(
+      (
+        'margin-bottom': 16px,
+      )
+    );
+  }
+
+  &__offer-social-row {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 0 -16px,
+      )
+    );
+  }
+
+  &__offer-social-item {
+    @include desktop(
+      (
+        'display': flex,
+        'align-items': center,
+
+        'margin': 0 16px,
+
+        'border-radius': 50%,
+
+        'text-align': center,
+        'color': inherit,
+      )
+    );
+  }
+
+  &__offer-social-text {
+    @include desktop(
+      (
+        'padding-bottom': 2px,
+        'border-bottom': 1px solid rgba(get-theme-color('default'), 0.2),
+        'font-size': 12px,
+      )
+    );
+  }
+
+  &__offer-social-icon {
+    @include desktop(
+      (
+        'flex-shrink': 0,
+        'margin-right': 8px,
+
+        'width': 40px,
+        'height': 40px,
+
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+
+    .cm-restaurant__offer-social-item_whatsapp & {
+      background: get-theme-gradient('whatsapp');
+    }
+
+    .cm-restaurant__offer-social-item_telegram & {
+      background: get-theme-gradient('telegram');
+    }
+
+    .cm-restaurant__offer-social-item_viber & {
+      background: get-theme-gradient('viber');
+    }
+  }
+
+  &__map {
+    & > div {
+      & > ymaps {
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+    }
+
+    @include desktop(
+      (
+        'padding-top': 50%,
+        'position': relative,
+      )
+    );
+  }
+
+  &__map-container {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 0,
+        'left': 0,
+        'right': 0,
+        'bottom': 0,
+      )
+    );
+  }
+}

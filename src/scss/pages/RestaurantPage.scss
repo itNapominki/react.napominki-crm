@@ -1,0 +1,7 @@
+.restaurant-page {
+  @include desktop(
+    (
+      'font-size': 16px,
+    )
+  );
+}

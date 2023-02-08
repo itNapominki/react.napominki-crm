@@ -1,7 +1,6 @@
 .tabs {
   @include desktop(
     (
-      'max-width': fit-content,
       'padding': 4px,
 
       'background': #fff,
@@ -14,6 +13,7 @@
       (
         'display': flex,
         'margin': 0 -2px,
+        'max-width': fit-content,
       )
     );
   }

@@ -22,7 +22,15 @@ export default function useSelect(defaultValue, options = [], callback) {
   const droplist = options.map((option) => {
     return {
       ...option,
-      onClick: () => handleChange(option),
+      onClick: () => {
+        if (option.onClick) {
+          const { text, value } = option
+
+          option.onClick({ text, value })
+        }
+
+        handleChange(option)
+      },
     }
   })
 

@@ -1,0 +1,98 @@
+.client-header {
+  @include desktop(
+    (
+      'padding': 20px 0,
+
+      'background': #fff,
+    )
+  );
+
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+        'align-items': center,
+      )
+    );
+  }
+
+  &__logo {
+    @include desktop(
+      (
+        'width': 130px,
+      )
+    );
+  }
+
+  &__descriptor {
+    @include desktop(
+      (
+        'margin-left': 40px,
+        'margin-right': auto,
+
+        'font-size': 12px,
+      )
+    );
+  }
+
+  &__social-row {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 0 -4px,
+      )
+    );
+  }
+
+  &__social-item {
+    @include desktop(
+      (
+        'margin': 0 4px,
+
+        'width': 40px,
+        'height': 40px,
+
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+
+    &_whatsapp {
+      background: get-theme-gradient('whatsapp');
+    }
+
+    &_telegram {
+      background: get-theme-gradient('telegram');
+    }
+
+    &_viber {
+      background: get-theme-gradient('viber');
+    }
+  }
+
+  &__callback {
+    @include desktop(
+      (
+        'margin-left': 15px,
+        'padding': 0,
+
+        'width': 150px,
+        'height': 40px,
+
+        'font-size': 12px,
+      )
+    );
+  }
+}

@@ -1,6 +1,6 @@
 import './Halls.scss'
 import React from 'react'
-import { AdminForm } from 'components'
+import { AdminForm, Separator } from 'components'
 import { EditRestaurantContext } from 'context'
 import { Hall } from './components'
 import { handleAdd } from './utils'
@@ -26,8 +26,6 @@ export default function Halls() {
     })
   }, [halls])
 
-  // console.log(halls)
-
   const onSave = {
     id,
     data,
@@ -52,8 +50,9 @@ export default function Halls() {
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}
+      className="admin-form-halls"
     >
-      <button onClick={() => handleAdd(setHalls)}>add</button>
+      <Separator />
 
       {halls?.map((_, i) => {
         return (
@@ -62,6 +61,13 @@ export default function Halls() {
           </div>
         )
       })}
+
+      <button
+        className="admin-form-halls__add-button"
+        onClick={() => handleAdd(setHalls)}
+      >
+        Добавить новый зал
+      </button>
     </AdminForm>
   )
 }

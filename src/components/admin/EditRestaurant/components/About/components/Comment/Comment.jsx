@@ -17,7 +17,10 @@ export default function Comment() {
     setData((prev) => {
       return {
         ...prev,
-        comment,
+        clientInfo: {
+          ...prev.clientInfo,
+          comment,
+        },
       }
     })
   }, [comment])
