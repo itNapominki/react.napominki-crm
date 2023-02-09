@@ -4,6 +4,7 @@ import {
   EditObjectPage,
   EditRestaurantPage,
   EditUserPage,
+  OfferPage,
   RestaurantPage,
 } from 'pages'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -27,6 +28,7 @@ function App() {
           element={<EditRestaurantPage />}
         />
 
+        <Route path="/offer" element={<OfferPage />} />
         <Route path="/restaurant/:id" element={<RestaurantPage />} />
       </Routes>
     </Router>

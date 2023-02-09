@@ -1,0 +1,122 @@
+.container {
+  @include desktop(
+    (
+      'padding': 20px 0,
+      'margin-bottom': 20px,
+
+      'background': #fff,
+    )
+  );
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+    )
+  );
+}
+
+.logo {
+  @include desktop(
+    (
+      'width': 130px,
+    )
+  );
+}
+
+.descriptor {
+  @include desktop(
+    (
+      'margin-left': 40px,
+      'margin-right': auto,
+
+      'font-size': 12px,
+    )
+  );
+}
+
+.manager {
+  @include desktop(
+    (
+      'margin-right': 20px,
+      'font-weight': 700,
+    )
+  );
+
+  &:before {
+    @include desktop(
+      (
+        'content': 'Ваш менеджер:',
+
+        'display': block,
+        'margin-bottom': 6px,
+
+        'font-size': 14px,
+        'font-weight': 400,
+      )
+    );
+  }
+}
+
+.social {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -4px,
+    )
+  );
+}
+
+.socialItem {
+  @include desktop(
+    (
+      'margin': 0 4px,
+
+      'width': 40px,
+      'height': 40px,
+
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'width': 14px,
+        'height': 100%,
+
+        'fill': #fff,
+      )
+    );
+  }
+
+  &_whatsapp {
+    background: get-theme-gradient('whatsapp');
+  }
+
+  &_telegram {
+    background: get-theme-gradient('telegram');
+  }
+
+  &_viber {
+    background: get-theme-gradient('viber');
+  }
+}
+
+.callback {
+  @include desktop(
+    (
+      'margin-left': 15px,
+      'padding': 0,
+
+      'width': 150px,
+      'height': 40px,
+
+      'font-size': 12px,
+    )
+  );
+}

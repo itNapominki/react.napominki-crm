@@ -1,0 +1,131 @@
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -20px,
+    )
+  );
+}
+
+.image {
+  @include desktop(
+    (
+      'width': 450px,
+      'height': 340px,
+      'min-height': 100%,
+
+      'margin': 0 20px,
+    )
+  );
+}
+
+.content {
+  @include desktop(
+    (
+      'margin': 0 20px,
+      'width': 600px,
+
+      'display': flex,
+      'flex-direction': column,
+      'align-items': flex-start,
+    )
+  );
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 24px 0,
+      )
+    );
+  }
+}
+
+.title {
+  @include h2;
+}
+
+.locationItem {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+
+      'margin-top': 16px,
+    )
+  );
+}
+
+.locationIcon {
+  @include desktop(
+    (
+      'align-self': flex-start,
+      'flex-shrink': 0,
+
+      'margin-right': 8px,
+
+      'width': 24px,
+      'height': 24px,
+
+      'background': get-theme-color('primary'),
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'width': 10px,
+        'height': 100%,
+
+        'fill': #fff,
+      )
+    );
+  }
+
+  .locationItem:nth-child(2) & svg {
+    @include desktop(
+      (
+        'width': 8px,
+      )
+    );
+  }
+
+  .locationItem:nth-child(3) & svg {
+    @include desktop(
+      (
+        'width': 12px,
+      )
+    );
+  }
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': -16px -16px 0,
+    )
+  );
+
+  li {
+    @include desktop(
+      (
+        'margin': 16px 16px 0,
+      )
+    );
+  }
+}
+
+.link {
+  @include link();
+
+  @include desktop(
+    (
+      'margin-top': auto,
+    )
+  );
+}

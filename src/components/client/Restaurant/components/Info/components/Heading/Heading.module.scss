@@ -1,0 +1,69 @@
+.title {
+  @include h1;
+}
+
+.location {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': 0 -20px,
+    )
+  );
+}
+
+.locationItem {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+
+      'margin': 16px 20px 0,
+    )
+  );
+}
+
+.locationIcon {
+  @include desktop(
+    (
+      'align-self': flex-start,
+      'margin-right': 15px,
+
+      'width': 32px,
+      'height': 32px,
+
+      'background': get-theme-color('primary'),
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'width': 14px,
+        'height': 100%,
+
+        'fill': #fff,
+      )
+    );
+  }
+
+  .locationItem:nth-child(2) & svg {
+    @include desktop(
+      (
+        'width': 12px,
+      )
+    );
+  }
+
+  .locationItem:nth-child(3) & svg {
+    @include desktop(
+      (
+        'width': 16px,
+      )
+    );
+  }
+}

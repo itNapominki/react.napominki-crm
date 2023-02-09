@@ -1,9 +1,10 @@
-import './Menu.scss'
 import React from 'react'
 import { DottedButton, Droplist, Input, Select } from 'components'
 import { useOptions } from './hooks'
-import { handleInput, handleRemove, handleSelectChange } from './utils'
+import { handleInput, handleRemove } from './utils'
 import { useErrors } from 'hooks'
+
+import styles from './Menu.module.scss'
 
 export default function Menu(data) {
   const { menus, options, onChange, errors, i } = data
@@ -12,16 +13,23 @@ export default function Menu(data) {
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
   const [file, setFile] = React.useState({ text: '', value: {} })
-  const fileError = useErrors(errors, 'menus[' + i + '].file.slug')
+  const fileError = useErrors(errors, 'menus[' + i + '].filename')
 
   React.useEffect(() => {
-    setFile({ text: menus[i].file.title, value: menus[i].file })
-  }, [menus[i].file])
+    setFile({
+      text: menus[i].title,
+      value: {
+        id: menus[i].id,
+        title: menus[i].title,
+        filename: menus[i].filename,
+      },
+    })
+  }, [menus[i]])
 
   return (
-    <div className="admin-form-menu">
+    <div className={styles.item}>
       <DottedButton
-        className="admin-form-menu__button"
+        className={styles.burger}
         onClick={() => setDroplistVisible(!droplistVisible)}
       />
       {droplistVisible && (
@@ -34,10 +42,10 @@ export default function Menu(data) {
               onClick: () => handleRemove(onChange, i),
             },
           ]}
-          className="admin-form-menu__droplist"
+          className={styles.droplist}
         />
       )}
-      <div className="admin-form-menu__row row">
+      <div className="row">
         <Select
           label="Файл"
           value={file}
@@ -51,11 +59,9 @@ export default function Menu(data) {
                 ) {
                   return {
                     ...elem,
-                    file: {
-                      id: value.id,
-                      slug: value.slug,
-                      title: value.title,
-                    },
+                    id: value.id,
+                    title: value.title,
+                    filename: value.filename,
                   }
                 }
 

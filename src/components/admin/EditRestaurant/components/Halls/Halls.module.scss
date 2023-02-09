@@ -1,0 +1,20 @@
+.buttonAdd {
+  @include link();
+
+  @include desktop(
+    (
+      'margin-top': 32px,
+      'font-size': 12px,
+    )
+  );
+}
+
+.container {
+  :global .admin-form__title {
+    @include desktop(
+      (
+        'margin-bottom': 32px,
+      )
+    );
+  }
+}

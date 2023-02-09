@@ -14,11 +14,8 @@ export default function SliderArrow({ className, direction, sliderRef }) {
   return (
     <button
       onClick={handleClick}
-      className={classNames('slider-arrow', [
-        className,
-        className + '_' + direction,
-        'slider-arrow_' + direction,
-      ])}
+      className={classNames('slider-arrow', [className])}
+      data-direction={direction}
     >
       <HandySvg src={sliderArrowIcon} />
     </button>

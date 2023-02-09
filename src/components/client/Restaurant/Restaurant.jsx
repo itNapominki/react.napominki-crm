@@ -2,7 +2,7 @@ import './Restaurant.scss'
 import React from 'react'
 import { ClientCard } from 'components'
 import { RestaurantContext } from 'context'
-import { Halls, Info, Map, Offer } from './components'
+import { Halls, Info, Map, Menus, Offer } from './components'
 
 export default function Restaurant() {
   const context = React.useContext(RestaurantContext)
@@ -15,6 +15,7 @@ export default function Restaurant() {
     <div className="cm-restaurant">
       <Info />
       <Halls />
+      <Menus />
       <Map />
       <ClientCard>
         <Offer title="Чтобы выбрать этот филиал, напишите своему менеджеру" />

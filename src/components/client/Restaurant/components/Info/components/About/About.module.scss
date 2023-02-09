@@ -1,0 +1,20 @@
+.title {
+  @include h2;
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -16px,
+    )
+  );
+
+  :global li {
+    @include desktop(
+      (
+        'margin': 16px 16px 0,
+      )
+    );
+  }
+}

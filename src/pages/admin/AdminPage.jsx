@@ -1,22 +1,24 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { AdminData, AdminLayout } from 'components'
 
 export default function AdminPage() {
   console.log('render AdminPage')
 
+  const navigate = useNavigate()
+
   const navigation = [
     {
       text: 'Пользователи',
-      to: 'users',
+      onClick: () => navigate('users'),
     },
     {
       text: 'Рестораны',
-      to: 'restaurants',
+      onClick: () => navigate('restaurants'),
     },
     {
       text: 'Объекты',
-      to: 'objects',
+      onClick: () => navigate('objects'),
     },
   ]
 

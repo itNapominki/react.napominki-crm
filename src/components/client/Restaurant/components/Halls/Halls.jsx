@@ -4,6 +4,8 @@ import { RestaurantContext } from 'context'
 import { Hall } from './components'
 import { Offer } from '..'
 
+import styles from './Halls.module.scss'
+
 export default function Halls() {
   const context = React.useContext(RestaurantContext)
   const { halls } = context
@@ -19,7 +21,7 @@ export default function Halls() {
 
   return (
     <ClientCard>
-      <div className="cm-restaurant__title">Поминальные залы</div>
+      <div className={styles.title}>Поминальные залы</div>
       <Separator />
       <Tabs buttons={TABS}>
         <Hall hall={halls[activeTab]} />

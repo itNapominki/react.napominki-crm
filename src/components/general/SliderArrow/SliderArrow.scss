@@ -25,7 +25,7 @@
     );
   }
 
-  &_next {
+  &[data-direction='next'] {
     @include desktop(
       (
         'transform': scaleX(-1),

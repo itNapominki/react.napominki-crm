@@ -2,9 +2,7 @@ import './AdminLayout.scss'
 
 import { AdminHeader, Layout, Tabs } from 'components'
 
-export default function AdminLayout(data) {
-  const { children, pageClass, navigation } = data
-
+export default function AdminLayout({ children, pageClass, navigation }) {
   return (
     <Layout pageClass={pageClass}>
       <AdminHeader userEmail="admin@napominki.ru" />

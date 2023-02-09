@@ -2,12 +2,10 @@ import React from 'react'
 import { ClientHeader, Layout } from 'components'
 import { classNames } from 'utils'
 
-export default function ClientLayout(data) {
-  const { children, className } = data
-
+export default function ClientLayout({ children, className, manager }) {
   return (
     <Layout>
-      <ClientHeader />
+      <ClientHeader manager={manager} />
       <div className={classNames('client-layout', [className])}>
         <div className="wrapper">{children}</div>
       </div>

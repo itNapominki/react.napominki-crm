@@ -1,12 +1,12 @@
 import React from 'react'
-import { Routes, Route, useParams, useLocation } from 'react-router-dom'
+import { Routes, Route, useParams, useNavigate } from 'react-router-dom'
 import { AdminLayout, EditRestaurant } from 'components'
 import { EditRestaurantContext } from 'context'
 import { useFetch } from 'hooks'
 
 export default React.memo(function EditRestaurantPage() {
   const { id } = useParams()
-  // const { state } = useLocation()
+  const navigate = useNavigate()
 
   const serverData = id ? useFetch('/restaurants/' + id) : null
   const [data, setData] = React.useState({})
@@ -21,23 +21,19 @@ export default React.memo(function EditRestaurantPage() {
   const navigation = [
     {
       text: 'О ресторане',
-      to: 'info',
-      data,
+      onClick: () => navigate('info'),
     },
     {
       text: 'Поминальные залы',
-      to: 'halls',
-      data,
+      onClick: () => navigate('halls'),
     },
     {
       text: 'Поминальное меню',
-      to: 'menus',
-      data,
+      onClick: () => navigate('menus'),
     },
     {
       text: 'Инфо для менеджера',
-      to: 'manager',
-      data,
+      onClick: () => navigate('manager'),
     },
   ]
 

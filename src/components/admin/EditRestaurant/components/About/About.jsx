@@ -20,6 +20,8 @@ export default function About() {
   const context = React.useContext(EditRestaurantContext)
   const { id, data, setErrors } = context
 
+  // console.log(data)
+
   const onSave = {
     id,
     data,

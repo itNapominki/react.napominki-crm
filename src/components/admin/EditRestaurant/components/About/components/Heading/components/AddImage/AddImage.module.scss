@@ -1,0 +1,26 @@
+.fluid {
+  @extend .input__fluid;
+
+  @include desktop(
+    (
+      'display': block,
+
+      'height': 159px,
+
+      'background-size': cover,
+      'background-position': center,
+    )
+  );
+}
+
+.top {
+  @extend .input__top;
+}
+
+.topRow {
+  @extend .input__top-row;
+}
+
+.error {
+  @extend .input__error;
+}

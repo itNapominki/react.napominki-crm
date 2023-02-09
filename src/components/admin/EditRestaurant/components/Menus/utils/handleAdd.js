@@ -1,6 +1,6 @@
 export default function handleAdd(setMenus) {
   setMenus((prev) => [
     ...prev,
-    { file: { id: null, slug: '', title: '' }, persons: '', deposit: '' },
+    { id: null, title: '', filename: '', persons: '', deposit: '' },
   ])
 }

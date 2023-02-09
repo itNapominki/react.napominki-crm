@@ -2,46 +2,44 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { List, Separator, SliderArrow } from 'components'
 
+import styles from './Hall.module.scss'
+
 export default function Hall({ hall }) {
   const { comment, gallery, info } = hall
   const sliderRef = React.useRef()
 
   return (
-    <div className="cm-restaurant__hall">
-      <div className="cm-restaurant__gallery">
+    <div className={styles.hall}>
+      <div className={styles.gallery}>
         {gallery.length > 3 && (
           <React.Fragment>
             <SliderArrow
               sliderRef={sliderRef}
-              className="cm-restaurant__gallery-arrow"
+              className={styles.sliderArrow}
               direction="prev"
             />
             <SliderArrow
               sliderRef={sliderRef}
-              className="cm-restaurant__gallery-arrow"
+              className={styles.sliderArrow}
               direction="next"
             />
           </React.Fragment>
         )}
         <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
+          slidesPerView="auto"
           onBeforeInit={(swiper) => (sliderRef.current = swiper)}
         >
           {gallery.map((image, i) => (
             <SwiperSlide key={image + i}>
-              <img src={image} />
+              <img
+                src={process.env.REACT_APP_SERVER_URL + '/images/' + image}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* <div className="cm-restaurant__gallery-row row">
-          {gallery.map((image, i) => (
-            <img key={image + i} src={image} className="col col-4" />
-          ))}
-        </div> */}
       </div>
-      {info && <List list={info} className="cm-restaurant__list" />}
-      {comment && <p className="cm-restaurant__comment">{comment}</p>}
+      {info && <List list={info} className={styles.list} />}
+      {comment && <p>{comment}</p>}
       <Separator />
     </div>
   )

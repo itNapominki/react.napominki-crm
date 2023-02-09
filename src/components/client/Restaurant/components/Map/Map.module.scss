@@ -1,0 +1,28 @@
+.container {
+  @include desktop(
+    (
+      'margin-top': 20px,
+      'padding-top': 50%,
+      'position': relative,
+    )
+  );
+}
+
+.frame {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 0,
+      'left': 0,
+      'right': 0,
+      'bottom': 0,
+    )
+  );
+
+  & > ymaps {
+    &:nth-child(1):not(:last-child) {
+      display: none;
+    }
+  }
+}

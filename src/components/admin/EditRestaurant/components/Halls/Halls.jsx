@@ -1,10 +1,11 @@
-import './Halls.scss'
 import React from 'react'
 import { AdminForm, Separator } from 'components'
 import { EditRestaurantContext } from 'context'
 import { Hall } from './components'
 import { handleAdd } from './utils'
 import { useServerData } from 'hooks'
+
+import styles from './Halls.module.scss'
 
 export default function Halls() {
   console.log('render EditRestaurant Halls')
@@ -50,7 +51,7 @@ export default function Halls() {
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}
-      className="admin-form-halls"
+      className={styles.container}
     >
       <Separator />
 
@@ -62,10 +63,7 @@ export default function Halls() {
         )
       })}
 
-      <button
-        className="admin-form-halls__add-button"
-        onClick={() => handleAdd(setHalls)}
-      >
+      <button className={styles.buttonAdd} onClick={() => handleAdd(setHalls)}>
         Добавить новый зал
       </button>
     </AdminForm>

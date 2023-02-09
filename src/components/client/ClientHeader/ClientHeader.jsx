@@ -1,60 +1,54 @@
-import './ClientHeader.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { Button } from 'components'
+
+import styles from './ClientHeader.module.scss'
 
 import whatsappIcon from 'sprites/whatsapp.svg'
 import telegramIcon from 'sprites/telegram.svg'
 import viberIcon from 'sprites/viber.svg'
 
-export default function ClientHeader(data) {
-  const { manager } = data
+const socialClassName = (messenger) => {
+  return `${styles.socialItem} ${
+    styles['socialItem_' + messenger.toLowerCase()]
+  }`
+}
 
+export default function ClientHeader({ manager }) {
   return (
-    <div className="client-header">
+    <div className={styles.container}>
       <div className="wrapper">
-        <div className="client-header__row">
-          <div className="client-header__logo">
+        <div className={styles.row}>
+          <div className={styles.logo}>
             <img src="/logo.png" alt="" />
           </div>
-          <div className="client-header__descriptor">
+          <div className={styles.descriptor}>
             Организация поминок <br></br>в&nbsp;Москве и&nbsp;области
             с&nbsp;2010&nbsp;г.
           </div>
 
           {manager && (
-            <div className="client-header__manager">
-              {manager.name} — {manager.phone}
+            <div className={styles.manager}>
+              {manager.firstName} — {manager.phone}
             </div>
           )}
 
-          <div className="client-header__social">
-            <div className="client-header__social-row">
-              <a
-                href="#"
-                className="client-header__social-item client-header__social-item_whatsapp"
-              >
-                <HandySvg src={whatsappIcon} />
-              </a>
-              <a
-                href="#"
-                className="client-header__social-item client-header__social-item_telegram"
-              >
-                <HandySvg src={telegramIcon} />
-              </a>
-              <a
-                href="#"
-                className="client-header__social-item client-header__social-item_viber"
-              >
-                <HandySvg src={viberIcon} />
-              </a>
-            </div>
+          <div className={styles.social}>
+            <a href="#" className={socialClassName('whatsapp')}>
+              <HandySvg src={whatsappIcon} />
+            </a>
+            <a href="#" className={socialClassName('telegram')}>
+              <HandySvg src={telegramIcon} />
+            </a>
+            <a href="#" className={socialClassName('viber')}>
+              <HandySvg src={viberIcon} />
+            </a>
           </div>
 
           <Button
             mode="light"
             text="Заказать звонок"
-            className="client-header__callback"
+            className={styles.callback}
           />
         </div>
       </div>

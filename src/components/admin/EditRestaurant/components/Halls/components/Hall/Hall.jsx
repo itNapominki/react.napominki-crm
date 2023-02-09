@@ -3,6 +3,8 @@ import { EditRestaurantContext } from 'context'
 import { useServerData } from 'hooks'
 import { Comment, Gallery, Info, MainGroup } from './components'
 
+import styles from './Hall.module.scss'
+
 export default function Hall(data) {
   const { halls, setHalls, i } = data
 
@@ -20,13 +22,10 @@ export default function Hall(data) {
   }
 
   return (
-    <div className="admin-form-halls__item">
-      <div className="admin-form-halls__item-top">
-        <h2 className="admin-form-halls__item-title">{title}</h2>
-        <button
-          className="admin-form-halls__item-remove"
-          onClick={handleRemove}
-        >
+    <React.Fragment>
+      <div className={styles.topRow}>
+        <div className={styles.title}>{title}</div>
+        <button className={styles.removeButton} onClick={handleRemove}>
           Удалить зал
         </button>
       </div>
@@ -35,6 +34,6 @@ export default function Hall(data) {
       <Info halls={halls} setHalls={setHalls} i={i} />
       <Comment halls={halls} setHalls={setHalls} i={i} />
       <Gallery halls={halls} setHalls={setHalls} i={i} />
-    </div>
+    </React.Fragment>
   )
 }
