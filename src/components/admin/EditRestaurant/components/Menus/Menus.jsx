@@ -47,7 +47,7 @@ export default function Menus() {
 
   return (
     <AdminForm
-      model="restaurants"
+      model="restaurant"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}

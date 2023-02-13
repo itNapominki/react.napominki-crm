@@ -27,7 +27,7 @@ export default function EditObject() {
 
   return (
     <AdminForm
-      model="objects"
+      model="object"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}

@@ -5,7 +5,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL
 const api = {
   users: {
     create: (data) => axios.post('/users', data),
-    getAll: () => fetch.get('/users'),
+    getAll: (params) => axios.get('/users/', { params }),
+    getOne: (id) => axios.get('/users/' + id),
     update: (id, data) => axios.put('/users/' + id, data),
     delete: (id) => axios.delete('/users/' + id),
   },

@@ -12,7 +12,7 @@ export { default as SliderArrow } from './general/SliderArrow/SliderArrow'
 export { default as Tabs } from './general/Tabs/Tabs'
 export { default as Textarea } from './general/Textarea/Textarea'
 
-export * as AdminData from './admin/AdminData'
+export { default as AdminData } from './admin/AdminData/AdminData'
 export { default as DataTable } from './admin/DataTable/DataTable'
 export { default as AdminForm } from './admin/AdminForm/AdminForm'
 export { default as AdminHeader } from './admin/AdminHeader/AdminHeader'

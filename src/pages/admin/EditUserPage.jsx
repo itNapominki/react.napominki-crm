@@ -1,27 +1,28 @@
 import React from 'react'
-import { AdminLayout, EditUser } from 'components'
-import { useFetch } from 'hooks'
-import { EditUserContext } from 'context'
 import { useParams } from 'react-router-dom'
+import { AdminLayout, EditUser } from 'components'
+import { EditUserContext } from 'context'
+import { Api } from 'utils'
 
 export default function EditUserPage() {
   console.log('render EditUserPage')
 
   const { id } = useParams()
 
-  const serverData = id ? useFetch('/users/' + id) : null
-  const [data, setData] = React.useState(null)
+  const { data: serverData, error } = id
+    ? Api.getOne({ model: Api.model.user, id })
+    : {}
+
+  const [data, setData] = React.useState()
   const [errors, setErrors] = React.useState()
 
-  React.useEffect(() => {
-    if (serverData) {
-      setData(serverData)
-    }
-  }, [serverData])
+  if (error) {
+    alert(error.message)
+  }
 
   return (
     <EditUserContext.Provider
-      value={{ id, data, serverData, setData, errors, setErrors }}
+      value={{ id, serverData, data, setData, errors, setErrors }}
     >
       <AdminLayout>
         <EditUser />

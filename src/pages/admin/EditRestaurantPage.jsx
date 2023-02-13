@@ -2,21 +2,22 @@ import React from 'react'
 import { Routes, Route, useParams, useNavigate } from 'react-router-dom'
 import { AdminLayout, EditRestaurant } from 'components'
 import { EditRestaurantContext } from 'context'
-import { useFetch } from 'hooks'
+import { Api } from 'utils'
 
 export default React.memo(function EditRestaurantPage() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const serverData = id ? useFetch('/restaurants/' + id) : null
+  const { data: serverData, error } = id
+    ? Api.getOne({ model: Api.model.restaurant, id })
+    : {}
+
   const [data, setData] = React.useState({})
   const [errors, setErrors] = React.useState()
 
-  React.useEffect(() => {
-    if (serverData) {
-      setData(serverData)
-    }
-  }, [serverData])
+  if (error) {
+    alert(error.message)
+  }
 
   const navigation = [
     {

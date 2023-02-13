@@ -1,3 +1,4 @@
+export { default as Api } from './api/Api'
 export { default as api } from './api'
 export { default as classNames } from './classNames'
 export { default as convertBase64 } from './convertBase64'

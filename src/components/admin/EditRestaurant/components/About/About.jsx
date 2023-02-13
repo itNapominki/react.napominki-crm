@@ -20,13 +20,11 @@ export default function About() {
   const context = React.useContext(EditRestaurantContext)
   const { id, data, setErrors } = context
 
-  // console.log(data)
-
   const onSave = {
     id,
     data,
     onSuccess: ({ data }) =>
-      navigate('/admin/edit-restaurant/' + data.id + '/info'),
+      navigate('/admin/restaurants/edit/' + data.id + '/info'),
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
@@ -41,7 +39,7 @@ export default function About() {
 
   return (
     <AdminForm
-      model="restaurants"
+      model="restaurant"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}

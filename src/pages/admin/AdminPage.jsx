@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, Outlet, useNavigate } from 'react-router-dom'
 import { AdminData, AdminLayout } from 'components'
 
 export default function AdminPage() {

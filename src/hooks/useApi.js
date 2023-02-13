@@ -1,29 +1,20 @@
 import React from 'react'
+import { api } from 'utils'
 
-export default function useApi(settings) {
-  const { request, params, dependencies = [], callback } = settings
-
-  const [data, setData] = React.useState(null)
+export default function useApi(url, defaultValue) {
+  const [data, setData] = useState(defaultValue)
+  const [error, setError] = useState(defaultValue)
 
   React.useEffect(() => {
     async function getData() {
-      await request(params)
-        .then((res) => {
-          setData(res.data)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      api.users
+        .getOne(id)
+        .then(({ data }) => setServerData(data))
+        .catch(({ response }) => alert(response.data.message))
     }
 
     getData()
-  }, dependencies)
+  }, [])
 
-  React.useEffect(() => {
-    if (callback && data) {
-      callback(data)
-    }
-  }, [data])
-
-  return data
+  return api
 }

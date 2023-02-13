@@ -2,10 +2,9 @@ import React from 'react'
 import { Droplist } from 'components'
 import Col from '../Col/Col'
 
-export default function Row(data) {
+export default function Row({ cols, row, droplist, id }) {
   console.log('render Row')
 
-  const { cols, row, droplist, id = undefined } = data
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
   const droplistWithId = droplist.map((item) => {
@@ -19,9 +18,14 @@ export default function Row(data) {
 
   return (
     <div className="datatable__row">
-      {cols.map(({ key, percentWidth }) => (
-        <Col key={key} text={row[key]} percentWidth={percentWidth} />
-      ))}
+      {cols.map(({ key, percentWidth }) => {
+        const text =
+          typeof key === 'string'
+            ? row[key]
+            : key.map((el) => row[el]).join(' ')
+
+        return <Col key={key} text={text} percentWidth={percentWidth} />
+      })}
 
       {droplist && (
         <button

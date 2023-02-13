@@ -26,7 +26,7 @@ export default function Email() {
       error={error}
       value={email}
       onInput={setEmail}
-      className="col col-6 "
+      className="col col-12 "
     />
   )
 }

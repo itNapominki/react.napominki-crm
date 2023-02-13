@@ -6,7 +6,7 @@ export default function useCancel(settings) {
 
   function handleCancel() {
     if (window.confirm(message)) {
-      navigate('/admin/' + model)
+      navigate('/admin/data/' + model + 's')
     }
   }
 

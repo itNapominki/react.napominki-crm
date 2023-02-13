@@ -1,16 +1,22 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useFetch } from 'hooks'
 import { DataTable } from 'components'
-import { joinStrings } from 'utils'
+import { Api, joinStrings } from 'utils'
 
 export default function Restaurants() {
   console.log('render Restaurants')
 
-  const data = useFetch('/restaurants')
   const navigate = useNavigate()
 
-  console.log(data)
+  const { data, error } = Api.getAll({
+    model: Api.model.restaurant,
+    value: [],
+    params: { attributes: ['id', 'title', 'address', 'isPublished'] },
+  })
+
+  if (error) {
+    alert(error.message)
+  }
 
   const cols = [
     {
@@ -43,31 +49,25 @@ export default function Restaurants() {
 
   return (
     <React.Fragment>
-      <Link className="admin-data__add-link" to="/admin/add-restaurant">
+      <Link className="admin-data__add-link" to="/admin/restaurants/add">
         Добавить ресторан
       </Link>
-      {restaurants?.map((restaurant) => {
-        const { id } = restaurant
-
-        return (
-          <div key={id} className="admin-data__table">
-            <DataTable
-              title="Рестораны"
-              rows={restaurants}
-              cols={cols}
-              droplist={[
-                {
-                  text: 'Редактировать',
-                  onClick: () =>
-                    navigate('/admin/edit-restaurant/' + id + '/info'),
-                },
-                { text: 'Смотреть карточку' },
-                { text: 'Удалить', color: 'red' },
-              ]}
-            />
-          </div>
-        )
-      })}
+      <div className="admin-data__table">
+        <DataTable
+          title="Рестораны"
+          rows={restaurants}
+          cols={cols}
+          droplist={[
+            {
+              text: 'Редактировать',
+              onClick: (id) =>
+                navigate('/admin/restaurants/' + id + '/edit/info'),
+            },
+            { text: 'Смотреть карточку' },
+            { text: 'Удалить', color: 'red' },
+          ]}
+        />
+      </div>
     </React.Fragment>
   )
 }

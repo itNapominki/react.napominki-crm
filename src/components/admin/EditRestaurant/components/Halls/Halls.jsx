@@ -47,7 +47,7 @@ export default function Halls() {
 
   return (
     <AdminForm
-      model="restaurants"
+      model="restaurant"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}

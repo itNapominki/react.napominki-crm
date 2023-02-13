@@ -6,7 +6,7 @@ import { useErrors } from 'hooks'
 
 export default function Password() {
   const context = React.useContext(EditUserContext)
-  const { errors, setData } = context
+  const { errors, setData, id } = context
 
   const [password, setPassword] = React.useState('')
   const [repeatPassword, setRepeatPassword] = React.useState('')
@@ -35,7 +35,7 @@ export default function Password() {
     <React.Fragment>
       <Input
         type="text"
-        label="Пароль"
+        label={id ? 'Новый пароль' : 'Пароль'}
         action={{
           text: 'Сгенерировать пароль',
           onClick: handleGeneratePassword,

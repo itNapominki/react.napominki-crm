@@ -34,7 +34,7 @@ export default function Manager() {
 
   return (
     <AdminForm
-      model="restaurants"
+      model="restaurant"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}

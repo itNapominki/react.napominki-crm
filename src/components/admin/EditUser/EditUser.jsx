@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AdminForm } from 'components'
 import { EditUserContext } from 'context'
-import { Email, Fullname, Password, Phone, Role } from './components'
+import { Auth, Contacts, MainGroup } from './components'
 
 export default function EditUser() {
   const navigate = useNavigate()
@@ -30,18 +30,14 @@ export default function EditUser() {
 
   return (
     <AdminForm
-      model="users"
+      model="user"
       title={formTitle}
       onSave={onSave}
       deleteBtn={deleteBtn}
     >
-      <AdminForm.Group>
-        <Role />
-        <Fullname />
-        <Email />
-        <Phone />
-        <Password />
-      </AdminForm.Group>
+      <MainGroup />
+      <Contacts />
+      <Auth />
     </AdminForm>
   )
 }

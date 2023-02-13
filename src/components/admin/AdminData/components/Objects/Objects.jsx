@@ -1,44 +1,48 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { DataTable } from 'components'
-import { useFetch } from 'hooks'
-import { api, joinStrings } from 'utils'
+import { Api, joinStrings } from 'utils'
 
 export default function Objects() {
   console.log('render Objects')
 
   const navigate = useNavigate()
 
-  const objects = useFetch('/objects')
-  const [data, setData] = React.useState()
+  const [types, setTypes] = React.useState([])
+  const { data: objects, error } = Api.getAll({
+    model: Api.model.object,
+    value: [],
+  })
+
+  if (error) {
+    alert(error.message)
+  }
 
   React.useEffect(() => {
-    if (objects) {
-      const types = [
-        {
-          title: 'Кладбища',
-          slug: 'cemetery',
-          objects: setObjects('cemetery'),
-        },
-        {
-          title: 'Крематории',
-          slug: 'crematory',
-          objects: setObjects('crematory'),
-        },
-        {
-          title: 'Морги',
-          slug: 'morgue',
-          objects: setObjects('morgue'),
-        },
-        {
-          title: 'Метро',
-          slug: 'metro',
-          objects: setObjects('metro'),
-        },
-      ].filter(({ objects }) => objects.length > 0)
+    const types = [
+      {
+        title: 'Кладбища',
+        slug: 'cemetery',
+        objects: setObjects('cemetery'),
+      },
+      {
+        title: 'Крематории',
+        slug: 'crematory',
+        objects: setObjects('crematory'),
+      },
+      {
+        title: 'Морги',
+        slug: 'morgue',
+        objects: setObjects('morgue'),
+      },
+      {
+        title: 'Метро',
+        slug: 'metro',
+        objects: setObjects('metro'),
+      },
+    ].filter(({ objects }) => objects.length > 0)
 
-      setData(types)
-    }
+    setTypes(types)
   }, [objects])
 
   function setObjects(objectsType) {
@@ -72,33 +76,30 @@ export default function Objects() {
     },
   ]
 
-  async function handleRemove(id) {
-    if (window.confirm('Подтвердите удаление объекта')) {
-      await api.objects.remove(id).then((res) => {
-        console.log(res)
-      })
-    }
-  }
-
   const droplist = [
     {
       text: 'Редактировать',
-      onClick: (id) => navigate('/admin/edit-object/' + id),
+      onClick: (id) => navigate('/admin/objects/' + id + '/edit'),
     },
     {
       text: 'Удалить',
       color: 'red',
-      onClick: (id) => handleRemove(id),
+      onClick: (id) =>
+        Api.delete({
+          model: Api.model.object,
+          message: 'Подтвердите удаление объекта',
+          id,
+        }),
     },
   ]
 
   return (
     <React.Fragment>
-      <Link className="admin-data__add-link" to="/admin/add-object">
+      <Link className="admin-data__add-link" to="/admin/objects/add">
         Добавить объект
       </Link>
 
-      {data?.map((type) => {
+      {types?.map((type) => {
         return (
           <div key={type.slug} className="admin-data__table">
             <DataTable

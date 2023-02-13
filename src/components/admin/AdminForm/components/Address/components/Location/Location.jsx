@@ -1,9 +1,9 @@
 import React from 'react'
-import { useFetch } from 'hooks'
 import { GroupedSelect } from './components'
+import { Api } from 'utils'
 
 export default function Location(data) {
-  const locations = useFetch('/addresses')
+  const { data: locations } = Api.getAll({ model: Api.model.address })
   const { initialState, setAddress } = data
 
   const [region, setRegion] = React.useState(null)
