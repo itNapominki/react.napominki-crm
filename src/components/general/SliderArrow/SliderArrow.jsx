@@ -1,7 +1,7 @@
 import './SliderArrow.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 import sliderArrowIcon from 'sprites/slider-arrow.svg'
 
 export default function SliderArrow({ className, direction, sliderRef }) {

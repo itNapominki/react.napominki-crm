@@ -2,7 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Scrollbar } from 'swiper'
 import { ClientCard } from 'components'
-import { RestaurantContext } from 'context'
+import { RestaurantContext } from 'core/context'
 import 'swiper/css/scrollbar'
 
 import styles from './Menus.module.scss'

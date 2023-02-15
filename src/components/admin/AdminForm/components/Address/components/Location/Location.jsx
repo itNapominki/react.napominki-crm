@@ -1,9 +1,9 @@
 import React from 'react'
 import { GroupedSelect } from './components'
-import { Api } from 'utils'
+import { api } from 'core/utils'
 
 export default function Location(data) {
-  const { data: locations } = Api.getAll({ model: Api.model.address })
+  const { data: locations } = api.getAll({ model: api.model.address })
   const { initialState, setAddress } = data
 
   const [region, setRegion] = React.useState(null)

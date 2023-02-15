@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditRestaurantContext } from 'context'
+import { AdminForm } from 'components/admin'
+import { EditRestaurantContext } from 'core/context'
 
 export default function Info(data) {
   const { halls, setHalls, i } = data

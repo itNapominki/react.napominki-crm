@@ -1,7 +1,7 @@
 import './Image.scss'
 import React from 'react'
 import { Fileinput } from 'components'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 
 export default function Image(data) {
   const { background, className, label, ...props } = data

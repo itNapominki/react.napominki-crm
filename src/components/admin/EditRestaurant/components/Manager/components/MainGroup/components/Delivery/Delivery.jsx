@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 const options = [
   { text: 'Да', value: 'Да' },
@@ -13,11 +13,10 @@ export default function Delivery(data) {
   const [delivery, setDelivery] = React.useState(options[0])
   const error = useErrors(errors, 'delivery')
 
-  React.useEffect(() => {
-    if (initial) {
-      setDelivery({ text: initial, value: initial })
-    }
-  }, [initial])
+  React.useEffect(
+    () => setDelivery({ text: initial, value: initial }),
+    [initial]
+  )
 
   function handleChange(value) {
     setData((prev) => {

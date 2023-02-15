@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 const options = [
   { text: '1', value: '1' },
@@ -16,11 +16,10 @@ export default function Priority(data) {
   const [priority, setPriority] = React.useState(options[0])
   const error = useErrors(errors, 'priority')
 
-  React.useEffect(() => {
-    if (initial) {
-      setPriority({ text: initial.toString(), value: initial.toString() })
-    }
-  }, [initial])
+  React.useEffect(
+    () => setPriority({ text: initial.toString(), value: initial.toString() }),
+    [initial]
+  )
 
   function handleChange(value) {
     setData((prev) => {

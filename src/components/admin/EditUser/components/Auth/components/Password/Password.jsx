@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditUserContext } from 'context'
-import { generatePassword } from 'utils'
-import { useErrors } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { generatePassword } from 'core/utils'
+import { useErrors } from 'core/hooks'
 
 export default function Password() {
   const context = React.useContext(EditUserContext)

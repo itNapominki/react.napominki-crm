@@ -3,7 +3,7 @@ import './Inputlist.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { AdminForm, Input } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 import { handleAdd, handleInput, handleRemove } from './utils'
 import removeIcon from 'sprites/remove.svg'
 

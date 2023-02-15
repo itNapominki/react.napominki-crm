@@ -1,13 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditObjectContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditObjectContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function Title() {
   const context = React.useContext(EditObjectContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [title, setTitle] = useServerData(serverData, 'title', '')
+  const [title, setTitle] = useInitial(initial, 'title', '')
   const error = useErrors(errors, 'title')
 
   React.useEffect(() => {

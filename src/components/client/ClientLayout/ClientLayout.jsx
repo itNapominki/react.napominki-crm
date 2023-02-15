@@ -1,6 +1,6 @@
 import React from 'react'
 import { ClientHeader, Layout } from 'components'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 
 export default function ClientLayout({ children, className, manager }) {
   return (

@@ -10,11 +10,9 @@
 }
 
 .container {
-  :global .admin-form__title {
-    @include desktop(
-      (
-        'margin-bottom': 32px,
-      )
-    );
-  }
+  @include desktop(
+    (
+      'margin-top': 32px,
+    )
+  );
 }

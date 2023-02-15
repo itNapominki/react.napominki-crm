@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { HandySvg } from 'handy-svg'
 import { ClientCard, List, Separator } from 'components'
-import { joinStrings } from 'utils'
+import { joinStrings } from 'core/utils'
 
 import styles from './Card.module.scss'
 

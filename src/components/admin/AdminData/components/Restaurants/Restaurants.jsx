@@ -1,15 +1,15 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { DataTable } from 'components'
-import { Api, joinStrings } from 'utils'
+import { api, joinStrings } from 'core/utils'
 
 export default function Restaurants() {
   console.log('render Restaurants')
 
   const navigate = useNavigate()
 
-  const { data, error } = Api.getAll({
-    model: Api.model.restaurant,
+  const { data, setData, error } = api.getAll({
+    model: api.model.restaurant,
     value: [],
     params: { attributes: ['id', 'title', 'address', 'isPublished'] },
   })
@@ -47,27 +47,43 @@ export default function Restaurants() {
     }
   })
 
+  const droplist = [
+    {
+      text: 'Редактировать',
+      onClick: (id) => navigate('/admin/restaurants/edit/' + id),
+    },
+    {
+      text: 'Опубликовать',
+      onClick: (id) => navigate('/restaurant/' + id),
+    },
+    {
+      text: 'Смотреть карточку',
+      onClick: (id) => navigate('/restaurant/' + id),
+    },
+    {
+      text: 'Удалить',
+      color: 'red',
+      onClick: (id) =>
+        api
+          .delete({
+            model: api.model.restaurant,
+            message: 'Подтвердите удаление ресторана',
+            id,
+          })
+          .then(() =>
+            setData((prev) => prev.filter((restaurant) => id != restaurant.id))
+          ),
+    },
+  ]
+
   return (
-    <React.Fragment>
-      <Link className="admin-data__add-link" to="/admin/restaurants/add">
-        Добавить ресторан
-      </Link>
-      <div className="admin-data__table">
-        <DataTable
-          title="Рестораны"
-          rows={restaurants}
-          cols={cols}
-          droplist={[
-            {
-              text: 'Редактировать',
-              onClick: (id) =>
-                navigate('/admin/restaurants/' + id + '/edit/info'),
-            },
-            { text: 'Смотреть карточку' },
-            { text: 'Удалить', color: 'red' },
-          ]}
-        />
-      </div>
-    </React.Fragment>
+    restaurants.length > 0 && (
+      <DataTable
+        title="Рестораны"
+        rows={restaurants}
+        cols={cols}
+        droplist={droplist}
+      />
+    )
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AdminForm } from 'components'
-import { EditUserContext } from 'context'
+import { AdminForm } from 'components/admin'
+import { ContentCard } from 'components/general'
+import { EditUserContext } from 'core/context'
 import { Auth, Contacts, MainGroup } from './components'
 
 export default function EditUser() {
@@ -13,7 +14,7 @@ export default function EditUser() {
   const onSave = {
     id,
     data,
-    onSuccess: () => navigate('/admin/users'),
+    onSuccess: () => navigate('/admin/data/users'),
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
@@ -29,15 +30,17 @@ export default function EditUser() {
     : null
 
   return (
-    <AdminForm
-      model="user"
-      title={formTitle}
-      onSave={onSave}
-      deleteBtn={deleteBtn}
-    >
-      <MainGroup />
-      <Contacts />
-      <Auth />
-    </AdminForm>
+    <ContentCard>
+      <AdminForm
+        model="user"
+        title={formTitle}
+        onSave={onSave}
+        deleteBtn={deleteBtn}
+      >
+        <MainGroup />
+        <Contacts />
+        <Auth />
+      </AdminForm>
+    </ContentCard>
   )
 }

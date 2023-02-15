@@ -1,5 +1,5 @@
 import React from 'react'
-import { joinStrings } from 'utils'
+import { joinStrings } from 'core/utils'
 
 export default function useString(address) {
   const [value, setValue] = React.useState('')

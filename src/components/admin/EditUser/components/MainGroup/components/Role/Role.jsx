@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'components'
-import { EditUserContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 const options = [
   { text: 'Менеджер', value: 'manager' },
@@ -11,18 +11,18 @@ const options = [
 
 export default function Role() {
   const context = React.useContext(EditUserContext)
-  const { serverData, setData } = context
+  const { initial, setData } = context
 
-  const [role, setRole] = useServerData(serverData, 'role', options[0])
+  const [role, setRole] = useInitial(initial, 'role', options[0])
 
   React.useEffect(() => {
-    if (serverData) {
-      const slug = serverData.role
+    if (initial) {
+      const slug = initial.role
       const role = options.find(({ value }) => value === slug)
 
       setRole(role)
     }
-  }, [serverData])
+  }, [initial])
 
   React.useEffect(() => {
     setData((prev) => {

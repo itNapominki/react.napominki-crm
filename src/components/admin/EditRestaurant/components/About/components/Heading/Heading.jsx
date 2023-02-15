@@ -1,16 +1,16 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 import { AddImage } from './components'
 
 export default function Heading() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [title, setTitle] = useServerData(serverData, 'title', '')
-  const [cardTitle, setCardTitle] = useServerData(serverData, 'cardTitle', '')
-  const [initialPreview] = useServerData(serverData, 'preview', null)
+  const [title, setTitle] = useInitial(initial, 'title', '')
+  const [cardTitle, setCardTitle] = useInitial(initial, 'cardTitle', '')
+  const [initialPreview] = useInitial(initial, 'preview', null)
 
   const titleError = useErrors(errors, 'title')
   const cardTitleError = useErrors(errors, 'cardTitle')

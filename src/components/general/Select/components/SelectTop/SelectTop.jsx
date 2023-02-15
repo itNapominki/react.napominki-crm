@@ -1,5 +1,5 @@
 import React from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 
 export default function SelectTop(data) {
   const { label, bigLabel, error, errorDown } = data

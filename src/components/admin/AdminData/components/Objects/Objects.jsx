@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { DataTable } from 'components'
-import { Api, joinStrings } from 'utils'
+import { useNavigate } from 'react-router-dom'
+import { DataTable, Separator } from 'components'
+import { api, joinStrings } from 'core/utils'
 
 export default function Objects() {
   console.log('render Objects')
@@ -9,8 +9,8 @@ export default function Objects() {
   const navigate = useNavigate()
 
   const [types, setTypes] = React.useState([])
-  const { data: objects, error } = Api.getAll({
-    model: Api.model.object,
+  const { data, setData, error } = api.getAll({
+    model: api.model.object,
     value: [],
   })
 
@@ -43,10 +43,10 @@ export default function Objects() {
     ].filter(({ objects }) => objects.length > 0)
 
     setTypes(types)
-  }, [objects])
+  }, [data])
 
   function setObjects(objectsType) {
-    return objects
+    return data
       .map((object) => {
         let { city, county, district, street, house } = object.address
 
@@ -85,32 +85,29 @@ export default function Objects() {
       text: 'Удалить',
       color: 'red',
       onClick: (id) =>
-        Api.delete({
-          model: Api.model.object,
-          message: 'Подтвердите удаление объекта',
-          id,
-        }),
+        api
+          .delete({
+            model: api.model.object,
+            message: 'Подтвердите удаление объекта',
+            id,
+          })
+          .then(() =>
+            setData((prev) => prev.filter((object) => id != object.id))
+          ),
     },
   ]
 
-  return (
-    <React.Fragment>
-      <Link className="admin-data__add-link" to="/admin/objects/add">
-        Добавить объект
-      </Link>
-
-      {types?.map((type) => {
-        return (
-          <div key={type.slug} className="admin-data__table">
-            <DataTable
-              title={type.title}
-              rows={type.objects}
-              cols={cols}
-              droplist={droplist}
-            />
-          </div>
-        )
-      })}
-    </React.Fragment>
-  )
+  return types?.map((type, i) => {
+    return (
+      <React.Fragment key={type.slug}>
+        <DataTable
+          title={type.title}
+          rows={type.objects}
+          cols={cols}
+          droplist={droplist}
+        />
+        {i < types.length - 1 && <Separator />}
+      </React.Fragment>
+    )
+  })
 }

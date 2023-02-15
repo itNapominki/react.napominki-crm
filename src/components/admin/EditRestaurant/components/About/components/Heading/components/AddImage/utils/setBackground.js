@@ -3,5 +3,5 @@ export default function setBackground(background) {
     return background
   }
 
-  return process.env.REACT_APP_SERVER_URL + '/images/' + background
+  return process.env.REACT_APP_SERVER_URL + background
 }

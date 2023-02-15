@@ -1,59 +1,44 @@
 import React from 'react'
-import { Routes, Route, useParams, useNavigate } from 'react-router-dom'
-import { AdminLayout, EditRestaurant } from 'components'
-import { EditRestaurantContext } from 'context'
-import { Api } from 'utils'
+import { useParams } from 'react-router-dom'
+import { Forbidden, Layout } from 'components/general'
+import { EditRestaurant } from 'components/admin'
+import { EditRestaurantContext } from 'core/context'
+import { api } from 'core/utils'
+import { useSelector } from 'react-redux'
+import { USER_ROLE } from 'core/constants'
 
 export default React.memo(function EditRestaurantPage() {
-  const { id } = useParams()
-  const navigate = useNavigate()
+  console.log('render EditRestaurantPage')
 
-  const { data: serverData, error } = id
-    ? Api.getOne({ model: Api.model.restaurant, id })
+  const { id } = useParams()
+  const { data: initial } = id
+    ? api.getOne({ model: api.model.restaurant, id })
     : {}
 
   const [data, setData] = React.useState({})
   const [errors, setErrors] = React.useState()
 
-  if (error) {
-    alert(error.message)
-  }
+  React.useEffect(() => {
+    if (initial) {
+      setData(initial)
+    }
+  }, [initial])
 
-  const navigation = [
-    {
-      text: 'О ресторане',
-      onClick: () => navigate('info'),
-    },
-    {
-      text: 'Поминальные залы',
-      onClick: () => navigate('halls'),
-    },
-    {
-      text: 'Поминальное меню',
-      onClick: () => navigate('menus'),
-    },
-    {
-      text: 'Инфо для менеджера',
-      onClick: () => navigate('manager'),
-    },
-  ]
+  const user = useSelector((state) => state.user.value)
+  if (
+    !user ||
+    (user.role !== USER_ROLE.ADMIN && user.role !== USER_ROLE.REDAKTOR)
+  ) {
+    return <Forbidden />
+  }
 
   return (
     <EditRestaurantContext.Provider
-      value={{ id, data, serverData, setData, errors, setErrors }}
+      value={{ id, data, initial, setData, errors, setErrors }}
     >
-      <AdminLayout navigation={id ? navigation : null}>
-        {id ? (
-          <Routes>
-            <Route path="info" element={<EditRestaurant.About />} />
-            <Route path="halls" element={<EditRestaurant.Halls />} />
-            <Route path="menus" element={<EditRestaurant.Menus />} />
-            <Route path="manager" element={<EditRestaurant.Manager />} />
-          </Routes>
-        ) : (
-          <EditRestaurant.About />
-        )}
-      </AdminLayout>
+      <Layout>
+        <EditRestaurant />
+      </Layout>
     </EditRestaurantContext.Provider>
   )
 })

@@ -1,17 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditUserContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function Telegram() {
   const context = React.useContext(EditUserContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [telegram, setTelegram] = useServerData(
-    serverData,
-    'messengers.telegram',
-    ''
-  )
+  const [telegram, setTelegram] = useInitial(initial, 'messengers.telegram', '')
   const error = useErrors(errors, 'telegram')
 
   React.useEffect(() => {

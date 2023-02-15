@@ -1,5 +1,5 @@
 import React from 'react'
-import { RestaurantContext } from 'context'
+import { RestaurantContext } from 'core/context'
 import { List, Separator } from 'components'
 
 import styles from './About.module.scss'

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { api } from 'utils'
+import { api } from 'core/utils'
 
 export default function useDelete(settings) {
   const { message = 'Подтвердите удаление', model, id } = settings
@@ -7,14 +7,14 @@ export default function useDelete(settings) {
 
   async function handleRemove() {
     if (window.confirm(message)) {
-      await api[model]
-        .delete(id)
+      await api
+        .delete({ model: api.model[model], id })
         .then(() => handleSuccess())
         .catch(({ response }) => handleError(response))
     }
 
     function handleSuccess() {
-      navigate('/admin/' + model)
+      navigate('/admin/' + model + 's')
     }
 
     function handleError(res) {

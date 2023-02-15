@@ -1,0 +1,24 @@
+.card {
+  position: relative;
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+}
+
+.addButton {
+  @include link();
+
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 40px,
+      'right': 40px,
+    )
+  );
+}

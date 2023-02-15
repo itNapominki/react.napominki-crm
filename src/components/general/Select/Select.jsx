@@ -1,6 +1,6 @@
 import './Select.scss'
 import React from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 import { SelectBottom, SelectFluid, SelectTop } from './components'
 
 export default React.memo(function Select(data) {

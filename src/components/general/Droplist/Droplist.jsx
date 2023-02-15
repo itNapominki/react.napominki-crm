@@ -1,6 +1,6 @@
 import './Droplist.scss'
 import React from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 
 export default function Droplist(data) {
   // console.log('render Droplist')

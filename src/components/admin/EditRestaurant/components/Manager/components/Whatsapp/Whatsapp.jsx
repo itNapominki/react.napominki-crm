@@ -1,15 +1,15 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function Whatsapp() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
   const error = useErrors(errors, 'managerInfo.whatsapp')
-  const [whatsapp, setWhatsapp] = useServerData(
-    serverData,
+  const [whatsapp, setWhatsapp] = useInitial(
+    initial,
     'managerInfo.whatsapp',
     ''
   )

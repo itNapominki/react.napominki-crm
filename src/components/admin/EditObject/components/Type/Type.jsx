@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'components'
-import { EditObjectContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditObjectContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 const options = [
   { text: 'Кладбище', value: 'cemetery' },
@@ -12,18 +12,18 @@ const options = [
 
 export default function Type() {
   const context = React.useContext(EditObjectContext)
-  const { serverData, setData } = context
+  const { initial, setData } = context
 
-  const [type, setType] = useServerData(serverData, 'type', options[0])
+  const [type, setType] = useInitial(initial, 'type', options[0])
 
   React.useEffect(() => {
-    if (serverData) {
-      const slug = serverData.type
+    if (initial) {
+      const slug = initial.type
       const type = options.find(({ value }) => value === slug)
 
       setType(type)
     }
-  }, [serverData])
+  }, [initial])
 
   React.useEffect(() => {
     setData((prev) => {

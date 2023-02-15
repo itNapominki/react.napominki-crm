@@ -1,13 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditUserContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function Email() {
   const context = React.useContext(EditUserContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [email, setEmail] = useServerData(serverData, 'email', '')
+  const [email, setEmail] = useInitial(initial, 'email', '')
   const error = useErrors(errors, 'email')
 
   React.useEffect(() => {

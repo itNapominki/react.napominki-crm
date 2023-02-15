@@ -1,6 +1,6 @@
 import React from 'react'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 import { Comment, Gallery, Info, MainGroup } from './components'
 
 import styles from './Hall.module.scss'
@@ -9,9 +9,9 @@ export default function Hall(data) {
   const { halls, setHalls, i } = data
 
   const context = React.useContext(EditRestaurantContext)
-  const { serverData } = context
+  const { initial } = context
 
-  const [initialHalls] = useServerData(serverData, `halls`)
+  const [initialHalls] = useInitial(initial, `halls`)
   const title =
     initialHalls && initialHalls[i]
       ? initialHalls[i].title

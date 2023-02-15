@@ -19,6 +19,7 @@ export default function Station(data) {
           <div className="admin-modal-metro__station-related">
             <Input
               value={station.distance}
+              mask={['9 км. 999 м.']}
               onInput={(value) => handleInput(onChange, station.id, value)}
             />
             <div

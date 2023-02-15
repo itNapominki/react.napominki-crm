@@ -18,6 +18,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
+    "react-spinner-loader": "^1.1.1",
     "react-yandex-maps": "^4.6.0",
     "swiper": "^9.0.3",
     "web-vitals": "^2.1.4"
@@ -25,7 +26,9 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "serve": "serve -s build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [

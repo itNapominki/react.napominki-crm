@@ -1,16 +1,22 @@
-import { Api } from 'utils'
+import { api } from 'core/utils'
 
-export default function useSave(settings) {
-  const { data, model, onSuccess, onError, id = null } = settings
-
+export default function useSave({
+  data,
+  model,
+  onSuccess,
+  onError,
+  id = null,
+}) {
   async function handleSave() {
     if (id) {
-      return await Api.update({ model: Api.model[model], id, data })
+      return await api
+        .update({ model: api.model[model], id, data })
         .then((res) => handleSuccess(res))
         .catch(({ response }) => handleError(response))
     }
 
-    await Api.create({ model: Api.model[model], data })
+    await api
+      .create({ model: api.model[model], data })
       .then((res) => handleSuccess(res))
       .catch(({ response }) => handleError(response))
 

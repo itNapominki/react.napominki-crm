@@ -15,7 +15,7 @@ export default async function handleFilesChange(
     const formData = new FormData()
     formData.append('file', file)
 
-    await fetch(process.env.REACT_APP_API_URL + '/files/images', {
+    await fetch(process.env.REACT_APP_api_URL + '/files/images', {
       method: 'POST',
       body: formData,
     })

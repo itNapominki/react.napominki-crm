@@ -1,13 +1,13 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
-import { EditUserContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function FirstName() {
   const context = React.useContext(EditUserContext)
-  const { serverData, setData, errors } = context
+  const { initial, setData, errors } = context
 
-  const [firstName, setFirstName] = useServerData(serverData, 'firstName', '')
+  const [firstName, setFirstName] = useInitial(initial, 'firstName', '')
   const error = useErrors(errors, 'firstName')
 
   React.useEffect(() => {

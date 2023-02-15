@@ -1,18 +1,14 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { AdminForm } from 'components/admin'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 export default function DisabilityInfo() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, setData, errors } = context
+  const { initial, setData, errors } = context
 
   const [disabilityInfo, setDisabilityInfo] = React.useState([])
-  const [initialState] = useServerData(
-    serverData,
-    'clientInfo.disabilityInfo',
-    []
-  )
+  const [initialState] = useInitial(initial, 'clientInfo.disabilityInfo', [])
 
   React.useEffect(() => {
     setData((prev) => {

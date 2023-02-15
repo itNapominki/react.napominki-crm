@@ -1,7 +1,7 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
-import { RestaurantContext } from 'context'
-import { joinStrings } from 'utils'
+import { RestaurantContext } from 'core/context'
+import { setAddress } from './utils'
 
 import styles from './Heading.module.scss'
 
@@ -13,7 +13,8 @@ export default function Heading() {
   const context = React.useContext(RestaurantContext)
 
   const { address, clientInfo, title, cardTitle } = context
-  const { relatedMetro } = clientInfo
+  const { relatedMetro, shedule } = clientInfo
+
   return (
     <React.Fragment>
       <div className={styles.title}>{cardTitle}</div>
@@ -28,15 +29,7 @@ export default function Heading() {
           <div className={styles.locationIcon}>
             <HandySvg src={markerIcon} />
           </div>
-          <div>
-            {joinStrings([
-              address.city.value.title,
-              address.county.value.title,
-              address.district.value.title,
-              address.street,
-              address.house,
-            ])}
-          </div>
+          <div>{setAddress(address)}</div>
         </div>
         {relatedMetro.length > 0 && (
           <div className={styles.locationItem}>
@@ -44,24 +37,31 @@ export default function Heading() {
               <HandySvg src={metroIcon} />
             </div>
             <div>
-              {relatedMetro.map(({ id, title, distance }, i) => {
-                const distanceString = distance.toString()
-                const distanceLength = distanceString.length
+              {relatedMetro
+                .map(({ title, distance }) => {
+                  const text = [title, distance.replace('0 км. ', '')].join(' ')
 
-                const meters = distanceString.slice(-3) + ' м.'
-                const kilometers =
-                  distanceLength > 3
-                    ? distanceString.substring(0, distanceLength - 3) + ' км. '
-                    : null
+                  return text
+                })
+                .join(', ')}
+            </div>
+          </div>
+        )}
+        {shedule.length > 0 && (
+          <div className={styles.locationItem}>
+            <div className={styles.locationIcon}>
+              <HandySvg src={metroIcon} />
+            </div>
+            <div>
+              {shedule.map((shedule) => {
+                const days =
+                  shedule.days.length === 7
+                    ? 'Ежедневно'
+                    : shedule.days.map(({ short }) => short).join(', ')
 
-                const text =
-                  title +
-                  ' ' +
-                  (kilometers ? kilometers : '') +
-                  meters +
-                  (i < relatedMetro.length - 1 ? ', ' : '')
+                const time = 'с ' + shedule.time.replace('-', 'до')
 
-                return <React.Fragment key={id}>{text}</React.Fragment>
+                return [days, time].join(' ')
               })}
             </div>
           </div>

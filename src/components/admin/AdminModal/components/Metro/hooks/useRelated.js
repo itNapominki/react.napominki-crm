@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function useRelated(serverData, related) {
+export default function useRelated(initial, related) {
   const [stations, setStations] = React.useState([])
 
   React.useEffect(() => {
-    setStations((prev) => (prev.length > 0 ? map(prev) : map(serverData)))
-  }, [serverData, related])
+    setStations((prev) => (prev.length > 0 ? map(prev) : map(initial)))
+  }, [initial, related])
 
   function map(arr) {
     return arr.map((station) => {

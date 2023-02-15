@@ -1,16 +1,16 @@
 import React from 'react'
 import { AdminForm, AdminModal } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 import { Station } from './components'
 
 export default function Metro() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, setData } = context
+  const { initial, setData, errors } = context
 
   const [modalVisible, setModalVisible] = React.useState(false)
-  const [relatedMetro, setRelatedMetro] = useServerData(
-    serverData,
+  const [relatedMetro, setRelatedMetro] = useInitial(
+    initial,
     'clientInfo.relatedMetro',
     []
   )
@@ -33,9 +33,9 @@ export default function Metro() {
         title="Связанные метро"
         button={{ text: 'Настроить', onClick: () => setModalVisible(true) }}
       >
-        {relatedMetro.map((station) => (
+        {relatedMetro.map((station, i) => (
           <div key={station.id} className="col col-4">
-            <Station station={station} />
+            <Station station={station} errors={errors} i={i} />
           </div>
         ))}
       </AdminForm.Group>

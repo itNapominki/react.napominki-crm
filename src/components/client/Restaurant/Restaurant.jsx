@@ -1,7 +1,7 @@
 import './Restaurant.scss'
 import React from 'react'
 import { ClientCard } from 'components'
-import { RestaurantContext } from 'context'
+import { RestaurantContext } from 'core/context'
 import { Halls, Info, Map, Menus, Offer } from './components'
 
 export default function Restaurant() {

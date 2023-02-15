@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 export default function Id(data) {
   const { initial, setData, errors } = data

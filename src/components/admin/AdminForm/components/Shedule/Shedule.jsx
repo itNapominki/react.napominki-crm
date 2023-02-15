@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components'
+import { AdminForm } from 'components/admin'
 import { handleAdd } from './utils'
 import { SheduleItem } from './components'
 

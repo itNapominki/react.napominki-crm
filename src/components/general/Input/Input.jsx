@@ -1,6 +1,6 @@
 // import './Input.scss'
 import React from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 import { InputBottom, InputFluid, InputTop } from './components'
 
 export default React.memo(function Input(data) {

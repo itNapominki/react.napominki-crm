@@ -1,7 +1,7 @@
 import styles from './Map.module.scss'
 import React from 'react'
 import { YMaps, Map as MapFrame, Placemark } from 'react-yandex-maps'
-import { RestaurantContext } from 'context'
+import { RestaurantContext } from 'core/context'
 
 export default function Map() {
   const context = React.useContext(RestaurantContext)

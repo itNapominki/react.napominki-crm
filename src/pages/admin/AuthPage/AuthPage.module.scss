@@ -1,0 +1,35 @@
+.container {
+  @include desktop(
+    (
+      'min-height': 100vh,
+
+      'display': flex,
+      'align-items': center,
+      'justify-content': center,
+    )
+  );
+}
+
+.card {
+  @include card;
+
+  width: 370px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form {
+  margin-top: 24px;
+}
+
+.input {
+  margin-top: 16px;
+}
+
+.button {
+  margin-top: 24px;
+  width: 100%;
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
-import { AdminForm } from 'components'
+import { AdminForm } from 'components/admin'
 import { handleImageRemove, handleFilesChange } from './utils'
 
 import styles from './Gallery.module.scss'

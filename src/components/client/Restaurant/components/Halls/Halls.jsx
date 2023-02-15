@@ -1,6 +1,6 @@
 import React from 'react'
 import { ClientCard, Separator, Tabs } from 'components'
-import { RestaurantContext } from 'context'
+import { RestaurantContext } from 'core/context'
 import { Hall } from './components'
 import { Offer } from '..'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useErrors } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useErrors } from 'core/hooks'
 
 export default function MainGroup(data) {
   const { halls, setHalls, i } = data

@@ -1,15 +1,15 @@
 import React from 'react'
 import { AdminForm, AdminModal } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 export default function RelatedRestaurants() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, setData } = context
+  const { initial, setData } = context
 
   const [modalVisible, setModalVisible] = React.useState(false)
-  const [relatedMetro, setRelatedMetro] = useServerData(
-    serverData,
+  const [relatedMetro, setRelatedMetro] = useInitial(
+    initial,
     'clientInfo.relatedMetro',
     []
   )

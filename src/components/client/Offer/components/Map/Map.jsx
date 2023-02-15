@@ -1,7 +1,7 @@
 import styles from './Map.module.scss'
 import React from 'react'
 import { YMaps, Map as MapFrame, Placemark } from 'react-yandex-maps'
-import { OfferContext } from 'context'
+import { OfferContext } from 'core/context'
 
 export default function Map() {
   const context = React.useContext(OfferContext)

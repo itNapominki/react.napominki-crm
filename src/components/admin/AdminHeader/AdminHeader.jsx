@@ -1,22 +1,13 @@
 import './AdminHeader.scss'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from 'core/store'
+import { useDispatch } from 'react-redux'
 import { Button } from 'components'
-import { setUser } from 'reducers'
-import { Api } from 'utils'
 
-export default function AdminHeader() {
+export default function AdminHeader({ userEmail }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const user = useSelector((state) => state.user.value)
-
-  React.useEffect(() => {
-    Api.auth.check().then((user) => {
-      dispatch(setUser(user))
-    })
-  }, [])
 
   function handleLogout() {
     localStorage.setItem('token', null)
@@ -25,19 +16,17 @@ export default function AdminHeader() {
   }
 
   return (
-    user && (
-      <div className="admin-header">
-        <div className="wrapper">
-          <div className="admin-header__row">
-            <div className="admin-header__user">{user.email}</div>
-            <Button
-              text="Выйти"
-              className="admin-header__button"
-              onClick={handleLogout}
-            />
-          </div>
+    <div className="admin-header">
+      <div className="wrapper">
+        <div className="admin-header__row">
+          <div className="admin-header__user">{userEmail}</div>
+          <Button
+            text="Выйти"
+            className="admin-header__button"
+            onClick={handleLogout}
+          />
         </div>
       </div>
-    )
+    </div>
   )
 }

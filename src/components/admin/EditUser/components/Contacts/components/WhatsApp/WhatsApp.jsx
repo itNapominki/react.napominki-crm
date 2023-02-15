@@ -1,17 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditUserContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function WhatsApp() {
   const context = React.useContext(EditUserContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [whatsapp, setWhatsApp] = useServerData(
-    serverData,
-    'messengers.whatsapp',
-    ''
-  )
+  const [whatsapp, setWhatsApp] = useInitial(initial, 'messengers.whatsapp', '')
   const error = useErrors(errors, 'whatsapp')
 
   React.useEffect(() => {

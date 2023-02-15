@@ -2,15 +2,20 @@ import './Metro.scss'
 
 import React from 'react'
 import { Separator } from 'components'
-import { useFetch } from 'hooks'
+import { api } from 'core/utils'
 import { Station } from './components'
 import { useRelated } from './hooks'
 
-export default function Metro(data) {
-  const { related, onChange } = data
+export default function Metro({ related, onChange }) {
+  const { data } = api.getAll({
+    model: api.model.object,
+    params: {
+      type: 'metro',
+    },
+    value: [],
+  })
 
-  const serverData = useFetch('/objects/?type=metro', [])
-  const stations = useRelated(serverData, related)
+  const stations = useRelated(data, related)
 
   return (
     <div className="admin-modal-metro">

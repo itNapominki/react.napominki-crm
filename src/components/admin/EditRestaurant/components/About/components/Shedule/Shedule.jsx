@@ -1,13 +1,13 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { AdminForm } from 'components/admin'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 export default function Shedule() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, setData, errors } = context
+  const { initial, setData, errors } = context
 
-  const [initialState] = useServerData(serverData, 'clientInfo.shedule', [])
+  const [initialState] = useInitial(initial, 'clientInfo.shedule', [])
   const [shedule, setShedule] = React.useState()
 
   React.useEffect(() => {

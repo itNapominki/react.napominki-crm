@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 const options = [
   { text: 'Работаем', value: 'Работаем' },
@@ -15,11 +15,7 @@ export default function Status(data) {
   const [status, setStatus] = React.useState(options[0])
   const error = useErrors(errors, 'status')
 
-  React.useEffect(() => {
-    if (initial) {
-      setStatus({ text: initial, value: initial })
-    }
-  }, [initial])
+  React.useEffect(() => setStatus({ text: initial, value: initial }), [initial])
 
   function handleChange(value) {
     setData((prev) => {

@@ -1,17 +1,13 @@
 import React from 'react'
 import { AdminForm, Textarea } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 export default function Comment() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, setData } = context
+  const { initial, setData } = context
 
-  const [comment, setComment] = useServerData(
-    serverData,
-    'clientInfo.comment',
-    ''
-  )
+  const [comment, setComment] = useInitial(initial, 'clientInfo.comment', '')
 
   React.useEffect(() => {
     setData((prev) => {

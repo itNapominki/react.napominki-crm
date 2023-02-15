@@ -50,6 +50,16 @@ img {
   object-fit: cover;
 }
 
+.wrapper {
+  @include desktop(
+    (
+      'max-width': 1270px,
+      'padding': 0 50px,
+      'margin': 0 auto,
+    )
+  );
+}
+
 .row {
   @include desktop(
     (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 const options = [
   { text: 'Переводим', value: 'Переводим' },
@@ -13,11 +13,7 @@ export default function Prepay(data) {
   const [prepay, setPrepay] = React.useState(options[0])
   const error = useErrors(errors, 'prepay')
 
-  React.useEffect(() => {
-    if (initial) {
-      setPrepay({ text: initial, value: initial })
-    }
-  }, [initial])
+  React.useEffect(() => setPrepay({ text: initial, value: initial }), [initial])
 
   function handleChange(value) {
     setData((prev) => {

@@ -1,6 +1,6 @@
 import { Separator } from 'components'
 import React from 'react'
-import { classNames } from 'utils'
+import { classNames } from 'core/utils'
 
 export default function Group(data) {
   const { className, button, children, title } = data

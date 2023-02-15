@@ -1,7 +1,7 @@
 import './AdminForm.scss'
 import React from 'react'
-import { Button } from 'components'
-import { classNames } from 'utils'
+import { Button } from 'components/general'
+import { classNames } from 'core/utils'
 import {
   Address,
   Contacts,
@@ -12,10 +12,15 @@ import {
 } from './components'
 import { useCancel, useDelete, useSave } from './hooks'
 
-export default function AdminForm(data) {
-  const { children, className, deleteBtn, model, onSave, onCancel, title } =
-    data
-
+export default function AdminForm({
+  children,
+  className,
+  deleteBtn,
+  model,
+  onSave,
+  onCancel,
+  title,
+}) {
   const handleCancel = useCancel({ ...onCancel, model })
   const handleDelete = useDelete({ ...onSave, model })
   const handleSave = useSave({ ...onSave, model })

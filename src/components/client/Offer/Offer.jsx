@@ -1,5 +1,5 @@
 import React from 'react'
-import { OfferContext } from 'context'
+import { OfferContext } from 'core/context'
 import { Card, Map } from './components'
 
 import styles from './Offer.module.scss'

@@ -1,0 +1,30 @@
+.container {
+  @include desktop(
+    (
+      'padding': 20px 0,
+      'margin-bottom': 40px,
+
+      'background': #fff,
+    )
+  );
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+      'justify-content': space-between,
+    )
+  );
+}
+
+.button {
+  @include desktop(
+    (
+      'height': 40px,
+
+      'font-size': 12px,
+    )
+  );
+}

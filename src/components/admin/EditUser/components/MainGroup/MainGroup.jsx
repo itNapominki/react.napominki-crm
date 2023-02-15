@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components'
+import { AdminForm } from 'components/admin'
 import { FirstName, LastName, Role } from './components'
 
 export default function MainGroup() {

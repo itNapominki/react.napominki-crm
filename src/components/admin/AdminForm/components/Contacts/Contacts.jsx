@@ -1,6 +1,6 @@
 import './Contacts.scss'
 import React from 'react'
-import { AdminForm } from 'components'
+import { AdminForm } from 'components/admin'
 import { ContactsItem } from './components'
 import { handleAdd } from './utils'
 

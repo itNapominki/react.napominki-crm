@@ -1,10 +1,13 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditObjectContext } from 'context'
+import { AdminForm } from 'components/admin'
+import { EditObjectContext } from 'core/context'
 import { Address, Title, Type } from './components'
+import { useNavigate } from 'react-router-dom'
 
 export default function EditObject() {
   console.log('render EditObject')
+
+  const navigate = useNavigate()
 
   const context = React.useContext(EditObjectContext)
   const { id, data, setErrors } = context
@@ -12,7 +15,10 @@ export default function EditObject() {
   const onSave = {
     id,
     data,
-    onSuccess: () => setErrors(),
+    onSuccess: () => {
+      setErrors()
+      navigate('/admin/data/objects')
+    },
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 

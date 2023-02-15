@@ -1,19 +1,19 @@
-import './Button.scss'
-import { classNames } from 'utils'
+import styles from './Button.module.scss'
+import { classNames } from 'core/utils'
 
 export default function Button(data) {
   const { text, className, mode, ...props } = data
 
   return (
     <button
-      className={classNames('button', [
+      className={classNames(styles.button, [
         className,
         mode ? 'button_' + mode : '',
       ])}
       {...props}
     >
-      <div className="button__inner">
-        <div className="button__text">{text}</div>
+      <div className={styles.inner}>
+        <div className={styles.text}>{text}</div>
       </div>
     </button>
   )

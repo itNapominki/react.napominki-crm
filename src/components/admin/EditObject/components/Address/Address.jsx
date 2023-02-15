@@ -1,13 +1,13 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditObjectContext } from 'context'
-import { useServerData } from 'hooks'
+import { AdminForm } from 'components/admin'
+import { EditObjectContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 
 export default function Address() {
   const context = React.useContext(EditObjectContext)
-  const { serverData, setData, errors } = context
+  const { initial, setData, errors } = context
 
-  const [initialState] = useServerData(serverData, 'address', {})
+  const [initialState] = useInitial(initial, 'address', {})
   const [address, setAddress] = React.useState()
 
   React.useEffect(() => {

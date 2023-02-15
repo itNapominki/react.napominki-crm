@@ -1,32 +1,35 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { AdminLayout, EditUser } from 'components'
-import { EditUserContext } from 'context'
-import { Api } from 'utils'
+import { useSelector } from 'react-redux'
+import { Forbidden, Layout } from 'components/general'
+import { EditUser } from 'components/admin'
+import { EditUserContext } from 'core/context'
+import { api } from 'core/utils'
+import { USER_ROLE } from 'core/constants'
 
 export default function EditUserPage() {
   console.log('render EditUserPage')
 
-  const { id } = useParams()
+  const user = useSelector((state) => state.user.value)
+  if (!user || user.role !== USER_ROLE.ADMIN) {
+    return <Forbidden />
+  }
 
-  const { data: serverData, error } = id
-    ? Api.getOne({ model: Api.model.user, id })
-    : {}
+  const { id } = useParams()
+  const { data: initial } = id ? api.getOne({ model: api.model.user, id }) : {}
 
   const [data, setData] = React.useState()
   const [errors, setErrors] = React.useState()
 
-  if (error) {
-    alert(error.message)
-  }
-
   return (
     <EditUserContext.Provider
-      value={{ id, serverData, data, setData, errors, setErrors }}
+      value={{ id, initial, data, setData, errors, setErrors }}
     >
-      <AdminLayout>
-        <EditUser />
-      </AdminLayout>
+      <Layout>
+        <div className="wrapper">
+          <EditUser />
+        </div>
+      </Layout>
     </EditUserContext.Provider>
   )
 }

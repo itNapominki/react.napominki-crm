@@ -1,13 +1,22 @@
-import React from 'react'
-import { handleUpload, setBackground as setBg } from './utils'
-
 import styles from './AddImage.module.scss'
+import React from 'react'
+import Loader from 'react-spinner-loader'
+import { setBackground as setBg } from './utils'
+import { useUpload } from './hooks'
 
 export default function AddImage({ initialPreview, setData, error }) {
   const [background, setBackground] = React.useState(initialPreview)
+  const [uploaded, handleUpload] = useUpload()
 
   React.useEffect(() => {
     setBackground(initialPreview)
+
+    setData((prev) => {
+      return {
+        ...prev,
+        preview: initialPreview,
+      }
+    })
   }, [initialPreview])
 
   return (
@@ -26,7 +35,9 @@ export default function AddImage({ initialPreview, setData, error }) {
       <div
         className={styles.fluid}
         style={{ backgroundImage: `url(${setBg(background)})` }}
-      ></div>
+      >
+        <Loader show={!uploaded} />
+      </div>
     </label>
   )
 }

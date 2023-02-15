@@ -3,6 +3,7 @@
 
   @include desktop(
     (
+      'position': relative,
       'display': block,
 
       'height': 159px,
@@ -11,6 +12,31 @@
       'background-position': center,
     )
   );
+
+  :global .loader-container {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'left': 50%,
+        'transform': translate(-50%, -50%),
+      )
+    );
+
+    .loader .spinner {
+      @include desktop(
+        (
+          'width': 40px,
+          'height': 40px,
+
+          'border-width': 5px,
+          'border-top-color': get-theme-color('primary'),
+          'animation-duration': 1.3s,
+        )
+      );
+    }
+  }
 }
 
 .top {

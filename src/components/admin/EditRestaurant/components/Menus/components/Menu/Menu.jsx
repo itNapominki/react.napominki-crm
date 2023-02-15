@@ -2,7 +2,7 @@ import React from 'react'
 import { DottedButton, Droplist, Input, Select } from 'components'
 import { useOptions } from './hooks'
 import { handleInput, handleRemove } from './utils'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 import styles from './Menu.module.scss'
 

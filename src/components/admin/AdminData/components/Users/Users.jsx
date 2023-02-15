@@ -1,7 +1,7 @@
 import React from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { DataTable } from 'components'
-import { Api } from 'utils'
+import { useNavigate } from 'react-router-dom'
+import { DataTable, Separator } from 'components'
+import { api } from 'core/utils'
 
 export default function Users() {
   console.log('render Users')
@@ -9,17 +9,13 @@ export default function Users() {
   const navigate = useNavigate()
 
   const [roles, setRoles] = React.useState([])
-  const { data: users, error } = Api.getAll({
-    model: Api.model.user,
+  const { data, setData, error } = api.getAll({
+    model: api.model.user,
     value: [],
   })
 
-  if (error) {
-    alert(error.message)
-  }
-
   React.useEffect(() => {
-    const filter = (role) => users.filter((user) => user.role === role)
+    const filter = (role) => data.filter((user) => user.role === role)
 
     const roles = [
       {
@@ -40,7 +36,7 @@ export default function Users() {
     ].filter(({ users }) => users.length > 0)
 
     setRoles(roles)
-  }, [users])
+  }, [data])
 
   const cols = [
     {
@@ -69,31 +65,27 @@ export default function Users() {
       text: 'Удалить',
       color: 'red',
       onClick: (id) =>
-        Api.delete({
-          model: Api.model.user,
-          message: 'Подтвердите удаление пользователя',
-          id,
-        }),
+        api
+          .delete({
+            model: api.model.user,
+            message: 'Подтвердите удаление пользователя',
+            id,
+          })
+          .then(() => setData((prev) => prev.filter((user) => id != user.id))),
     },
   ]
 
-  return (
-    <React.Fragment>
-      <Link className="admin-data__add-link" to="/admin/users/add">
-        Добавить пользователя
-      </Link>
-      {roles?.map((roles) => {
-        return (
-          <div key={roles.slug} className="admin-data__table">
-            <DataTable
-              title={roles.title}
-              rows={roles.users}
-              cols={cols}
-              droplist={droplist}
-            />
-          </div>
-        )
-      })}
-    </React.Fragment>
-  )
+  return roles?.map((role, i) => {
+    return (
+      <React.Fragment key={role.slug}>
+        <DataTable
+          title={role.title}
+          rows={role.users}
+          cols={cols}
+          droplist={droplist}
+        />
+        {i < roles.length - 1 && <Separator />}
+      </React.Fragment>
+    )
+  })
 }

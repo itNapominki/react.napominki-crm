@@ -1,22 +1,9 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors } from 'core/hooks'
 
 export default function Food(data) {
   const { initial, setData, errors } = data
-
-  // function getFrom() {
-  //   if (initial) {
-  //     if (initial.includes('Возим')) {
-  //       const regExp = /от\s+(.*)\s+рублей/
-  //       const from = initial.match(regExp)[1]
-
-  //       return from
-  //     }
-  //   }
-
-  //   return '...'
-  // }
 
   const [from, setFrom] = React.useState('...')
 
@@ -37,18 +24,18 @@ export default function Food(data) {
   const error = useErrors(errors, 'food')
 
   React.useEffect(() => {
-    if (initial) {
-      setFood({ text: initial, value: initial })
-    }
-  }, [initial])
-
-  React.useEffect(() => {
     if (from === '...') {
       setFood(options[0])
     } else {
       setFood(options[1])
     }
   }, [from])
+
+  React.useEffect(() => {
+    if (initial) {
+      setFood({ text: initial, value: initial })
+    }
+  }, [initial])
 
   React.useEffect(() => {
     setData((prev) => {

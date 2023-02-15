@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components'
+import { AdminForm } from 'components/admin'
 import { Coordinates, House, Location, Street } from './components'
 
 export default function Address(data) {

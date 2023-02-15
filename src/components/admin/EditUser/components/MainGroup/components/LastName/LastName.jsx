@@ -1,13 +1,13 @@
 import React from 'react'
 import { Input } from 'components'
-import { EditUserContext } from 'context'
-import { useErrors, useServerData } from 'hooks'
+import { EditUserContext } from 'core/context'
+import { useErrors, useInitial } from 'core/hooks'
 
 export default function LastName() {
   const context = React.useContext(EditUserContext)
-  const { serverData, setData, errors } = context
+  const { initial, setData, errors } = context
 
-  const [lastName, setLastName] = useServerData(serverData, 'lastName', '')
+  const [lastName, setLastName] = useInitial(initial, 'lastName', '')
 
   const error = useErrors(errors, 'lastName')
 

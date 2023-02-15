@@ -1,19 +1,19 @@
 import React from 'react'
-import { AdminForm } from 'components'
-import { EditRestaurantContext } from 'context'
-import { useServerData } from 'hooks'
+import { AdminForm } from 'components/admin'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'core/hooks'
 import { Delivery, Food, Id, Prepay, Priority, Status } from './components'
 
 export default function MainGroup() {
   const context = React.useContext(EditRestaurantContext)
-  const { serverData, errors, setData } = context
+  const { initial, errors, setData } = context
 
-  const [initialId] = useServerData(serverData, 'id', '')
-  const [initialStatus] = useServerData(serverData, 'status', '')
-  const [initialPriority] = useServerData(serverData, 'priority', '')
-  const [initialFood] = useServerData(serverData, 'food', '')
-  const [initialDelivery] = useServerData(serverData, 'delivery', '')
-  const [initialPrepay] = useServerData(serverData, 'prepay', '')
+  const [initialId] = useInitial(initial, 'id', '')
+  const [initialStatus] = useInitial(initial, 'status', '')
+  const [initialPriority] = useInitial(initial, 'priority', '')
+  const [initialFood] = useInitial(initial, 'food', '')
+  const [initialDelivery] = useInitial(initial, 'delivery', '')
+  const [initialPrepay] = useInitial(initial, 'prepay', '')
 
   return (
     <AdminForm.Group>
