@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 
 export default function Food(data) {
   const { initial, setData, errors } = data

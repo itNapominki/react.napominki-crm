@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
 import { EditRestaurantContext } from 'core/context'
-import { useErrors, useInitial } from 'core/hooks'
+import { useErrors, useInitial } from 'hooks'
 
 export default function Whatsapp() {
   const context = React.useContext(EditRestaurantContext)

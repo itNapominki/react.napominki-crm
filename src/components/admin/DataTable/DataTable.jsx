@@ -1,8 +1,8 @@
 import './DataTable.scss'
-
+import React from 'react'
 import { Col, Row } from './components'
 
-export default function DataTable(data) {
+export default React.memo(function DataTable(data) {
   const { title, rows = [], cols = [], droplist } = data
 
   return (
@@ -29,4 +29,4 @@ export default function DataTable(data) {
       </div>
     </div>
   )
-}
+})

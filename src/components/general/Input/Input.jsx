@@ -3,20 +3,20 @@ import React from 'react'
 import { classNames } from 'core/utils'
 import { InputBottom, InputFluid, InputTop } from './components'
 
-export default React.memo(function Input(data) {
-  const {
-    action = null,
-    className,
-    disabled,
-    error,
-    errorDown,
-    label = null,
-    bigLabel,
-    onInput,
-    type,
-    value,
-    mask,
-  } = data
+export default React.memo(function Input({
+  action = null,
+  className,
+  disabled,
+  error,
+  errorDown,
+  label = null,
+  bigLabel,
+  onInput,
+  type,
+  value,
+  mask,
+}) {
+  console.log('render Input')
 
   return (
     <label className={classNames('input', [className])}>

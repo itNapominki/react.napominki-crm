@@ -5,9 +5,9 @@ import { setAddress } from './utils'
 
 import styles from './Heading.module.scss'
 
-import cafeIcon from 'sprites/cafe.svg'
-import markerIcon from 'sprites/marker.svg'
-import metroIcon from 'sprites/metro.svg'
+import cafeIcon from 'assets/sprites/cafe.svg'
+import markerIcon from 'assets/sprites/marker.svg'
+import metroIcon from 'assets/sprites/metro.svg'
 
 export default function Heading() {
   const context = React.useContext(RestaurantContext)

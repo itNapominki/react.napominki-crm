@@ -1,6 +1,6 @@
 import React from 'react'
 import { DottedButton, Droplist, Input } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 import { handleInput, handleRemove } from '../../utils'
 
 export default function ContactsItem(data) {

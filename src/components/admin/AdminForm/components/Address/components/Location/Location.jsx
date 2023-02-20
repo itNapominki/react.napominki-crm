@@ -2,9 +2,12 @@ import React from 'react'
 import { GroupedSelect } from './components'
 import { api } from 'core/utils'
 
-export default function Location(data) {
-  const { data: locations } = api.getAll({ model: api.model.address })
-  const { initialState, setAddress } = data
+export default function Location({ initialState, setAddress }) {
+  const [locations, setLocations] = React.useState()
+
+  React.useEffect(() => {
+    api.getAll({ model: api.model.address }).then((data) => setLocations(data))
+  }, [])
 
   const [region, setRegion] = React.useState(null)
   const [city, setCity] = React.useState(null)
@@ -24,10 +27,10 @@ export default function Location(data) {
     setAddress((prev) => {
       return {
         ...prev,
-        region,
-        city,
-        county,
-        district,
+        region: region ? region.value : null,
+        city: city ? city.value : null,
+        county: county ? county.value : null,
+        district: district ? district.value : null,
       }
     })
   }, [region, city, county, district])

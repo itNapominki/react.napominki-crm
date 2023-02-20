@@ -12,7 +12,7 @@ export default function Halls() {
 
   const [activeTab, setActiveTab] = React.useState(0)
 
-  const TABS = halls.map((hall) => {
+  const TABS = halls?.map((hall) => {
     return {
       text: hall.title,
       onClick: setActiveTab,

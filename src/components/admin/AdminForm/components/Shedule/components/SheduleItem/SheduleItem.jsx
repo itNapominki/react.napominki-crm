@@ -2,7 +2,7 @@ import './SheduleItem.scss'
 
 import React from 'react'
 import { DottedButton, Droplist, Input, Select } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 import { options } from '../../data'
 import { handleInput, handleRemove, handleSelectChange } from '../../utils'
 

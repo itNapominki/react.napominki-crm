@@ -1,0 +1,36 @@
+.card {
+  position: relative;
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+}
+
+.addButton {
+  @include link();
+
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 40px,
+      'right': 40px,
+    )
+  );
+}
+
+.spinner {
+  @include desktop(
+    (
+      'margin': 20px auto 0,
+    )
+  );
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

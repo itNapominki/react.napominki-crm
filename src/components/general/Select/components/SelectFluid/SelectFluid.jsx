@@ -3,7 +3,7 @@ import { HandySvg } from 'handy-svg'
 import { Droplist } from 'components'
 import { useMultiple, useSelect } from '../../hooks'
 import { getValue } from '../../utils'
-import chevron from 'sprites/chevron.svg'
+import chevron from 'assets/sprites/chevron.svg'
 
 export default function SelectFluid(data) {
   const { multiple, onChange, options, value: defaultValue } = data

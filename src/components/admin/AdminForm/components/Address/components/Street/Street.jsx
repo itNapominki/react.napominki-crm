@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 
 export default function Street(data) {
   const { initialState, setAddress, errors } = data

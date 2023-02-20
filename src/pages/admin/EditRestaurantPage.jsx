@@ -5,9 +5,9 @@ import { EditRestaurant } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
 import { api } from 'core/utils'
 import { useSelector } from 'react-redux'
-import { USER_ROLE } from 'core/constants'
+import { USER_ROLES } from 'core/constants'
 
-export default React.memo(function EditRestaurantPage() {
+export default function EditRestaurantPage() {
   console.log('render EditRestaurantPage')
 
   const { id } = useParams()
@@ -27,18 +27,19 @@ export default React.memo(function EditRestaurantPage() {
   const user = useSelector((state) => state.user.value)
   if (
     !user ||
-    (user.role !== USER_ROLE.ADMIN && user.role !== USER_ROLE.REDAKTOR)
+    (user.role !== USER_ROLES.ADMIN.VALUE &&
+      user.role !== USER_ROLES.REDAKTOR.VALUE)
   ) {
     return <Forbidden />
   }
 
   return (
     <EditRestaurantContext.Provider
-      value={{ id, data, initial, setData, errors, setErrors }}
+      value={{ id, initial, data, setData, errors, setErrors }}
     >
       <Layout>
         <EditRestaurant />
       </Layout>
     </EditRestaurantContext.Provider>
   )
-})
+}

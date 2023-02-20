@@ -3,6 +3,8 @@ import { AdminForm } from 'components/admin'
 import { EditObjectContext } from 'core/context'
 import { Address, Title, Type } from './components'
 import { useNavigate } from 'react-router-dom'
+import { ContentCard } from 'components/general'
+import { ROUTES } from 'router/routes'
 
 export default function EditObject() {
   console.log('render EditObject')
@@ -17,32 +19,33 @@ export default function EditObject() {
     data,
     onSuccess: () => {
       setErrors()
-      navigate('/admin/data/objects')
+      navigate(ROUTES.ADMIN_OBJECTS.PATH)
     },
     onError: ({ message, errors }) => setErrors({ message, errors }),
   }
 
-  const formTitle = id ? 'Редактирование объекта' : 'Добавление объекта'
+  const formTitle = (id ? 'Редактирование' : 'Добавление') + ' объекта'
 
-  const deleteBtn = id
-    ? {
-        text: 'Удалить объект',
-        onDelete: { id, message: 'Подтвердите удаление объекта' },
-      }
-    : null
+  const deleteButton = {
+    text: 'Удалить объект',
+    onDelete: { id, message: 'Подтвердите удаление объекта' },
+  }
 
   return (
-    <AdminForm
-      model="object"
-      title={formTitle}
-      onSave={onSave}
-      deleteBtn={deleteBtn}
-    >
-      <AdminForm.Group>
-        <Type />
-        <Title />
-      </AdminForm.Group>
-      <Address />
-    </AdminForm>
+    <ContentCard>
+      <AdminForm
+        mode={id ? 'update' : 'create'}
+        model="object"
+        title={formTitle}
+        onSave={onSave}
+        deleteButton={deleteButton}
+      >
+        <AdminForm.Group title="Основное">
+          <Type />
+          <Title />
+        </AdminForm.Group>
+        <Address />
+      </AdminForm>
+    </ContentCard>
   )
 }

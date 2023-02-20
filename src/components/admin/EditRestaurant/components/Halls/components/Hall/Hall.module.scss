@@ -1,8 +1,14 @@
+.container {
+  @include desktop(
+    (
+      'margin-bottom': 32px,
+    )
+  );
+}
+
 .topRow {
   @include desktop(
     (
-      'margin': 32px 0,
-
       'display': flex,
       'justify-content': space-between,
       'align-items': flex-start,

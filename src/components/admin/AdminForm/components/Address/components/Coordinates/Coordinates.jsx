@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 import { useString } from './hooks'
 
 export default function Coordinates(data) {

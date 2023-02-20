@@ -1,3 +1,5 @@
+import { api } from 'core/utils'
+
 export default async function handleFilesChange(
   event,
   setGallery,
@@ -8,33 +10,36 @@ export default async function handleFilesChange(
 
   for (let file of files) {
     const src = URL.createObjectURL(file)
-    setGallery((prev) => updateGallery(prev, src))
+    setGallery((prev) => [...prev, { src, uploaded: false }])
   }
 
-  for (let file of files) {
+  for (let j = 0; j < files.length; j++) {
     const formData = new FormData()
-    formData.append('file', file)
+    formData.append('file', files[j])
 
-    await fetch(process.env.REACT_APP_api_URL + '/files/images', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((filename) => {
+    await api.files
+      .upload({ folder: 'images', formData })
+      .then(({ data }) => {
         setHalls((prev) =>
           prev.map((hall, index) => {
             if (i === index) {
-              console.log(i)
-              hall.gallery = updateGallery(hall.gallery, filename)
+              hall.gallery = [...hall.gallery, data.filename]
             }
 
             return hall
           })
         )
       })
-  }
+      .then(() =>
+        setGallery((prev) =>
+          prev.map((image, index) => {
+            if (index === prev.length - files.length + j) {
+              image.uploaded = true
+            }
 
-  function updateGallery(prev, src) {
-    return [...prev, src]
+            return image
+          })
+        )
+      )
   }
 }

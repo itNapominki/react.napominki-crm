@@ -1,5 +1,5 @@
 import React from 'react'
-import { useInput } from 'core/hooks'
+import { useInput } from 'hooks'
 // import InputMask from 'react-input-mask'
 import Inputmask from 'inputmask'
 

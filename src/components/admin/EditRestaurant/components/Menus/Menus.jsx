@@ -3,7 +3,7 @@ import { AdminForm } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
 import { Menu } from './components'
 import { handleAdd } from './utils'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 import { api } from 'core/utils'
 
 export default function Menus() {
@@ -30,7 +30,6 @@ export default function Menus() {
 
   return (
     <AdminForm.Group
-      title="Меню ресторана"
       button={{
         text: 'Добавить новое меню',
         onClick: () => handleAdd(setMenus),

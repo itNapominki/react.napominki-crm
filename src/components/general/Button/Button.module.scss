@@ -33,7 +33,7 @@ button {
     background: darken(get-theme-color('primary'), 5%);
   }
 
-  &_light {
+  &:global._light {
     background: get-theme-color('tabs-bg');
     color: get-theme-color('tabs-text');
 

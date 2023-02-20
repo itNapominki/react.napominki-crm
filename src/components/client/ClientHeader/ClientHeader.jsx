@@ -4,9 +4,9 @@ import { Button } from 'components'
 
 import styles from './ClientHeader.module.scss'
 
-import whatsappIcon from 'sprites/whatsapp.svg'
-import telegramIcon from 'sprites/telegram.svg'
-import viberIcon from 'sprites/viber.svg'
+import whatsappIcon from 'assets/sprites/whatsapp.svg'
+import telegramIcon from 'assets/sprites/telegram.svg'
+import viberIcon from 'assets/sprites/viber.svg'
 
 const socialClassName = (messenger) => {
   return `${styles.socialItem} ${

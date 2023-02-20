@@ -3,12 +3,14 @@ import axios from './axios'
 import auth from './auth'
 import files from './files'
 
+import { MODELS } from 'core/constants'
+
 class Api {
   constructor() {
-    this.model = {
-      user: 'users',
-      restaurant: 'restaurants',
-      object: 'objects',
+    this.apiUrl = {
+      user: MODELS.USER.API_URL,
+      restaurant: MODELS.RESTAURANT.API_URL,
+      object: MODELS.OBJECT.API_URL,
       address: 'addresses',
       menu: 'menus',
     }
@@ -22,7 +24,7 @@ class Api {
   async create({ model, data }) {
     const token = this.#token
 
-    return await axios.post(`/${model}/`, data, {
+    return await axios.post(this.apiUrl[model], data, {
       headers: {
         Authorization: 'Bearer ' + token,
       },
@@ -32,7 +34,7 @@ class Api {
   async update({ model, id, data, params }) {
     const token = this.#token
 
-    return await axios.put(`/${model}/` + id, data, {
+    return await axios.put(this.apiUrl[model] + '/' + id, data, {
       params,
       headers: {
         Authorization: 'Bearer ' + token,
@@ -40,53 +42,27 @@ class Api {
     })
   }
 
-  getAll({ model, value = null, params = {} }) {
+  async getAll({ model, params = {} }) {
     const token = this.#token
+    console.log(model)
 
-    const [data, setData] = React.useState(value)
-    const [error, setError] = React.useState(null)
-
-    React.useEffect(() => {
-      async function getData() {
-        await axios
-          .get(`/${model}/`, {
-            params,
-            headers: {
-              Authorization: 'Bearer ' + token,
-            },
-          })
-          .then(({ data }) => setData(data))
-          .catch(({ response }) => setError(response.data))
-      }
-
-      getData()
-    }, [])
-
-    return { data, setData, error, setError }
+    return await axios.get(this.apiUrl[model], {
+      params,
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
   }
 
-  getOne({ model, value = null, id }) {
+  async getOne({ model, id, params = {} }) {
     const token = this.#token
 
-    const [data, setData] = React.useState(value)
-    const [error, setError] = React.useState(null)
-
-    React.useEffect(() => {
-      async function getData() {
-        await axios
-          .get(`/${model}/` + id, {
-            headers: {
-              Authorization: 'Bearer ' + token,
-            },
-          })
-          .then(({ data }) => setData(data))
-          .catch(({ response }) => setError(response.data))
-      }
-
-      getData()
-    }, [])
-
-    return { data, setData, error, setError }
+    return await axios.get(this.apiUrl[model] + '/' + id, {
+      params,
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
   }
 
   async delete({ model, id, message = 'Подтвердите удаление' }) {
@@ -94,7 +70,7 @@ class Api {
 
     if (window.confirm(message)) {
       return await axios
-        .delete(`/${model}/` + id, {
+        .delete(this.apiUrl[model] + '/' + id, {
           headers: {
             Authorization: 'Bearer ' + token,
           },

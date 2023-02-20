@@ -1,0 +1,47 @@
+.container {
+  @include desktop(
+    (
+      'margin': 32px 0,
+    )
+  );
+}
+
+.title {
+  @include h3;
+
+  @include desktop(
+    (
+      'margin-bottom': 16px,
+    )
+  );
+}
+
+.row {
+  @include desktop(
+    (
+      'margin-bottom': -16px,
+    )
+  );
+
+  :global .input,
+  :global .select,
+  :global .textarea {
+    @include desktop(
+      (
+        'margin-bottom': 16px,
+      )
+    );
+  }
+}
+
+.button {
+  @include link();
+
+  @include desktop(
+    (
+      'margin-top': 16px,
+
+      'font-size': 12px,
+    )
+  );
+}

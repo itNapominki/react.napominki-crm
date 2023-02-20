@@ -1,9 +1,14 @@
 import React from 'react'
 import { Select } from 'components'
 
-export default function GroupedSelect(data) {
-  const { label, locations, referal, type, value, setValue } = data
-
+export default function GroupedSelect({
+  label,
+  locations,
+  referal,
+  type,
+  value,
+  setValue,
+}) {
   const [options, setOptions] = React.useState()
 
   React.useEffect(() => {

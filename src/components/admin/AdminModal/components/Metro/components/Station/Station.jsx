@@ -2,8 +2,8 @@ import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { Input } from 'components'
 import { handleAdd, handleInput, handleRemove } from './hooks'
-import metroIcon from 'sprites/metro.svg'
-import removeIcon from 'sprites/remove.svg'
+import metroIcon from 'assets/sprites/metro.svg'
+import removeIcon from 'assets/sprites/remove.svg'
 
 export default function Station(data) {
   const { station, onChange } = data

@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 import { Delivery, Food, Id, Prepay, Priority, Status } from './components'
 
 export default function MainGroup() {

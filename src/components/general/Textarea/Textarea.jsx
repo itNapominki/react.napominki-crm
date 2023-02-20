@@ -1,6 +1,6 @@
 import './Textarea.scss'
 import React from 'react'
-import { useInput } from 'core/hooks'
+import { useInput } from 'hooks'
 import { classNames } from 'core/utils'
 
 export default function Textarea(data) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'components'
 import { EditObjectContext } from 'core/context'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 
 const options = [
   { text: 'Кладбище', value: 'cemetery' },

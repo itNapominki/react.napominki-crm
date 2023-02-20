@@ -1,6 +1,6 @@
 import React from 'react'
 import { EditRestaurantContext } from 'core/context'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 import { Comment, Gallery, Info, MainGroup } from './components'
 
 import styles from './Hall.module.scss'
@@ -22,7 +22,7 @@ export default function Hall(data) {
   }
 
   return (
-    <React.Fragment>
+    <div className={styles.container}>
       <div className={styles.topRow}>
         <div className={styles.title}>{title}</div>
         <button className={styles.removeButton} onClick={handleRemove}>
@@ -34,6 +34,6 @@ export default function Hall(data) {
       <Info halls={halls} setHalls={setHalls} i={i} />
       <Comment halls={halls} setHalls={setHalls} i={i} />
       <Gallery halls={halls} setHalls={setHalls} i={i} />
-    </React.Fragment>
+    </div>
   )
 }

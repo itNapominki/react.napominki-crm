@@ -1,16 +1,17 @@
 import styles from './WorkspacePage.module.scss'
 import React from 'react'
-import { AdminLayout, Input } from 'components'
-import { ContentCard } from 'components/general'
+import { Layout } from 'components/general'
+import { ManagerMap, ManagerTools } from 'components/manager'
 
 export default function WorkspacePage() {
+  console.log('render WorkspacePage')
+
   return (
-    <AdminLayout>
-      <ContentCard>
-        <div className={styles.tools}>
-          <Input label="Поиск" bigLabel className={styles.search} />
-        </div>
-      </ContentCard>
-    </AdminLayout>
+    <Layout>
+      <div className="wrapper">
+        <ManagerTools />
+        <ManagerMap />
+      </div>
+    </Layout>
   )
 }

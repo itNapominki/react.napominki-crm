@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm, Textarea } from 'components'
 import { EditRestaurantContext } from 'core/context'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 
 export default function Comment() {
   const context = React.useContext(EditRestaurantContext)

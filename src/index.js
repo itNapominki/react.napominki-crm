@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from 'core/store'
 import App from 'App'
 
-import 'scss/main.scss'
+import 'assets/scss/main.scss'
 import 'swiper/css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

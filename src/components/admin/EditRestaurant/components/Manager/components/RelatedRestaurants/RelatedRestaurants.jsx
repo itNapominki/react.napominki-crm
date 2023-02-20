@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm, AdminModal } from 'components'
 import { EditRestaurantContext } from 'core/context'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 
 export default function RelatedRestaurants() {
   const context = React.useContext(EditRestaurantContext)

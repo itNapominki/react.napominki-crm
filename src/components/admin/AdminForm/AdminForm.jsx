@@ -1,4 +1,4 @@
-import './AdminForm.scss'
+import styles from './AdminForm.module.scss'
 import React from 'react'
 import { Button } from 'components/general'
 import { classNames } from 'core/utils'
@@ -10,41 +10,52 @@ import {
   Image,
   Shedule,
 } from './components'
-import { useCancel, useDelete, useSave } from './hooks'
+import { handleCancel, handleDelete, handleSave } from './handlers'
 
 export default function AdminForm({
-  children,
+  id,
   className,
-  deleteBtn,
+  children,
+  data,
   model,
-  onSave,
-  onCancel,
   title,
+  onCancel,
+  onSave,
+  onError,
+  deleteButton,
 }) {
-  const handleCancel = useCancel({ ...onCancel, model })
-  const handleDelete = useDelete({ ...onSave, model })
-  const handleSave = useSave({ ...onSave, model })
-
   return (
-    <div className={classNames('admin-form', [className])}>
-      {deleteBtn && (
-        <div className="admin-form__remove-btn" onClick={handleDelete}>
-          {deleteBtn.text}
+    <div className={classNames(styles.container, [className])}>
+      {(title || id) && (
+        <div className={styles.heading}>
+          <div className={styles.title}>{title}</div>
+          {id && (
+            <div
+              className={styles.removeButton}
+              onClick={handleDelete({
+                onDelete: deleteButton.onDelete,
+                message: deleteButton.message,
+                model,
+                id,
+              })}
+            >
+              {deleteButton.text}
+            </div>
+          )}
         </div>
       )}
-      {title && <div className="admin-form__title">{title}</div>}
       {children}
-      <div className="admin-form__actions row">
+      <div className={`${styles.actions} row`}>
         <Button
           text="Сохранить"
-          className="admin-form__button col col-2"
-          onClick={handleSave}
+          className="col col-2"
+          onClick={handleSave({ data, model, onSave, onError, id })}
         />
         <Button
           mode="light"
           text="Отменить"
-          className="admin-form__button col col-2"
-          onClick={handleCancel}
+          className="col col-2"
+          onClick={handleCancel(onCancel)}
         />
       </div>
     </div>

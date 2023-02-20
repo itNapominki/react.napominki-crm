@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'components'
 import { EditObjectContext } from 'core/context'
-import { useErrors, useInitial } from 'core/hooks'
+import { useErrors, useInitial } from 'hooks'
 
 export default function Title() {
   const context = React.useContext(EditObjectContext)

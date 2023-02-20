@@ -2,7 +2,7 @@ import React from 'react'
 import { Droplist } from 'components'
 import Col from '../Col/Col'
 
-export default function Row({ cols, row, droplist, id }) {
+export default React.memo(function Row({ cols, row, droplist, id }) {
   console.log('render Row')
 
   const [droplistVisible, setDroplistVisible] = React.useState(false)
@@ -43,4 +43,4 @@ export default function Row({ cols, row, droplist, id }) {
       )}
     </div>
   )
-}
+})

@@ -2,10 +2,8 @@ import React from 'react'
 import { AdminForm } from 'components/admin'
 import { Coordinates, House, Location, Street } from './components'
 
-export default function Address(data) {
+export default function Address({ address, initialState, setAddress, errors }) {
   console.log('render Address')
-
-  const { address, initialState, setAddress, errors } = data
 
   return (
     <AdminForm.Group title="Адрес">

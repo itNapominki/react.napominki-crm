@@ -1,7 +1,7 @@
 import './Station.scss'
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 
 export default function Station(data) {
   const { station, errors, i } = data

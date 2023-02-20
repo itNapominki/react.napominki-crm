@@ -3,9 +3,9 @@ import './Inputlist.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { AdminForm, Input } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 import { handleAdd, handleInput, handleRemove } from './utils'
-import removeIcon from 'sprites/remove.svg'
+import removeIcon from 'assets/sprites/remove.svg'
 
 export default function Inputlist(data) {
   const {

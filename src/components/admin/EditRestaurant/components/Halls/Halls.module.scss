@@ -1,18 +1,1 @@
-.buttonAdd {
-  @include link();
 
-  @include desktop(
-    (
-      'margin-top': 32px,
-      'font-size': 12px,
-    )
-  );
-}
-
-.container {
-  @include desktop(
-    (
-      'margin-top': 32px,
-    )
-  );
-}

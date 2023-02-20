@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'components'
-import { useErrors } from 'core/hooks'
+import { useErrors } from 'hooks'
 
 const options = [
   { text: 'Переводим', value: 'Переводим' },

@@ -1,9 +1,9 @@
 import React from 'react'
-import { AdminForm, Separator } from 'components'
+import { AdminForm } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
 import { Hall } from './components'
 import { handleAdd } from './utils'
-import { useInitial } from 'core/hooks'
+import { useInitial } from 'hooks'
 
 import styles from './Halls.module.scss'
 
@@ -29,23 +29,26 @@ export default function Halls() {
 
   return (
     <div className={styles.container}>
-      <Separator />
-
-      {halls?.map((_, i) => {
-        return (
-          <Hall
-            key={i}
-            halls={halls}
-            setHalls={setHalls}
-            errors={errors}
-            i={i}
-          />
-        )
-      })}
-
-      <button className={styles.buttonAdd} onClick={() => handleAdd(setHalls)}>
-        Добавить новый зал
-      </button>
+      <AdminForm.Group
+        button={{
+          text: 'Добавить новый зал',
+          onClick: () => handleAdd(setHalls),
+        }}
+      >
+        <div className="col col-12">
+          {halls?.map((_, i) => {
+            return (
+              <Hall
+                key={i}
+                halls={halls}
+                setHalls={setHalls}
+                errors={errors}
+                i={i}
+              />
+            )
+          })}
+        </div>
+      </AdminForm.Group>
     </div>
   )
 }
