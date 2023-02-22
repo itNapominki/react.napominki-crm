@@ -7,6 +7,7 @@ import { useDroplist } from './hooks'
 export default function RestaurantsPage() {
   const [data, setData, fetching] = useScrollLoad('restaurant', {
     attributes: ['id', 'title', 'address', 'status'],
+    order: [['title', 'ASC']],
   })
 
   const droplist = useDroplist(setData)

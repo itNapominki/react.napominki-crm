@@ -1,19 +1,10 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'hooks'
-import { useString } from './hooks'
+import { useInitial, useErrors } from 'hooks'
 
-export default function Coordinates(data) {
-  const { address, initialState, setAddress, errors } = data
-
-  const [coordinates, setCoordinates] = React.useState('')
-  const string = useString(address)
-  const error = useErrors(errors, 'address.coordinates')
-
-  React.useEffect(
-    () => setCoordinates(initialState.coordinates),
-    [initialState]
-  )
+export default function Coordinates({ address, initial, setAddress, errors }) {
+  const [coordinates, setCoordinates] = useInitial(initial, 'coordinates', '')
+  const error = useErrors(errors, 'coordinates')
 
   React.useEffect(() => {
     setAddress((prev) => {
@@ -22,7 +13,7 @@ export default function Coordinates(data) {
   }, [coordinates])
 
   function handleOpenMap() {
-    const url = 'https://yandex.ru/maps/?text={' + string + '}'
+    const url = 'https://yandex.ru/maps/?text={' + address + '}'
     return window.open(url, '_blank')
   }
 

@@ -15,17 +15,9 @@ export default React.memo(function DataTable(data) {
           ))}
         </div>
 
-        {rows.map((row, i) => {
-          return (
-            <Row
-              key={i}
-              cols={cols}
-              row={row}
-              id={row.id}
-              droplist={droplist}
-            />
-          )
-        })}
+        {rows.map((row, i) => (
+          <Row key={i} cols={cols} row={row} id={row.id} droplist={droplist} />
+        ))}
       </div>
     </div>
   )

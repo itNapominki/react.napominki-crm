@@ -1,14 +1,10 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'hooks'
+import { useInitial, useErrors } from 'hooks'
 
-export default function House(data) {
-  const { initialState, setAddress, errors } = data
-
-  const [house, setHouse] = React.useState('')
-  const error = useErrors(errors, 'address.house')
-
-  React.useEffect(() => setHouse(initialState.house), [initialState])
+export default function House({ initial, setAddress, errors }) {
+  const [house, setHouse] = useInitial(initial, 'house', '')
+  const error = useErrors(errors, 'house')
 
   React.useEffect(() => {
     setAddress((prev) => {

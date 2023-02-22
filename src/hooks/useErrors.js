@@ -1,9 +1,15 @@
-export default function useErrors(errors, reference) {
-  const hasErrors = errors
-  const arr = hasErrors ? errors.errors : null
-  const instance = arr ? arr.find((error) => error.param === reference) : false
+import React from 'react'
 
-  const error = instance ? instance.msg : false
+export default function useErrors(errors, reference) {
+  const [error, setError] = React.useState()
+
+  React.useEffect(() => {
+    if (errors) {
+      const error = errors.find(({ param }) => param === reference)
+
+      setError(error ? error.msg : null)
+    }
+  }, [errors])
 
   return error
 }

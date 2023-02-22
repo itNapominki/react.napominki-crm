@@ -1,0 +1,13 @@
+.container {
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+}
+
+.title {
+  @include h3;
+}

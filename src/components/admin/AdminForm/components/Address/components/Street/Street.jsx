@@ -1,14 +1,10 @@
 import React from 'react'
 import { Input } from 'components'
-import { useErrors } from 'hooks'
+import { useErrors, useInitial } from 'hooks'
 
-export default function Street(data) {
-  const { initialState, setAddress, errors } = data
-
-  const [street, setStreet] = React.useState('')
-  const error = useErrors(errors, 'address.street')
-
-  React.useEffect(() => setStreet(initialState.street), [initialState])
+export default function Street({ initial, setAddress, errors }) {
+  const [street, setStreet] = useInitial(initial, 'street', '')
+  const error = useErrors(errors, 'street')
 
   React.useEffect(() => {
     setAddress((prev) => {

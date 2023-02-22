@@ -15,6 +15,10 @@ export default function useMultiple(defaultValue = [], options = [], callback) {
     }
   }, [value])
 
+  React.useEffect(() => {
+    setValue(defaultValue)
+  }, [defaultValue])
+
   const droplist = options.map((option, i) => {
     return {
       ...option,

@@ -6,7 +6,10 @@ import { useObjectTypes, useDroplist } from './hooks'
 
 export default function ObjectsPage() {
   const [data, setData, fetching] = useScrollLoad('object', {
-    order: [['type', 'ASC']],
+    order: [
+      ['type', 'ASC'],
+      ['title', 'ASC'],
+    ],
   })
 
   const types = useObjectTypes(data)

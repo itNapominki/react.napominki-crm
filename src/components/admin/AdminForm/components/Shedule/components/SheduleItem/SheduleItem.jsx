@@ -1,57 +1,61 @@
-import './SheduleItem.scss'
+import styles from './SheduleItem.module.scss'
 
 import React from 'react'
-import { DottedButton, Droplist, Input, Select } from 'components'
+import { DottedButton, Droplist, Input, Select } from 'components/general'
 import { useErrors } from 'hooks'
-import { options } from '../../data'
-import { handleInput, handleRemove, handleSelectChange } from '../../utils'
 
-export default function SheduleItem(data) {
-  const { i, shedule, setShedule, errors, formName } = data
+import options from './options'
 
+export default function SheduleItem({
+  onInput,
+  onRemove,
+  onSelectChange,
+  errors,
+  item,
+}) {
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
-  const selectError = useErrors(errors, formName + '[' + i + '].days')
-  const inputError = useErrors(errors, formName + '[' + i + '].time')
+  const selectError = useErrors(errors.array, `[${errors.param}].days`)
+  const inputError = useErrors(errors.array, `[${errors.param}].time`)
 
   return (
-    <div className="admin-form-shedule">
-      <div className="admin-form-shedule__row">
+    <React.Fragment>
+      <div className={styles.row}>
         <DottedButton
-          className="admin-form-shedule__burger"
+          className={styles.burgerButton}
           onClick={() => setDroplistVisible(!droplistVisible)}
         />
         <Droplist
           visible={droplistVisible}
-          className="admin-form-shedule__droplist"
+          className={styles.droplist}
           items={[
             {
               text: 'Удалить',
               color: 'red',
-              onClick: () => handleRemove(setShedule, i),
+              onClick: onRemove,
             },
           ]}
         />
         <Select
           multiple
           label="Дни недели"
-          value={shedule[i].days}
+          value={item.days}
           options={options}
-          onChange={(arr) => handleSelectChange(setShedule, arr, i)}
-          className="admin-form-shedule__select"
+          onChange={onSelectChange}
+          className={styles.select}
           error={selectError}
           errorDown
         />
         <Input
           label="Время"
-          value={shedule[i].time}
-          onInput={(value) => handleInput(setShedule, value, i)}
-          className="admin-form-shedule__input"
+          value={item.time}
+          onInput={onInput}
+          className={styles.input}
           error={inputError}
           errorDown
           mask={['99:99 - 99:99']}
         />
       </div>
-    </div>
+    </React.Fragment>
   )
 }

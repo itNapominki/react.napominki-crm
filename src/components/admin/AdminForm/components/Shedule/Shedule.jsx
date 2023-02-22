@@ -1,38 +1,40 @@
 import React from 'react'
 import { AdminForm } from 'components/admin'
-import { handleAdd } from './utils'
+import {
+  handleAdd,
+  handleSelectChange,
+  handleInput,
+  handleRemove,
+} from './handlers'
 import { SheduleItem } from './components'
 
-export default function Shedule(data) {
+export default function Shedule({
+  buttonText = 'Добавить расписание',
+  onChange,
+  title,
+  errors,
+  initial,
+}) {
   console.log('Render Shedule')
 
-  const {
-    buttonText = 'Добавить расписание',
-    onChange,
-    title,
-    errors,
-    formName,
-    initialState,
-  } = data
-
-  const [shedule, setShedule] = React.useState(initialState)
+  const [shedule, setShedule] = React.useState(initial)
 
   React.useEffect(() => onChange(shedule), [shedule])
-  React.useEffect(() => setShedule(initialState), [initialState])
+  React.useEffect(() => setShedule(initial), [initial])
 
   return (
     <AdminForm.Group
       title={title}
       button={{ text: buttonText, onClick: () => handleAdd(setShedule) }}
     >
-      {shedule?.map((_, i) => (
+      {shedule?.map((item, i) => (
         <div key={i} className="col col-4">
           <SheduleItem
-            i={i}
-            shedule={shedule}
-            setShedule={setShedule}
-            errors={errors}
-            formName={formName}
+            item={item}
+            onSelectChange={(arr) => handleSelectChange(setShedule, arr, i)}
+            onInput={(value) => handleInput(setShedule, value, i)}
+            onRemove={() => handleRemove(setShedule, i)}
+            errors={{ array: errors, param: i }}
           />
         </div>
       ))}

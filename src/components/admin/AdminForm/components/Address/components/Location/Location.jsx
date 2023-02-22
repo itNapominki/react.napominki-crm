@@ -1,27 +1,34 @@
 import React from 'react'
-import { GroupedSelect } from './components'
-import { api } from 'core/utils'
 
-export default function Location({ initialState, setAddress }) {
+import { GroupedSelect } from './components'
+
+import { api } from 'core/utils'
+import { MODELS } from 'core/constants'
+import { useInitial } from './hooks'
+
+export default function Location({ initial, setAddress }) {
   const [locations, setLocations] = React.useState()
 
   React.useEffect(() => {
-    api.getAll({ model: api.model.address }).then((data) => setLocations(data))
+    async function getData() {
+      await api
+        .getAll({ model: MODELS.LOCATION.VALUE })
+        .then(({ data }) => setLocations(data))
+    }
+
+    getData()
   }, [])
 
-  const [region, setRegion] = React.useState(null)
-  const [city, setCity] = React.useState(null)
-  const [county, setCounty] = React.useState(null)
-  const [district, setDistrict] = React.useState(null)
-
-  React.useEffect(() => {
-    if (initialState) {
-      setRegion(initialState.region)
-      setCity(initialState.city)
-      setCounty(initialState.county)
-      setDistrict(initialState.district)
-    }
-  }, [initialState])
+  const {
+    region,
+    setRegion,
+    city,
+    setCity,
+    county,
+    setCounty,
+    district,
+    setDistrict,
+  } = useInitial(initial)
 
   React.useEffect(() => {
     setAddress((prev) => {

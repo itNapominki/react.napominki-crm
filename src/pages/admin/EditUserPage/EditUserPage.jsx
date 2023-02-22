@@ -29,6 +29,8 @@ export default function EditUserPage() {
   const [data, setData] = React.useState()
   const [error, setError] = React.useState({})
 
+  console.log(error)
+
   const user = useSelector((state) => state.user.value)
   if (!user || user.role !== USER_ROLES.ADMIN.VALUE) {
     return <Forbidden />

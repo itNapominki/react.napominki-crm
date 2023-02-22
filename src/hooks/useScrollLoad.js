@@ -1,7 +1,7 @@
 import React from 'react'
 import { api } from 'core/utils'
 
-export default function useScrollLoad(model, params) {
+export default function useScrollLoad(model, params, $node = false) {
   const [data, setData] = React.useState([])
   const [fetching, setFetching] = React.useState(true)
   const [currentPage, setCurrentPage] = React.useState(0)
@@ -35,16 +35,24 @@ export default function useScrollLoad(model, params) {
   }, [fetching])
 
   React.useEffect(() => {
-    document.addEventListener('scroll', handleScroll)
+    const container = $node ? $node : document
+
+    container.addEventListener('scroll', handleScroll)
 
     return function () {
-      document.removeEventListener('scroll', handleScroll)
+      container.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [$node])
 
   function handleScroll(e) {
-    const scrollHeight = e.target.documentElement.scrollHeight
-    const scrollTop = e.target.documentElement.scrollTop
+    const scrollHeight = $node
+      ? $node.scrollHeight
+      : e.target.documentElement.scrollHeight
+
+    const scrollTop = $node
+      ? $node.scrollTop
+      : e.target.documentElement.scrollTop
+
     const windowHeight = window.innerHeight
     const offset = 100
 

@@ -1,15 +1,19 @@
 export const MODELS = {
-  USER: {
-    API_URL: '/users',
-    VALUE: 'user',
+  LOCATION: {
+    API_URL: '/locations',
+    VALUE: 'location',
+  },
+  RESTAURANT: {
+    API_URL: '/restaurants',
+    VALUE: 'restaurant',
   },
   OBJECT: {
     API_URL: '/objects',
     VALUE: 'object',
   },
-  RESTAURANT: {
-    API_URL: '/restaurants',
-    VALUE: 'restaurant',
+  USER: {
+    API_URL: '/users',
+    VALUE: 'user',
   },
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { HandySvg } from 'handy-svg'
 import { ClientCard, List, Separator } from 'components'
-import { joinStrings } from 'core/utils'
+import { addressToString } from 'core/utils'
 
 import styles from './Card.module.scss'
 
@@ -11,23 +11,16 @@ import markerIcon from 'assets/sprites/marker.svg'
 import metroIcon from 'assets/sprites/metro.svg'
 
 export default function Card({ restaurant, managerId }) {
-  const {
-    id,
-    address: addressObj,
-    preview,
-    cardTitle,
-    title,
-    clientInfo,
-  } = restaurant
+  const { id, address, preview, cardTitle, title, clientInfo } = restaurant
 
   const { info } = clientInfo
 
-  const address = joinStrings([
-    addressObj.city.title,
-    addressObj.county.title,
-    addressObj.district.title,
-    addressObj.street,
-    addressObj.house,
+  const addressStr = addressToString([
+    address.city,
+    address.county,
+    address.district,
+    address.street,
+    address.house,
   ])
 
   return (
@@ -52,7 +45,7 @@ export default function Card({ restaurant, managerId }) {
               <div className={styles.locationIcon}>
                 <HandySvg src={markerIcon} />
               </div>
-              {address}
+              {addressStr}
             </div>
             <div className={styles.locationItem}>
               <div className={styles.locationIcon}>

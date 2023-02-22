@@ -11,7 +11,7 @@ class Api {
       user: MODELS.USER.API_URL,
       restaurant: MODELS.RESTAURANT.API_URL,
       object: MODELS.OBJECT.API_URL,
-      address: 'addresses',
+      location: MODELS.LOCATION.API_URL,
       menu: 'menus',
     }
 
@@ -34,17 +34,18 @@ class Api {
   async update({ model, id, data, params }) {
     const token = this.#token
 
-    return await axios.put(this.apiUrl[model] + '/' + id, data, {
-      params,
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    })
+    return await axios
+      .put(this.apiUrl[model] + '/' + id, data, {
+        params,
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
+      .catch((e) => console.log(e))
   }
 
   async getAll({ model, params = {} }) {
     const token = this.#token
-    console.log(model)
 
     return await axios.get(this.apiUrl[model], {
       params,
@@ -65,18 +66,16 @@ class Api {
     })
   }
 
-  async delete({ model, id, message = 'Подтвердите удаление' }) {
+  async delete({ model, id }) {
     const token = this.#token
 
-    if (window.confirm(message)) {
-      return await axios
-        .delete(this.apiUrl[model] + '/' + id, {
-          headers: {
-            Authorization: 'Bearer ' + token,
-          },
-        })
-        .catch(({ response }) => alert(response.data.message))
-    }
+    return await axios
+      .delete(this.apiUrl[model] + '/' + id, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      })
+      .catch(({ response }) => alert(response.data.message))
   }
 }
 

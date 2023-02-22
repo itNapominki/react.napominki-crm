@@ -1,7 +1,7 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 import { RestaurantContext } from 'core/context'
-import { setAddress } from './utils'
+import { addressToString } from 'core/utils'
 
 import styles from './Heading.module.scss'
 
@@ -29,7 +29,7 @@ export default function Heading() {
           <div className={styles.locationIcon}>
             <HandySvg src={markerIcon} />
           </div>
-          <div>{setAddress(address)}</div>
+          <div>{addressToString({ ...address })}</div>
         </div>
         {relatedMetro.length > 0 && (
           <div className={styles.locationItem}>

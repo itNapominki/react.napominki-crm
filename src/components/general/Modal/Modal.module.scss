@@ -1,0 +1,47 @@
+.container {
+  @include desktop(
+    (
+      'position': fixed,
+      'z-index': 50,
+
+      'top': 0,
+      'left': 0,
+      'right': 0,
+      'bottom': 0,
+    )
+  );
+}
+
+.overlay {
+  @include desktop(
+    (
+      'position': absolute,
+      'z-index': -1,
+
+      'top': 0,
+      'left': 0,
+      'right': 0,
+      'bottom': 0,
+
+      'background': get-theme-color('overlay'),
+    )
+  );
+}
+
+.content {
+  &:global._right {
+    @include desktop(
+      (
+        'width': 400px,
+        'height': 100%,
+
+        'margin-left': auto,
+        'padding': 24px,
+
+        'background': #fff,
+
+        'overflow-y': auto,
+      )
+    );
+  }
+}

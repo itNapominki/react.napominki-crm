@@ -1,0 +1,61 @@
+.image {
+  @include desktop(
+    (
+      'position': relative,
+
+      'margin-bottom': 16px,
+    )
+  );
+
+  img {
+    @include desktop(
+      (
+        'width': 100%,
+        'height': 200px,
+      )
+    );
+  }
+}
+
+.spinner {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 50%,
+      'left': 50%,
+
+      'transform': translate(-50%, -50%),
+    )
+  );
+}
+
+.buttonRemove {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 16px,
+      'right': 16px,
+
+      'width': 40px,
+      'height': 40px,
+
+      'background': get-theme-color('error'),
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'width': 14px,
+        'height': 100%,
+
+        'fill': #fff,
+      )
+    );
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from 'core/utils'
 import { ROUTES } from 'router/routes'
+import { MODELS } from 'core/constants'
 
 export default function useDroplist(setData) {
   const navigate = useNavigate()
@@ -15,14 +16,16 @@ export default function useDroplist(setData) {
     {
       text: 'Удалить',
       color: 'red',
-      onClick: (id) =>
-        api
-          .delete({
-            model: api.model.user,
-            message: 'Подтвердите удаление пользователя',
-            id,
-          })
-          .then(() => setData((prev) => prev.filter((user) => id != user.id))),
+      onClick: (id) => {
+        if (window.confirm('Подтвердите удаление пользователя')) {
+          api
+            .delete({
+              model: MODELS.USER.VALUE,
+              id,
+            })
+            .then(() => setData((prev) => prev.filter((user) => id != user.id)))
+        }
+      },
     },
   ]
 }

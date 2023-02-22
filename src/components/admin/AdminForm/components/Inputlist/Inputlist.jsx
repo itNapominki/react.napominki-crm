@@ -1,50 +1,35 @@
-import './Inputlist.scss'
-
 import React from 'react'
-import { HandySvg } from 'handy-svg'
-import { AdminForm, Input } from 'components'
-import { useErrors } from 'hooks'
-import { handleAdd, handleInput, handleRemove } from './utils'
-import removeIcon from 'assets/sprites/remove.svg'
+import { AdminForm } from 'components/admin'
+import { Item } from './components'
 
-export default function Inputlist(data) {
-  const {
-    buttonText = 'Добавить',
-    title,
-    onChange,
-    errors,
-    formName,
-    initialState,
-  } = data
-  const [list, setList] = React.useState(initialState)
+import { handleAdd, handleInput, handleRemove } from './handlers'
+
+export default function Inputlist({
+  buttonText = 'Добавить',
+  title,
+  onChange,
+  errors,
+  initial,
+}) {
+  const [list, setList] = React.useState(initial)
 
   React.useEffect(() => onChange(list), [list])
-  React.useEffect(() => setList(initialState), [initialState])
+  React.useEffect(() => setList(initial), [initial])
 
   return (
     <AdminForm.Group
       title={title}
       button={{ text: buttonText, onClick: () => handleAdd(setList) }}
     >
-      {list?.map((_, i) => {
-        const error = useErrors(errors, formName + '[' + i + ']')
-
+      {list?.map((text, i) => {
         return (
           <div key={i} className="col col-4">
-            <div className="admin-form-inputlist">
-              <div
-                className="admin-form-inputlist__remove"
-                onClick={() => handleRemove(setList, i)}
-              >
-                <HandySvg src={removeIcon} />
-              </div>
-              <Input
-                value={list[i]}
-                error={error}
-                errorDown
-                onInput={(value) => handleInput(setList, value, i)}
-              />
-            </div>
+            <Item
+              text={text}
+              handleInput={(value) => handleInput(setList, value, i)}
+              handleRemove={() => handleRemove(setList, i)}
+              errors={{ array: errors, param: i.toString() }}
+            />
           </div>
         )
       })}

@@ -17,9 +17,9 @@ export default function GroupedSelect({
         return setValue(options[0])
       }
 
-      const isInside = options.find(
-        (option) => option.value.slug === value.value.slug
-      )
+      const isInside = options.find((option) => {
+        return option.value.slug === value.value.slug
+      })
 
       if (!isInside) {
         return setValue(options[0])
@@ -38,6 +38,7 @@ export default function GroupedSelect({
 
     if (locations) {
       let arr = locations[type]
+
       const parentId =
         referal && referal.instance ? referal.instance.value.id : null
 
