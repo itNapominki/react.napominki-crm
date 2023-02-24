@@ -13,13 +13,13 @@ const ROOT_PAGE = ROUTES.ADMIN_RESTAURANTS.PATH
 export default function RestaurantForm({ tabIndex }) {
   const { id, data, setError } = React.useContext(EditRestaurantContext)
 
-  console.log(data)
-
   const navigate = useNavigate()
 
   const goHome = () => navigate(ROOT_PAGE)
   const redirect = (data) =>
-    !id && navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', data.id))
+    !id
+      ? navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', data.id))
+      : alert('Данные сохранены')
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' ресторана'
 

@@ -1,24 +1,14 @@
 import React from 'react'
-import { EditRestaurantContext } from 'core/context'
-import { useInitial } from 'hooks'
 import { Comment, Gallery, Info, MainGroup } from './components'
 
 import styles from './Hall.module.scss'
 
-export default function Hall(data) {
-  const { halls, setHalls, i } = data
-
-  const context = React.useContext(EditRestaurantContext)
-  const { initial } = context
-
-  const [initialHalls] = useInitial(initial, `halls`)
+export default function Hall({ hall, errors, index, setHalls, initial }) {
   const title =
-    initialHalls && initialHalls[i]
-      ? initialHalls[i].title
-      : `Новый зал ${i + 1}`
+    initial && initial[index] ? initial[index].title : `Новый зал ${index + 1}`
 
   function handleRemove() {
-    setHalls((prev) => prev.filter((_, index) => index != i))
+    setHalls((prev) => prev.filter((_, i) => index != i))
   }
 
   return (
@@ -30,10 +20,22 @@ export default function Hall(data) {
         </button>
       </div>
 
-      <MainGroup halls={halls} setHalls={setHalls} i={i} />
-      <Info halls={halls} setHalls={setHalls} i={i} />
-      <Comment halls={halls} setHalls={setHalls} i={i} />
-      <Gallery halls={halls} setHalls={setHalls} i={i} />
+      <MainGroup
+        title={hall.title}
+        boarding={hall.boarding}
+        fit={hall.fit}
+        errors={errors}
+        setHalls={setHalls}
+        index={index}
+      />
+      <Info
+        info={hall.info}
+        errors={errors}
+        setHalls={setHalls}
+        index={index}
+      />
+      <Comment text={hall.comment} setHalls={setHalls} index={index} />
+      <Gallery initial={hall.gallery} setHalls={setHalls} index={index} />
     </div>
   )
 }

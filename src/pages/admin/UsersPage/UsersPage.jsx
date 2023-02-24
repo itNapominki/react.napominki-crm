@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { AdminLayout, DataTable } from 'components/admin'
 import { Separator } from 'components/general'
 
 import { useScrollLoad } from 'hooks'
-import { useUserRoles, useDroplist } from './hooks'
+import { useUserRoles } from './hooks'
+import { droplist } from './utils'
 import { MODELS } from 'core/constants'
 
 export default function UsersPage() {
@@ -12,8 +14,8 @@ export default function UsersPage() {
     order: [['role', 'ASC']],
   })
 
+  const navigate = useNavigate()
   const roles = useUserRoles(data)
-  const droplist = useDroplist(setData)
 
   const cols = [
     {
@@ -40,9 +42,13 @@ export default function UsersPage() {
           <React.Fragment key={role.slug}>
             <DataTable
               title={role.title}
-              rows={role.users}
+              rows={role.users.map((user) => {
+                return {
+                  ...user,
+                  droplist: droplist(setData, user.id, navigate),
+                }
+              })}
               cols={cols}
-              droplist={droplist}
             />
             {i < roles.length - 1 && <Separator />}
           </React.Fragment>

@@ -2,10 +2,14 @@ import React from 'react'
 import { AdminForm } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
+import { getChildrenErrors } from 'core/utils'
 
 export default function Shedule() {
-  const context = React.useContext(EditRestaurantContext)
-  const { initial, setData, errors } = context
+  const {
+    initial,
+    setData,
+    error: { errors },
+  } = React.useContext(EditRestaurantContext)
 
   const [contacts, setContacts] = React.useState([])
   const [initialState] = useInitial(initial, 'managerInfo.contacts', [])
@@ -18,10 +22,9 @@ export default function Shedule() {
 
   return (
     <AdminForm.Contacts
-      initialState={initialState}
+      initial={initialState}
       onChange={setContacts}
-      formName="managerInfo.contacts"
-      errors={errors}
+      errors={getChildrenErrors(errors, 'managerInfo.contacts')}
     />
   )
 }

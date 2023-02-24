@@ -1,8 +1,8 @@
 import styles from './AddImage.module.scss'
 import React from 'react'
-import Loader from 'react-spinner-loader'
 import { setBackground as setBg } from './utils'
 import { useUpload } from './hooks'
+import { Spinner } from 'components/general'
 
 export default function AddImage({ initialPreview, setData, error }) {
   const [background, setBackground] = React.useState(initialPreview)
@@ -36,7 +36,7 @@ export default function AddImage({ initialPreview, setData, error }) {
         className={styles.fluid}
         style={{ backgroundImage: `url(${setBg(background)})` }}
       >
-        <Loader show={!uploaded} />
+        <Spinner show={!uploaded} className={styles.spinner} />
       </div>
     </label>
   )

@@ -12,7 +12,7 @@ class Api {
       restaurant: MODELS.RESTAURANT.API_URL,
       object: MODELS.OBJECT.API_URL,
       location: MODELS.LOCATION.API_URL,
-      menu: 'menus',
+      menu: MODELS.MENU.API_URL,
     }
 
     this.auth = auth
@@ -34,14 +34,22 @@ class Api {
   async update({ model, id, data, params }) {
     const token = this.#token
 
-    return await axios
-      .put(this.apiUrl[model] + '/' + id, data, {
-        params,
-        headers: {
-          Authorization: 'Bearer ' + token,
-        },
-      })
-      .catch((e) => console.log(e))
+    return await axios.put(this.apiUrl[model] + '/' + id, data, {
+      params,
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+  }
+
+  async publicate({ model, id, data }) {
+    const token = this.#token
+
+    return await axios.put(this.apiUrl[model] + '/' + id + '/publicate', data, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
   }
 
   async getAll({ model, params = {} }) {

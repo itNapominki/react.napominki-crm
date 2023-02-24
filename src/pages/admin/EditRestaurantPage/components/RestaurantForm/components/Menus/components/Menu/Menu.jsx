@@ -1,30 +1,22 @@
 import React from 'react'
 import { DottedButton, Droplist, Input, Select } from 'components'
 import { useOptions } from './hooks'
-import { handleInput, handleRemove } from './utils'
 import { useErrors } from 'hooks'
 
 import styles from './Menu.module.scss'
 
-export default function Menu(data) {
-  const { menus, options, onChange, errors, i } = data
-
+export default function Menu({
+  menu,
+  options,
+  errors,
+  handleInput,
+  handleFileChange,
+  handleRemove,
+}) {
   const [droplist] = useOptions(options)
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
-  const [file, setFile] = React.useState({ text: '', value: {} })
-  const fileError = useErrors(errors, 'menus[' + i + '].filename')
-
-  React.useEffect(() => {
-    setFile({
-      text: menus[i].title,
-      value: {
-        id: menus[i].id,
-        title: menus[i].title,
-        filename: menus[i].filename,
-      },
-    })
-  }, [menus[i]])
+  const fileError = useErrors(errors.array, `[${errors.param}].path`)
 
   return (
     <div className={styles.item}>
@@ -39,7 +31,7 @@ export default function Menu(data) {
             {
               text: 'Удалить',
               color: 'red',
-              onClick: () => handleRemove(onChange, i),
+              onClick: handleRemove,
             },
           ]}
           className={styles.droplist}
@@ -48,40 +40,29 @@ export default function Menu(data) {
       <div className="row">
         <Select
           label="Файл"
-          value={file}
+          value={{
+            text: menu.title,
+            value: {
+              id: menu.id,
+              title: menu.title,
+              path: menu.path,
+            },
+          }}
           error={fileError}
-          onChange={({ value }) =>
-            onChange((prev) =>
-              prev.map((elem, index) => {
-                if (
-                  i === index &&
-                  JSON.stringify(file.value) != JSON.stringify(value)
-                ) {
-                  return {
-                    ...elem,
-                    id: value.id,
-                    title: value.title,
-                    filename: value.filename,
-                  }
-                }
-
-                return elem
-              })
-            )
-          }
+          onChange={({ value }) => handleFileChange(value)}
           options={droplist}
           className="col col-6"
         />
         <Input
           label="Депозит от, руб."
-          value={menus[i].deposit}
-          onInput={(value) => handleInput('deposit', +value, onChange, i)}
+          value={menu.deposit}
+          onInput={(value) => handleInput('deposit', +value)}
           className="col col-3"
         />
         <Input
           label="Посадка от, чел."
-          value={menus[i].persons}
-          onInput={(value) => handleInput('persons', +value, onChange, i)}
+          value={menu.persons}
+          onInput={(value) => handleInput('persons', +value)}
           className="col col-3"
         />
       </div>

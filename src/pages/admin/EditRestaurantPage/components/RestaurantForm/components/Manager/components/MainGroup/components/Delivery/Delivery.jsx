@@ -7,9 +7,7 @@ const options = [
   { text: 'Нет', value: 'Нет' },
 ]
 
-export default function Delivery(data) {
-  const { initial, setData, errors } = data
-
+export default function Delivery({ initial, setData, errors }) {
   const [delivery, setDelivery] = React.useState(options[0])
   const error = useErrors(errors, 'delivery')
 

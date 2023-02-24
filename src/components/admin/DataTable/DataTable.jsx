@@ -3,7 +3,7 @@ import React from 'react'
 import { Col, Row } from './components'
 
 export default React.memo(function DataTable(data) {
-  const { title, rows = [], cols = [], droplist } = data
+  const { title, rows = [], cols = [] } = data
 
   return (
     <div className="datatable">
@@ -16,7 +16,7 @@ export default React.memo(function DataTable(data) {
         </div>
 
         {rows.map((row, i) => (
-          <Row key={i} cols={cols} row={row} id={row.id} droplist={droplist} />
+          <Row key={i} cols={cols} row={row} />
         ))}
       </div>
     </div>

@@ -5,8 +5,11 @@ import { useInitial } from 'hooks'
 import { Delivery, Food, Id, Prepay, Priority, Status } from './components'
 
 export default function MainGroup() {
-  const context = React.useContext(EditRestaurantContext)
-  const { initial, errors, setData } = context
+  const {
+    initial,
+    error: { errors },
+    setData,
+  } = React.useContext(EditRestaurantContext)
 
   const [initialId] = useInitial(initial, 'id', '')
   const [initialStatus] = useInitial(initial, 'status', '')

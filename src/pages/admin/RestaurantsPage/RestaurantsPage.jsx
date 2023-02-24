@@ -2,15 +2,16 @@ import React from 'react'
 import { AdminLayout, DataTable } from 'components/admin'
 import { useScrollLoad } from 'hooks'
 import { addressToString } from 'core/utils'
-import { useDroplist } from './hooks'
+import { droplist } from './utils'
+import { useNavigate } from 'react-router-dom'
 
 export default function RestaurantsPage() {
+  const navigate = useNavigate()
+
   const [data, setData, fetching] = useScrollLoad('restaurant', {
-    attributes: ['id', 'title', 'address', 'status'],
+    attributes: ['id', 'title', 'address', 'isPublished'],
     order: [['title', 'ASC']],
   })
-
-  const droplist = useDroplist(setData)
 
   const cols = [
     {
@@ -36,9 +37,10 @@ export default function RestaurantsPage() {
         <DataTable
           title="Рестораны"
           rows={data.map((restaurant) => {
-            const { city, county, district, street, house } = restaurant.address
+            const { id, isPublished, address } = restaurant
+            const { city, county, district, street, house } = address
 
-            const address = addressToString({
+            const addressString = addressToString({
               city,
               county,
               district,
@@ -48,14 +50,12 @@ export default function RestaurantsPage() {
 
             return {
               ...restaurant,
-              isPublished: restaurant.isPublished
-                ? 'Опубликован'
-                : 'Не опубликован',
-              address,
+              isPublished: isPublished ? 'Опубликован' : 'Не опубликован',
+              address: addressString,
+              droplist: droplist(setData, id, isPublished, navigate),
             }
           })}
           cols={cols}
-          droplist={droplist}
         />
       )}
     </AdminLayout>

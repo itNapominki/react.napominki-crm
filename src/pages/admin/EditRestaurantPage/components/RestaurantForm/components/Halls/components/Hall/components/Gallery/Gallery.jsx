@@ -1,15 +1,17 @@
 import styles from './Gallery.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
+
 import { AdminForm } from 'components/admin'
 import { Spinner } from 'components/general'
-import { handleImageRemove, handleFilesChange } from './utils'
+
+import { handleImageRemove, handleFilesChange } from './handlers'
 
 import removeIcon from 'assets/sprites/remove.svg'
 
-export default function Gallery({ halls, setHalls, i }) {
+export default function Gallery({ initial, setHalls, index }) {
   const [gallery, setGallery] = React.useState(
-    halls[i].gallery.map((image) => process.env.REACT_APP_SERVER_URL + image)
+    initial.map((image) => process.env.REACT_APP_SERVER_URL + image)
   )
 
   const inputRef = React.useRef()
@@ -27,7 +29,7 @@ export default function Gallery({ halls, setHalls, i }) {
         ref={inputRef}
         type="file"
         multiple
-        onChange={(e) => handleFilesChange(e, setGallery, setHalls, i)}
+        onChange={(e) => handleFilesChange(e, setGallery, setHalls, index)}
         hidden
       />
       {gallery.map((image, j) => (
@@ -38,7 +40,7 @@ export default function Gallery({ halls, setHalls, i }) {
             )}
             <button
               className={styles.buttonRemove}
-              onClick={() => handleImageRemove(j, setGallery, i, setHalls)}
+              onClick={() => handleImageRemove(j, setGallery, index, setHalls)}
             >
               <HandySvg src={removeIcon} />
             </button>

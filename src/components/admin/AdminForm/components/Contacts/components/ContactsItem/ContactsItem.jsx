@@ -1,57 +1,61 @@
+import styles from './ContactsItem.module.scss'
 import React from 'react'
 import { DottedButton, Droplist, Input } from 'components'
 import { useErrors } from 'hooks'
-import { handleInput, handleRemove } from '../../utils'
+// import { handleInput } from '../../handlers'
 
-export default function ContactsItem(data) {
-  const { contacts, setContacts, errors, formName, i } = data
-
+export default function ContactsItem({
+  contact,
+  errors,
+  handleRemove,
+  handleInput,
+}) {
   const [droplistVisible, setDoplistVisible] = React.useState(false)
 
-  const fullnameError = useErrors(errors, formName + '[' + i + '].fullname')
-  const positionError = useErrors(errors, formName + '[' + i + '].position')
-  const phoneError = useErrors(errors, formName + '[' + i + '].phone')
+  const fullnameError = useErrors(errors.array, `[${errors.param}].fullname`)
+  const positionError = useErrors(errors.array, `[${errors.param}].position`)
+  const phoneError = useErrors(errors.array, `[${errors.param}].phone`)
 
   return (
-    <div className="admin-form-contacts__item">
+    <div className={styles.container}>
       <DottedButton
-        className="admin-form-contacts__item-button"
+        className={styles.burgerButton}
         onClick={() => setDoplistVisible(!droplistVisible)}
       />
       {droplistVisible && (
         <Droplist
           visible={droplistVisible}
-          className="admin-form-contacts__item-droplist"
+          className={styles.droplist}
           items={[
             {
               text: 'Удалить',
               color: 'red',
-              onClick: () => handleRemove(setContacts, i),
+              onClick: handleRemove,
             },
           ]}
         />
       )}
-      <div className="admin-form-contacts__item-row row">
+      <div className="row">
         <Input
           label="Контактное лицо"
-          value={contacts[i].fullname}
-          onInput={(value) => handleInput(setContacts, 'fullname', value, i)}
-          className="admin-form-contacts__input col col-4"
+          value={contact.fullname}
+          onInput={(value) => handleInput('fullname', value)}
+          className="col col-4"
           error={fullnameError}
         />
         <Input
           label="Должность"
-          value={contacts[i].position}
-          onInput={(value) => handleInput(setContacts, 'position', value, i)}
-          className="admin-form-contacts__input col col-4"
+          value={contact.position}
+          onInput={(value) => handleInput('position', value)}
+          className="col col-4"
           error={positionError}
         />
         <Input
           label="Телефон"
-          value={contacts[i].phone}
-          onInput={(value) => handleInput(setContacts, 'phone', value, i)}
+          value={contact.phone}
+          onInput={(value) => handleInput('phone', value)}
           mask={['8 (999) 999 99-99']}
-          className="admin-form-contacts__input col col-4"
+          className="col col-4"
           error={phoneError}
         />
       </div>

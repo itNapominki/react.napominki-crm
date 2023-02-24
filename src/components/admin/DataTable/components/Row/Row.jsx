@@ -2,19 +2,10 @@ import React from 'react'
 import { Droplist } from 'components'
 import Col from '../Col/Col'
 
-export default React.memo(function Row({ cols, row, droplist, id }) {
+export default React.memo(function Row({ cols, row }) {
   console.log('render Row')
 
   const [droplistVisible, setDroplistVisible] = React.useState(false)
-
-  const droplistWithId = droplist.map((item) => {
-    const { onClick } = item
-
-    return {
-      ...item,
-      onClick: id && onClick ? onClick.bind(null, id) : onClick,
-    }
-  })
 
   return (
     <div className="datatable__row">
@@ -27,7 +18,7 @@ export default React.memo(function Row({ cols, row, droplist, id }) {
         return <Col key={key} text={text} percentWidth={percentWidth} />
       })}
 
-      {droplist && (
+      {row.droplist && (
         <button
           className="datatable__button"
           onClick={() => setDroplistVisible(!droplistVisible)}
@@ -39,7 +30,7 @@ export default React.memo(function Row({ cols, row, droplist, id }) {
       )}
 
       {droplistVisible && (
-        <Droplist visible={droplistVisible} items={droplistWithId} />
+        <Droplist visible={droplistVisible} items={row.droplist} />
       )}
     </div>
   )

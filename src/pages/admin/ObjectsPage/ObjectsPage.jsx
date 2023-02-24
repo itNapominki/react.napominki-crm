@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { AdminLayout, DataTable } from 'components/admin'
 import { Separator } from 'components/general'
+
 import { useScrollLoad } from 'hooks'
-import { useObjectTypes, useDroplist } from './hooks'
+import { useObjectTypes } from './hooks'
+import { droplist } from './utils'
 
 export default function ObjectsPage() {
   const [data, setData, fetching] = useScrollLoad('object', {
@@ -12,8 +16,8 @@ export default function ObjectsPage() {
     ],
   })
 
+  const navigate = useNavigate()
   const types = useObjectTypes(data)
-  const droplist = useDroplist(setData)
 
   const cols = [
     {
@@ -35,9 +39,13 @@ export default function ObjectsPage() {
           <React.Fragment key={type.slug}>
             <DataTable
               title={type.title}
-              rows={type.objects}
+              rows={type.objects.map((object) => {
+                return {
+                  ...object,
+                  droplist: droplist(setData, object.id, navigate),
+                }
+              })}
               cols={cols}
-              droplist={droplist}
             />
             {i < types.length - 1 && <Separator />}
           </React.Fragment>

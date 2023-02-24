@@ -12,18 +12,6 @@
       'background-position': center,
     )
   );
-
-  // :global .loader-container {
-  //   @include desktop(
-  //     (
-  //       'position': absolute,
-
-  //       'top': 50%,
-  //       'left': 50%,
-  //       'transform': translate(-50%, -50%),
-  //     )
-  //   );
-  // }
 }
 
 .top {
@@ -36,4 +24,16 @@
 
 .error {
   @extend .input__error;
+}
+
+.spinner {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 50%,
+      'left': 50%,
+      'transform': translate(-50%, -50%),
+    )
+  );
 }

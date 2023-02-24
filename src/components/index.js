@@ -16,7 +16,6 @@ export { default as AdminForm } from './admin/AdminForm/AdminForm'
 export { default as AdminHeader } from './admin/AdminHeader/AdminHeader'
 export { default as AdminLayout } from './admin/AdminLayout/AdminLayout'
 export { default as AdminModal } from './admin/AdminModal/AdminModal'
-export { default as EditRestaurant } from './admin/EditRestaurant/EditRestaurant'
 export { default as SettingsModal } from './admin/AdminModal/AdminModal'
 
 export { default as ClientCard } from './client/ClientCard/ClientCard'

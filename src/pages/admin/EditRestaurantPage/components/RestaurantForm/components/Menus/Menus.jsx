@@ -1,18 +1,35 @@
 import React from 'react'
 import { AdminForm } from 'components/admin'
-import { EditRestaurantContext } from 'core/context'
 import { Menu } from './components'
-import { handleAdd } from './utils'
+
+import {
+  handleAdd,
+  handleInput,
+  handleFileChange,
+  handleRemove,
+} from './handlers'
+
+import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
-import { api } from 'core/utils'
+import { api, getChildrenErrors } from 'core/utils'
+import { MODELS } from 'core/constants'
 
 export default function Menus() {
   console.log('render EditRestaurant Menus')
 
-  const context = React.useContext(EditRestaurantContext)
-  const { setData, initial, errors } = context
+  const {
+    setData,
+    initial,
+    error: { errors },
+  } = React.useContext(EditRestaurantContext)
 
-  const { data: options } = api.getAll({ model: api.model.menu, value: [] })
+  const [options, setOptions] = React.useState([])
+
+  React.useEffect(() => {
+    api
+      .getAll({ model: MODELS.MENU.VALUE, value: [] })
+      .then(({ data }) => setOptions(data))
+  }, [])
 
   const [initialState] = useInitial(initial, 'menus')
   const [menus, setMenus] = React.useState([])
@@ -35,15 +52,28 @@ export default function Menus() {
         onClick: () => handleAdd(setMenus),
       }}
     >
-      {menus?.map((_, i) => {
+      {menus?.map((menu, i) => {
+        function onInput(key, value) {
+          handleInput(key, value, setMenus, i)
+        }
+
+        function onFileChange(file) {
+          if (menu.id != file.id) {
+            handleFileChange(setMenus, file, i)
+          }
+        }
+
+        const menuErrors = getChildrenErrors(errors, 'menus')
+
         return (
           <div key={i} className="col col-12">
             <Menu
-              menus={menus}
+              menu={menu}
               options={options}
-              onChange={setMenus}
-              errors={errors}
-              i={i}
+              handleInput={onInput}
+              handleFileChange={onFileChange}
+              handleRemove={() => handleRemove(setMenus, i)}
+              errors={{ array: menuErrors, param: i }}
             />
           </div>
         )

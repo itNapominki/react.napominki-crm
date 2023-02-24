@@ -1,17 +1,23 @@
 import React from 'react'
+
 import { AdminForm } from 'components/admin'
-import { EditRestaurantContext } from 'core/context'
 import { Hall } from './components'
-import { handleAdd } from './utils'
+
+import { handleAdd } from './handlers'
 import { useInitial } from 'hooks'
+import { EditRestaurantContext } from 'core/context'
 
 import styles from './Halls.module.scss'
+import { getChildrenErrors } from 'core/utils'
 
 export default function Halls() {
   console.log('render EditRestaurant Halls')
 
-  const context = React.useContext(EditRestaurantContext)
-  const { setData, initial, errors } = context
+  const {
+    setData,
+    initial,
+    error: { errors },
+  } = React.useContext(EditRestaurantContext)
 
   const [initialState] = useInitial(initial, 'halls', [])
   const [halls, setHalls] = React.useState([])
@@ -36,14 +42,15 @@ export default function Halls() {
         }}
       >
         <div className="col col-12">
-          {halls?.map((_, i) => {
+          {halls?.map((hall, i) => {
             return (
               <Hall
                 key={i}
-                halls={halls}
+                index={i}
+                hall={hall}
                 setHalls={setHalls}
-                errors={errors}
-                i={i}
+                initial={initialState}
+                errors={getChildrenErrors(errors, `halls[${i}].`)}
               />
             )
           })}

@@ -3,6 +3,10 @@ export const MODELS = {
     API_URL: '/locations',
     VALUE: 'location',
   },
+  MENU: {
+    API_URL: '/menus',
+    VALUE: 'menu',
+  },
   RESTAURANT: {
     API_URL: '/restaurants',
     VALUE: 'restaurant',

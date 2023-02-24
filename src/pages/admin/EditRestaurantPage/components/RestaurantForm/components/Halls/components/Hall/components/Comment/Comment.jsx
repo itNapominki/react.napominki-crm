@@ -1,12 +1,10 @@
 import React from 'react'
 import { AdminForm, Textarea } from 'components'
 
-export default function Comment(data) {
-  const { halls, setHalls, i } = data
-
+export default function Comment({ text, setHalls, index }) {
   function handleInput(value) {
     setHalls((prev) =>
-      prev.map((hall, index) => {
+      prev.map((hall, i) => {
         if (index === i) {
           hall.comment = value
         }
@@ -19,7 +17,7 @@ export default function Comment(data) {
   return (
     <AdminForm.Group title="Комментарий">
       <Textarea
-        value={halls[i].comment}
+        value={text}
         onInput={(value) => handleInput(value)}
         className="col col-12"
       />
