@@ -12,6 +12,8 @@ export default function Layout({ children, pageClass }) {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.value)
 
+  console.log(2)
+
   React.useEffect(() => {
     api.auth
       .check()
