@@ -18,13 +18,9 @@ export default function EditRestaurantPage() {
 
   React.useEffect(() => {
     if (id) {
-      async function getData() {
-        await api
-          .getOne({ model: MODELS.RESTAURANT.VALUE, id })
-          .then(({ data }) => setInitial(data))
-      }
-
-      getData()
+      api
+        .getOne({ model: MODELS.RESTAURANT.VALUE, id })
+        .then(({ data }) => setInitial(data))
     }
   }, [])
 
