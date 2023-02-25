@@ -5,6 +5,7 @@ export const EditRestaurantContext = React.createContext()
 export const EditUserContext = React.createContext()
 
 export const EditRelatedMetroContext = React.createContext()
+export const EditRelatedRestaurantsContext = React.createContext()
 
 export const RestaurantContext = React.createContext()
 export const OfferContext = React.createContext()

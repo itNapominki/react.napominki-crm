@@ -2,6 +2,7 @@ import React from 'react'
 import { AdminForm } from 'components/admin'
 import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
+import { addressToString } from 'core/utils'
 
 export default function Address() {
   const {
@@ -24,7 +25,7 @@ export default function Address() {
 
   return (
     <AdminForm.Address
-      address={address}
+      address={address ? addressToString(address) : ''}
       initial={initialState}
       setAddress={setAddress}
       errors={errors

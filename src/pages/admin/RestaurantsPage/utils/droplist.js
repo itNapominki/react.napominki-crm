@@ -1,15 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { ROUTES } from 'router/routes'
 import { api } from 'core/utils'
 import { MODELS } from 'core/constants'
 
-export default function useDroplist(setData, id, isPublished, navigate) {
+export default function useDroplist(setData, id, isPublished) {
   return [
     {
       text: 'Редактировать',
       onClick: () =>
-        navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', id)),
+        window.open(
+          ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', id),
+          '_blank'
+        ),
     },
     {
       text: isPublished ? 'Снять с публикации' : 'Опубликовать',
@@ -25,7 +27,8 @@ export default function useDroplist(setData, id, isPublished, navigate) {
     },
     {
       text: 'Смотреть карточку',
-      onClick: () => navigate('/restaurant/' + id),
+      onClick: () =>
+        window.open(ROUTES.RESTAURANT.PATH.replace(':id', id), '_blank'),
     },
     {
       text: 'Удалить',

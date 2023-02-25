@@ -2,14 +2,13 @@ import './Droplist.scss'
 import React from 'react'
 import { classNames } from 'core/utils'
 
-export default function Droplist(data) {
+export default function Droplist({ items = [], className, visible, params }) {
   // console.log('render Droplist')
-
-  const { items = [], className, visible } = data
 
   return (
     <div
       className={classNames('droplist', [className, visible ? 'visible' : ''])}
+      {...params}
     >
       {items.map((item, i) => {
         return (

@@ -4,23 +4,23 @@ import { Group } from './components'
 import { useScrollLoad } from 'hooks'
 import { MODELS, OBJECT_TYPES } from 'core/constants'
 
-import { EditRelatedMetroContext } from 'core/context'
+import { EditRelatedRestaurantsContext } from 'core/context'
 import { useModalRef } from './hooks'
 import { api } from 'core/utils'
 
 export default function SettingsModal({ toggleModal }) {
-  const { relatedMetro } = React.useContext(EditRelatedMetroContext)
+  const { relatedRestaurants } = React.useContext(EditRelatedRestaurantsContext)
 
   const [searchTerm, setSearchTerm] = React.useState('')
   const [searchValue, setSearchValue] = React.useState([])
 
   const [modalRef, contentNode] = useModalRef()
 
-  const [stations, setStations, fetching] = useScrollLoad(
-    MODELS.OBJECT.VALUE,
+  const [restaurants, setRestaurants, fetching] = useScrollLoad(
+    MODELS.RESTAURANT.VALUE,
     {
-      where: { type: OBJECT_TYPES.METRO },
       order: [['title', 'ASC']],
+      attributes: ['id', 'title', 'address'],
     },
     contentNode
   )
@@ -28,9 +28,9 @@ export default function SettingsModal({ toggleModal }) {
   // React.useEffect(() => {
   //   api
   //     .getAll({
-  //       model: MODELS.OBJECT.VALUE,
+  //       model: MODELS.RESTAURANT.VALUE,
   //       params: {
-  //         where: { type: OBJECT_TYPES.METRO },
+  //         order: [['title', 'ASC']],
   //       },
   //     })
   //     .then(({ data }) => console.log(data))
@@ -47,10 +47,10 @@ export default function SettingsModal({ toggleModal }) {
       />
       <Separator />
 
-      <Group title="Связанные станции" stations={relatedMetro} />
+      <Group title="Связанные рестораны" restaurants={relatedRestaurants} />
       <Group
-        title="Все станции"
-        stations={stations.slice(20, stations.length)}
+        title="Все рестораны"
+        restaurants={restaurants.slice(20, restaurants.length)}
       />
 
       <Spinner show={fetching} className="asdf" />

@@ -31,9 +31,7 @@ export default function Hall({ hall }) {
         >
           {gallery.map((image, i) => (
             <SwiperSlide key={image + i}>
-              <img
-                src={process.env.REACT_APP_SERVER_URL + '/images/' + image}
-              />
+              <img src={process.env.REACT_APP_SERVER_URL + image} />
             </SwiperSlide>
           ))}
         </Swiper>

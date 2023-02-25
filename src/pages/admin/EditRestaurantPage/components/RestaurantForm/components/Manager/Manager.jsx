@@ -15,7 +15,7 @@ export default function Manager() {
     <React.Fragment>
       <MainGroup />
       <Shedule />
-      {/* <RelatedRestaurants /> */}
+      <RelatedRestaurants />
       <Contacts />
       <Whatsapp />
       <Comment />

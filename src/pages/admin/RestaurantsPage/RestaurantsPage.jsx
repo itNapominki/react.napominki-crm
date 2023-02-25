@@ -3,11 +3,8 @@ import { AdminLayout, DataTable } from 'components/admin'
 import { useScrollLoad } from 'hooks'
 import { addressToString } from 'core/utils'
 import { droplist } from './utils'
-import { useNavigate } from 'react-router-dom'
 
 export default function RestaurantsPage() {
-  const navigate = useNavigate()
-
   const [data, setData, fetching] = useScrollLoad('restaurant', {
     attributes: ['id', 'title', 'address', 'isPublished'],
     order: [['title', 'ASC']],
@@ -52,7 +49,7 @@ export default function RestaurantsPage() {
               ...restaurant,
               isPublished: isPublished ? 'Опубликован' : 'Не опубликован',
               address: addressString,
-              droplist: droplist(setData, id, isPublished, navigate),
+              droplist: droplist(setData, id, isPublished),
             }
           })}
           cols={cols}

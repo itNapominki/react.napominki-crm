@@ -1,40 +1,60 @@
 import React from 'react'
-import { AdminForm, AdminModal } from 'components'
-import { EditRestaurantContext } from 'core/context'
+
+import { AdminForm } from 'components/admin'
+import { Restaurant, SettingsModal } from './components'
+
+import {
+  EditRestaurantContext,
+  EditRelatedRestaurantsContext,
+} from 'core/context'
 import { useInitial } from 'hooks'
 
-export default function RelatedRestaurants() {
-  const context = React.useContext(EditRestaurantContext)
-  const { initial, setData } = context
+export default function RelatedRestaurant() {
+  const {
+    initial,
+    setData,
+    error: { errors },
+  } = React.useContext(EditRestaurantContext)
 
   const [modalVisible, setModalVisible] = React.useState(false)
-  const [relatedMetro, setRelatedMetro] = useInitial(
+  const [relatedRestaurants, setRelatedRestaurants] = useInitial(
     initial,
-    'clientInfo.relatedMetro',
+    'managerInfo.relatedRestaurants',
     []
   )
+
+  const toggleModal = () => setModalVisible((prev) => !prev)
 
   React.useEffect(() => {
     setData((prev) => {
       return {
         ...prev,
-        clientInfo: {
-          ...prev.clientInfo,
-          relatedMetro,
+        managerInfo: {
+          ...prev.managerInfo,
+          relatedRestaurants,
         },
       }
     })
-  }, [relatedMetro])
+  }, [relatedRestaurants])
+
   return (
     <React.Fragment>
       <AdminForm.Group
         title="Связанные рестораны"
-        button={{ text: 'Настроить' }}
-      ></AdminForm.Group>
+        button={{ text: 'Настроить', onClick: toggleModal }}
+      >
+        {relatedRestaurants?.map((restaurant, i) => (
+          <div key={restaurant.id} className="col col-6">
+            <Restaurant restaurant={restaurant} errors={errors} i={i} />
+          </div>
+        ))}
+      </AdminForm.Group>
 
-      <AdminModal search onClose={() => setModalVisible(false)}>
-        <AdminModal.Restaurants />
-      </AdminModal>
+      <EditRelatedRestaurantsContext.Provider
+        value={{ relatedRestaurants, setRelatedRestaurants }}
+      >
+        {modalVisible && <SettingsModal toggleModal={toggleModal} />}
+      </EditRelatedRestaurantsContext.Provider>
     </React.Fragment>
   )
 }
