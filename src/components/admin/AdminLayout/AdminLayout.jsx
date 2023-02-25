@@ -1,6 +1,6 @@
 import styles from './AdminLayout.module.scss'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 
 import {
@@ -10,26 +10,15 @@ import {
   ContentCard,
   Spinner,
 } from 'components/general'
-import { UserHeader } from './components'
 
 import { USER_ROLES } from 'core/constants'
-import { setUser } from 'core/store'
-import { api } from 'core/utils'
 import { useNavigation } from './hooks'
 
 export default function AdminLayout({ children, fetching }) {
   const { pathname } = useLocation()
-  const dispatch = useDispatch()
   const user = useSelector((state) => state.user.value)
 
   const [navigation, addButton] = useNavigation()
-
-  React.useEffect(() => {
-    api.auth
-      .check()
-      .then((user) => dispatch(setUser(user)))
-      .catch(({ response }) => console.log(response))
-  }, [])
 
   if (user && user.role === USER_ROLES.REDAKTOR.VALUE) {
     navigation.shift()
@@ -55,7 +44,6 @@ export default function AdminLayout({ children, fetching }) {
 
   return (
     <Layout>
-      <UserHeader email={user.email} />
       <div className="wrapper">
         <Tabs buttons={navigation} initial={activeTab} />
         <ContentCard className={styles.card}>

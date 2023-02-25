@@ -25,6 +25,7 @@ export default function useUpload() {
         })
       })
       .then(() => setUploaded(true))
+      .catch((e) => console.log(e))
   }
 
   return [uploaded, handleUpload]

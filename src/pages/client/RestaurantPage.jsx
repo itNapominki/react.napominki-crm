@@ -18,9 +18,11 @@ export default function RestaurantPage() {
       .getOne({ model: MODELS.RESTAURANT.VALUE, id })
       .then(({ data }) => setRestaurant(data))
 
-    api
-      .getOne({ model: MODELS.USER.VALUE, id: managerId })
-      .then(({ data }) => setManager(data))
+    if (managerId) {
+      api
+        .getOne({ model: MODELS.USER.VALUE, id: managerId })
+        .then(({ data }) => setManager(data))
+    }
   }, [])
 
   return (
