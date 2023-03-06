@@ -19,6 +19,7 @@ export default function Address() {
       return {
         ...prev,
         address,
+        coordinates: address && address.coordinates,
       }
     })
   }, [address])
@@ -28,14 +29,23 @@ export default function Address() {
       address={address ? addressToString(address) : ''}
       initial={initialState}
       setAddress={setAddress}
-      errors={errors
-        ?.filter(({ param }) => param.includes('address'))
-        .map((error) => {
-          return {
-            ...error,
-            param: error.param.replace('address.', ''),
-          }
-        })}
+      errors={
+        errors
+          ? [
+              ...errors
+                .filter(({ param }) => param.includes('address'))
+                .map((error) => {
+                  return {
+                    ...error,
+                    param: error.param.replace('address.', ''),
+                  }
+                }),
+              errors.find(({ param }) => param === 'coordinates')
+                ? errors.find(({ param }) => param === 'coordinates')
+                : {},
+            ]
+          : null
+      }
     />
   )
 }

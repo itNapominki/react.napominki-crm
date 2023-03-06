@@ -16,6 +16,8 @@ export default function EditRestaurantPage() {
   const [initial, setInitial] = React.useState()
   const [activeTab, navigation] = useNavigation()
 
+  console.log(initial)
+
   React.useEffect(() => {
     if (id) {
       api
