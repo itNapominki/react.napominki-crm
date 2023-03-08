@@ -1,31 +1,28 @@
 import styles from './ManagerMap.module.scss'
 import React from 'react'
 
-import axios from 'axios'
 import ymaps from 'ymaps'
 
 export default function ManagerMap() {
-  const [data, setData] = React.useState([])
-
   ymaps
     .load()
     .then((maps) => {
       const map = new maps.Map('map', {
-        center: [55, 35],
-        zoom: 14,
+        center: [57.9838, 44.0],
+        zoom: 5,
       })
 
-      var loadingObjectManager = new maps.LoadingObjectManager(
-        process.env.REACT_APP_SERVER_URL +
-          '/api/restaurants/test-yamap?bbox=%b',
+      const objects = new maps.LoadingObjectManager(
+        process.env.REACT_APP_SERVER_URL + '/api/objects/points?bbox=%b',
         {
           // Укажем шаблон для именования callback-функций.
           paddingTemplate: 'myCallback_%b',
           splitRequests: false,
+          clusterize: true,
         }
       )
 
-      map.geoObjects.add(loadingObjectManager)
+      map.geoObjects.add(objects)
 
       // При клике на метке изменяем цвет ее иконки на желтый.
       function onObjectEvent(e) {
@@ -43,7 +40,7 @@ export default function ManagerMap() {
       }
 
       // Назначаем обработчик событий на коллекцию объектов менеджера.
-      loadingObjectManager.objects.events.add(['click'], onObjectEvent)
+      objects.objects.events.add(['click'], onObjectEvent)
     })
     .then(() => console.log(1))
     .catch((error) => console.log('Failed to load Yandex Maps', error))

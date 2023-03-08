@@ -7,13 +7,11 @@ import { handleAdd, handleInput, handleRemove } from './handlers'
 export default function Inputlist({
   buttonText = 'Добавить',
   title,
-  onChange,
   errors,
   initial,
+  name,
 }) {
   const [list, setList] = React.useState(initial)
-
-  React.useEffect(() => onChange(list), [list])
   React.useEffect(() => setList(initial), [initial])
 
   return (
@@ -25,6 +23,7 @@ export default function Inputlist({
         return (
           <div key={i} className="col col-4">
             <Item
+              name={`${name}[${i}]`}
               text={text}
               handleInput={(value) => handleInput(setList, value, i)}
               handleRemove={() => handleRemove(setList, i)}

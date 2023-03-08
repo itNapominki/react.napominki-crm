@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { AdminForm } from 'components/admin'
-import { Address, MainGroup } from './components'
+import { Address, Title, Type } from './components'
 
 import { EditObjectContext } from 'core/context'
 import { ROUTES } from 'router/routes'
@@ -29,7 +29,10 @@ export default function ObjectForm() {
       onError={setError}
       deleteButton={deleteButton}
     >
-      <MainGroup />
+      <AdminForm.Group title="Основное">
+        <Type />
+        <Title />
+      </AdminForm.Group>
       <Address />
     </AdminForm>
   )

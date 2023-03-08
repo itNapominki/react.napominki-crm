@@ -10,6 +10,8 @@ export default function InputFluid(data) {
     type = 'text',
     value: defaultValue = '',
     mask,
+    name,
+    placeholder,
   } = data
 
   const [value, setValue] = useInput(defaultValue, onInput)
@@ -34,8 +36,10 @@ export default function InputFluid(data) {
       type={type}
       className="input__fluid"
       disabled={disabled}
+      name={name}
       value={value}
       onInput={handleInput}
+      placeholder={placeholder}
     />
   )
 }

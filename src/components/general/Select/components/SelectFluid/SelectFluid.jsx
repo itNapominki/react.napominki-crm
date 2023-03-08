@@ -1,13 +1,17 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
-import { Droplist } from 'components'
+import { Droplist, Input } from 'components'
 import { useMultiple, useSelect } from '../../hooks'
 import { getValue } from '../../utils'
 import chevron from 'assets/sprites/chevron.svg'
 
-export default function SelectFluid(data) {
-  const { multiple, onChange, options, value: defaultValue } = data
-
+export default function SelectFluid({
+  multiple,
+  onChange,
+  options,
+  value: defaultValue,
+  name,
+}) {
   const [value, droplist, visible, setVisible] = multiple
     ? useMultiple(defaultValue, options, onChange)
     : useSelect(defaultValue, options, onChange)
@@ -29,6 +33,8 @@ export default function SelectFluid(data) {
           items={droplist}
         />
       }
+
+      {name && <input name={name} value={value.value} hidden readOnly />}
     </div>
   )
 }

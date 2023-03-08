@@ -1,2 +1,3 @@
 export { default as Address } from './Address/Address'
-export { default as MainGroup } from './MainGroup/MainGroup'
+export { default as Title } from './Title/Title'
+export { default as Type } from './Type/Type'

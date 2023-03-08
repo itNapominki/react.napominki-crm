@@ -7,28 +7,18 @@ export default function Email() {
   const {
     initial,
     error: { errors },
-    setData,
   } = React.useContext(EditUserContext)
 
-  const [email, setEmail] = useInitial(initial, 'email', '')
+  const email = useInitial(initial, 'email', '')
   const error = useErrors(errors, 'email')
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        email,
-      }
-    })
-  }, [email])
 
   return (
     <Input
       type="email"
       label="Email"
+      name="email"
       error={error}
       value={email}
-      onInput={setEmail}
       className="col col-12 "
     />
   )

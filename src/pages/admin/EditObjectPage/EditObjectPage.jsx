@@ -6,7 +6,7 @@ import { ContentCard, Forbidden, Layout } from 'components/general'
 import { ObjectForm } from './components'
 
 import { EditObjectContext } from 'core/context'
-import { api } from 'core/utils'
+import { api, getObjKeyName } from 'core/utils'
 import { USER_ROLES, MODELS } from 'core/constants'
 
 export default function EditObjectPage() {
@@ -29,11 +29,16 @@ export default function EditObjectPage() {
   const [data, setData] = React.useState()
   const [error, setError] = React.useState({})
 
+  if (error.message) {
+    alert(error.message)
+    setError({ errors: error.errors })
+  }
+
   const user = useSelector((state) => state.user.value)
   if (
     !user ||
-    (user.role !== USER_ROLES.ADMIN.VALUE &&
-      user.role !== USER_ROLES.REDAKTOR.VALUE)
+    (user.role !== getObjKeyName(() => USER_ROLES.ADMIN) &&
+      user.role !== getObjKeyName(() => USER_ROLES.REDAKTOR))
   ) {
     return <Forbidden />
   }

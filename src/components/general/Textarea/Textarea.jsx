@@ -11,6 +11,7 @@ export default function Textarea(data) {
     bigLabel,
     value: defaultValue = '',
     onInput,
+    name,
   } = data
 
   const [value, setValue] = useInput(defaultValue, onInput)
@@ -32,6 +33,7 @@ export default function Textarea(data) {
       )}
       <textarea
         className="textarea__fluid"
+        name={name}
         value={value}
         onInput={handleInput}
       />

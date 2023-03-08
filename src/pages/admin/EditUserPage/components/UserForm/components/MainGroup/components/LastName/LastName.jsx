@@ -7,29 +7,18 @@ export default function LastName() {
   const {
     initial,
     error: { errors },
-    setData,
   } = React.useContext(EditUserContext)
 
-  const [lastName, setLastName] = useInitial(initial, 'lastName', '')
-
+  const value = useInitial(initial, 'lastName', '')
   const error = useErrors(errors, 'lastName')
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        lastName,
-      }
-    })
-  }, [lastName])
 
   return (
     <React.Fragment>
       <Input
         label="Фамилия"
+        name="lastName"
+        value={value}
         error={error}
-        value={lastName}
-        onInput={setLastName}
         className="col col-6 "
       />
     </React.Fragment>

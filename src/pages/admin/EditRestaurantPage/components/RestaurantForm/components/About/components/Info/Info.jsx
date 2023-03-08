@@ -6,30 +6,15 @@ import { useInitial } from 'hooks'
 export default function Info() {
   const {
     initial,
-    setData,
     error: { errors },
   } = React.useContext(EditRestaurantContext)
 
-  const [initialState] = useInitial(initial, 'clientInfo.info', [])
-  const [info, setInfo] = React.useState([])
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        clientInfo: {
-          ...prev.clientInfo,
-          info,
-        },
-      }
-    })
-  }, [info])
+  const info = useInitial(initial, 'clientInfo.info', [])
 
   return (
     <AdminForm.Inputlist
       title="Информация"
       buttonText="Добавить информацию"
-      onChange={setInfo}
       errors={errors
         ?.filter(({ param }) => param.includes('clientInfo.info'))
         .map((error) => {
@@ -38,7 +23,8 @@ export default function Info() {
             param: error.param.split('[').pop().split(']')[0],
           }
         })}
-      initial={initialState}
+      initial={info}
+      name="clientInfo.info"
     />
   )
 }

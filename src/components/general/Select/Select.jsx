@@ -17,6 +17,7 @@ export default React.memo(function Select(data) {
     onChange,
     options,
     value,
+    name,
   } = data
 
   return (
@@ -32,6 +33,7 @@ export default React.memo(function Select(data) {
         onChange={onChange}
         options={options}
         value={value}
+        name={name}
       />
       <SelectBottom action={action} error={error} errorDown={errorDown} />
     </div>

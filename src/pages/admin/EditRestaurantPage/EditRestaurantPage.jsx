@@ -5,7 +5,7 @@ import { ContentCard, Forbidden, Layout, Tabs } from 'components/general'
 import { RestaurantForm } from './components'
 
 import { EditRestaurantContext } from 'core/context'
-import { api } from 'core/utils'
+import { api, getObjKeyName } from 'core/utils'
 import { USER_ROLES, MODELS } from 'core/constants'
 import { useCheckRole } from 'hooks'
 import { useNavigation } from './hooks'
@@ -15,8 +15,6 @@ export default function EditRestaurantPage() {
 
   const [initial, setInitial] = React.useState()
   const [activeTab, navigation] = useNavigation()
-
-  console.log(initial)
 
   React.useEffect(() => {
     if (id) {
@@ -31,9 +29,14 @@ export default function EditRestaurantPage() {
   const [data, setData] = React.useState()
   const [error, setError] = React.useState({})
 
+  if (error.message) {
+    alert(error.message)
+    setError({ errors: error.errors })
+  }
+
   const access = useCheckRole([
-    USER_ROLES.ADMIN.VALUE,
-    USER_ROLES.REDAKTOR.VALUE,
+    getObjKeyName(() => USER_ROLES.ADMIN),
+    getObjKeyName(() => USER_ROLES.REDAKTOR),
   ])
 
   if (!access) {

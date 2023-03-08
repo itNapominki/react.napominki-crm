@@ -1,37 +1,19 @@
 import React from 'react'
 import { Input } from 'components'
 import { EditUserContext } from 'core/context'
-import { useErrors, useInitial } from 'hooks'
+import { useInitial } from 'hooks'
 
 export default function Viber() {
-  const {
-    initial,
-    error: { errors },
-    setData,
-  } = React.useContext(EditUserContext)
+  const { initial } = React.useContext(EditUserContext)
 
-  const [viber, setViber] = useInitial(initial, 'messengers.viber', '')
-  const error = useErrors(errors, 'viber')
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        messengers: {
-          ...prev.messengers,
-          viber,
-        },
-      }
-    })
-  }, [viber])
+  const viber = useInitial(initial, 'messengers.viber', '')
 
   return (
     <Input
       type="tel"
       label="Viber"
-      error={error}
+      name="messengers.viber"
       value={viber}
-      onInput={setViber}
       className="col col-6"
     />
   )

@@ -23,6 +23,7 @@ export default function AddImage({ initialPreview, setData, error }) {
     <label className={styles.container}>
       <input
         type="file"
+        // ФОРМАТЫ
         onChange={(e) => handleUpload(e, setBackground, setData)}
         hidden
       />

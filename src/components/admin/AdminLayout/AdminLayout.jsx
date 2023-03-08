@@ -13,6 +13,7 @@ import {
 
 import { USER_ROLES } from 'core/constants'
 import { useNavigation } from './hooks'
+import { getObjKeyName } from 'core/utils'
 
 export default function AdminLayout({ children, fetching }) {
   const { pathname } = useLocation()
@@ -32,12 +33,11 @@ export default function AdminLayout({ children, fetching }) {
   const activeTab = navigation.findIndex(
     ({ route }) => route.split('/').pop() === show
   )
-
   if (
     !user ||
-    (user.role !== USER_ROLES.ADMIN.VALUE && show === 'users') ||
-    (user.role !== USER_ROLES.ADMIN.VALUE &&
-      user.role !== USER_ROLES.REDAKTOR.VALUE)
+    (user.role !== getObjKeyName(() => USER_ROLES.ADMIN) && show === 'users') ||
+    (user.role !== getObjKeyName(() => USER_ROLES.ADMIN) &&
+      user.role !== getObjKeyName(() => USER_ROLES.REDAKTOR))
   ) {
     return <Forbidden />
   }

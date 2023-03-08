@@ -3,39 +3,50 @@ import React from 'react'
 import { classNames } from 'core/utils'
 import { InputBottom, InputFluid, InputTop } from './components'
 
-export default React.memo(function Input({
-  action = null,
-  className,
-  disabled,
-  error,
-  errorDown,
-  label = null,
-  bigLabel,
-  onInput,
-  type,
-  value,
-  mask,
-}) {
-  console.log('render Input')
+export default React.memo(
+  React.forwardRef(
+    (
+      {
+        action = null,
+        className,
+        disabled,
+        error,
+        errorDown,
+        label = null,
+        bigLabel,
+        onInput,
+        type,
+        value,
+        mask,
+        name,
+        placeholder,
+      },
+      ref
+    ) => {
+      console.log('render Input')
 
-  return (
-    <label className={classNames('input', [className])}>
-      <InputTop
-        label={label}
-        bigLabel={bigLabel}
-        error={error}
-        errorDown={errorDown}
-      />
+      return (
+        <label ref={ref} className={classNames('input', [className])}>
+          <InputTop
+            label={label}
+            bigLabel={bigLabel}
+            error={error}
+            errorDown={errorDown}
+          />
 
-      <InputFluid
-        disabled={disabled}
-        onInput={onInput}
-        type={type}
-        value={value}
-        mask={mask}
-      />
+          <InputFluid
+            disabled={disabled}
+            onInput={onInput}
+            type={type}
+            name={name}
+            value={value}
+            mask={mask}
+            placeholder={placeholder}
+          />
 
-      <InputBottom action={action} error={error} errorDown={errorDown} />
-    </label>
+          <InputBottom action={action} error={error} errorDown={errorDown} />
+        </label>
+      )
+    }
   )
-})
+)

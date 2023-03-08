@@ -16,5 +16,5 @@ export default function useInitial(initial, key, defaultValue) {
     }
   }, [initial])
 
-  return [value, setValue]
+  return value
 }

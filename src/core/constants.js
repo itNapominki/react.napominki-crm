@@ -23,22 +23,34 @@ export const MODELS = {
 
 export const USER_ROLES = {
   ADMIN: {
-    TEXT: 'Админ',
-    VALUE: 'ADMIN',
+    SINGLE_VALUE: 'Админ',
+    PLURAL_VALUE: 'Админы',
   },
   MANAGER: {
-    TEXT: 'Менеджер',
-    VALUE: 'MANAGER',
+    SINGLE_VALUE: 'Менеджер',
+    PLURAL_VALUE: 'Менеджеры',
   },
   REDAKTOR: {
-    TEXT: 'Редактор',
-    VALUE: 'REDAKTOR',
+    SINGLE_VALUE: 'Редактор',
+    PLURAL_VALUE: 'Редакторы',
   },
 }
 
 export const OBJECT_TYPES = {
-  CEMETERY: 'CEMETERY',
-  CREMATORY: 'CREMATORY',
-  MORGUE: 'MORGUE',
-  METRO: 'METRO',
+  CEMETERY: {
+    SINGLE_VALUE: 'Кладбище',
+    PLURAL_VALUE: 'Кладбища',
+  },
+  CREMATORY: {
+    SINGLE_VALUE: 'Крематорий',
+    PLURAL_VALUE: 'Крематории',
+  },
+  MORGUE: {
+    SINGLE_VALUE: 'Морги',
+    PLURAL_VALUE: 'Кладбища',
+  },
+  METRO: {
+    SINGLE_VALUE: 'Метро',
+    PLURAL_VALUE: 'Метро',
+  },
 }

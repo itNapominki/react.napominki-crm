@@ -8,7 +8,13 @@ import { useErrors } from 'hooks'
 
 import removeIcon from 'assets/sprites/remove.svg'
 
-export default function Item({ handleRemove, handleInput, text, errors }) {
+export default function Item({
+  handleRemove,
+  handleInput,
+  text,
+  name,
+  errors,
+}) {
   const error = useErrors(errors.array, errors.param)
 
   return (
@@ -16,7 +22,13 @@ export default function Item({ handleRemove, handleInput, text, errors }) {
       <div className={styles.deleteButton} onClick={handleRemove}>
         <HandySvg src={removeIcon} />
       </div>
-      <Input value={text} error={error} errorDown onInput={handleInput} />
+      <Input
+        value={text}
+        name={name}
+        error={error}
+        errorDown
+        onInput={handleInput}
+      />
     </div>
   )
 }

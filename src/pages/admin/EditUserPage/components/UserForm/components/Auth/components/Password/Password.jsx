@@ -7,7 +7,6 @@ import { useErrors } from 'hooks'
 export default function Password() {
   const {
     error: { errors },
-    setData,
     id,
   } = React.useContext(EditUserContext)
 
@@ -16,16 +15,6 @@ export default function Password() {
 
   const error = useErrors(errors, 'password')
   const repeatError = useErrors(errors, 'repeatPassword')
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        password,
-        repeatPassword,
-      }
-    })
-  }, [password, repeatPassword])
 
   function handleGeneratePassword() {
     const password = generatePassword()
@@ -38,6 +27,7 @@ export default function Password() {
     <React.Fragment>
       <Input
         type="text"
+        name="password"
         label={id ? 'Новый пароль' : 'Пароль'}
         action={{
           text: 'Сгенерировать пароль',
@@ -45,15 +35,14 @@ export default function Password() {
         }}
         error={error}
         value={password}
-        onInput={setPassword}
         className="col col-6"
       />
       <Input
         type="text"
+        name="repeatPassword"
         label="Повторите пароль"
         error={repeatError}
         value={repeatPassword}
-        onInput={setRepeatPassword}
         className="col col-6"
       />
     </React.Fragment>
