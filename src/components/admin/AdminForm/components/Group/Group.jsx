@@ -10,9 +10,9 @@ export default function Group({ className, button, children, title }) {
         {title && <div className={styles.title}>{title}</div>}
         <div className={`${styles.row} row`}>{children}</div>
         {button && (
-          <button className={styles.button} onClick={button.onClick}>
+          <div className={styles.button} onClick={button.onClick}>
             {button.text}
-          </button>
+          </div>
         )}
       </div>
       <Separator />

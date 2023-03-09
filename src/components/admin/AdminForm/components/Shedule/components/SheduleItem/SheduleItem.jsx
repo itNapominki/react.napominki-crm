@@ -12,11 +12,12 @@ export default function SheduleItem({
   onSelectChange,
   errors,
   item,
+  name,
 }) {
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
-  const selectError = useErrors(errors.array, `[${errors.param}].days`)
-  const inputError = useErrors(errors.array, `[${errors.param}].time`)
+  const selectError = useErrors(errors, name + '.days')
+  const inputError = useErrors(errors, name + '.time')
 
   return (
     <React.Fragment>
@@ -38,6 +39,7 @@ export default function SheduleItem({
         />
         <Select
           multiple
+          name={name + '.days'}
           label="Дни недели"
           value={item.days}
           options={options}
@@ -48,6 +50,7 @@ export default function SheduleItem({
         />
         <Input
           label="Время"
+          name={name + '.time'}
           value={item.time}
           onInput={onInput}
           className={styles.input}

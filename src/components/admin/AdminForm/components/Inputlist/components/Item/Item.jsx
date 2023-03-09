@@ -15,7 +15,9 @@ export default function Item({
   name,
   errors,
 }) {
-  const error = useErrors(errors.array, errors.param)
+  const error = useErrors(errors, name)
+
+  console.log(name)
 
   return (
     <div className={styles.container}>

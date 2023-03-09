@@ -25,7 +25,7 @@ export default function AdminForm({
       onSubmit={function (e) {
         e.preventDefault()
 
-        const data = {}
+        const formData = data
         const elements = Array.from(e.target.elements)
 
         elements.forEach(({ name, value }) => {
@@ -36,34 +36,54 @@ export default function AdminForm({
           const props = name.split('.')
 
           if (props.length === 1) {
-            return (data[name] = value)
+            return (formData[name] = value)
           }
 
-          let container = data
+          let container = formData
 
           props.map((key, index, values) => {
+            let prevProp = values[index - 1]
+            let out = value
+
+            try {
+              out = JSON.parse(value)
+            } catch (error) {}
+
             const isArray = key.includes('[')
+            const isPrevArray = index > 0 && prevProp.includes('[')
+            const isLastProp = index === values.length - 1
+
+            const arrayRegex = /\[[^\]]*\]/g
 
             if (isArray) {
-              const arrayKey = key.replace(/\[[^\]]*\]/g, '')
+              const arrayKey = key.replace(arrayRegex, '')
               const array = container[arrayKey] ? container[arrayKey] : []
 
-              container = container[arrayKey] =
-                index === values.length - 1
-                  ? [...array, value]
-                  : console.log('Это надо исправить')
+              return (container = container[arrayKey] =
+                isLastProp ? [...array, out] : [...array])
             }
 
-            if (!isArray) {
-              container = container[key] =
-                index === values.length - 1 ? value : { ...container[key] }
+            if (isPrevArray && key) {
+              const index = prevProp.split('[').pop().split(']')[0]
+
+              return (container = container[index] =
+                {
+                  ...container[index],
+                  [key]: out,
+                })
+            }
+
+            if (isLastProp) {
+              container = container[key] = out
+            } else {
+              container = container[key] = { ...container[key] }
             }
           })
         })
 
-        // return console.log(data)
+        return console.log(formData)
 
-        handleSave({ data, model, onSave, onError, id })
+        handleSave({ data: formData, model, onSave, onError, id })
       }}
     >
       {(title || id) && (

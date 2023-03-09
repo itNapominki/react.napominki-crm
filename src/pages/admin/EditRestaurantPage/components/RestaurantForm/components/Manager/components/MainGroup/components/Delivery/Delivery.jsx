@@ -7,31 +7,23 @@ const options = [
   { text: 'Нет', value: 'Нет' },
 ]
 
-export default function Delivery({ initial, setData, errors }) {
-  const [delivery, setDelivery] = React.useState(options[0])
+export default function Delivery({ initial, errors }) {
+  const [value, setValue] = React.useState(options[0])
   const error = useErrors(errors, 'delivery')
 
-  React.useEffect(
-    () => setDelivery({ text: initial, value: initial }),
-    [initial]
-  )
-
-  function handleChange(value) {
-    setData((prev) => {
-      return {
-        ...prev,
-        delivery: value,
-      }
-    })
-  }
+  React.useEffect(() => {
+    if (initial) {
+      setValue(options.find(({ value }) => value === initial))
+    }
+  }, [initial])
 
   return (
     <Select
       label="Доставка"
       bigLabel
-      value={delivery}
+      name="delivery"
+      value={value}
       options={options}
-      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

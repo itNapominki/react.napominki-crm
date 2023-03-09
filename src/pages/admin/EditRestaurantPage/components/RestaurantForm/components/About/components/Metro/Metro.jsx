@@ -9,30 +9,16 @@ import { useInitial } from 'hooks'
 export default function Metro() {
   const {
     initial,
-    setData,
     error: { errors },
   } = React.useContext(EditRestaurantContext)
 
   const [modalVisible, setModalVisible] = React.useState(false)
-  const [relatedMetro, setRelatedMetro] = useInitial(
-    initial,
-    'clientInfo.relatedMetro',
-    []
-  )
+  const [relatedMetro, setRelatedMetro] = React.useState([])
+
+  const initialState = useInitial(initial, 'clientInfo.relatedMetro', [])
+  React.useEffect(() => setRelatedMetro(initialState), [initialState])
 
   const toggleModal = () => setModalVisible((prev) => !prev)
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        clientInfo: {
-          ...prev.clientInfo,
-          relatedMetro,
-        },
-      }
-    })
-  }, [relatedMetro])
 
   return (
     <React.Fragment>
@@ -40,11 +26,15 @@ export default function Metro() {
         title="Связанные метро"
         button={{ text: 'Настроить', onClick: toggleModal }}
       >
-        {relatedMetro?.map((station, i) => (
-          <div key={station.id} className="col col-4">
-            <Station station={station} errors={errors} i={i} />
-          </div>
-        ))}
+        {relatedMetro?.map((station, i) => {
+          const name = `clientInfo.relatedMetro[${i}]`
+
+          return (
+            <div key={i} className="col col-4">
+              <Station station={station} name={name} errors={errors} />
+            </div>
+          )
+        })}
       </AdminForm.Group>
 
       <EditRelatedMetroContext.Provider

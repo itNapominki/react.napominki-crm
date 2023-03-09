@@ -4,34 +4,17 @@ import { EditRestaurantContext } from 'core/context'
 import { useErrors, useInitial } from 'hooks'
 
 export default function Whatsapp() {
-  const context = React.useContext(EditRestaurantContext)
-  const { initial, errors, setData } = context
+  const { initial, errors } = React.useContext(EditRestaurantContext)
 
   const error = useErrors(errors, 'managerInfo.whatsapp')
-  const [whatsapp, setWhatsapp] = useInitial(
-    initial,
-    'managerInfo.whatsapp',
-    ''
-  )
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        managerInfo: {
-          ...prev.managerInfo,
-          whatsapp,
-        },
-      }
-    })
-  }, [whatsapp])
+  const whatsapp = useInitial(initial, 'managerInfo.whatsapp', '')
 
   return (
     <AdminForm.Group title="Группа в WhatsApp">
       <Input
+        name="managerInfo.whatsapp"
         error={error}
         value={whatsapp}
-        onInput={setWhatsapp}
         className="col col-12"
       />
     </AdminForm.Group>

@@ -15,12 +15,12 @@ export default function About() {
   return (
     <React.Fragment>
       <Heading />
+      <Address />
+      <Metro />
+      <Shedule />
       <Info />
       <DisabilityInfo />
       <Comment />
-      {/* <Address />
-      <Metro />
-      <Shedule /> */}
     </React.Fragment>
   )
 }

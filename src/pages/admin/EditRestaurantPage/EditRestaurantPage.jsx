@@ -45,7 +45,7 @@ export default function EditRestaurantPage() {
 
   return (
     <EditRestaurantContext.Provider
-      value={{ id, initial, data, setData, error, setError }}
+      value={{ id, initial, data, setInitial, error, setError }}
     >
       <Layout>
         <div className="wrapper">

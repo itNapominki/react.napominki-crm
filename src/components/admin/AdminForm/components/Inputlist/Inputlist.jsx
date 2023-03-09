@@ -12,7 +12,11 @@ export default function Inputlist({
   name,
 }) {
   const [list, setList] = React.useState(initial)
-  React.useEffect(() => setList(initial), [initial])
+  React.useEffect(() => {
+    if (initial) {
+      setList(initial)
+    }
+  }, [initial])
 
   return (
     <AdminForm.Group
@@ -27,7 +31,7 @@ export default function Inputlist({
               text={text}
               handleInput={(value) => handleInput(setList, value, i)}
               handleRemove={() => handleRemove(setList, i)}
-              errors={{ array: errors, param: i.toString() }}
+              errors={errors}
             />
           </div>
         )

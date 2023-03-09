@@ -8,29 +8,24 @@ const options = [
 ]
 
 export default function Prepay(data) {
-  const { initial, setData, errors } = data
+  const { initial, errors } = data
 
-  const [prepay, setPrepay] = React.useState(options[0])
+  const [value, setValue] = React.useState(options[0])
   const error = useErrors(errors, 'prepay')
 
-  React.useEffect(() => setPrepay({ text: initial, value: initial }), [initial])
-
-  function handleChange(value) {
-    setData((prev) => {
-      return {
-        ...prev,
-        prepay: value,
-      }
-    })
-  }
+  React.useEffect(() => {
+    if (initial) {
+      setValue(options.find(({ value }) => value === initial))
+    }
+  }, [initial])
 
   return (
     <Select
       label="Предоплаты"
       bigLabel
-      value={prepay}
+      name="prepay"
+      value={value}
       options={options}
-      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

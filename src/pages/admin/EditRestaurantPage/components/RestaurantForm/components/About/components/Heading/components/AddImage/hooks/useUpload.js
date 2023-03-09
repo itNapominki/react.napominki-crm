@@ -4,13 +4,11 @@ import { api } from 'core/utils'
 export default function useUpload() {
   const [uploaded, setUploaded] = React.useState(true)
 
-  async function handleUpload(event, setBackground, setData) {
+  async function handleUpload(event, setBackground, setValue) {
     const { files } = event.target
     const src = URL.createObjectURL(files[0])
 
-    setData((prev) => {
-      return { ...prev, preview: '' }
-    })
+    setValue('')
     setBackground(src)
     setUploaded(false)
 
@@ -19,11 +17,7 @@ export default function useUpload() {
 
     await api.files
       .upload({ folder: 'images', formData })
-      .then(({ data }) => {
-        setData((prev) => {
-          return { ...prev, preview: data.filename }
-        })
-      })
+      .then(({ data }) => setValue(data.filename))
       .then(() => setUploaded(true))
       .catch((e) => console.log(e))
   }

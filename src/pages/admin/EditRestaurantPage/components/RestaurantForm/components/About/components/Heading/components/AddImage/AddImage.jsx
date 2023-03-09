@@ -4,29 +4,25 @@ import { setBackground as setBg } from './utils'
 import { useUpload } from './hooks'
 import { Spinner } from 'components/general'
 
-export default function AddImage({ initialPreview, setData, error }) {
-  const [background, setBackground] = React.useState(initialPreview)
+export default function AddImage({ initial, error }) {
+  const [value, setValue] = React.useState('')
+  const [background, setBackground] = React.useState('')
   const [uploaded, handleUpload] = useUpload()
 
   React.useEffect(() => {
-    setBackground(initialPreview)
-
-    setData((prev) => {
-      return {
-        ...prev,
-        preview: initialPreview,
-      }
-    })
-  }, [initialPreview])
+    setBackground(initial)
+    setValue(initial)
+  }, [initial])
 
   return (
     <label className={styles.container}>
       <input
         type="file"
-        // ФОРМАТЫ
-        onChange={(e) => handleUpload(e, setBackground, setData)}
+        accept=".jpg,.jpeg,.png"
+        onChange={(e) => handleUpload(e, setBackground, setValue)}
         hidden
       />
+      <input type="hidden" name="preview" value={value} />
       <div className={styles.top}>
         <div className={styles.topRow}>
           <div className={styles.label}>Превью</div>

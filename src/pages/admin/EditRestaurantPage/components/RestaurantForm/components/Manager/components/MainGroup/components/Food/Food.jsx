@@ -2,9 +2,7 @@ import React from 'react'
 import { Select } from 'components'
 import { useErrors } from 'hooks'
 
-export default function Food(data) {
-  const { initial, setData, errors } = data
-
+export default function Food({ initial, errors }) {
   const [from, setFrom] = React.useState('...')
 
   const options = [
@@ -37,22 +35,13 @@ export default function Food(data) {
     }
   }, [initial])
 
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        food: food.value,
-      }
-    })
-  }, [food])
-
   return (
     <Select
       label="Продукты"
       bigLabel
+      name="food"
       value={food}
       options={options}
-      onChange={setFood}
       className="col col-4"
       error={error}
     />

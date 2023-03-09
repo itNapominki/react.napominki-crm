@@ -12,7 +12,7 @@ export default function Heading() {
 
   const title = useInitial(initial, 'title', '')
   const cardTitle = useInitial(initial, 'cardTitle', '')
-  const initialPreview = useInitial(initial, 'preview', null)
+  const preview = useInitial(initial, 'preview', null)
 
   const titleError = useErrors(errors, 'title')
   const cardTitleError = useErrors(errors, 'cardTitle')
@@ -34,13 +34,9 @@ export default function Heading() {
           value={cardTitle}
         />
       </div>
-      {/* <div className="col col-4">
-        <AddImage
-          initialPreview={initialPreview}
-          // setData={setData}
-          error={previewError}
-        />
-      </div> */}
+      <div className="col col-4">
+        <AddImage initial={preview} error={previewError} />
+      </div>
     </AdminForm.Group>
   )
 }

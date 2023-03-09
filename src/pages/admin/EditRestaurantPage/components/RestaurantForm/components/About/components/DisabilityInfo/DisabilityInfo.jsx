@@ -15,14 +15,7 @@ export default function DisabilityInfo() {
     <AdminForm.Inputlist
       title="Информация для людей с ограниченными возможностями"
       buttonText="Добавить информацию"
-      errors={errors
-        ?.filter(({ param }) => param.includes('clientInfo.disabilityInfo'))
-        .map((error) => {
-          return {
-            ...error,
-            param: error.param.split('[').pop().split(']')[0],
-          }
-        })}
+      errors={errors}
       initial={disabilityInfo}
       name="clientInfo.disabilityInfo"
     />

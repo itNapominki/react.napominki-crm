@@ -6,17 +6,13 @@ import { handleAdd, handleInput, handleRemove } from './handlers'
 
 export default function Contacts({
   buttonText = 'Добавить контакт',
-  onChange,
   title = 'Контакты',
   errors,
   initial,
+  name,
 }) {
   const [contacts, setContacts] = React.useState([])
-
-  React.useEffect(() => onChange(contacts), [contacts])
   React.useEffect(() => setContacts(initial), [initial])
-
-  console.log(contacts)
 
   return (
     <AdminForm.Group
@@ -32,9 +28,10 @@ export default function Contacts({
         return (
           <div key={i} className="col col-12">
             <ContactsItem
+              name={`${name}[${i}]`}
               contact={contact}
               setContacts={setContacts}
-              errors={{ array: errors, param: i }}
+              errors={errors}
               handleInput={onInput}
               handleRemove={() => handleRemove(setContacts, i)}
             />

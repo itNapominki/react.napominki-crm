@@ -8,24 +8,23 @@ export default function MainGroup() {
   const {
     initial,
     error: { errors },
-    setData,
   } = React.useContext(EditRestaurantContext)
 
-  const [initialId] = useInitial(initial, 'id', '')
-  const [initialStatus] = useInitial(initial, 'status', '')
-  const [initialPriority] = useInitial(initial, 'priority', '')
-  const [initialFood] = useInitial(initial, 'food', '')
-  const [initialDelivery] = useInitial(initial, 'delivery', '')
-  const [initialPrepay] = useInitial(initial, 'prepay', '')
+  const initialId = useInitial(initial, 'id', '')
+  const initialStatus = useInitial(initial, 'status', '')
+  const initialPriority = useInitial(initial, 'priority', '')
+  const initialFood = useInitial(initial, 'food', '')
+  const initialDelivery = useInitial(initial, 'delivery', '')
+  const initialPrepay = useInitial(initial, 'prepay', '')
 
   return (
     <AdminForm.Group>
-      <Id initial={initialId} setData={setData} errors={errors} />
-      <Status initial={initialStatus} setData={setData} errors={errors} />
-      <Priority initial={initialPriority} setData={setData} errors={errors} />
-      <Food initial={initialFood} setData={setData} errors={errors} />
-      <Delivery initial={initialDelivery} setData={setData} errors={errors} />
-      <Prepay initial={initialPrepay} setData={setData} errors={errors} />
+      <Id initial={initialId} errors={errors} />
+      <Status initial={initialStatus} errors={errors} />
+      <Priority initial={initialPriority} errors={errors} />
+      <Food initial={initialFood} errors={errors} />
+      <Delivery initial={initialDelivery} errors={errors} />
+      <Prepay initial={initialPrepay} errors={errors} />
     </AdminForm.Group>
   )
 }

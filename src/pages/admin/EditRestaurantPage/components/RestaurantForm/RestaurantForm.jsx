@@ -11,15 +11,19 @@ import { MODELS } from 'core/constants'
 const ROOT_PAGE = ROUTES.ADMIN_RESTAURANTS.PATH
 
 export default function RestaurantForm({ tabIndex }) {
-  const { id, data, setError } = React.useContext(EditRestaurantContext)
+  const { id, data, setInitial, setError } = React.useContext(
+    EditRestaurantContext
+  )
 
   const navigate = useNavigate()
 
   const goHome = () => navigate(ROOT_PAGE)
-  const redirect = (data) =>
-    !id
-      ? navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', data.id))
-      : alert('Данные сохранены')
+  const onSave = (data) =>
+    !id || id != data.id
+      ? navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', data.id), {
+          state: { data },
+        })
+      : setInitial(data)
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' ресторана'
 
@@ -32,7 +36,7 @@ export default function RestaurantForm({ tabIndex }) {
       model={MODELS.RESTAURANT.VALUE}
       title={formTitle}
       onCancel={{ callback: goHome }}
-      onSave={redirect}
+      onSave={onSave}
       onError={setError}
       deleteButton={deleteButton}
     >

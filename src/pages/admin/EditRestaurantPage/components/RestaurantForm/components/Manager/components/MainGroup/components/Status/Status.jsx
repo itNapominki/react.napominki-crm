@@ -10,29 +10,24 @@ const options = [
 ]
 
 export default function Status(data) {
-  const { initial, setData, errors } = data
+  const { initial, errors } = data
 
-  const [status, setStatus] = React.useState(options[0])
+  const [value, setValue] = React.useState(options[0])
   const error = useErrors(errors, 'status')
 
-  React.useEffect(() => setStatus({ text: initial, value: initial }), [initial])
-
-  function handleChange(value) {
-    setData((prev) => {
-      return {
-        ...prev,
-        status: value,
-      }
-    })
-  }
+  React.useEffect(() => {
+    if (initial) {
+      setValue(options.find(({ value }) => value === initial))
+    }
+  }, [initial])
 
   return (
     <Select
       label="Статус"
       bigLabel
-      value={status}
+      name="status"
+      value={value}
       options={options}
-      onChange={({ value }) => handleChange(value)}
       className="col col-4"
       error={error}
     />

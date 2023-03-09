@@ -15,14 +15,7 @@ export default function Info() {
     <AdminForm.Inputlist
       title="Информация"
       buttonText="Добавить информацию"
-      errors={errors
-        ?.filter(({ param }) => param.includes('clientInfo.info'))
-        .map((error) => {
-          return {
-            ...error,
-            param: error.param.split('[').pop().split(']')[0],
-          }
-        })}
+      errors={errors}
       initial={info}
       name="clientInfo.info"
     />

@@ -2,25 +2,36 @@ import React from 'react'
 import { AdminForm } from 'components/admin'
 import {
   handleAdd,
-  handleSelectChange,
   handleInput,
   handleRemove,
+  handleSelectChange,
 } from './handlers'
 import { SheduleItem } from './components'
+import options from './components/SheduleItem/options'
 
 export default function Shedule({
   buttonText = 'Добавить расписание',
-  onChange,
   title,
   errors,
   initial,
+  name,
 }) {
   console.log('Render Shedule')
 
   const [shedule, setShedule] = React.useState(initial)
 
-  React.useEffect(() => onChange(shedule), [shedule])
-  React.useEffect(() => setShedule(initial), [initial])
+  React.useEffect(() => {
+    if (initial) {
+      setShedule(
+        initial.map((item) => ({
+          ...item,
+          days: options.filter(({ value }) =>
+            item.days.find((day) => day === value)
+          ),
+        }))
+      )
+    }
+  }, [initial])
 
   return (
     <AdminForm.Group
@@ -31,10 +42,11 @@ export default function Shedule({
         <div key={i} className="col col-4">
           <SheduleItem
             item={item}
-            onSelectChange={(arr) => handleSelectChange(setShedule, arr, i)}
-            onInput={(value) => handleInput(setShedule, value, i)}
+            name={`${name}[${i}]`}
             onRemove={() => handleRemove(setShedule, i)}
-            errors={{ array: errors, param: i }}
+            onSelectChange={(array) => handleSelectChange(setShedule, array, i)}
+            onInput={(value) => handleInput(setShedule, value, i)}
+            errors={errors}
           />
         </div>
       ))}

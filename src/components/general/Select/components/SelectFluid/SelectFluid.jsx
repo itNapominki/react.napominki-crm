@@ -34,7 +34,20 @@ export default function SelectFluid({
         />
       }
 
-      {name && <input name={name} value={value.value} hidden readOnly />}
+      {name && (
+        <input
+          name={name}
+          value={
+            multiple
+              ? JSON.stringify(value.map(({ value }) => value))
+              : typeof value.value === 'string'
+              ? value.value
+              : JSON.stringify(value.value)
+          }
+          hidden
+          readOnly
+        />
+      )}
     </div>
   )
 }
