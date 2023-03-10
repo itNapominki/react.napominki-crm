@@ -11,14 +11,13 @@ import {
 
 import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
-import { api, getChildrenErrors } from 'core/utils'
+import { api } from 'core/utils'
 import { MODELS } from 'core/constants'
 
 export default function Menus() {
   console.log('render EditRestaurant Menus')
 
   const {
-    setData,
     initial,
     error: { errors },
   } = React.useContext(EditRestaurantContext)
@@ -31,19 +30,10 @@ export default function Menus() {
       .then(({ data }) => setOptions(data))
   }, [])
 
-  const [initialState] = useInitial(initial, 'menus')
+  const initialState = useInitial(initial, 'menus')
   const [menus, setMenus] = React.useState([])
 
   React.useEffect(() => setMenus(initialState), [initialState])
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        menus,
-      }
-    })
-  }, [menus])
 
   return (
     <AdminForm.Group
@@ -58,22 +48,21 @@ export default function Menus() {
         }
 
         function onFileChange(file) {
-          if (menu.id != file.id) {
+          if (menu.file.id != file.id) {
             handleFileChange(setMenus, file, i)
           }
         }
 
-        const menuErrors = getChildrenErrors(errors, 'menus')
-
         return (
           <div key={i} className="col col-12">
             <Menu
+              name={`menus[${i}]`}
               menu={menu}
               options={options}
               handleInput={onInput}
               handleFileChange={onFileChange}
               handleRemove={() => handleRemove(setMenus, i)}
-              errors={{ array: menuErrors, param: i }}
+              errors={errors}
             />
           </div>
         )

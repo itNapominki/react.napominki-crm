@@ -4,9 +4,7 @@ export default function handleFileChange(setMenus, file, i) {
       if (i === index) {
         return {
           ...menu,
-          id: file.id,
-          title: file.title,
-          path: file.path,
+          file,
         }
       }
 

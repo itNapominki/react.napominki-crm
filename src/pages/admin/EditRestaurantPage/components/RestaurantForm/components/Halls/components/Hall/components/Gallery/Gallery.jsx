@@ -9,10 +9,8 @@ import { handleImageRemove, handleFilesChange } from './handlers'
 
 import removeIcon from 'assets/sprites/remove.svg'
 
-export default function Gallery({ initial, setHalls, index }) {
-  const [gallery, setGallery] = React.useState(
-    initial.map((image) => process.env.REACT_APP_SERVER_URL + image)
-  )
+export default function Gallery({ gallery, setHalls, index, name }) {
+  const [value, setValue] = React.useState(gallery)
 
   const inputRef = React.useRef()
 
@@ -29,9 +27,11 @@ export default function Gallery({ initial, setHalls, index }) {
         ref={inputRef}
         type="file"
         multiple
-        onChange={(e) => handleFilesChange(e, setGallery, setHalls, index)}
+        onChange={(e) => handleFilesChange(e, setValue, setHalls, index)}
         hidden
       />
+      <input type="hidden" value={JSON.stringify(value)} name={name} />
+
       {gallery.map((image, j) => (
         <div key={j} className="col col-3">
           <div className={styles.image}>
@@ -40,11 +40,17 @@ export default function Gallery({ initial, setHalls, index }) {
             )}
             <button
               className={styles.buttonRemove}
-              onClick={() => handleImageRemove(j, setGallery, index, setHalls)}
+              onClick={() => handleImageRemove(j, setValue, index, setHalls)}
             >
               <HandySvg src={removeIcon} />
             </button>
-            <img src={typeof image === 'string' ? image : image.src} />
+            <img
+              src={
+                typeof image === 'string'
+                  ? process.env.REACT_APP_SERVER_URL + image
+                  : image.src
+              }
+            />
           </div>
         </div>
       ))}

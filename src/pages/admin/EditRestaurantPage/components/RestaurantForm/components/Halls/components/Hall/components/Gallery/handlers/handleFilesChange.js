@@ -1,16 +1,20 @@
 import { api } from 'core/utils'
 
-export default async function handleFilesChange(
-  event,
-  setGallery,
-  setHalls,
-  i
-) {
+export default async function handleFilesChange(event, setValue, setHalls, i) {
   const files = event.target.files
 
   for (let file of files) {
     const src = URL.createObjectURL(file)
-    setGallery((prev) => [...prev, { src, uploaded: false }])
+
+    setHalls((prev) =>
+      prev.map((hall, index) => {
+        if (i === index) {
+          hall.gallery = [...hall.gallery, { src, uploaded: false }]
+        }
+
+        return hall
+      })
+    )
   }
 
   for (let j = 0; j < files.length; j++) {
@@ -20,24 +24,22 @@ export default async function handleFilesChange(
     await api.files
       .upload({ folder: 'images', formData })
       .then(({ data }) => {
+        setValue((prev) => [...prev, data.filename])
+      })
+      .then(() =>
         setHalls((prev) =>
           prev.map((hall, index) => {
             if (i === index) {
-              hall.gallery = [...hall.gallery, data.filename]
+              hall.gallery = hall.gallery.map((image, index) => {
+                if (index === hall.gallery.length - files.length + j) {
+                  image.uploaded = true
+                }
+
+                return image
+              })
             }
 
             return hall
-          })
-        )
-      })
-      .then(() =>
-        setGallery((prev) =>
-          prev.map((image, index) => {
-            if (index === prev.length - files.length + j) {
-              image.uploaded = true
-            }
-
-            return image
           })
         )
       )

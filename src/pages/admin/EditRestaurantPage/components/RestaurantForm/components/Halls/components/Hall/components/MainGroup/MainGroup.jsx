@@ -1,56 +1,48 @@
 import React from 'react'
 import { AdminForm, Input } from 'components'
-import { EditRestaurantContext } from 'core/context'
 import { useErrors } from 'hooks'
 
 export default function MainGroup({
   title,
   boarding,
   fit,
-  index,
-  setHalls,
   errors,
+  name,
+  onInput,
 }) {
   const titleError = useErrors(errors, `title`)
   const boardingError = useErrors(errors, `boarding`)
   const fitError = useErrors(errors, `fit`)
-
-  function handleInput(key, value) {
-    setHalls((prev) =>
-      prev.map((hall, i) => {
-        if (index === i) {
-          hall[key] = value
-        }
-
-        return hall
-      })
-    )
-  }
 
   return (
     <AdminForm.Group>
       <Input
         label="Название зала"
         bigLabel
-        error={titleError}
+        name={name + '.title'}
         value={title}
-        onInput={(value) => handleInput('title', value)}
+        error={titleError}
+        onInput={(value) => onInput('title', value)}
         className="col col-4"
       />
       <Input
+        type="number"
         label="Посадка от, чел."
         bigLabel
-        error={boardingError}
+        name={name + '.boarding'}
         value={boarding}
-        onInput={(value) => handleInput('boarding', value)}
+        error={boardingError}
+        onInput={(value) => onInput('boarding', value)}
         className="col col-4"
       />
       <Input
+        type="number"
         label="Вместимость до, чел."
         bigLabel
-        error={fitError}
+        name={name + '.fit'}
         value={fit}
-        onInput={(value) => handleInput('fit', value)}
+        error={fitError}
+        onInput={(value) => onInput('fit', value)}
         className="col col-4"
       />
     </AdminForm.Group>

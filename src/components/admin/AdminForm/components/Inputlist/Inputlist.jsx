@@ -11,7 +11,8 @@ export default function Inputlist({
   initial,
   name,
 }) {
-  const [list, setList] = React.useState(initial)
+  const [list, setList] = React.useState([])
+
   React.useEffect(() => {
     if (initial) {
       setList(initial)

@@ -8,30 +8,18 @@ import { useInitial } from 'hooks'
 import { EditRestaurantContext } from 'core/context'
 
 import styles from './Halls.module.scss'
-import { getChildrenErrors } from 'core/utils'
 
 export default function Halls() {
   console.log('render EditRestaurant Halls')
 
   const {
-    setData,
     initial,
     error: { errors },
   } = React.useContext(EditRestaurantContext)
 
-  const [initialState] = useInitial(initial, 'halls', [])
+  const initialState = useInitial(initial, 'halls', [])
   const [halls, setHalls] = React.useState([])
-
   React.useEffect(() => setHalls(initialState), [initialState])
-
-  React.useEffect(() => {
-    setData((prev) => {
-      return {
-        ...prev,
-        halls,
-      }
-    })
-  }, [halls])
 
   return (
     <div className={styles.container}>
@@ -42,18 +30,15 @@ export default function Halls() {
         }}
       >
         <div className="col col-12">
-          {halls?.map((hall, i) => {
-            return (
-              <Hall
-                key={i}
-                index={i}
-                hall={hall}
-                setHalls={setHalls}
-                initial={initialState}
-                errors={getChildrenErrors(errors, `halls[${i}].`)}
-              />
-            )
-          })}
+          {halls?.map((hall, i) => (
+            <Hall
+              key={i}
+              hall={hall}
+              setHalls={setHalls}
+              errors={errors}
+              name={`halls[${i}]`}
+            />
+          ))}
         </div>
       </AdminForm.Group>
     </div>

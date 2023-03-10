@@ -40,7 +40,11 @@ export default function RestaurantForm({ tabIndex }) {
       onError={setError}
       deleteButton={deleteButton}
     >
-      {[<About />, <Halls />, <Menus />, <Manager />][tabIndex]}
+      {[<About />, <Halls />, <Menus />, <Manager />].map((Component, i) => (
+        <div key={i} hidden={tabIndex !== i}>
+          {Component}
+        </div>
+      ))}
     </AdminForm>
   )
 }

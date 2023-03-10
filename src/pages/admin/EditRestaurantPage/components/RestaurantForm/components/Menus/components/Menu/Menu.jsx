@@ -6,6 +6,7 @@ import { useErrors } from 'hooks'
 import styles from './Menu.module.scss'
 
 export default function Menu({
+  name,
   menu,
   options,
   errors,
@@ -16,7 +17,7 @@ export default function Menu({
   const [droplist] = useOptions(options)
   const [droplistVisible, setDroplistVisible] = React.useState(false)
 
-  const fileError = useErrors(errors.array, `[${errors.param}].path`)
+  const fileError = useErrors(errors, name + '.file.path')
 
   return (
     <div className={styles.item}>
@@ -40,13 +41,10 @@ export default function Menu({
       <div className="row">
         <Select
           label="Файл"
+          name={name + '.file'}
           value={{
-            text: menu.title,
-            value: {
-              id: menu.id,
-              title: menu.title,
-              path: menu.path,
-            },
+            text: menu.file.title,
+            value: menu.file,
           }}
           error={fileError}
           onChange={({ value }) => handleFileChange(value)}
@@ -54,15 +52,19 @@ export default function Menu({
           className="col col-6"
         />
         <Input
+          type="number"
           label="Депозит от, руб."
+          name={name + '.deposit'}
           value={menu.deposit}
-          onInput={(value) => handleInput('deposit', +value)}
+          onInput={(value) => handleInput('deposit', value)}
           className="col col-3"
         />
         <Input
+          type="number"
           label="Посадка от, чел."
+          name={name + '.persons'}
           value={menu.persons}
-          onInput={(value) => handleInput('persons', +value)}
+          onInput={(value) => handleInput('persons', value)}
           className="col col-3"
         />
       </div>

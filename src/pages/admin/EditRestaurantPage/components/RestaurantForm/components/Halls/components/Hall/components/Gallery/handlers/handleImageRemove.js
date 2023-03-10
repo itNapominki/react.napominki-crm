@@ -1,6 +1,6 @@
 export default function handleImageRemove(
   imageIndex,
-  setGallery,
+  setValue,
   hallIndex,
   setHalls
 ) {
@@ -8,7 +8,7 @@ export default function handleImageRemove(
     return prev.filter((_, index) => imageIndex != index)
   }
 
-  setGallery((prev) => updateGallery(prev))
+  setValue((prev) => updateGallery(prev))
 
   setHalls((prev) =>
     prev.map((hall, index) => {

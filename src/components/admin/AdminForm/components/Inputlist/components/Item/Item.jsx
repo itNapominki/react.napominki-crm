@@ -17,8 +17,6 @@ export default function Item({
 }) {
   const error = useErrors(errors, name)
 
-  console.log(name)
-
   return (
     <div className={styles.container}>
       <div className={styles.deleteButton} onClick={handleRemove}>

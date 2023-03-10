@@ -11,7 +11,6 @@ export default function AdminForm({
   id,
   className,
   children,
-  data,
   model,
   title,
   onCancel,
@@ -25,8 +24,8 @@ export default function AdminForm({
       onSubmit={function (e) {
         e.preventDefault()
 
-        const formData = data
         const elements = Array.from(e.target.elements)
+        const data = {}
 
         elements.forEach(({ name, value }) => {
           if (!name) {
@@ -36,10 +35,10 @@ export default function AdminForm({
           const props = name.split('.')
 
           if (props.length === 1) {
-            return (formData[name] = value)
+            return (data[name] = value)
           }
 
-          let container = formData
+          let container = data
 
           props.map((key, index, values) => {
             let prevProp = values[index - 1]
@@ -58,6 +57,19 @@ export default function AdminForm({
             if (isArray) {
               const arrayKey = key.replace(arrayRegex, '')
               const array = container[arrayKey] ? container[arrayKey] : []
+
+              if (isPrevArray) {
+                const index = prevProp.split('[').pop().split(']')[0]
+                const array = container[index][arrayKey]
+                  ? container[index][arrayKey]
+                  : []
+
+                return (container = container[index] =
+                  {
+                    ...container[index],
+                    [arrayKey]: [...array, out],
+                  })
+              }
 
               return (container = container[arrayKey] =
                 isLastProp ? [...array, out] : [...array])
@@ -81,13 +93,11 @@ export default function AdminForm({
           })
         })
 
-        return console.log(formData)
-
-        handleSave({ data: formData, model, onSave, onError, id })
+        handleSave({ data, model, onSave, onError, id })
       }}
     >
       {(title || id) && (
-        <div className={styles.heading}>
+        <React.Fragment>
           <div className={styles.title}>{title}</div>
           {id && (
             <div
@@ -102,7 +112,7 @@ export default function AdminForm({
               {deleteButton.text}
             </div>
           )}
-        </div>
+        </React.Fragment>
       )}
       {children}
       <div className={`${styles.actions} row`}>
