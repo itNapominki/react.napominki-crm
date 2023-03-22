@@ -31,7 +31,7 @@
     "serve": "serve -s build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "stop": "stop"
+    "stop": "taskkill -F -IM node.exe"
   },
   "browserslist": {
     "production": [
