@@ -1,0 +1,22 @@
+.container {
+  @include desktop(
+    (
+      'flex-shrink': 0,
+      'align-self': flex-start,
+
+      'background': get-theme-color('primary'),
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'height': 100%,
+        'fill': #fff,
+      )
+    );
+  }
+}

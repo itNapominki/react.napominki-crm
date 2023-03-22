@@ -1,0 +1,70 @@
+.container {
+  @include desktop(
+    (
+      'width': 500px,
+      'height': 100%,
+
+      'padding': 24px,
+
+      'background': #fff,
+
+      'overflow-y': auto,
+    )
+  );
+}
+
+.top {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': flex-start,
+
+      'margin-bottom': 15px,
+    )
+  );
+}
+
+.button {
+  @include link;
+
+  @include desktop(
+    (
+      'font-size': 12px,
+    )
+  );
+}
+
+.close {
+  @include desktop(
+    (
+      'margin-left': auto,
+
+      'width': 24px,
+      'height': 24px,
+
+      'background': get-theme-color('input'),
+      'border-radius': 50%,
+
+      'text-align': center,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'width': 10px,
+        'height': 100%,
+
+        'fill': get-theme-color('tabs-text'),
+      )
+    );
+  }
+}
+
+.content {
+  @include desktop(
+    (
+      'margin-top': 24px,
+    )
+  );
+}

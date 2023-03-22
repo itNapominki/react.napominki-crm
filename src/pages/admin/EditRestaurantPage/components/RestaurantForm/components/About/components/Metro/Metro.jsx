@@ -16,7 +16,11 @@ export default function Metro() {
   const [relatedMetro, setRelatedMetro] = React.useState([])
 
   const initialState = useInitial(initial, 'clientInfo.relatedMetro', [])
-  React.useEffect(() => setRelatedMetro(initialState), [initialState])
+  React.useEffect(() => {
+    if (initialState) {
+      setRelatedMetro(initialState)
+    }
+  }, [initialState])
 
   const toggleModal = () => setModalVisible((prev) => !prev)
 

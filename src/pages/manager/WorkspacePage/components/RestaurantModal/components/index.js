@@ -1,0 +1,6 @@
+export { default as About } from './About/About'
+export { default as Halls } from './Halls/Halls'
+export { default as Heading } from './Heading/Heading'
+export { default as HeaderLeft } from './HeaderLeft/HeaderLeft'
+export { default as Menus } from './Menus/Menus'
+export { default as Table } from './Table/Table'

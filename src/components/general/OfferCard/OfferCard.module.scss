@@ -1,0 +1,114 @@
+.container {
+  @include card;
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 24px 0,
+      )
+    );
+  }
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -20px,
+    )
+  );
+}
+
+.preview {
+  @include desktop(
+    (
+      'margin': 0 20px,
+      'width': 443px,
+
+      'background-size': cover,
+      'background-position': center,
+    )
+  );
+}
+
+.info {
+  @include desktop(
+    (
+      'margin': 0 20px,
+      'width': 607px,
+    )
+  );
+}
+
+.title {
+  @include h2;
+}
+
+.feature {
+  @include desktop(
+    (
+      'margin-top': 16px,
+
+      'display': flex,
+      'align-items': center,
+    )
+  );
+
+  &__icon {
+    @include desktop(
+      (
+        'width': 24px,
+        'height': 24px,
+
+        'margin-right': 8px,
+      )
+    );
+  }
+}
+
+.actions {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -16px,
+    )
+  );
+
+  button,
+  a {
+    @include desktop(
+      (
+        'margin': 0 16px,
+      )
+    );
+
+    &:nth-child(1) {
+      @include link;
+    }
+
+    &:nth-child(2) {
+      @include link(get-theme-color('error'));
+    }
+  }
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': -8px -16px 0,
+    )
+  );
+
+  &__item {
+    @include list;
+
+    @include desktop(
+      (
+        'margin': 8px 16px 0,
+      )
+    );
+  }
+}

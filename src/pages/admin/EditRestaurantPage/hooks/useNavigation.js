@@ -6,19 +6,19 @@ export default function useNavigation() {
   const navigation = [
     {
       text: 'О ресторане',
-      onClick: (i) => setActiveTab(i),
+      onClick: setActiveTab,
     },
     {
       text: 'Поминальные залы',
-      onClick: (i) => setActiveTab(i),
+      onClick: setActiveTab,
     },
     {
       text: 'Поминальное меню',
-      onClick: (i) => setActiveTab(i),
+      onClick: setActiveTab,
     },
     {
       text: 'Инфо для менеджера',
-      onClick: (i) => setActiveTab(i),
+      onClick: setActiveTab,
     },
   ]
 

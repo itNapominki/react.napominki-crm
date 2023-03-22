@@ -1,0 +1,54 @@
+.info {
+  @include card;
+
+  @include desktop(
+    (
+      'position': relative,
+
+      'margin-top': 20px,
+    )
+  );
+}
+
+.top {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': flex-start,
+      'justify-content': space-between,
+    )
+  );
+}
+
+.title {
+  @include h2;
+}
+
+.clear {
+  @include link(get-theme-color('error'));
+}
+
+.link {
+  @include link;
+
+  @include desktop(
+    (
+      'margin-top': 16px,
+      'max-width': fit-content,
+    )
+  );
+
+  span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.card {
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
+}

@@ -1,0 +1,52 @@
+.title {
+  @include h2;
+
+  @include desktop(
+    (
+      'margin-bottom': 24px,
+    )
+  );
+}
+
+.feature {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+
+      'margin-top': 16px,
+    )
+  );
+
+  &__icon {
+    @include desktop(
+      (
+        'flex-shrink': 0,
+        'align-self': flex-start,
+
+        'display': flex,
+        'align-items': center,
+        'justify-content': center,
+
+        'margin-right': 8px,
+
+        'width': 24px,
+        'height': 24px,
+
+        'background': get-theme-color('primary'),
+        'border-radius': 50%,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'max-width': 10px,
+          'max-height': 12px,
+
+          'fill': #fff,
+        )
+      );
+    }
+  }
+}

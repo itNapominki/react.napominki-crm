@@ -10,8 +10,10 @@ export default function AddImage({ initial, error }) {
   const [uploaded, handleUpload] = useUpload()
 
   React.useEffect(() => {
-    setBackground(initial)
-    setValue(initial)
+    if (initial) {
+      setBackground(initial)
+      setValue(initial)
+    }
   }, [initial])
 
   return (

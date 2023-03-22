@@ -3,9 +3,7 @@ import { classNames } from 'core/utils'
 
 import styles from './List.module.scss'
 
-export default function List(data) {
-  const { className, list } = data
-
+export default function List({ className, list }) {
   return (
     <ul className={classNames(styles.list, [className])}>
       {list.map((listItem, i) => (

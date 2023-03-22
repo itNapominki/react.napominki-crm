@@ -32,7 +32,7 @@ export default function RestaurantForm({ tabIndex }) {
   return (
     <AdminForm
       id={id}
-      data={data}
+      dataObj={data}
       model={MODELS.RESTAURANT.VALUE}
       title={formTitle}
       onCancel={{ callback: goHome }}

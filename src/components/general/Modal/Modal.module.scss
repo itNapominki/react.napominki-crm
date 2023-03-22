@@ -27,21 +27,3 @@
     )
   );
 }
-
-.content {
-  &:global._right {
-    @include desktop(
-      (
-        'width': 400px,
-        'height': 100%,
-
-        'margin-left': auto,
-        'padding': 24px,
-
-        'background': #fff,
-
-        'overflow-y': auto,
-      )
-    );
-  }
-}

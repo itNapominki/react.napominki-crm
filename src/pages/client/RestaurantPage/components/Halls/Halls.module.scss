@@ -1,0 +1,107 @@
+.container {
+  @include card;
+
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
+}
+
+.title {
+  @include h1;
+}
+
+.hall {
+  @include desktop(
+    (
+      'margin-top': 32px,
+    )
+  );
+
+  &__gallery {
+    @include desktop(
+      (
+        'position': relative,
+      )
+    );
+
+    :global .swiper {
+      @include desktop(
+        (
+          'margin': 0 -10px,
+        )
+      );
+    }
+
+    :global .swiper-slide {
+      @include desktop(
+        (
+          'width': 380px,
+          'margin': 0 10px,
+        )
+      );
+    }
+
+    img {
+      @include desktop(
+        (
+          'height': 260px,
+          'width': 100%,
+        )
+      );
+    }
+  }
+
+  &__sliderArrow {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'margin-top': -30px,
+      )
+    );
+
+    &[data-direction='prev'] {
+      @include desktop(
+        (
+          'left': -30px,
+        )
+      );
+    }
+
+    &[data-direction='next'] {
+      @include desktop(
+        (
+          'right': -30px,
+        )
+      );
+    }
+  }
+
+  &__list {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 0 -16px,
+      )
+    );
+
+    :global li {
+      @include desktop(
+        (
+          'margin': 16px 16px 0,
+        )
+      );
+    }
+  }
+
+  &__comment {
+    @include desktop(
+      (
+        'margin-top': 16px,
+      )
+    );
+  }
+}

@@ -1,0 +1,23 @@
+.group {
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+
+  &__title {
+    @include h3;
+  }
+}
+
+.addButton {
+  @include link;
+
+  @include desktop(
+    (
+      'font-size': 12px,
+    )
+  );
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Modal, Separator, Spinner } from 'components/general'
-import { Group } from './components'
+import { AddButton, Group } from './'
 import { useScrollLoad } from 'hooks'
 import { MODELS, OBJECT_TYPES } from 'core/constants'
 
@@ -25,6 +25,8 @@ export default function SettingsModal({ toggleModal }) {
     contentNode
   )
 
+  console.log(relatedMetro)
+
   // React.useEffect(() => {
   //   api
   //     .getAll({
@@ -37,23 +39,22 @@ export default function SettingsModal({ toggleModal }) {
   // }, [searchTerm])
 
   return (
-    <Modal ref={modalRef} mode="right" onClose={toggleModal}>
-      <Input
-        type="search"
-        label="Поиск"
-        value={searchTerm}
-        onInput={setSearchTerm}
-        bigLabel
-      />
-      <Separator />
+    <Modal.Container ref={modalRef} onClose={toggleModal}>
+      <Modal.ModalSide headerLeft={<AddButton />}>
+        <Input
+          type="search"
+          label="Поиск"
+          value={searchTerm}
+          onInput={setSearchTerm}
+          bigLabel
+        />
+        <Separator />
 
-      <Group title="Связанные станции" stations={relatedMetro} />
-      <Group
-        title="Все станции"
-        stations={stations.slice(20, stations.length)}
-      />
+        <Group title="Связанные станции" stations={relatedMetro} />
+        <Group title="Все станции" stations={stations} />
 
-      <Spinner show={fetching} className="asdf" />
-    </Modal>
+        <Spinner show={fetching} />
+      </Modal.ModalSide>
+    </Modal.Container>
   )
 }

@@ -1,0 +1,25 @@
+.container {
+  @include desktop(
+    (
+      'display': flex,
+
+      'margin': 0 -15px,
+    )
+  );
+}
+
+.button {
+  @include desktop(
+    (
+      'margin': 0 15px,
+    )
+  );
+
+  &:nth-child(1) {
+    @include link;
+  }
+
+  &:nth-child(2) {
+    @include link(get-theme-color('error'));
+  }
+}

@@ -1,0 +1,65 @@
+.title {
+  @include h3;
+}
+
+.gallery {
+  @include desktop(
+    (
+      'display': flex,
+
+      'margin': 16px -4px 0,
+
+      'overflow-x': auto,
+    )
+  );
+
+  img {
+    @include desktop(
+      (
+        'flex-shrink': 0,
+
+        'width': 155px,
+        'height': 115px,
+
+        'margin': 0 4px,
+      )
+    );
+  }
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': 4px -16px 0,
+    )
+  );
+
+  :global li {
+    @include desktop(
+      (
+        'margin': 12px 16px 0,
+      )
+    );
+  }
+}
+
+.comment {
+  @include desktop(
+    (
+      'margin-top': 12px,
+
+      'font-size': 12px,
+    )
+  );
+}
+
+.addButton {
+  @include desktop(
+    (
+      'margin-top': 16px,
+    )
+  );
+}

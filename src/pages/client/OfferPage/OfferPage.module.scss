@@ -1,0 +1,11 @@
+.title {
+  @include h1;
+}
+
+.card {
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
+}

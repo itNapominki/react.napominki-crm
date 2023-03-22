@@ -1,0 +1,67 @@
+.title {
+  @include h3;
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': 4px -16px 0,
+    )
+  );
+
+  &__item {
+    @include desktop(
+      (
+        'position': relative,
+
+        'padding-left': 18px,
+
+        'margin': 12px 16px 0,
+      )
+    );
+
+    &:before {
+      @include desktop(
+        (
+          'position': absolute,
+          'content': '',
+
+          'top': 6px,
+          'left': 0,
+
+          'width': 6px,
+          'height': 6px,
+
+          'background': get-theme-color('primary'),
+          'border-radius': 50%,
+        )
+      );
+    }
+  }
+}
+
+.comment {
+  @include desktop(
+    (
+      'margin-top': 16px,
+
+      'font-size': 12px,
+    )
+  );
+}
+
+.showComment {
+  @include link;
+
+  @include desktop(
+    (
+      'max-width': fit-content,
+      'margin-top': 8px,
+
+      'font-size': 12px,
+    )
+  );
+}

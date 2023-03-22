@@ -1,0 +1,54 @@
+.button {
+  $self: &;
+
+  @include desktop(
+    (
+      'position': relative,
+
+      'padding-left': 24px,
+
+      'min-height': 16px,
+    )
+  );
+
+  &_added #{$self}__icon {
+    background: get-theme-color('success');
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 0,
+        'left': 0,
+
+        'width': 16px,
+        'height': 16px,
+
+        'background': get-theme-color('input'),
+        'border-radius': 50%,
+
+        'transition': inherit,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 9px,
+          'height': 100%,
+
+          'fill': #fff,
+
+          'transition': inherit,
+          'opacity': 0,
+        )
+      );
+    }
+  }
+}

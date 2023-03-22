@@ -1,0 +1,79 @@
+.title {
+  @include h2;
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'overflow-x': auto,
+      'overflow-y': hidden,
+
+      'margin': 16px -20px 0,
+    )
+  );
+}
+
+.menu {
+  @include desktop(
+    (
+      'position': relative,
+      'flex-shrink': 0,
+
+      'padding-left': 48px,
+      'padding-top': 2px,
+
+      'margin': 0 20px,
+    )
+  );
+
+  img {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 0,
+        'left': 0,
+
+        'width': 36px,
+      )
+    );
+  }
+
+  &__title {
+    @include link;
+
+    @include desktop(
+      (
+        'max-width': fit-content,
+      )
+    );
+  }
+
+  &__info {
+    @include desktop(
+      (
+        'display': flex,
+        'margin': 10px -8px 0,
+      )
+    );
+
+    span {
+      @include desktop(
+        (
+          'margin': 0 8px,
+
+          'font-size': 12px,
+        )
+      );
+    }
+  }
+}
+
+.addButton {
+  @include desktop(
+    (
+      'margin-top': 8px,
+    )
+  );
+}

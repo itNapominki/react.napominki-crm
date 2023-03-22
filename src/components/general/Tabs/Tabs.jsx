@@ -33,7 +33,15 @@ export default function Tabs({ initial = 0, buttons, children, className }) {
           )
         })}
       </div>
-      {children && <div className="tabs__content">{children}</div>}
+      {children && (
+        <div className="tabs__content">
+          {children.map((_, i) => (
+            <div key={i} style={{ display: activeIndex !== i && 'none' }}>
+              {children[i]}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

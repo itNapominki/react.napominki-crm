@@ -1,0 +1,11 @@
+.container {
+  @include desktop(
+    (
+      'margin-top': 24px,
+    )
+  );
+}
+
+.title {
+  @include h2;
+}

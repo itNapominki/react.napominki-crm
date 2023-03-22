@@ -1,0 +1,1 @@
+export { getShedule } from './getShedule'

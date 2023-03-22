@@ -3,10 +3,12 @@ import React from 'react'
 
 import ymaps from 'ymaps'
 
-export default function ManagerMap() {
+export default React.memo(function ManagerMap({ setModalFor }) {
   ymaps
     .load()
     .then((maps) => {
+      document.getElementById('map').innerHTML = ''
+
       const map = new maps.Map('map', {
         center: [57.9838, 44.0],
         zoom: 5,
@@ -26,48 +28,42 @@ export default function ManagerMap() {
 
       // При клике на метке изменяем цвет ее иконки на желтый.\
 
-      function onClusterCollectionAdd(e) {
-        var cluster = e.get('child')
+      // function onClusterCollectionAdd(e) {
+      //   var cluster = e.get('child')
 
-        objectManager.clusters.each((cluster) => {
-          console.log(cluster)
-          if (cluster.features[0].properties.type != 'RESTAURANT') {
-            return objectManager.clusters.setClusterOptions(cluster.id, {
-              preset: 'islands#nightClusterIcons',
-            })
-          }
+      //   // objectManager.clusters.each((cluster) => {
+      //   //   if (cluster.features[0].properties.type != 'RESTAURANT') {
+      //   //     return objectManager.clusters.setClusterOptions(cluster.id, {
+      //   //       preset: 'islands#nightClusterIcons',
+      //   //     })
+      //   //   }
+      //   // })
 
-          console.log(cluster.features[0].properties)
-        })
-
-        // Для кластеров, в состав которых входит больше 10 меток,
-        // зададим значок красного цвета.
-        // if (cluster.number > 10) {
-        //   objectManager.clusters.setClusterOptions(cluster.id, {
-        //     preset: 'islands#redClusterIcons',
-        //   })
-        // }
-      }
+      //   // Для кластеров, в состав которых входит больше 10 меток,
+      //   // зададим значок красного цвета.
+      //   // if (cluster.number > 10) {
+      //   //   objectManager.clusters.setClusterOptions(cluster.id, {
+      //   //     preset: 'islands#redClusterIcons',
+      //   //   })
+      //   // }
+      // }
       // Подписываемся на событие добавления кластера в коллекцию.
-      objectManager.clusters.events.add(['add'], onClusterCollectionAdd)
+      // objectManager.clusters.events.add(['add'], onClusterCollectionAdd)
 
       function onObjectEvent(e) {
-        let objectId = e.get('objectId')
+        let id = e.get('objectId')
 
-        const feature = objectManager.objects.getById(objectId)
+        const feature = objectManager.objects.getById(id)
 
-        // if (feature.properties.type != 'RESTAURANT') {
-        //   console.log(1)
-        //   objectManager.objects.setObjectOptions(objectId, {
-        //     preset: 'islands#yellowIcon',
-        //   })
-        // }
+        if (feature.properties.type === 'RESTAURANT') {
+          setModalFor(id)
+        }
       }
 
       // Назначаем обработчик событий на коллекцию объектов менеджера.
       objectManager.objects.events.add(['click'], onObjectEvent)
     })
-    .then(() => console.log(1))
+    .then(() => console.log('map ready'))
     .catch((error) => console.log('Failed to load Yandex Maps', error))
 
   return (
@@ -76,4 +72,4 @@ export default function ManagerMap() {
       style={{ width: '100%', height: '500px', background: 'gray' }}
     ></div>
   )
-}
+})

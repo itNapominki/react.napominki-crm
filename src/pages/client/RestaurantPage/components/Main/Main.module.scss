@@ -1,0 +1,70 @@
+.container {
+  @include card;
+}
+
+.title {
+  @include h1;
+}
+
+.features {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': 0 -16px,
+    )
+  );
+}
+
+.feature {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+      'margin': 16px 16px 0,
+    )
+  );
+
+  &__icon {
+    @include desktop(
+      (
+        'width': 32px,
+        'height': 32px,
+
+        'margin-right': 12px,
+      )
+    );
+  }
+}
+
+.infoTitle {
+  @include h2;
+}
+
+.comment {
+  @include desktop(
+    (
+      'margin-top': 16px,
+    )
+  );
+}
+
+.list {
+  @include desktop(
+    (
+      'display': flex,
+      'flex-wrap': wrap,
+
+      'margin': 8px -16px 0,
+    )
+  );
+
+  &__item {
+    @include list;
+
+    @include desktop(
+      (
+        'margin': 8px 16px 0,
+      )
+    );
+  }
+}

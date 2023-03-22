@@ -1,2 +1,2 @@
-export { default as OfferPage } from './OfferPage'
-export { default as RestaurantPage } from './RestaurantPage'
+export { default as OfferPage } from './OfferPage/OfferPage'
+export { default as RestaurantPage } from './RestaurantPage/RestaurantPage'

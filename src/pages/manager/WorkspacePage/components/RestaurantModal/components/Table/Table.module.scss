@@ -1,0 +1,107 @@
+.container {
+  @include desktop(
+    (
+      'margin-top': 24px,
+      'padding': 16px,
+
+      'background': get-theme-color('bg'),
+    )
+  );
+}
+
+.group {
+  @include desktop(
+    (
+      'margin-top': 24px,
+    )
+  );
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.title {
+  @include h3;
+
+  @include desktop(
+    (
+      'margin-bottom': 16px,
+    )
+  );
+}
+
+.row {
+  @include desktop(
+    (
+      'display': flex,
+      'justify-content': space-between,
+
+      'margin-top': 12px,
+    )
+  );
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.col {
+  &:last-child {
+    @include desktop(
+      (
+        'text-align': right,
+      )
+    );
+  }
+}
+
+.whatsapp {
+  @include desktop(
+    (
+      'display': flex,
+      'align-items': center,
+    )
+  );
+
+  &__url {
+    @include link;
+
+    @include desktop(
+      (
+        'white-space': nowrap,
+        'overflow': hidden,
+        'text-overflow': ellipsis,
+      )
+    );
+  }
+
+  &__icon {
+    @include desktop(
+      (
+        'flex-shrink': 0,
+
+        'width': 32px,
+        'height': 32px,
+
+        'margin-right': 12px,
+
+        'background': get-theme-gradient('whatsapp'),
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 12px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+  }
+}

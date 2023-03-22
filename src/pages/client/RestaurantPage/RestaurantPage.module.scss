@@ -1,0 +1,15 @@
+.container {
+  @include desktop(
+    (
+      'font-size': 16px,
+    )
+  );
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+}
