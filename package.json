@@ -30,7 +30,8 @@
     "build": "craco build",
     "serve": "serve -s build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "stop": "stop"
   },
   "browserslist": {
     "production": [
