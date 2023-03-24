@@ -10,17 +10,19 @@ export default function Offer() {
   const { offer } = React.useContext(ManagerOfferContext)
 
   return (
-    <React.Fragment>
-      <Info />
+    offer.length > 0 && (
+      <React.Fragment>
+        <Info />
 
-      {offer.map((hall) => (
-        <OfferCard
-          key={hall.id}
-          className={styles.card}
-          hall={hall}
-          mode="MANAGER"
-        />
-      ))}
-    </React.Fragment>
+        {offer.map((hall) => (
+          <OfferCard
+            key={hall.id}
+            className={styles.card}
+            hall={hall}
+            mode="MANAGER"
+          />
+        ))}
+      </React.Fragment>
+    )
   )
 }

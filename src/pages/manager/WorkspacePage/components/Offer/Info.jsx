@@ -3,16 +3,13 @@ import React from 'react'
 
 import { ManagerOfferContext } from 'core/context'
 import { ROUTES } from 'router/routes'
-import { setHash } from './utils'
+import { encrypt } from 'core/utils'
 
 export default function Info() {
   const { offer, handle } = React.useContext(ManagerOfferContext)
 
-  const hash = setHash(offer)
-  const url =
-    offer.length > 0
-      ? window.location.origin + ROUTES.OFFER.PATH + '#' + hash
-      : null
+  const hash = encrypt(JSON.stringify(offer))
+  const url = window.location.origin + ROUTES.OFFER.PATH + '#' + hash
 
   async function handleCopy() {
     await navigator.clipboard
@@ -24,18 +21,14 @@ export default function Info() {
     <div className={styles.info}>
       <div className={styles.top}>
         <div className={styles.title}>Предложение</div>
-        {url && (
-          <button className={styles.clear} onClick={handle.clear}>
-            Очистить
-          </button>
-        )}
+        <button className={styles.clear} onClick={handle.clear}>
+          Очистить
+        </button>
       </div>
 
-      {url && (
-        <div className={styles.link} onClick={handleCopy}>
-          <span>{url}</span>
-        </div>
-      )}
+      <div className={styles.link} onClick={handleCopy}>
+        <span>{url}</span>
+      </div>
     </div>
   )
 }

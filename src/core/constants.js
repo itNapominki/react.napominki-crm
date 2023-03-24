@@ -46,8 +46,8 @@ export const OBJECT_TYPES = {
     PLURAL_VALUE: 'Крематории',
   },
   MORGUE: {
-    SINGLE_VALUE: 'Морги',
-    PLURAL_VALUE: 'Кладбища',
+    SINGLE_VALUE: 'Морг',
+    PLURAL_VALUE: 'Морги',
   },
   METRO: {
     SINGLE_VALUE: 'Метро',

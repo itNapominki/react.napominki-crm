@@ -1,43 +1,22 @@
 import styles from './Map.module.scss'
 import React from 'react'
-import ymaps from 'ymaps'
 
-export default React.memo(function Map({ setModalFor }) {
-  ymaps
-    .load()
-    .then((maps) => {
-      document.getElementById('map').innerHTML = ''
+import { Container } from './'
 
-      const map = new maps.Map('map', {
-        center: [57.9838, 44.0],
-        zoom: 5,
-      })
+import { ManagerOfferContext } from 'core/context'
 
-      const objectManager = new maps.LoadingObjectManager(
-        process.env.REACT_APP_SERVER_URL + '/api/map?bbox=%b',
-        {
-          paddingTemplate: 'myCallback_%b',
-          splitRequests: false,
-          clusterize: true,
-        }
-      )
+export default function Map() {
+  const { visibleObjects, setModalFor } = React.useContext(ManagerOfferContext)
 
-      map.geoObjects.add(objectManager)
-
-      function onObjectEvent(e) {
-        let id = e.get('objectId')
-
-        const feature = objectManager.objects.getById(id)
-
-        if (feature.properties.type === 'RESTAURANT') {
-          setModalFor(id)
-        }
-      }
-
-      objectManager.objects.events.add(['click'], onObjectEvent)
-    })
-    .then(() => console.log('map ready'))
-    .catch((error) => console.log('Failed to load Yandex Maps', error))
-
-  return <div id="map" className={styles.container}></div>
-})
+  return (
+    <React.Fragment>
+      <div
+        id="map"
+        className={styles.container}
+        data-visible-objects={visibleObjects}
+      >
+        <Container setModalFor={setModalFor} />
+      </div>
+    </React.Fragment>
+  )
+}

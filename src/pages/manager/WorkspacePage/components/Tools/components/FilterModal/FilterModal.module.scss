@@ -1,0 +1,56 @@
+.container {
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 24px 0,
+      )
+    );
+  }
+}
+
+.title {
+  @include h3;
+
+  @include desktop(
+    (
+      'margin-bottom': 12px,
+    )
+  );
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.filter {
+  @include desktop(
+    (
+      'display': flex,
+      'margin': -2px -2px 0,
+    )
+  );
+
+  &__item {
+    @include desktop(
+      (
+        'display': block,
+
+        'margin': 2px 2px 0,
+        'padding': 8px 16px,
+
+        'background': get-theme-color('input'),
+        'border-radius': $button-radius,
+
+        'color': get-theme-color('tabs-text'),
+        'font-weight': 700,
+
+        'transition': $transition-time,
+      )
+    );
+
+    &:global.active {
+      background: get-theme-color('primary');
+      color: #fff;
+    }
+  }
+}
