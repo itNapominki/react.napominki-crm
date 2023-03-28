@@ -1,28 +1,24 @@
-import './Droplist.scss'
+import styles from './Droplist.module.scss'
 import React from 'react'
 import { classNames } from 'core/utils'
 
-export default function Droplist({ items = [], className, visible, params }) {
+export default function Droplist({ items = [], className, visible }) {
   // console.log('render Droplist')
 
   return (
     <div
-      className={classNames('droplist', [className, visible ? 'visible' : ''])}
-      {...params}
+      className={classNames(styles.droplist, [className, visible && 'visible'])}
     >
-      {items.map((item, i) => {
-        return (
+      {items &&
+        items.map(({ id, text, color, onClick }) => (
           <div
-            key={i}
-            className={classNames('droplist__item', [
-              item.color ? 'droplist__item_' + item.color : '',
-            ])}
-            onClick={item.onClick}
+            key={id}
+            className={classNames(styles.droplist__item, [color])}
+            onClick={onClick}
           >
-            {item.text}
+            {text}
           </div>
-        )
-      })}
+        ))}
     </div>
   )
 }

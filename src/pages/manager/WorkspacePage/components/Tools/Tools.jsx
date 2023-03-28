@@ -1,20 +1,22 @@
 import styles from './Tools.module.scss'
 import React from 'react'
 
-import { Input } from 'components/general'
 import { FilterModal } from './components'
-import { Button } from './'
+import { Button, Search } from './'
+
+import { ManagerOfferContext } from 'core/context'
 
 import iconFilter from 'assets/sprites/filter.svg'
 
 export default function Tools() {
-  const [filterVisible, setFilterVisible] = React.useState(false)
+  const { filterVisible, setFilterVisible } =
+    React.useContext(ManagerOfferContext)
 
   return (
     <React.Fragment>
       <div className={styles.container}>
         <div className={styles.row}>
-          <Input label="Поиск" bigLabel className={styles.input} />
+          <Search />
           <Button icon={iconFilter} onClick={() => setFilterVisible(true)} />
         </div>
       </div>

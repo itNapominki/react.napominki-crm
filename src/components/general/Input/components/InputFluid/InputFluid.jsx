@@ -12,6 +12,7 @@ export default function InputFluid(data) {
     mask,
     name,
     placeholder,
+    ...props
   } = data
 
   const [value, setValue] = useInput(defaultValue, onInput)
@@ -40,6 +41,7 @@ export default function InputFluid(data) {
       value={value}
       onInput={handleInput}
       placeholder={placeholder}
+      {...props}
     />
   )
 }

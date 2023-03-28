@@ -5,7 +5,7 @@ import { Layout } from 'components/general'
 import { Map, Offer, RestaurantModal, Tools } from './components'
 
 import { ManagerOfferContext } from 'core/context'
-import { useHandlers } from './hooks'
+import { useHandlers, useSearch } from './hooks'
 import { OBJECT_TYPES } from 'core/constants'
 
 export default function WorkspacePage() {
@@ -14,8 +14,20 @@ export default function WorkspacePage() {
   const [modalFor, setModalFor] = React.useState()
   const [offer, handle] = useHandlers()
 
+  const [filterVisible, setFilterVisible] = React.useState(false)
   const [visibleObjects, setVisibleObjects] = React.useState(
     Object.keys(OBJECT_TYPES)
+  )
+  const [radiusFilter, setRadiusFilter] = React.useState({})
+
+  const [search, setSearch] = React.useState('')
+
+  const [mapSettings, setMapSettings] = React.useState({})
+
+  const [searched, searchedVisible, setSearchedVisible] = useSearch(
+    search,
+    setMapSettings,
+    setModalFor
   )
 
   return (
@@ -26,6 +38,16 @@ export default function WorkspacePage() {
         setModalFor,
         visibleObjects,
         setVisibleObjects,
+        radiusFilter,
+        setRadiusFilter,
+        filterVisible,
+        setFilterVisible,
+        setSearch,
+        searched,
+        mapSettings,
+        setMapSettings,
+        searchedVisible,
+        setSearchedVisible,
       }}
     >
       <Layout>

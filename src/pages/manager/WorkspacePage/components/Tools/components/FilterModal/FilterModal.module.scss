@@ -54,3 +54,29 @@
     }
   }
 }
+
+.radiusButtons {
+  @include desktop(
+    (
+      'margin': 16px -16px 0,
+
+      'display': flex,
+    )
+  );
+
+  button {
+    @include desktop(
+      (
+        'margin': 0 16px,
+      )
+    );
+
+    &:nth-child(1) {
+      @include link;
+    }
+
+    &:nth-child(2) {
+      @include link(get-theme-color('error'));
+    }
+  }
+}

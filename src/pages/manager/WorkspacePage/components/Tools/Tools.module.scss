@@ -13,13 +13,23 @@
   );
 }
 
-.input {
+.search {
   @include desktop(
     (
+      'position': relative,
+
       'flex-grow': 1,
       'margin': 0 10px,
     )
   );
+
+  &__droplist {
+    @include desktop(
+      (
+        'width': 100%,
+      )
+    );
+  }
 }
 
 .button {

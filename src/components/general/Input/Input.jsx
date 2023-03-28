@@ -20,6 +20,7 @@ export default React.memo(
         mask,
         name,
         placeholder,
+        ...props
       },
       ref
     ) => {
@@ -42,6 +43,7 @@ export default React.memo(
             value={value}
             mask={mask}
             placeholder={placeholder}
+            {...props}
           />
 
           <InputBottom action={action} error={error} errorDown={errorDown} />

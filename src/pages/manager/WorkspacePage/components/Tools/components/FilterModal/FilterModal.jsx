@@ -2,8 +2,15 @@ import styles from './FilterModal.module.scss'
 import React from 'react'
 
 import { Modal } from 'components/general'
-import { Group, Show } from './'
+import { Radius, VisibleObjects } from './'
+
+import { ManagerOfferContext } from 'core/context'
+import { handleFilterObjects } from './handlers'
+
 export default function FilterModal({ onClose }) {
+  const { visibleObjects, setVisibleObjects } =
+    React.useContext(ManagerOfferContext)
+
   return (
     <Modal.Container onClose={onClose}>
       <Modal.ModalSide
@@ -11,9 +18,13 @@ export default function FilterModal({ onClose }) {
         onClose={onClose}
       >
         <div className={styles.container}>
-          <Group title="Объекты">
-            <Show />
-          </Group>
+          <VisibleObjects
+            visibleObjects={visibleObjects}
+            onFilter={(checkActive, key) =>
+              handleFilterObjects(setVisibleObjects, checkActive, key)
+            }
+          />
+          <Radius />
         </div>
       </Modal.ModalSide>
     </Modal.Container>
