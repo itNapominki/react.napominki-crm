@@ -28,7 +28,7 @@ export default function Info() {
         </button>
       </div>
 
-      <div className={styles.link} onClick={handleCopy}>
+      <div className={styles.link}>
         <a href={url} target="_blank">
           {url}
         </a>
