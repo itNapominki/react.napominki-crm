@@ -70,5 +70,24 @@ export default function useHandlers() {
     )
   }
 
-  return [offer, { add, clear, remove, update }]
+  function sort(id, direction) {
+    setOffer((prev) => {
+      const arr = prev
+
+      const index = prev.findIndex((restaurant) => restaurant.id === id)
+      const siblingIndex = direction === 'UP' ? index - 1 : index + 1
+
+      function swap(arr, a, b) {
+        return arr.map((current, idx) => {
+          if (idx === a) return arr[b]
+          if (idx === b) return arr[a]
+          return current
+        })
+      }
+
+      return swap(arr, index, siblingIndex)
+    })
+  }
+
+  return [offer, { add, clear, remove, update, sort }]
 }

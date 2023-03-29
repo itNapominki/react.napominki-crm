@@ -1,6 +1,12 @@
 .container {
   @include card;
 
+  @include desktop(
+    (
+      'position': relative,
+    )
+  );
+
   :global .separator {
     @include desktop(
       (
@@ -108,6 +114,83 @@
     @include desktop(
       (
         'margin': 8px 16px 0,
+      )
+    );
+  }
+}
+
+.sortButton {
+  $self: &;
+
+  @include desktop(
+    (
+      'position': absolute,
+      'z-index': 2,
+
+      'left': 50%,
+      'margin-left': -16px,
+
+      'width': 32px,
+      'height': 32px,
+
+      'background': get-theme-color('input'),
+      'border': 4px solid #fff,
+      'border-radius': 50%,
+
+      'opacity': 0,
+      'visibility': hidden,
+    )
+  );
+
+  &:nth-child(1) {
+    @include desktop(
+      (
+        'top': -10px,
+
+        'transform': scaleY(-1),
+      )
+    );
+  }
+
+  &:nth-child(2) {
+    @include desktop(
+      (
+        'bottom': -10px,
+      )
+    );
+  }
+
+  @debug $self;
+
+  .container:hover & {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .container:first-child &:first-child {
+    display: none;
+  }
+
+  .container:last-child &:last-child {
+    display: none;
+  }
+
+  &:hover {
+    background: get-theme-color('primary');
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+  svg {
+    @include desktop(
+      (
+        'width': 8px,
+        'height': 100%,
+
+        'fill': get-theme-color('tabs-text'),
+        'transition': inherit,
       )
     );
   }

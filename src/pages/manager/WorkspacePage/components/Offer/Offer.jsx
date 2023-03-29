@@ -14,14 +14,16 @@ export default function Offer() {
       <React.Fragment>
         <Info />
 
-        {offer.map((hall) => (
-          <OfferCard
-            key={hall.id}
-            className={styles.card}
-            hall={hall}
-            mode="MANAGER"
-          />
-        ))}
+        <div>
+          {offer.map((hall) => (
+            <OfferCard
+              key={hall.id}
+              className={styles.card}
+              hall={hall}
+              mode="MANAGER"
+            />
+          ))}
+        </div>
       </React.Fragment>
     )
   )
