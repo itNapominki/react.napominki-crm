@@ -11,11 +11,13 @@ export default function Info() {
   const hash = encrypt(JSON.stringify(offer))
   const url = window.location.origin + ROUTES.OFFER.PATH + '#' + hash
 
-  async function handleCopy() {
-    await navigator.clipboard
-      .writeText(url)
-      .then(() => alert('Предложение скопировано'))
-  }
+  // async function handleCopy(e) {
+  //   e.preventDefault()
+
+  //   await navigator.clipboard
+  //     .writeText(url)
+  //     .then(() => alert('Предложение скопировано'))
+  // }
 
   return (
     <div className={styles.info}>
@@ -27,7 +29,9 @@ export default function Info() {
       </div>
 
       <div className={styles.link} onClick={handleCopy}>
-        <span>{url}</span>
+        <a href={url} target="_blank">
+          {url}
+        </a>
       </div>
     </div>
   )
