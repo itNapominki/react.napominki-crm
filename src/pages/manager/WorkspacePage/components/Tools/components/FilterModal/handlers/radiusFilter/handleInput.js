@@ -4,6 +4,5 @@ export default function handleInput(setRadiusFilter, value) {
   setRadiusFilter((prev) => ({
     ...prev,
     radius,
-    status: prev.status === 'UPDATED' ?  'READY' : prev.radius && 'UPDATED',
   }))
 }

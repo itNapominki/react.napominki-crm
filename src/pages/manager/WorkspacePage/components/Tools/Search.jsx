@@ -12,7 +12,7 @@ export default function Search() {
   return (
     <div className={styles.search}>
       <Input
-        label="Поиск"
+        label="Поиск по ресторанам"
         bigLabel
         onInput={setSearch}
         onFocus={() => searched.length > 0 && setSearchedVisible(true)}

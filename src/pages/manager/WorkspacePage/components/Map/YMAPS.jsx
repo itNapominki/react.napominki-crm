@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { checkDataChanges } from './utils'
-import { handleAddRadiusPoint } from './handlers'
+import { createSearchControl } from './controls'
+import { handleAddRadiusPoint, handleFeatureClick } from './handlers'
+import { createObjectManager, checkDataChanges, clusterPieChart } from './utils'
 
 export default React.memo(function YMAPS({
   setModalFor,
@@ -20,65 +21,33 @@ export default React.memo(function YMAPS({
 
       const map = new ymaps.Map(ID, {
         center: [57.9838, 44.0],
-        zoom: 5,
+        zoom: 12,
         controls: [
           'fullscreenControl',
           'zoomControl',
           'rulerControl',
           'routeButtonControl',
-          'searchControl',
         ],
       })
 
-      const objectManager = new ymaps.LoadingObjectManager(
-        process.env.REACT_APP_SERVER_URL + '/api/map?bbox=%b',
-        {
-          paddingTemplate: 'myCallback_%b',
-          splitRequests: false,
-          clusterize: true,
-        }
-      )
+      map.setBounds([
+        [55.55945544545429, 37.13268871914181],
+        [55.946698202860325, 38.085747336675574],
+      ])
 
+      map.margin.setDefaultMargin(100)
+
+      const searchControl = createSearchControl(ymaps, map)
+      map.controls.add(searchControl)
+
+      const objectManager = createObjectManager(ymaps)
       map.geoObjects.add(objectManager)
 
-      objectManager.clusters.events.add('add', (e) => {
-        const id = e.get('objectId')
-        const cluster = objectManager.clusters.getById(id)
-        const features = cluster.properties.geoObjects
+      clusterPieChart(objectManager)
 
-        const data = [
-          { weight: 0, color: '#26B91C' },
-          { weight: 0, color: '#384588' },
-          { weight: 0, color: '#E8EC2F' },
-          { weight: 0, color: '#DF9423' },
-          { weight: 0, color: '#C82929' },
-          { weight: 0, color: '#4D516C' },
-        ]
-
-        objectManager.clusters.setClusterOptions(id, {
-          clusterIconLayout: 'default#pieChart',
-        })
-
-        features.forEach((feature) => {
-          const priority = feature.properties.priority - 1 || 5
-
-          data[priority].weight += 1
-        })
-
-        cluster.properties.data = data
-      })
-
-      function onObjectEvent(e) {
-        let id = e.get('objectId')
-
-        const feature = objectManager.objects.getById(id)
-
-        if (feature.properties.type === 'RESTAURANT') {
-          setModalFor(id)
-        }
-      }
-
-      objectManager.objects.events.add('click', onObjectEvent)
+      objectManager.objects.events.add('click', (e) =>
+        handleFeatureClick(e, objectManager, setModalFor)
+      )
 
       checkDataChanges($container, 'data-visible-objects', (value) => {
         objectManager.setFilter((object) => {
@@ -114,18 +83,8 @@ export default React.memo(function YMAPS({
           return map.events.add('click', onClick)
         }
 
-        if (status === 'UPDATED' && circleRef.current) {
-          circleRef.current.geometry.setRadius(radius)
-
-          return setRadiusFilter((prev) => ({ ...prev, status: 'READY' }))
-        }
-
-        if (status === 'READY' && circleRef.current) {
-          objectManager.setFilter((object) => {
-            const { coordinates } = object.geometry
-
-            return circleRef.current.geometry.contains(coordinates)
-          })
+        if (circleRef.current) {
+          return circleRef.current.geometry.setRadius(radius)
         }
 
         if (!status) {
