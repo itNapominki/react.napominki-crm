@@ -19,6 +19,12 @@
     )
   );
 
+  @include mobile(
+    (
+      'margin-top': 20px,
+    )
+  );
+
   &__gallery {
     @include desktop(
       (
@@ -41,6 +47,12 @@
           'margin': 0 10px,
         )
       );
+
+      @include mobile(
+        (
+          'width': calc(100vw - 80px),
+        )
+      );
     }
 
     img {
@@ -48,6 +60,12 @@
         (
           'height': 260px,
           'width': 100%,
+        )
+      );
+
+      @include mobile(
+        (
+          'height': initial,
         )
       );
     }
@@ -62,6 +80,10 @@
         'margin-top': -30px,
       )
     );
+
+    &[disabled] {
+      display: none;
+    }
 
     &[data-direction='prev'] {
       @include desktop(

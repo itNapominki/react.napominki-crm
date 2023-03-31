@@ -11,7 +11,9 @@ import { useGetData } from './hooks'
 export default function RestaurantModal({ id, onClose }) {
   const { handle, offer } = React.useContext(ManagerOfferContext)
 
-  const [added, setAdded] = React.useState(offer.find((rest) => rest.id === id))
+  const [added, setAdded] = React.useState(
+    offer.restaurants.find((rest) => rest.id === id)
+  )
   const [halls, setHalls] = React.useState(added ? added.halls : [])
   const [menus, setMenus] = React.useState(added ? added.menus : [])
 

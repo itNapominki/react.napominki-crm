@@ -13,26 +13,26 @@ export default function RestaurantPage() {
   const { id } = useParams()
   const { hash } = useLocation()
   const decrypted = hash && JSON.parse(decrypt(hash.replace('#', '')))
-  // const [searchParams] = useSearchParams()
-  // const managerId = searchParams.get('manager_id')
 
   const [restaurant, setRestaurant] = React.useState()
-  const [manager, setManager] = React.useState()
+  const [manager, setManager] = React.useState({})
 
   React.useEffect(() => {
     api
       .getOne({ model: MODELS.RESTAURANT.VALUE, id })
       .then(({ data }) => setRestaurant(data))
 
-    // if (managerId) {
-    //   api
-    //     .getOne({ model: MODELS.USER.VALUE, id: managerId })
-    //     .then(({ data }) => setManager(data))
-    // }
+    if (decrypted.managerId) {
+      api
+        .getOne({ model: MODELS.USER.VALUE, id: decrypted.managerId })
+        .then(({ data }) => setManager(data))
+    }
   }, [])
 
   return (
-    <ClientRestaurantContext.Provider value={{ restaurant, decrypted }}>
+    <ClientRestaurantContext.Provider
+      value={{ restaurant, decrypted, manager }}
+    >
       <ClientLayout manager={manager} className={styles.container}>
         {restaurant && (
           <React.Fragment>
@@ -40,7 +40,10 @@ export default function RestaurantPage() {
             <Halls />
             <Menus />
             <Map coordinates={restaurant.point.coordinates} />
-            <Offer title="Чтобы выбрать этот филиал, напишите своему менеджеру" />
+            <Offer
+              title="Чтобы выбрать этот филиал, напишите своему менеджеру"
+              messengers={manager.messengers}
+            />
           </React.Fragment>
         )}
       </ClientLayout>

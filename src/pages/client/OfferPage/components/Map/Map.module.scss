@@ -1,8 +1,14 @@
 .container {
   @include desktop(
     (
-      'margin-top': 40px,
+      'margin-top': 20px,
       'height': 600px,
+    )
+  );
+
+  @include mobile(
+    (
+      'height': 80vh,
     )
   );
 }

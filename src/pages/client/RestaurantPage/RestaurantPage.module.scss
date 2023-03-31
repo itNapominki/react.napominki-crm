@@ -5,10 +5,22 @@
     )
   );
 
+  @include mobile(
+    (
+      'font-size': 14px,
+    )
+  );
+
   :global .separator {
     @include desktop(
       (
         'margin': 32px 0,
+      )
+    );
+
+    @include mobile(
+      (
+        'margin': 20px 0,
       )
     );
   }

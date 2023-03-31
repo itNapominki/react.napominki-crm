@@ -1,8 +1,6 @@
 .tabs {
   @include desktop(
     (
-      'padding': 4px,
-
       'background': #fff,
       'border-radius': $tabs-radius,
     )
@@ -13,6 +11,7 @@
       (
         'display': flex,
         'margin': 0 -2px,
+        'padding': 4px,
         'max-width': fit-content,
       )
     );

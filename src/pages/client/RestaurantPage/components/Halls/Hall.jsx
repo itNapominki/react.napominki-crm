@@ -8,10 +8,12 @@ export default function Hall({ data }) {
   const { comment, gallery, info } = data
   const sliderRef = React.useRef()
 
+  const WINDOW_WIDTH = window.width
+
   return (
     <div className={styles.hall}>
       <div className={styles.hall__gallery}>
-        {gallery.length > 3 && (
+        {
           <React.Fragment>
             <SliderArrow
               sliderRef={sliderRef}
@@ -24,7 +26,7 @@ export default function Hall({ data }) {
               direction="next"
             />
           </React.Fragment>
-        )}
+        }
         <Swiper
           slidesPerView="auto"
           onBeforeInit={(swiper) => (sliderRef.current = swiper)}
@@ -38,7 +40,11 @@ export default function Hall({ data }) {
       </div>
       {info && <List list={info} className={styles.hall__list} />}
       {comment && (
-        <Comment className={styles.hall__comment} text={comment} show={400} />
+        <Comment
+          className={styles.hall__comment}
+          text={comment}
+          show={WINDOW_WIDTH > 650 ? 400 : 200}
+        />
       )}
       <Separator />
     </div>

@@ -1,20 +1,11 @@
-import React from 'react'
-import { HandySvg } from 'handy-svg'
-import { Button } from 'components'
-
 import styles from './ClientHeader.module.scss'
+import React from 'react'
 
-import whatsappIcon from 'assets/sprites/whatsapp.svg'
-import telegramIcon from 'assets/sprites/telegram.svg'
-import viberIcon from 'assets/sprites/viber.svg'
-
-const socialClassName = (messenger) => {
-  return `${styles.socialItem} ${
-    styles['socialItem_' + messenger.toLowerCase()]
-  }`
-}
+import { Messengers } from './'
 
 export default function ClientHeader({ manager }) {
+  const { firstName, phone, messengers } = manager
+
   return (
     <div className={styles.container}>
       <div className="wrapper">
@@ -27,29 +18,19 @@ export default function ClientHeader({ manager }) {
             с&nbsp;2010&nbsp;г.
           </div>
 
-          {manager && (
+          {phone && (
             <div className={styles.manager}>
-              {manager.firstName} — {manager.phone}
+              {firstName} — <a href={`tel:${phone}`}>{phone}</a>
             </div>
           )}
 
-          <div className={styles.social}>
-            <a href="#" className={socialClassName('whatsapp')}>
-              <HandySvg src={whatsappIcon} />
-            </a>
-            <a href="#" className={socialClassName('telegram')}>
-              <HandySvg src={telegramIcon} />
-            </a>
-            <a href="#" className={socialClassName('viber')}>
-              <HandySvg src={viberIcon} />
-            </a>
-          </div>
+          <Messengers messengers={messengers} />
 
-          <Button
+          {/* <Button
             mode="light"
             text="Заказать звонок"
             className={styles.callback}
-          />
+          /> */}
         </div>
       </div>
     </div>

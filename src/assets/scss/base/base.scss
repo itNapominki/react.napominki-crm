@@ -58,6 +58,12 @@ img {
       'margin': 0 auto,
     )
   );
+
+  @include mobile(
+    (
+      'padding': 0 20px,
+    )
+  );
 }
 
 .row {

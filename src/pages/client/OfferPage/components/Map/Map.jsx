@@ -3,15 +3,9 @@ import React from 'react'
 import ymaps from 'ymaps'
 
 export default function Map({ points }) {
-  const center =
-    points.length === 1
-      ? points[0].coordinates
-      : points
-          ?.reduce((prev, next) => [
-            prev.coordinates[0] + next.coordinates[0],
-            prev.coordinates[1] + next.coordinates[1],
-          ])
-          .map((coordinate) => coordinate / points.length)
+  if (points.length === 0) {
+    return
+  }
 
   ymaps
     .load()
@@ -19,8 +13,9 @@ export default function Map({ points }) {
       document.getElementById('map').innerHTML = ''
 
       const map = new maps.Map('map', {
-        center,
+        center: points[0].coordinates,
         zoom: 12,
+        controls: ['zoomControl'],
       })
 
       const objectManager = new maps.ObjectManager()
@@ -45,8 +40,10 @@ export default function Map({ points }) {
       map.geoObjects.add(objectManager)
 
       if (points.length > 1) {
-        map.setBounds(map.geoObjects.getBounds())
-        map.margin.setDefaultMargin(100)
+        map.setBounds(map.geoObjects.getBounds(), {
+          checkZoomRange: true,
+          zoomMargin: 10,
+        })
       }
     })
     .then(() => console.log('map ready'))

@@ -6,35 +6,44 @@
       'padding': 40px,
     )
   );
+
+  @include mobile(
+    (
+      'padding': 20px,
+    )
+  );
 }
 
 @mixin input {
 }
 
-@mixin list {
-  @include desktop(
-    (
-      'position': relative,
-      'padding-left': 18px,
-    )
-  );
-
-  &:before {
+@mixin list($pl: 18px, $dotSize: 6px, $dotTop: 6px, $mt: 10px) {
+  li {
     @include desktop(
       (
-        'position': absolute,
-        'content': '',
-
-        'top': 6px,
-        'left': 0,
-
-        'width': 6px,
-        'height': 6px,
-
-        'background': get-theme-color('primary'),
-        'border-radius': 50%,
+        'position': relative,
+        'padding-left': $pl,
+        'margin-top': $mt,
       )
     );
+
+    &:before {
+      @include desktop(
+        (
+          'position': absolute,
+          'content': '',
+
+          'top': $dotTop,
+          'left': 0,
+
+          'width': $dotSize,
+          'height': $dotSize,
+
+          'background': get-theme-color('primary'),
+          'border-radius': 50%,
+        )
+      );
+    }
   }
 }
 
@@ -43,6 +52,12 @@
     (
       'font-size': 36px,
       'font-weight': 700,
+    )
+  );
+
+  @include mobile(
+    (
+      'font-size': 24px,
     )
   );
 }
@@ -54,6 +69,12 @@
       'font-weight': 700,
     )
   );
+
+  @include mobile(
+    (
+      'font-size': 18px,
+    )
+  );
 }
 
 @mixin h3 {
@@ -63,12 +84,20 @@
       'font-weight': 700,
     )
   );
+
+  @include mobile(
+    (
+      'font-size': 14px,
+    )
+  );
 }
 
 @mixin link($color: get-theme-color('link')) {
   @include desktop(
     (
       'position': relative,
+
+      'padding-bottom': 4px,
 
       'color': $color,
 
@@ -83,7 +112,7 @@
         'position': absolute,
         'content': '',
 
-        'bottom': -4px,
+        'bottom': 0,
         'left': 0,
         'right': 0,
 
@@ -144,12 +173,13 @@
 
 @mixin desktop($properties) {
   $maxWidth: map-get($grid-breakpoints, 'lg');
+  $minWidth: map-get($grid-breakpoints, 'xs');
 
   @each $property, $value in $properties {
     #{$property}: $value;
   }
 
-  @media (max-width: $maxWidth) {
+  @media (min-width: $minWidth) and (max-width: $maxWidth) {
     @each $property, $value in $properties {
       @if (type-of($value) == 'list') {
         $list: ();

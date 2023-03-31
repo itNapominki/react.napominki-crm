@@ -14,7 +14,7 @@ export default function OfferPage() {
   const { hash } = useLocation()
   const decrypted = JSON.parse(decrypt(hash.replace('#', '')))
 
-  const [restaurants] = useGetData(decrypted)
+  const [restaurants, manager] = useGetData(decrypted)
 
   const points = restaurants?.map(({ id, point }) => ({
     id,
@@ -22,8 +22,8 @@ export default function OfferPage() {
   }))
 
   return (
-    <ClientOfferContext.Provider value={{ restaurants, decrypted }}>
-      <ClientLayout manager={undefined}>
+    <ClientOfferContext.Provider value={{ restaurants, decrypted, manager }}>
+      <ClientLayout manager={manager}>
         <div className={styles.title}>Эти заведения вам подходят:</div>
 
         <Spinner show={!restaurants} />

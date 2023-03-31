@@ -7,6 +7,12 @@
       'background': #fff,
     )
   );
+
+  @include mobile(
+    (
+      'margin': 20px,
+    )
+  );
 }
 
 .row {
@@ -16,12 +22,25 @@
       'align-items': center,
     )
   );
+
+  @include mobile(
+    (
+      'display': block,
+    )
+  );
 }
 
 .logo {
   @include desktop(
     (
       'width': 130px,
+    )
+  );
+
+  @include mobile(
+    (
+      'width': 120px,
+      'margin': 0 auto,
     )
   );
 }
@@ -35,20 +54,37 @@
       'font-size': 12px,
     )
   );
+
+  @include mobile(
+    (
+      'display': none,
+    )
+  );
 }
 
 .manager {
   @include desktop(
     (
-      'margin-right': 20px,
       'font-weight': 700,
     )
   );
 
+  @include mobile(
+    (
+      'margin-top': 10px,
+
+      'text-align': center,
+    )
+  );
+
+  a {
+    color: inherit;
+  }
+
   &:before {
     @include desktop(
       (
-        'content': 'Ваш менеджер:',
+        'content': 'Ваш менеджер: ',
 
         'display': block,
         'margin-bottom': 6px,
@@ -57,53 +93,79 @@
         'font-weight': 400,
       )
     );
+
+    @include mobile(
+      (
+        'margin-bottom': 2px,
+      )
+    );
   }
 }
 
 .social {
   @include desktop(
     (
-      'display': flex,
-      'margin': 0 -4px,
+      'margin-left': 20px,
     )
   );
-}
 
-.socialItem {
-  @include desktop(
+  @include mobile(
     (
-      'margin': 0 4px,
-
-      'width': 40px,
-      'height': 40px,
-
-      'border-radius': 50%,
-
-      'text-align': center,
+      'margin': 10px 0,
     )
   );
 
-  svg {
+  &__row {
     @include desktop(
       (
-        'width': 14px,
-        'height': 100%,
+        'display': flex,
+        'margin': 0 -4px,
+      )
+    );
 
-        'fill': #fff,
+    @include mobile(
+      (
+        'justify-content': center,
       )
     );
   }
 
-  &_whatsapp {
-    background: get-theme-gradient('whatsapp');
-  }
+  &__item {
+    @include desktop(
+      (
+        'margin': 0 4px,
 
-  &_telegram {
-    background: get-theme-gradient('telegram');
-  }
+        'width': 40px,
+        'height': 40px,
 
-  &_viber {
-    background: get-theme-gradient('viber');
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+
+    &_whatsapp {
+      background: get-theme-gradient('whatsapp');
+    }
+
+    &_telegram {
+      background: get-theme-gradient('telegram');
+    }
+
+    &_viber {
+      background: get-theme-gradient('viber');
+    }
   }
 }
 

@@ -18,75 +18,96 @@
   );
 }
 
-.socialRow {
+.social {
   @include desktop(
     (
       'display': flex,
-      'margin': 0 -16px,
+      'flex-wrap': wrap,
+      'margin': -16px -16px 0,
     )
   );
-}
 
-.socialItem {
-  @include desktop(
+  @include mobile(
     (
-      'display': flex,
-      'align-items': center,
-
-      'margin': 0 16px,
-
-      'border-radius': 50%,
-
-      'text-align': center,
-      'color': inherit,
-    )
-  );
-}
-.socialItemText {
-  @include desktop(
-    (
-      'padding-bottom': 2px,
-      'border-bottom': 1px solid rgba(get-theme-color('default'), 0.2),
-      'font-size': 12px,
-    )
-  );
-}
-
-.socialIcon {
-  @include desktop(
-    (
-      'flex-shrink': 0,
-      'margin-right': 8px,
-
-      'width': 40px,
-      'height': 40px,
-
-      'border-radius': 50%,
-
-      'text-align': center,
+      'margin': 16px -4px,
     )
   );
 
-  svg {
+  &__item {
     @include desktop(
       (
-        'width': 14px,
-        'height': 100%,
+        'display': flex,
+        'align-items': center,
 
-        'fill': #fff,
+        'margin': 16px 16px 0,
+
+        'border-radius': 50%,
+
+        'text-align': center,
+        'color': inherit,
+      )
+    );
+
+    @include mobile(
+      (
+        'margin': 0 4px,
       )
     );
   }
 
-  &_whatsapp {
-    background: get-theme-gradient('whatsapp');
+  &__text {
+    @include desktop(
+      (
+        'margin-left': 8px,
+        'padding-bottom': 2px,
+
+        'border-bottom': 1px solid rgba(get-theme-color('default'), 0.2),
+        'font-size': 12px,
+      )
+    );
+
+    @include mobile(
+      (
+        'display': none,
+      )
+    );
   }
 
-  &_telegram {
-    background: get-theme-gradient('telegram');
-  }
+  &__icon {
+    @include desktop(
+      (
+        'flex-shrink': 0,
 
-  &_viber {
-    background: get-theme-gradient('viber');
+        'width': 40px,
+        'height': 40px,
+
+        'border-radius': 50%,
+
+        'text-align': center,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 14px,
+          'height': 100%,
+
+          'fill': #fff,
+        )
+      );
+    }
+
+    &_whatsapp {
+      background: get-theme-gradient('whatsapp');
+    }
+
+    &_telegram {
+      background: get-theme-gradient('telegram');
+    }
+
+    &_viber {
+      background: get-theme-gradient('viber');
+    }
   }
 }

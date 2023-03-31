@@ -7,15 +7,17 @@ import { Info } from './'
 import { ManagerOfferContext } from 'core/context'
 
 export default function Offer() {
-  const { offer } = React.useContext(ManagerOfferContext)
+  const {
+    offer: { restaurants },
+  } = React.useContext(ManagerOfferContext)
 
   return (
-    offer.length > 0 && (
+    restaurants.length > 0 && (
       <React.Fragment>
         <Info />
 
         <div>
-          {offer.map((hall) => (
+          {restaurants.map((hall) => (
             <OfferCard
               key={hall.id}
               className={styles.card}

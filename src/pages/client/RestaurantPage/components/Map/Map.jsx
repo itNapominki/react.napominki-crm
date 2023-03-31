@@ -11,6 +11,7 @@ export default function Map({ coordinates }) {
       const map = new maps.Map('map', {
         center: coordinates,
         zoom: 12,
+        controls: ['zoomControl'],
       })
 
       const placemark = new maps.Placemark(

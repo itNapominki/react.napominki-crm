@@ -1,5 +1,6 @@
 import styles from './WorkspacePage.module.scss'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { Layout } from 'components/general'
 import { Map, Offer, RestaurantModal, Tools } from './components'
@@ -11,8 +12,10 @@ import { OBJECT_TYPES } from 'core/constants'
 export default function WorkspacePage() {
   console.log('render WorkspacePage')
 
+  const user = useSelector((state) => state.user.value)
+
   const [modalFor, setModalFor] = React.useState()
-  const [offer, handle] = useHandlers()
+  const [offer, handle] = useHandlers(user)
 
   const [filterVisible, setFilterVisible] = React.useState(false)
   const [visibleObjects, setVisibleObjects] = React.useState(

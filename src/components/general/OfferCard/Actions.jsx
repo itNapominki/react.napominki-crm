@@ -13,7 +13,10 @@ export default function Actions({ mode, id }) {
     mode === 'CLIENT' && React.useContext(ClientOfferContext)
 
   const { halls, menus } =
-    mode === 'CLIENT' && decrypted.find((restaurant) => restaurant.id === id)
+    mode === 'CLIENT' &&
+    decrypted.restaurants.find((restaurant) => restaurant.id === id)
+
+  const { managerId } = mode === 'CLIENT' && decrypted
 
   return (
     <div className={styles.actions}>
@@ -28,7 +31,7 @@ export default function Actions({ mode, id }) {
         <a
           href={[
             ROUTES.RESTAURANT.PATH.replace(':id', id),
-            encrypt(JSON.stringify({ halls, menus })),
+            encrypt(JSON.stringify({ halls, menus, managerId })),
           ].join('#')}
           target="_blank"
         >

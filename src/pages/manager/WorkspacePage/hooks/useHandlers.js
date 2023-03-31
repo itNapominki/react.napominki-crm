@@ -1,7 +1,13 @@
 import React from 'react'
 
-export default function useHandlers() {
-  const [offer, setOffer] = React.useState([])
+export default function useHandlers(user) {
+  const [offer, setOffer] = React.useState({ restaurants: [] })
+
+  React.useEffect(() => {
+    if (user) {
+      setOffer((prev) => ({ ...prev, managerId: user.id }))
+    }
+  }, [user])
 
   function add(data, halls, menus, setAdded) {
     const {
@@ -21,28 +27,36 @@ export default function useHandlers() {
       return alert('Добавьте хотя бы 1 меню')
     }
 
-    setOffer((prev) => [
+    setOffer((prev) => ({
       ...prev,
-      {
-        id,
-        preview,
-        title,
-        cardTitle,
-        address,
-        halls,
-        menus,
-        clientInfo: { relatedMetro },
-      },
-    ])
+      restaurants: [
+        ...prev.restaurants,
+        {
+          id,
+          preview,
+          title,
+          cardTitle,
+          address,
+          halls,
+          menus,
+          clientInfo: { relatedMetro },
+        },
+      ],
+    }))
     setAdded(true)
   }
 
   function clear() {
-    setOffer([])
+    setOffer((prev) => ({ ...prev, restaurants: [] }))
   }
 
   function remove(id, setAdded) {
-    setOffer((prev) => prev.filter((restaurant) => restaurant.id !== id))
+    setOffer((prev) => ({
+      ...prev,
+      restaurants: prev.restaurants.filter(
+        (restaurant) => restaurant.id !== id
+      ),
+    }))
 
     if (setAdded) {
       setAdded(false)
@@ -58,23 +72,24 @@ export default function useHandlers() {
       return alert('Добавьте хотя бы 1 меню')
     }
 
-    setOffer((prev) =>
-      prev.map((restaurant) => {
+    setOffer((prev) => ({
+      ...prev,
+      restaurants: prev.restaurants.map((restaurant) => {
         if (restaurant.id === id) {
           restaurant.halls = halls
           restaurant.menus = menus
         }
 
         return restaurant
-      })
-    )
+      }),
+    }))
   }
 
   function sort(id, direction) {
     setOffer((prev) => {
-      const arr = prev
+      const arr = prev.restaurants
 
-      const index = prev.findIndex((restaurant) => restaurant.id === id)
+      const index = arr.findIndex((restaurant) => restaurant.id === id)
       const siblingIndex = direction === 'UP' ? index - 1 : index + 1
 
       function swap(arr, a, b) {
@@ -85,7 +100,7 @@ export default function useHandlers() {
         })
       }
 
-      return swap(arr, index, siblingIndex)
+      return { ...prev, restaurants: swap(arr, index, siblingIndex) }
     })
   }
 

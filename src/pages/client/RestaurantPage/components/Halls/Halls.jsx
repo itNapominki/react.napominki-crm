@@ -11,6 +11,7 @@ export default function Halls() {
   const {
     restaurant: { halls },
     decrypted,
+    manager,
   } = React.useContext(ClientRestaurantContext)
 
   const shown = decrypted
@@ -27,13 +28,14 @@ export default function Halls() {
     <div className={styles.container}>
       <div className={styles.title}>Поминальные залы</div>
       <Separator />
-      <Tabs buttons={TABS}>
+      <Tabs buttons={TABS} className={styles.tabs}>
         {shown.map((hall, i) => (
           <Hall key={i} data={hall} />
         ))}
       </Tabs>
       <Offer
         card={false}
+        messengers={manager.messengers}
         title="Чтобы выбрать этот зал, напишите своему менеджеру"
       />
     </div>

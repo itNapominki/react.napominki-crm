@@ -1,7 +1,7 @@
 import styles from './Main.module.scss'
 import React from 'react'
 
-import { Features, Info } from './'
+import { Features, Info, Shedule } from './'
 
 import { ClientRestaurantContext } from 'core/context'
 
@@ -19,7 +19,8 @@ export default function Main() {
     <div className={styles.container}>
       <div className={styles.title}>{cardTitle}</div>
       <Features title={title} address={address} relatedMetro={relatedMetro} />
-      <Info title="О филиале" list={info} comment={comment} />
+      {shedule && <Shedule shedule={shedule} />}
+      <Info title="О филиале" list={info} comment={comment} shedule={shedule} />
       <Info
         title="Информация для людей с ограниченными возможностями"
         list={disabilityInfo}

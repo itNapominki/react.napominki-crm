@@ -10,14 +10,21 @@ export default function Info({ title, list, comment }) {
 
   const show = showList || showComment
 
+  const WINDOW_WIDTH = window.width
+
   return (
     show && (
       <React.Fragment>
         <Separator />
-        <div className={styles.infoTitle}>{title}</div>
+        <div className={styles.info__title}>{title}</div>
+
         {showList && <List list={list} />}
         {showComment && (
-          <Comment className={styles.comment} text={comment} show={600} />
+          <Comment
+            className={styles.comment}
+            text={comment}
+            show={WINDOW_WIDTH > 650 ? 600 : 200}
+          />
         )}
       </React.Fragment>
     )
