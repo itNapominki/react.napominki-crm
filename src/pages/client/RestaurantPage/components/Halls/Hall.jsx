@@ -2,7 +2,7 @@ import styles from './Halls.module.scss'
 import React from 'react'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Comment, List, Separator, SliderArrow } from 'components/general'
+import { Comment, List, Separator, SliderArrow } from 'components'
 
 export default function Hall({ data }) {
   const { comment, gallery, info } = data

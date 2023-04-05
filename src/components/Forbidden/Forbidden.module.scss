@@ -1,4 +1,19 @@
 .title {
   @include h1;
-  text-align: center;
+
+  @include desktop(
+    (
+      'text-align': center,
+    )
+  );
+}
+
+.container {
+  @include card;
+
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
 }

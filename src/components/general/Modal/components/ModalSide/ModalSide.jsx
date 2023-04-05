@@ -3,7 +3,7 @@ import styles from './ModalSide.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 
 import { classNames } from 'core/utils'
 

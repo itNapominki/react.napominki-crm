@@ -1,6 +1,6 @@
 import styles from './FilterModal.module.scss'
 import React from 'react'
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 
 export default function Group({ children, title }) {
   return (

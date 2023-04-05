@@ -1,7 +1,7 @@
 import styles from './AdminForm.module.scss'
 import React from 'react'
 
-import { Button } from 'components/general'
+import { Button } from 'components'
 import { Address, Contacts, Group, Inputlist, Shedule } from './components'
 
 import { classNames } from 'core/utils'

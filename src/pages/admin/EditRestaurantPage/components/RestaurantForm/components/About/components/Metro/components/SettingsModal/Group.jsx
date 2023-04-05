@@ -1,7 +1,7 @@
 import styles from './SettingsModal.module.scss'
 import React from 'react'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 import { Station } from './components'
 
 export default function Group({ stations, title }) {

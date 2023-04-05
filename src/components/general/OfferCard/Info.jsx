@@ -1,7 +1,7 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 import { Feature } from './'
 
 import iconCafe from 'assets/sprites/cafe.svg'

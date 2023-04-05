@@ -1,4 +1,6 @@
 .card {
+  @include card;
+
   position: relative;
 
   :global .separator {

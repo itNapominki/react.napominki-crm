@@ -2,7 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { ContentCard, Forbidden, Layout } from 'components/general'
+import { Layout } from 'components/general'
+import { Forbidden } from 'components'
 import { UserForm } from './components'
 
 import { EditUserContext } from 'core/context'
@@ -45,9 +46,9 @@ export default function EditUserPage() {
     >
       <Layout>
         <div className="wrapper">
-          <ContentCard>
+          <div>
             <UserForm />
-          </ContentCard>
+          </div>
         </div>
       </Layout>
     </EditUserContext.Provider>

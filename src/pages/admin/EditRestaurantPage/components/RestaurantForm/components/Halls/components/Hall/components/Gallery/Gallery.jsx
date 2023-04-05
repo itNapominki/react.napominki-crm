@@ -3,7 +3,7 @@ import React from 'react'
 import { HandySvg } from 'handy-svg'
 
 import { AdminForm } from 'components/admin'
-import { Spinner } from 'components/general'
+import { Spinner } from 'components'
 
 import { handleImageRemove, handleFilesChange } from './handlers'
 

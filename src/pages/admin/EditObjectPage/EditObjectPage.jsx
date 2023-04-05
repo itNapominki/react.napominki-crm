@@ -2,7 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { ContentCard, Forbidden, Layout } from 'components/general'
+import { Layout } from 'components/general'
+import { Forbidden } from 'components'
 import { ObjectForm } from './components'
 
 import { EditObjectContext } from 'core/context'
@@ -49,9 +50,9 @@ export default function EditObjectPage() {
     >
       <Layout>
         <div className="wrapper">
-          <ContentCard>
+          <div>
             <ObjectForm />
-          </ContentCard>
+          </div>
         </div>
       </Layout>
     </EditObjectContext.Provider>

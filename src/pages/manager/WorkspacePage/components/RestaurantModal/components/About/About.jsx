@@ -1,7 +1,7 @@
 import styles from './About.module.scss'
 import React from 'react'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 import Comment from './Comment'
 import List from './List'
 

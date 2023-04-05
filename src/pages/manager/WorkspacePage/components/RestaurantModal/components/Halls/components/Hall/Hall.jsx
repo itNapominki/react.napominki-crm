@@ -1,7 +1,7 @@
 import styles from './Hall.module.scss'
 import React from 'react'
 
-import { AddButton, Comment, List, Separator } from 'components/general'
+import { AddButton, Comment, List, Separator } from 'components'
 import { Gallery, Title } from './'
 
 export default function Hall({ hall, added, onAddClick }) {

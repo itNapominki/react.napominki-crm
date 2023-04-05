@@ -1,6 +1,6 @@
 import styles from './Main.module.scss'
 import React from 'react'
-import { Icon } from 'components/general'
+import { Icon } from 'components'
 
 import cafeIcon from 'assets/sprites/cafe.svg'
 import markerIcon from 'assets/sprites/marker.svg'

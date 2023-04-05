@@ -1,7 +1,7 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
 
-import { Icon } from 'components/general'
+import { Icon } from 'components'
 
 export default function Feature({ icon, text }) {
   return (

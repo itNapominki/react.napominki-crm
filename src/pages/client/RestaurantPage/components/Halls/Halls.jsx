@@ -1,7 +1,7 @@
 import styles from './Halls.module.scss'
 import React from 'react'
 
-import { Separator, Tabs } from 'components/general'
+import { Separator, Tabs } from 'components'
 import { Hall } from './'
 import { Offer } from '../'
 

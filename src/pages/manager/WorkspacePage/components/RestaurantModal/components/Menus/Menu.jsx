@@ -1,7 +1,7 @@
 import styles from './Menus.module.scss'
 import React from 'react'
 
-import { AddButton } from 'components/general'
+import { AddButton } from 'components'
 
 export default function Menu({ added, menu, onAddClick }) {
   const { file, deposit, persons } = menu

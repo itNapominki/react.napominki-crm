@@ -1,7 +1,8 @@
 import styles from './RestaurantModal.module.scss'
 import React from 'react'
 
-import { Modal, Spinner } from 'components/general'
+import { Spinner } from 'components'
+import { Modal } from 'components/general'
 import { About, Halls, Heading, HeaderLeft, Menus, Table } from './components'
 
 import { ManagerRestaurantContext, ManagerOfferContext } from 'core/context'

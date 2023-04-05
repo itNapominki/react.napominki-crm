@@ -2,8 +2,8 @@ import styles from './AuthPage.module.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Input, Button } from 'components/general'
-import { Layout } from 'components/general'
+import { Input, Layout } from 'components/general'
+import { Button } from 'components'
 
 import { useLogin, useRedirect } from './hooks'
 

@@ -1,7 +1,7 @@
 import styles from './Tools.module.scss'
 import React from 'react'
 
-import { Droplist, Input } from 'components/general'
+import { Droplist, Input } from 'components'
 
 import { ManagerOfferContext } from 'core/context'
 

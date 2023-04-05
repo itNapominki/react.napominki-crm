@@ -1,7 +1,7 @@
 import styles from './Main.module.scss'
 import React from 'react'
 
-import { Comment, Separator } from 'components/general'
+import { Comment, Separator } from 'components'
 import { List } from './'
 
 export default function Info({ title, list, comment }) {

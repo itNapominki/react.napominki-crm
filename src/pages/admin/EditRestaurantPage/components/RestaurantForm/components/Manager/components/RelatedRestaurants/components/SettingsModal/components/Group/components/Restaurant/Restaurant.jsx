@@ -2,7 +2,7 @@ import styles from './Restaurant.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 
 import { handleAdd, handleRemove } from './handlers'
 

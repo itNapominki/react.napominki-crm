@@ -1,7 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import { ContentCard, Forbidden, Layout, Tabs } from 'components/general'
+import { Layout } from 'components/general'
+import { Forbidden, Tabs } from 'components'
 import { RestaurantForm } from './components'
 
 import { EditRestaurantContext } from 'core/context'
@@ -50,9 +51,9 @@ export default function EditRestaurantPage() {
       <Layout>
         <div className="wrapper">
           {id && <Tabs buttons={navigation} />}
-          <ContentCard>
+          <div>
             <RestaurantForm tabIndex={activeTab} />
-          </ContentCard>
+          </div>
         </div>
       </Layout>
     </EditRestaurantContext.Provider>

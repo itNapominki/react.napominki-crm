@@ -1,7 +1,7 @@
 import styles from './Group.module.scss'
 import React from 'react'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 import { Restaurant } from './components'
 
 export default function Group({ restaurants, title }) {

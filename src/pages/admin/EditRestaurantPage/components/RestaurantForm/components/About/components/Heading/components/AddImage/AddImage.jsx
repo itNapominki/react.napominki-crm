@@ -2,7 +2,7 @@ import styles from './AddImage.module.scss'
 import React from 'react'
 import { setBackground as setBg } from './utils'
 import { useUpload } from './hooks'
-import { Spinner } from 'components/general'
+import { Spinner } from 'components'
 
 export default function AddImage({ initial, error }) {
   const [value, setValue] = React.useState('')

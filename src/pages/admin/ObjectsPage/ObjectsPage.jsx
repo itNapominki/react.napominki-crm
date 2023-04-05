@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { AdminLayout, DataTable } from 'components/admin'
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 
 import { useScrollLoad } from 'hooks'
 import { useObjectTypes } from './hooks'

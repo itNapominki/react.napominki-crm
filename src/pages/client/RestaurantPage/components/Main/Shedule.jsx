@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Main.module.scss'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 
 export default function Shedule({ shedule }) {
   return (

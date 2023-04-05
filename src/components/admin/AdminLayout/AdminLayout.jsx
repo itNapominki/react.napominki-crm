@@ -3,13 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 
-import {
-  Layout,
-  Tabs,
-  Forbidden,
-  ContentCard,
-  Spinner,
-} from 'components/general'
+import { Layout, Tabs, Forbidden, Spinner } from 'components'
+import { ContentCard } from 'components/general'
 
 import { USER_ROLES } from 'core/constants'
 import { useNavigation } from './hooks'
@@ -46,13 +41,13 @@ export default function AdminLayout({ children, fetching }) {
     <Layout>
       <div className="wrapper">
         <Tabs buttons={navigation} initial={activeTab} />
-        <ContentCard className={styles.card}>
+        <div className={styles.card}>
           <Link className={styles.addButton} to={addButton[show].route}>
             {addButton[show].text}
           </Link>
           {children}
           {fetching && <Spinner show={fetching} className={styles.spinner} />}
-        </ContentCard>
+        </div>
       </div>
     </Layout>
   )

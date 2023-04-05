@@ -1,7 +1,7 @@
 import styles from './Halls.module.scss'
 import React from 'react'
 
-import { Separator } from 'components/general'
+import { Separator } from 'components'
 import { Hall } from './components'
 
 import { ManagerRestaurantContext } from 'core/context'

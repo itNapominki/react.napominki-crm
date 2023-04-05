@@ -2,8 +2,8 @@ import styles from './OfferPage.module.scss'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { ClientLayout, ClientMap } from 'components'
-import { OfferCard, Spinner } from 'components/general'
+import { ClientLayout, ClientMap, Spinner } from 'components'
+import { OfferCard } from 'components/general'
 
 import { ClientOfferContext } from 'core/context'
 import { useGetData } from './hooks'
