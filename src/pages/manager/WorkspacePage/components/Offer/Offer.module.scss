@@ -28,21 +28,77 @@
   @include link(get-theme-color('error'));
 }
 
-.link {
-  @include link;
-
+.url {
   @include desktop(
     (
       'margin-top': 16px,
-      'max-width': fit-content,
+
+      'display': flex,
+      'align-items': center,
     )
   );
 
-  a {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: inherit;
+  &__copy {
+    $self: &;
+
+    @include desktop(
+      (
+        'flex-shrink': 0,
+        'margin-right': 10px,
+        'overflow': hidden,
+
+        'width': 30px,
+        'height': 30px,
+
+        'background': get-theme-color('input'),
+        'border-radius': 50%,
+      )
+    );
+
+    svg {
+      @include desktop(
+        (
+          'width': 15px,
+          'height': 100%,
+
+          'fill': get-theme-color('tabs-text'),
+          'transition': inherit,
+        )
+      );
+    }
+
+    &:hover:not(#{$self}_success) {
+      background: get-theme-color('primary');
+
+      svg {
+        fill: #fff;
+      }
+    }
+
+    &_success {
+      background: get-theme-color('success');
+
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+
+  &__link {
+    @include link;
+
+    @include desktop(
+      (
+        'width': calc(100% - 40px),
+      )
+    );
+
+    a {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: inherit;
+    }
   }
 }
 

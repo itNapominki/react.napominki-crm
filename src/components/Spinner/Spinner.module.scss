@@ -1,0 +1,16 @@
+.container {
+  :global .loader-container {
+    .loader .spinner {
+      @include desktop(
+        (
+          'width': 40px,
+          'height': 40px,
+
+          'border-width': 5px,
+          'border-top-color': get-theme-color('primary'),
+          'animation-duration': 1.3s,
+        )
+      );
+    }
+  }
+}

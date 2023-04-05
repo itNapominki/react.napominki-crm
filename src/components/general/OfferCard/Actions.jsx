@@ -1,22 +1,11 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
 
-import { ManagerOfferContext, ClientOfferContext } from 'core/context'
-import { ROUTES } from 'router/routes'
-import { encrypt } from 'core/utils'
+import { ManagerOfferContext } from 'core/context'
 
-export default function Actions({ mode, id }) {
+export default function Actions({ mode, id, cardUrl }) {
   const { handle, setOffer, setModalFor } =
     mode === 'MANAGER' && React.useContext(ManagerOfferContext)
-
-  const { decrypted } =
-    mode === 'CLIENT' && React.useContext(ClientOfferContext)
-
-  const { halls, menus } =
-    mode === 'CLIENT' &&
-    decrypted.restaurants.find((restaurant) => restaurant.id === id)
-
-  const { managerId } = mode === 'CLIENT' && decrypted
 
   return (
     <div className={styles.actions}>
@@ -28,13 +17,7 @@ export default function Actions({ mode, id }) {
           </button>
         </React.Fragment>
       ) : (
-        <a
-          href={[
-            ROUTES.RESTAURANT.PATH.replace(':id', id),
-            encrypt(JSON.stringify({ halls, menus, managerId })),
-          ].join('#')}
-          target="_blank"
-        >
+        <a href={cardUrl} target="_blank">
           Смотреть подробно
         </a>
       )}

@@ -2,9 +2,8 @@ import styles from './OfferPage.module.scss'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { ClientLayout } from 'components'
+import { ClientLayout, ClientMap } from 'components'
 import { OfferCard, Spinner } from 'components/general'
-import { Map } from './components'
 
 import { ClientOfferContext } from 'core/context'
 import { useGetData } from './hooks'
@@ -30,7 +29,7 @@ export default function OfferPage() {
 
         {restaurants && (
           <React.Fragment>
-            <Map points={points} />
+            <ClientMap className={styles.map} points={points} />
 
             {restaurants.map((restaurant) => (
               <OfferCard

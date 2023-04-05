@@ -1,3 +1,13 @@
+.container {
+  @include card;
+
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
+}
+
 .title {
   @include h1;
 }

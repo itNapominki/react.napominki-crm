@@ -74,6 +74,18 @@
 
 .title {
   @include h2;
+
+  @include desktop(
+    (
+      'color': inherit,
+    )
+  );
+
+  @include at-root('a') {
+    &:hover {
+      color: get-theme-color('primary');
+    }
+  }
 }
 
 .feature {

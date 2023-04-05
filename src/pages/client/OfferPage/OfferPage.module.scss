@@ -2,7 +2,8 @@
   @include h1;
 }
 
-.card {
+.card,
+.map {
   @include desktop(
     (
       'margin-top': 20px,

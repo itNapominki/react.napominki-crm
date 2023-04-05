@@ -8,7 +8,7 @@ import iconCafe from 'assets/sprites/cafe.svg'
 import iconMarker from 'assets/sprites/marker.svg'
 import iconMetro from 'assets/sprites/metro.svg'
 
-export default function Info({ data }) {
+export default function Info({ data, cardUrl }) {
   const {
     address,
     cardTitle,
@@ -22,9 +22,17 @@ export default function Info({ data }) {
     )
     .join(', ')
 
+  const Title = cardUrl ? 'a' : 'div'
+
   return (
     <React.Fragment>
-      <div className={styles.title}>{cardTitle}</div>
+      <Title
+        className={styles.title}
+        href={cardUrl}
+        target={cardUrl && '_blank'}
+      >
+        {cardTitle}
+      </Title>
       <Separator />
 
       <Feature icon={[iconCafe, 42]} text={title} />

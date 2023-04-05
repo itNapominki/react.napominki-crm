@@ -1,23 +1,23 @@
 import styles from './Offer.module.scss'
 import React from 'react'
+import { HandySvg } from 'handy-svg'
 
 import { ManagerOfferContext } from 'core/context'
 import { ROUTES } from 'router/routes'
-import { encrypt } from 'core/utils'
+import { classNames, encrypt } from 'core/utils'
+import { handleCopy } from './handlers'
+
+import iconCopy from 'assets/sprites/copy.svg'
 
 export default function Info() {
   const { offer, handle } = React.useContext(ManagerOfferContext)
 
-  const hash = encrypt(JSON.stringify(offer))
+  const hash = React.useMemo(() => encrypt(JSON.stringify(offer)), [offer])
   const url = window.location.origin + ROUTES.OFFER.PATH + '#' + hash
 
-  // async function handleCopy(e) {
-  //   e.preventDefault()
+  const [copied, setCopied] = React.useState(false)
 
-  //   await navigator.clipboard
-  //     .writeText(url)
-  //     .then(() => alert('Предложение скопировано'))
-  // }
+  React.useEffect(() => setCopied(false), [url])
 
   return (
     <div className={styles.info}>
@@ -28,10 +28,20 @@ export default function Info() {
         </button>
       </div>
 
-      <div className={styles.link}>
-        <a href={url} target="_blank">
-          {url}
-        </a>
+      <div className={styles.url}>
+        <button
+          className={classNames(styles.url__copy, [
+            copied && styles.url__copy_success,
+          ])}
+          onClick={(e) => handleCopy(e, url, setCopied)}
+        >
+          <HandySvg src={iconCopy} />
+        </button>
+        <div className={styles.url__link}>
+          <a href={url} target="_blank">
+            {url}
+          </a>
+        </div>
       </div>
     </div>
   )

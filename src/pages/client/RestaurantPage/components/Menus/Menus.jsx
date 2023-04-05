@@ -3,7 +3,6 @@ import React from 'react'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Scrollbar } from 'swiper'
-import { ClientCard } from 'components'
 import { Menu } from './'
 
 import { ClientRestaurantContext } from 'core/context'
@@ -20,7 +19,7 @@ export default function Menus() {
     : menus
 
   return (
-    <ClientCard>
+    <div className={styles.container}>
       <div className={styles.title}>Поминальное меню</div>
       <div className={styles.slider}>
         <Swiper
@@ -37,6 +36,6 @@ export default function Menus() {
           ))}
         </Swiper>
       </div>
-    </ClientCard>
+    </div>
   )
 }

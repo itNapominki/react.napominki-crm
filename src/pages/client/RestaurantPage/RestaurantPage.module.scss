@@ -25,3 +25,11 @@
     );
   }
 }
+
+.map {
+  @include desktop(
+    (
+      'margin-top': 20px,
+    )
+  );
+}

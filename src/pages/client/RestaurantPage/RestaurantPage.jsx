@@ -2,8 +2,8 @@ import styles from './RestaurantPage.module.scss'
 import React from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 
-import { ClientLayout } from 'components'
-import { Halls, Map, Main, Menus, Offer } from './components'
+import { ClientLayout, ClientMap } from 'components'
+import { Halls, Main, Menus, Offer } from './components'
 
 import { ClientRestaurantContext } from 'core/context'
 import { api, decrypt } from 'core/utils'
@@ -39,7 +39,15 @@ export default function RestaurantPage() {
             <Main />
             <Halls />
             <Menus />
-            <Map coordinates={restaurant.point.coordinates} />
+            <ClientMap
+              points={[
+                {
+                  id: restaurant.id,
+                  coordinates: restaurant.point.coordinates,
+                },
+              ]}
+              className={styles.map}
+            />
             <Offer
               title="Чтобы выбрать этот филиал, напишите своему менеджеру"
               messengers={manager.messengers}

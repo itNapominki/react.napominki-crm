@@ -1,13 +1,17 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
 
-export default function Preview({ path }) {
+export default function Preview({ path, cardUrl }) {
+  const Image = cardUrl ? 'a' : 'div'
+
   return (
-    <div
+    <Image
+      href={cardUrl}
       className={styles.preview}
       style={{
         backgroundImage: `url(${process.env.REACT_APP_SERVER_URL + path})`,
       }}
-    ></div>
+      target={cardUrl && '_blank'}
+    />
   )
 }
