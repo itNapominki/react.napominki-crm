@@ -54,6 +54,10 @@
       'padding-top': 55%,
     )
   );
+
+  @include at-root('a') {
+    display: block;
+  }
 }
 
 .info {
