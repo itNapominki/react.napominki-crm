@@ -1,8 +1,11 @@
 import React from 'react'
-import { AdminLayout, DataTable } from 'components/admin'
+
+import { AdminDataTable, Layout, Spinner } from 'components'
+
 import { useScrollLoad } from 'hooks'
-import { addressToString } from 'core/utils'
+import { addressToString, getObjKeyName } from 'core/utils'
 import { droplist } from './utils'
+import { USER_ROLES } from 'core/constants'
 
 export default function RestaurantsPage() {
   const [data, setData, fetching] = useScrollLoad('restaurant', {
@@ -29,9 +32,15 @@ export default function RestaurantsPage() {
   ]
 
   return (
-    <AdminLayout fetching={fetching} data={data.length > 0}>
-      {data.length > 0 && (
-        <DataTable
+    <Layout>
+      <Layout.UserLayout
+        roles={[
+          getObjKeyName(() => USER_ROLES.ADMIN),
+          getObjKeyName(() => USER_ROLES.REDAKTOR),
+        ]}
+        containerClassName="card"
+      >
+        <AdminDataTable
           title="Рестораны"
           rows={data.map((restaurant) => {
             const { id, isPublished, address } = restaurant
@@ -54,7 +63,9 @@ export default function RestaurantsPage() {
           })}
           cols={cols}
         />
-      )}
-    </AdminLayout>
+
+        {fetching && <Spinner show={fetching} />}
+      </Layout.UserLayout>
+    </Layout>
   )
 }

@@ -30,6 +30,7 @@ export default function SheduleItem({
         <Droplist
           visible={droplistVisible}
           className={styles.droplist}
+          setVisible={setDroplistVisible}
           items={[
             {
               text: 'Удалить',

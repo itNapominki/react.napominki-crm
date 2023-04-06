@@ -15,10 +15,8 @@ export { default as Spinner } from './Spinner/Spinner'
 export { default as Tabs } from './Tabs/Tabs'
 export { default as Textarea } from './general/Textarea/Textarea'
 
-export { default as DataTable } from './admin/DataTable/DataTable'
+export { default as AdminDataTable } from './AdminDataTable/AdminDataTable'
 export { default as AdminForm } from './admin/AdminForm/AdminForm'
-export { default as AdminHeader } from './admin/AdminHeader/AdminHeader'
-export { default as AdminLayout } from './admin/AdminLayout/AdminLayout'
 export { default as AdminModal } from './admin/AdminModal/AdminModal'
 export { default as SettingsModal } from './admin/AdminModal/AdminModal'
 

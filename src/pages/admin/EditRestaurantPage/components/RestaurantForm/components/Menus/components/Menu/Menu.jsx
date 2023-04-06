@@ -28,6 +28,7 @@ export default function Menu({
       {droplistVisible && (
         <Droplist
           visible={droplistVisible}
+          setVisible={setDroplistVisible}
           items={[
             {
               text: 'Удалить',

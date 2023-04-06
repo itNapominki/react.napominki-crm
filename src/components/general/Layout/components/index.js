@@ -1,1 +1,1 @@
-export { default as UserHeader } from './UserHeader/UserHeader'
+export { default as UserLayout } from './UserLayout/UserLayout'

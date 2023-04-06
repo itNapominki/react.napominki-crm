@@ -1,4 +1,4 @@
-.droplist {
+.container {
   @include desktop(
     (
       'position': absolute,
@@ -13,34 +13,37 @@
     )
   );
 
-  &:global:not(.visible) {
+  &:global:not(._visible) {
     height: 0;
     padding: 0;
   }
+}
 
-  &__item {
-    @include desktop(
-      (
-        'padding': 6px 16px,
+.item {
+  @include desktop(
+    (
+      'padding': 6px 16px,
 
-        'font-size': 12px,
+      'font-size': 12px,
 
-        'cursor': pointer,
-        'transition': $transition-time,
-      )
-    );
+      'cursor': pointer,
+      'transition': $transition-time,
+    )
+  );
 
-    a {
-      color: inherit;
-    }
+  a {
+    color: inherit;
+  }
 
-    &:hover,
-    &.selected {
-      background: get-theme-color('bg');
-    }
+  &:hover {
+    background: get-theme-color('bg');
+  }
 
-    &_red {
-      color: get-theme-color('error');
-    }
+  &:global._selected {
+    background: get-theme-color('bg');
+  }
+
+  &:global._red {
+    color: get-theme-color('error');
   }
 }

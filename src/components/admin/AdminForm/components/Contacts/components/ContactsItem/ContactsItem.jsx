@@ -26,6 +26,7 @@ export default function ContactsItem({
         <Droplist
           visible={droplistVisible}
           className={styles.droplist}
+          setVisible={setDoplistVisible}
           items={[
             {
               text: 'Удалить',

@@ -1,6 +1,6 @@
 import React from 'react'
 import { HandySvg } from 'handy-svg'
-import { Droplist, Input } from 'components'
+import { Droplist } from 'components'
 import { useMultiple, useSelect } from '../../hooks'
 import { getValue } from '../../utils'
 import chevron from 'assets/sprites/chevron.svg'
@@ -16,6 +16,10 @@ export default function SelectFluid({
     ? useMultiple(defaultValue, options, onChange)
     : useSelect(defaultValue, options, onChange)
 
+  const selected = multiple
+    ? options.map((_, i) => i).filter((i) => value.indexOf(options[i]) !== -1)
+    : [options.indexOf(value)]
+
   return (
     <div className="select__wrap">
       <div
@@ -30,7 +34,10 @@ export default function SelectFluid({
         <Droplist
           className="select__droplist"
           visible={visible}
+          setVisible={setVisible}
           items={droplist}
+          closeOnChange={multiple && false}
+          selected={selected}
         />
       }
 

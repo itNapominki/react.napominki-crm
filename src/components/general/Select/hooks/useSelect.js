@@ -14,11 +14,6 @@ export default function useSelect(defaultValue, options = [], callback) {
     setValue(defaultValue)
   }, [defaultValue])
 
-  function handleChange(option) {
-    setValue(option)
-    setVisible(false)
-  }
-
   const droplist = options.map((option) => {
     return {
       ...option,
@@ -29,7 +24,7 @@ export default function useSelect(defaultValue, options = [], callback) {
           option.onClick({ text, value })
         }
 
-        handleChange(option)
+        setValue(option)
       },
     }
   })

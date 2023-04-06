@@ -1,5 +1,3 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { api } from 'core/utils'
 import { ROUTES } from 'router/routes'
 import { MODELS } from 'core/constants'

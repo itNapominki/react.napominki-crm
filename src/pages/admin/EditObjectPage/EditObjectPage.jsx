@@ -1,9 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-import { Layout } from 'components/general'
-import { Forbidden } from 'components'
+import { Layout } from 'components'
 import { ObjectForm } from './components'
 
 import { EditObjectContext } from 'core/context'
@@ -35,25 +33,20 @@ export default function EditObjectPage() {
     setError({ errors: error.errors })
   }
 
-  const user = useSelector((state) => state.user.value)
-  if (
-    !user ||
-    (user.role !== getObjKeyName(() => USER_ROLES.ADMIN) &&
-      user.role !== getObjKeyName(() => USER_ROLES.REDAKTOR))
-  ) {
-    return <Forbidden />
-  }
-
   return (
     <EditObjectContext.Provider
       value={{ id, initial, data, setData, error, setError }}
     >
       <Layout>
-        <div className="wrapper">
-          <div>
-            <ObjectForm />
-          </div>
-        </div>
+        <Layout.UserLayout
+          roles={[
+            getObjKeyName(() => USER_ROLES.ADMIN),
+            getObjKeyName(() => USER_ROLES.REDAKTOR),
+          ]}
+          containerClassName="card"
+        >
+          <ObjectForm />
+        </Layout.UserLayout>
       </Layout>
     </EditObjectContext.Provider>
   )

@@ -1,14 +1,12 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Layout } from 'components/general'
-import { Forbidden, Tabs } from 'components'
+import { Layout } from 'components'
 import { RestaurantForm } from './components'
 
 import { EditRestaurantContext } from 'core/context'
 import { api, getObjKeyName } from 'core/utils'
 import { USER_ROLES, MODELS } from 'core/constants'
-import { useCheckRole } from 'hooks'
 import { useNavigation } from './hooks'
 
 export default function EditRestaurantPage() {
@@ -35,26 +33,21 @@ export default function EditRestaurantPage() {
     setError({ errors: error.errors })
   }
 
-  const access = useCheckRole([
-    getObjKeyName(() => USER_ROLES.ADMIN),
-    getObjKeyName(() => USER_ROLES.REDAKTOR),
-  ])
-
-  if (!access) {
-    return <Forbidden />
-  }
-
   return (
     <EditRestaurantContext.Provider
       value={{ id, initial, data, setInitial, error, setError }}
     >
       <Layout>
-        <div className="wrapper">
-          {id && <Tabs buttons={navigation} />}
-          <div>
-            <RestaurantForm tabIndex={activeTab} />
-          </div>
-        </div>
+        <Layout.UserLayout
+          roles={[
+            getObjKeyName(() => USER_ROLES.ADMIN),
+            getObjKeyName(() => USER_ROLES.REDAKTOR),
+          ]}
+          navigation={id && navigation}
+          containerClassName="card"
+        >
+          <RestaurantForm tabIndex={activeTab} />
+        </Layout.UserLayout>
       </Layout>
     </EditRestaurantContext.Provider>
   )

@@ -1,7 +1,6 @@
 import styles from './Forbidden.module.scss'
 import React from 'react'
 import { Layout } from 'components/general'
-import { ContentCard } from 'components'
 
 export default function Forbidden() {
   return (

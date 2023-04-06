@@ -66,6 +66,10 @@ img {
   );
 }
 
+.card {
+  @include card;
+}
+
 .row {
   @include desktop(
     (

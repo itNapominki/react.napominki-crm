@@ -10,9 +10,9 @@ export default function MainGroup({
   name,
   onInput,
 }) {
-  const titleError = useErrors(errors, `title`)
-  const boardingError = useErrors(errors, `boarding`)
-  const fitError = useErrors(errors, `fit`)
+  const titleError = useErrors(errors, name + `.title`)
+  const boardingError = useErrors(errors, name + `.boarding`)
+  const fitError = useErrors(errors, name + `.fit`)
 
   return (
     <AdminForm.Group>

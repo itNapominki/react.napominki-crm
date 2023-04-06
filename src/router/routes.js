@@ -86,4 +86,8 @@ export const ROUTES = {
     PATH: '/admin/users/update/:id',
     COMPONENT: <LazyPage Component={<EditUserPage />} />,
   },
+
+  ADMIN_SETTINGS: {
+    PATH: '/admin/settings',
+  },
 }
