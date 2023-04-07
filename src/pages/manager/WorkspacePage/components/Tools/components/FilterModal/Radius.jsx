@@ -1,7 +1,7 @@
 import styles from './FilterModal.module.scss'
 import React from 'react'
 
-import { Input } from 'components/general'
+import { Input } from 'components'
 import { Group } from './'
 
 import { ManagerOfferContext } from 'core/context'

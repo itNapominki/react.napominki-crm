@@ -1,0 +1,50 @@
+.container {
+  @include desktop(
+    (
+      'position': relative,
+    )
+  );
+}
+
+.fluid {
+  @include input;
+
+  @include desktop(
+    (
+      'position': relative,
+
+      'display': flex,
+      'align-items': center,
+
+      'cursor': pointer,
+    )
+  );
+
+  svg {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'right': 20px,
+
+        'width': 10px,
+        'height': 5px,
+
+        'transform': translateY(-50%),
+        'fill': get-theme-color('primary'),
+      )
+    );
+  }
+}
+
+.droplist {
+  @include desktop(
+    (
+      'top': 100%,
+
+      'left': 0,
+      'right': 0,
+    )
+  );
+}

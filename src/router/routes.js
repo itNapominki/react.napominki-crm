@@ -22,8 +22,12 @@ const EditUserPage = React.lazy(() =>
   import('pages/admin/EditUserPage/EditUserPage')
 )
 
+const SettingsPage = React.lazy(() =>
+  import('pages/admin/SettingsPage/SettingsPage')
+)
+
 const UserLayout = React.lazy(() =>
-  import('components/general/Layout/UserLayout/UserLayout')
+  import('components/Layout/UserLayout/UserLayout')
 )
 
 export const ROUTES = {
@@ -52,7 +56,7 @@ export const ROUTES = {
     COMPONENT: <LazyPage Component={<UserLayout />} />,
     CHILDREN: {
       OBJECTS: {
-        PATH: 'objects',
+        PATH: '/admin/objects',
         COMPONENT: <LazyPage Component={<ObjectsPage />} />,
       },
       OBJECTS_CREATE: {
@@ -66,7 +70,7 @@ export const ROUTES = {
       },
 
       RESTAURANTS: {
-        PATH: 'restaurants',
+        PATH: '/admin/restaurants',
         COMPONENT: <LazyPage Component={<RestaurantsPage />} />,
       },
 
@@ -81,21 +85,21 @@ export const ROUTES = {
       },
 
       USERS: {
-        PATH: 'users',
+        PATH: '/admin/users',
         COMPONENT: <LazyPage Component={<UsersPage />} />,
-        CHILDREN: {},
       },
       USERS_CREATE: {
-        PATH: 'users/create',
+        PATH: '/admin/users/create',
         COMPONENT: <LazyPage Component={<EditUserPage />} />,
       },
       USERS_UPDATE: {
-        PATH: 'users/update/:id',
+        PATH: '/admin/users/update/:id',
         COMPONENT: <LazyPage Component={<EditUserPage />} />,
       },
 
       SETTINGS: {
-        PATH: 'settings',
+        PATH: '/admin/settings',
+        COMPONENT: <LazyPage Component={<SettingsPage />} />,
       },
     },
   },

@@ -2,7 +2,14 @@ import styles from './AdminForm.module.scss'
 import React from 'react'
 
 import { Button } from 'components'
-import { Address, Contacts, Group, Inputlist, Shedule } from './components'
+import {
+  Address,
+  Contacts,
+  Control,
+  Group,
+  Inputlist,
+  Shedule,
+} from './components'
 
 import { classNames } from 'core/utils'
 import { handleCancel, handleDelete, handleSave } from './handlers'
@@ -128,8 +135,9 @@ export default function AdminForm({
   )
 }
 
-AdminForm.Group = Group
 AdminForm.Address = Address
 AdminForm.Contacts = Contacts
+AdminForm.Control = Control
+AdminForm.Group = Group
 AdminForm.Inputlist = Inputlist
 AdminForm.Shedule = Shedule

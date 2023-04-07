@@ -12,8 +12,7 @@ export default function ObjectForm() {
   const { id, data, setError } = React.useContext(EditObjectContext)
 
   const navigate = useNavigate()
-  const redirect = () =>
-    navigate([ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.OBJECTS.PATH].join('/'))
+  const redirect = () => navigate(ROUTES.ADMIN.CHILDREN.OBJECTS.PATH)
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' объекта'
 

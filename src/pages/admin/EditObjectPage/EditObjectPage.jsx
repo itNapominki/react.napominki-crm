@@ -1,7 +1,6 @@
 import React from 'react'
 import { useOutletContext, useParams } from 'react-router-dom'
 
-import { Layout } from 'components'
 import { ObjectForm } from './components'
 
 import { EditObjectContext } from 'core/context'

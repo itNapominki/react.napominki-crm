@@ -1,6 +1,6 @@
 import React from 'react'
-import { Input, Modal } from 'components/general'
-import { Separator, Spinner } from 'components'
+import { Modal } from 'components/general'
+import { Input, Separator, Spinner } from 'components'
 import { Group } from './components'
 import { useScrollLoad } from 'hooks'
 import { MODELS, OBJECT_TYPES } from 'core/constants'

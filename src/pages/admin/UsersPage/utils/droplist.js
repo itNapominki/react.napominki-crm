@@ -6,7 +6,8 @@ export default function useDroplist(setData, id, navigate) {
   return [
     {
       text: 'Редактировать',
-      onClick: () => navigate(ROUTES.ADMIN_UPDATE_USER.PATH.replace(':id', id)),
+      onClick: () =>
+        navigate(ROUTES.ADMIN.CHILDREN.USERS_UPDATE.PATH.replace(':id', id)),
     },
     {
       text: 'Удалить',

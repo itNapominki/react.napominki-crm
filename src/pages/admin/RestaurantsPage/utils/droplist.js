@@ -9,7 +9,7 @@ export default function useDroplist(setData, id, isPublished) {
       text: 'Редактировать',
       onClick: () =>
         window.open(
-          ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', id),
+          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', id),
           '_blank'
         ),
     },

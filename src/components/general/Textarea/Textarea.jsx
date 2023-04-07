@@ -1,6 +1,5 @@
 import './Textarea.scss'
 import React from 'react'
-import { useInput } from 'hooks'
 import { classNames } from 'core/utils'
 
 export default function Textarea(data) {
@@ -13,6 +12,8 @@ export default function Textarea(data) {
     onInput,
     name,
   } = data
+
+  return
 
   const [value, setValue] = useInput(defaultValue, onInput)
 

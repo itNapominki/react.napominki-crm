@@ -44,9 +44,7 @@ export default function UsersPage() {
       fetching={fetching}
       link={{
         text: 'Добавить пользователя',
-        path: [ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.USERS_CREATE.PATH].join(
-          '/'
-        ),
+        path: ROUTES.ADMIN.CHILDREN.USERS_CREATE.PATH,
       }}
     >
       {roles.length > 0 &&

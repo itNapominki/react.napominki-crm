@@ -1,0 +1,72 @@
+.container {
+  @include desktop(
+    (
+      'display': block,
+    )
+  );
+}
+
+.top {
+  @include desktop(
+    (
+      'margin-bottom': 6px,
+    )
+  );
+
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+      )
+    );
+  }
+}
+
+.label {
+  @include desktop(
+    (
+      'font-size': 14px,
+    )
+  );
+
+  &:global(._big) {
+    @include h3;
+  }
+}
+
+.error {
+  @include desktop(
+    (
+      'margin-left': auto,
+
+      'font-size': 14px,
+      'color': get-theme-color('error'),
+    )
+  );
+}
+
+.bottom {
+  @include desktop(
+    (
+      'margin-top': 6px,
+    )
+  );
+
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+      )
+    );
+  }
+}
+
+.action {
+  @include link();
+
+  @include desktop(
+    (
+      'font-size': 12px,
+    )
+  );
+}

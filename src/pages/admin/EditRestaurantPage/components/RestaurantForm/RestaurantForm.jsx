@@ -21,13 +21,7 @@ export default function RestaurantForm({ tabIndex }) {
   const onSave = (data) =>
     !id || id != data.id
       ? navigate(
-          [
-            ROUTES.ADMIN.PATH,
-            ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(
-              ':id',
-              data.id
-            ),
-          ].join('/'),
+          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', data.id),
           {
             state: { data },
           }

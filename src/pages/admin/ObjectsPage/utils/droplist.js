@@ -8,7 +8,7 @@ export default function useDroplist(setData, id, navigate) {
     {
       text: 'Редактировать',
       onClick: () =>
-        navigate(ROUTES.ADMIN_UPDATE_OBJECT.PATH.replace(':id', id)),
+        navigate(ROUTES.ADMIN.CHILDREN.OBJECTS_UPDATE.PATH.replace(':id', id)),
     },
     {
       text: 'Удалить',

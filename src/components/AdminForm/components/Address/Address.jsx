@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { Input } from 'components/general'
+import { Input } from 'components'
 import { useErrors } from 'hooks'
 
 export default function Address({ address, coordinates, errors }) {

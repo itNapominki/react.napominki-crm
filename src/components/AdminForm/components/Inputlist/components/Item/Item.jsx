@@ -2,7 +2,7 @@ import styles from './Item.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { Input } from 'components/general'
+import { Input } from 'components'
 
 import { useErrors } from 'hooks'
 

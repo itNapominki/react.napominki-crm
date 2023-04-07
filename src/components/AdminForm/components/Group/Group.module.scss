@@ -23,9 +23,7 @@
     )
   );
 
-  :global .input,
-  :global .select,
-  :global .textarea {
+  :global(> *) {
     @include desktop(
       (
         'margin-bottom': 16px,
