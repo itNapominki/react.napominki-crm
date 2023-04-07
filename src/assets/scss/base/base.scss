@@ -53,8 +53,8 @@ img {
 .wrapper {
   @include desktop(
     (
-      'max-width': 1270px,
-      'padding': 0 50px,
+      'max-width': 1250px,
+      'padding': 0 40px,
       'margin': 0 auto,
     )
   );

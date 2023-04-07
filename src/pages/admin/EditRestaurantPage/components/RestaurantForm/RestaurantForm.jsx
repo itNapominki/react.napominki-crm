@@ -1,14 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { About, Halls, Manager, Menus } from './components'
 
 import { EditRestaurantContext } from 'core/context'
 import { ROUTES } from 'router/routes'
 import { MODELS } from 'core/constants'
 
-const ROOT_PAGE = ROUTES.ADMIN_RESTAURANTS.PATH
+const ROOT_PAGE = ROUTES.ADMIN.CHILDREN.RESTAURANTS.PATH
 
 export default function RestaurantForm({ tabIndex }) {
   const { id, data, setInitial, setError } = React.useContext(
@@ -20,9 +20,18 @@ export default function RestaurantForm({ tabIndex }) {
   const goHome = () => navigate(ROOT_PAGE)
   const onSave = (data) =>
     !id || id != data.id
-      ? navigate(ROUTES.ADMIN_UPDATE_RESTAURANT.PATH.replace(':id', data.id), {
-          state: { data },
-        })
+      ? navigate(
+          [
+            ROUTES.ADMIN.PATH,
+            ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(
+              ':id',
+              data.id
+            ),
+          ].join('/'),
+          {
+            state: { data },
+          }
+        )
       : setInitial(data)
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' ресторана'

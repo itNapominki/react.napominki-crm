@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Restaurant, SettingsModal } from './components'
 
 import {

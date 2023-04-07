@@ -5,12 +5,21 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {Object.keys(ROUTES)
+        {mapRoutes(ROUTES)}
+        {/* {Object.keys(ROUTES)
           .map((key) => ROUTES[key])
-          .map((ROUTE, i) => (
-            <Route key={i} path={ROUTE.PATH} element={ROUTE.COMPONENT} />
-          ))}
+          .map((ROUTE, i) => {
+            return <Route key={i} path={ROUTE.PATH} element={ROUTE.COMPONENT} />
+          })} */}
       </Routes>
     </BrowserRouter>
   )
+}
+
+function mapRoutes(ROUTES) {
+  return Object.keys(ROUTES).map((ROUTE, i) => (
+    <Route key={i} path={ROUTES[ROUTE].PATH} element={ROUTES[ROUTE].COMPONENT}>
+      {ROUTES[ROUTE].CHILDREN && mapRoutes(ROUTES[ROUTE].CHILDREN)}
+    </Route>
+  ))
 }

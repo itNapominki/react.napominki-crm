@@ -2,7 +2,7 @@ import styles from './Gallery.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Spinner } from 'components'
 
 import { handleImageRemove, handleFilesChange } from './handlers'

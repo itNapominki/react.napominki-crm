@@ -1,0 +1,38 @@
+.container {
+  @include fl-reset;
+  @include card;
+
+  @include desktop(
+    (
+      'position': relative,
+    )
+  );
+}
+
+.title {
+  @include h2;
+}
+
+.removeButton {
+  @include link(get-theme-color('error'));
+
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 40px,
+      'right': 40px,
+    )
+  );
+}
+
+.actions {
+  @include desktop(
+    (
+      'margin-top': 32px,
+
+      'display': flex,
+      'align-items': flex-start,
+    )
+  );
+}

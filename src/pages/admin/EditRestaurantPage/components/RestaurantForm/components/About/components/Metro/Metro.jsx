@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Station, SettingsModal } from './components'
 
 import { EditRestaurantContext, EditRelatedMetroContext } from 'core/context'

@@ -2,7 +2,7 @@ import styles from './WorkspacePage.module.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Layout } from 'components/general'
+import { Layout } from 'components'
 import { Map, Offer, RestaurantModal, Tools } from './components'
 
 import { ManagerOfferContext } from 'core/context'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Menu } from './components'
 
 import {

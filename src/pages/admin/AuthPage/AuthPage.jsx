@@ -2,8 +2,8 @@ import styles from './AuthPage.module.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Input, Layout } from 'components/general'
-import { Button } from 'components'
+import { Input } from 'components/general'
+import { Button, Layout } from 'components'
 
 import { useLogin, useRedirect } from './hooks'
 
@@ -21,7 +21,7 @@ export default function AuthPage() {
   }
 
   return (
-    <Layout>
+    <Layout.Container>
       <div className="wrapper">
         <div className={styles.container}>
           <div className={styles.card}>
@@ -46,6 +46,6 @@ export default function AuthPage() {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout.Container>
   )
 }

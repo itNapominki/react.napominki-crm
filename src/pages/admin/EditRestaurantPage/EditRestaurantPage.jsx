@@ -1,15 +1,21 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 
-import { Layout } from 'components'
 import { RestaurantForm } from './components'
 
 import { EditRestaurantContext } from 'core/context'
 import { api, getObjKeyName } from 'core/utils'
 import { USER_ROLES, MODELS } from 'core/constants'
 import { useNavigation } from './hooks'
+import { Tabs } from 'components'
 
 export default function EditRestaurantPage() {
+  const { setRoles } = useOutletContext()
+  setRoles([
+    getObjKeyName(() => USER_ROLES.ADMIN),
+    getObjKeyName(() => USER_ROLES.REDAKTOR),
+  ])
+
   const { id } = useParams()
 
   const [initial, setInitial] = React.useState()
@@ -37,18 +43,8 @@ export default function EditRestaurantPage() {
     <EditRestaurantContext.Provider
       value={{ id, initial, data, setInitial, error, setError }}
     >
-      <Layout>
-        <Layout.UserLayout
-          roles={[
-            getObjKeyName(() => USER_ROLES.ADMIN),
-            getObjKeyName(() => USER_ROLES.REDAKTOR),
-          ]}
-          navigation={id && navigation}
-          containerClassName="card"
-        >
-          <RestaurantForm tabIndex={activeTab} />
-        </Layout.UserLayout>
-      </Layout>
+      {id && <Tabs buttons={navigation} />}
+      <RestaurantForm tabIndex={activeTab} />
     </EditRestaurantContext.Provider>
   )
 }

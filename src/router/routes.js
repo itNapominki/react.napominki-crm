@@ -22,11 +22,16 @@ const EditUserPage = React.lazy(() =>
   import('pages/admin/EditUserPage/EditUserPage')
 )
 
+const UserLayout = React.lazy(() =>
+  import('components/general/Layout/UserLayout/UserLayout')
+)
+
 export const ROUTES = {
   RESTAURANT: {
     PATH: '/restaurant/:id',
     COMPONENT: <RestaurantPage />,
   },
+
   OFFER: {
     PATH: '/offer',
     COMPONENT: <OfferPage />,
@@ -42,52 +47,56 @@ export const ROUTES = {
     COMPONENT: <LazyPage Component={<AuthPage />} />,
   },
 
-  ADMIN_OBJECTS: {
-    PATH: '/admin/objects',
-    COMPONENT: <LazyPage Component={<ObjectsPage />} />,
-  },
+  ADMIN: {
+    PATH: '/admin',
+    COMPONENT: <LazyPage Component={<UserLayout />} />,
+    CHILDREN: {
+      OBJECTS: {
+        PATH: 'objects',
+        COMPONENT: <LazyPage Component={<ObjectsPage />} />,
+      },
+      OBJECTS_CREATE: {
+        PATH: '/admin/objects/create',
+        COMPONENT: <LazyPage Component={<EditObjectPage />} />,
+      },
 
-  ADMIN_RESTAURANTS: {
-    PATH: '/admin/restaurants',
-    COMPONENT: <LazyPage Component={<RestaurantsPage />} />,
-  },
+      OBJECTS_UPDATE: {
+        PATH: '/admin/objects/update/:id',
+        COMPONENT: <LazyPage Component={<EditObjectPage />} />,
+      },
 
-  ADMIN_USERS: {
-    PATH: '/admin/users',
-    COMPONENT: <LazyPage Component={<UsersPage />} />,
-  },
+      RESTAURANTS: {
+        PATH: 'restaurants',
+        COMPONENT: <LazyPage Component={<RestaurantsPage />} />,
+      },
 
-  ADMIN_CREATE_OBJECT: {
-    PATH: '/admin/objects/create',
-    COMPONENT: <LazyPage Component={<EditObjectPage />} />,
-  },
+      RESTAURANTS_CREATE: {
+        PATH: '/admin/restaurants/create',
+        COMPONENT: <LazyPage Component={<EditRestaurantPage />} />,
+      },
 
-  ADMIN_CREATE_RESTAURANT: {
-    PATH: '/admin/restaurants/create',
-    COMPONENT: <LazyPage Component={<EditRestaurantPage />} />,
-  },
+      RESTAURANTS_UPDATE: {
+        PATH: '/admin/restaurants/update/:id',
+        COMPONENT: <LazyPage Component={<EditRestaurantPage />} />,
+      },
 
-  ADMIN_CREATE_USER: {
-    PATH: '/admin/users/create',
-    COMPONENT: <LazyPage Component={<EditUserPage />} />,
-  },
+      USERS: {
+        PATH: 'users',
+        COMPONENT: <LazyPage Component={<UsersPage />} />,
+        CHILDREN: {},
+      },
+      USERS_CREATE: {
+        PATH: 'users/create',
+        COMPONENT: <LazyPage Component={<EditUserPage />} />,
+      },
+      USERS_UPDATE: {
+        PATH: 'users/update/:id',
+        COMPONENT: <LazyPage Component={<EditUserPage />} />,
+      },
 
-  ADMIN_UPDATE_OBJECT: {
-    PATH: '/admin/objects/update/:id',
-    COMPONENT: <LazyPage Component={<EditObjectPage />} />,
-  },
-
-  ADMIN_UPDATE_RESTAURANT: {
-    PATH: '/admin/restaurants/update/:id',
-    COMPONENT: <LazyPage Component={<EditRestaurantPage />} />,
-  },
-
-  ADMIN_UPDATE_USER: {
-    PATH: '/admin/users/update/:id',
-    COMPONENT: <LazyPage Component={<EditUserPage />} />,
-  },
-
-  ADMIN_SETTINGS: {
-    PATH: '/admin/settings',
+      SETTINGS: {
+        PATH: 'settings',
+      },
+    },
   },
 }

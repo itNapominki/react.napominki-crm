@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
 import { Delivery, Food, Id, Prepay, Priority, Status } from './components'

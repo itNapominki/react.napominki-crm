@@ -1,5 +1,5 @@
 import React from 'react'
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Email, Password } from './components'
 
 export default function Auth() {

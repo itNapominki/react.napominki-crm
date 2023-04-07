@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Address, Title, Type } from './components'
 
 import { EditObjectContext } from 'core/context'
@@ -12,7 +12,8 @@ export default function ObjectForm() {
   const { id, data, setError } = React.useContext(EditObjectContext)
 
   const navigate = useNavigate()
-  const redirect = () => navigate(ROUTES.ADMIN_OBJECTS.PATH)
+  const redirect = () =>
+    navigate([ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.OBJECTS.PATH].join('/'))
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' объекта'
 

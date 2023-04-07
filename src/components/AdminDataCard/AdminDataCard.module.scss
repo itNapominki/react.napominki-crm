@@ -1,0 +1,30 @@
+.container {
+  @include card;
+
+  @include desktop(
+    (
+      'position': relative,
+    )
+  );
+
+  :global .separator {
+    @include desktop(
+      (
+        'margin': 32px 0,
+      )
+    );
+  }
+}
+
+.link {
+  @include link;
+
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 40px,
+      'right': 40px,
+    )
+  );
+}

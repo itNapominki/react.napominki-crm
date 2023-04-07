@@ -27,14 +27,6 @@
       'margin-top': 16px,
     )
   );
-
-  & + :global.separator {
-    @include desktop(
-      (
-        'margin': 32px 0,
-      )
-    );
-  }
 }
 
 .dotted {

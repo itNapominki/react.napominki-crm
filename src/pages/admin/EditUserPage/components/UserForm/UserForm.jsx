@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { AdminForm } from 'components/admin'
+import { AdminForm } from 'components'
 import { Auth, Contacts, MainGroup } from './components'
 
 import { EditUserContext } from 'core/context'
@@ -12,7 +12,8 @@ export default function UserForm() {
   const { id, data, setError } = React.useContext(EditUserContext)
 
   const navigate = useNavigate()
-  const redirect = () => navigate(ROUTES.ADMIN_USERS.PATH)
+  const redirect = () =>
+    navigate([ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.USERS.PATH].join('/'))
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' пользователя'
 

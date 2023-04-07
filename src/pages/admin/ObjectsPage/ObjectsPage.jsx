@@ -1,15 +1,22 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
-import { Layout, AdminDataTable, Separator, Spinner } from 'components'
+import { AdminDataCard, AdminDataTable } from 'components'
 
 import { useScrollLoad } from 'hooks'
 import { useObjectTypes } from './hooks'
 import { droplist } from './utils'
 import { getObjKeyName } from 'core/utils'
 import { USER_ROLES } from 'core/constants'
+import { ROUTES } from 'router/routes'
 
 export default function ObjectsPage() {
+  const { setRoles } = useOutletContext()
+  setRoles([
+    getObjKeyName(() => USER_ROLES.ADMIN),
+    getObjKeyName(() => USER_ROLES.REDAKTOR),
+  ])
+
   const [data, setData, fetching] = useScrollLoad('object', {
     order: [
       ['type', 'ASC'],
@@ -34,33 +41,28 @@ export default function ObjectsPage() {
   ]
 
   return (
-    <Layout>
-      <Layout.UserLayout
-        roles={[
-          getObjKeyName(() => USER_ROLES.ADMIN),
-          getObjKeyName(() => USER_ROLES.REDAKTOR),
-        ]}
-        containerClassName="card"
-      >
-        {types.length > 0 &&
-          types.map((type, i) => (
-            <React.Fragment key={type.slug}>
-              <AdminDataTable
-                title={type.title}
-                rows={type.objects.map((object) => {
-                  return {
-                    ...object,
-                    droplist: droplist(setData, object.id, navigate),
-                  }
-                })}
-                cols={cols}
-              />
-              {i < types.length - 1 && <Separator />}
-            </React.Fragment>
-          ))}
-
-        {fetching && <Spinner show={fetching} />}
-      </Layout.UserLayout>
-    </Layout>
+    <AdminDataCard
+      fetching={fetching}
+      link={{
+        text: 'Добавить объект',
+        path: ROUTES.ADMIN.CHILDREN.OBJECTS_CREATE.PATH,
+      }}
+    >
+      {types.length > 0 &&
+        types.map((type, i) => (
+          <React.Fragment key={type.slug}>
+            <AdminDataTable
+              title={type.title}
+              rows={type.objects.map((object) => {
+                return {
+                  ...object,
+                  droplist: droplist(setData, object.id, navigate),
+                }
+              })}
+              cols={cols}
+            />
+          </React.Fragment>
+        ))}
+    </AdminDataCard>
   )
 }

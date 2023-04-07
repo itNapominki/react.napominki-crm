@@ -3,11 +3,8 @@ import React from 'react'
 
 import { Col, Row } from './'
 
-export default React.memo(function AdminDataTable({
-  title,
-  rows = [],
-  cols = [],
-}) {
+export default function AdminDataTable({ title, rows = [], cols = [] }) {
+  // console.log('Render AdminDataTable')
   return (
     <React.Fragment>
       <div className={styles.title}>{title}</div>
@@ -24,4 +21,4 @@ export default React.memo(function AdminDataTable({
       </div>
     </React.Fragment>
   )
-})
+}

@@ -9,11 +9,15 @@ export default function useRedirect(role) {
 
   return function redirect() {
     if (role === getObjKeyName(() => USER_ROLES.ADMIN)) {
-      return navigate(ROUTES.ADMIN_USERS.PATH)
+      return navigate(
+        [ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.USERS.PATH].join('/')
+      )
     }
 
     if (role === getObjKeyName(() => USER_ROLES.REDAKTOR)) {
-      return navigate(ROUTES.ADMIN_RESTAURANTS.PATH)
+      return navigate(
+        [ROUTES.ADMIN.PATH, ROUTES.ADMIN.CHILDREN.RESTAURANTS.PATH].join('/')
+      )
     }
 
     if (role === getObjKeyName(() => USER_ROLES.MANAGER)) {
