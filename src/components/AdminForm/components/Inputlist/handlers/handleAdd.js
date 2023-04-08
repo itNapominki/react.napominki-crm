@@ -1,3 +1,3 @@
-export default function handleAdd(setList) {
-  setList((prev) => [...prev, ''])
+export default function handleAdd(setInfo) {
+  setInfo((prev) => [...prev, ''])
 }

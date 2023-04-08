@@ -2,53 +2,57 @@ import styles from './Select.module.scss'
 import React from 'react'
 
 import { Droplist } from 'components'
-import { SelectFluid, SelectValue } from '.'
+import { SelectFluid, SelectValue } from './'
 
 import { classNames } from 'core/utils'
+import { useMultiple } from './hooks'
+import { createDroplist, getSelected } from './utils'
 
-export default React.memo(function Select({
-  multiple = false,
-  name,
-  onChange,
-  options,
-  value,
-}) {
-  console.log('render Select')
+export default React.memo(
+  function Select({ multiple = false, name, onChange, options, value }) {
+    // console.log('render Select')
 
-  const [droplistVisible, setDroplistVisible] = React.useState(false)
-
-  const selected = multiple
-    ? options.map((_, i) => i).filter((i) => value.indexOf(options[i]) !== -1)
-    : [options.findIndex((option) => option.value === value)]
-
-  const droplist = options.map((option) => {
-    return {
-      ...option,
-      onClick: () => onChange(option.value),
+    if (!options) {
+      return console.error('Нужно добавить options для Select')
     }
-  })
 
-  return (
-    <div className={classNames(styles.container)}>
-      <SelectFluid
-        multiple={multiple}
-        name={name}
-        onChange={onChange}
-        options={options}
-        value={value}
-        setVisible={setDroplistVisible}
-      />
+    if (!value) {
+      return console.error('Нужно добавить value для Select')
+    }
 
-      <Droplist
-        className={styles.droplist}
-        visible={droplistVisible}
-        setVisible={setDroplistVisible}
-        items={droplist}
-        closeOnChange={multiple && false}
-        selected={selected}
-      />
+    const [droplistVisible, setDroplistVisible] = React.useState(false)
+    const handleChooseOption = multiple && useMultiple(value, options, onChange)
 
-      {name && <SelectValue name={name} multiple={multiple} value={value} />}
-    </div>
-  )
-})
+    const selected = getSelected(multiple, options, value)
+    const droplist = createDroplist(
+      options,
+      multiple,
+      handleChooseOption,
+      onChange
+    )
+
+    return (
+      <div className={classNames(styles.container)}>
+        <SelectFluid
+          name={name}
+          onChange={onChange}
+          options={options}
+          value={value}
+          setVisible={setDroplistVisible}
+        />
+
+        <Droplist
+          className={styles.droplist}
+          visible={droplistVisible}
+          setVisible={setDroplistVisible}
+          items={droplist}
+          closeOnChange={multiple && false}
+          selected={selected}
+        />
+
+        {name && <SelectValue name={name} value={value} />}
+      </div>
+    )
+  }
+  // (prevProps, nextProps) => prevProps.value === nextProps.value
+)

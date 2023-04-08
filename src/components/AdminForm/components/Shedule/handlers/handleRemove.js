@@ -1,3 +1,3 @@
-export default function handleRemove(setList, i) {
-  setList((prev) => prev.filter((_, index) => index != i))
+export default function handleRemove(setShedule, i) {
+  setShedule((prev) => prev.filter((_, index) => index != i))
 }

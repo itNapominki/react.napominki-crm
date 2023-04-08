@@ -1,0 +1,40 @@
+.preview {
+  :global(.__fluid) {
+    @include input;
+
+    @include desktop(
+      (
+        'position': relative,
+        'display': flex,
+        'flex-direction': column,
+
+        'height': 159px,
+
+        'background-size': cover,
+        'background-position': center,
+
+        'cursor': pointer,
+      )
+    );
+  }
+
+  :global(.__spinner) {
+    @include desktop(
+      (
+        'position': absolute,
+
+        'top': 50%,
+        'left': 50%,
+        'transform': translate(-50%, -50%),
+      )
+    );
+  }
+}
+
+.inputTitle {
+  @include desktop(
+    (
+      'margin-bottom': 16px,
+    )
+  );
+}

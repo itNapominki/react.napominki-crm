@@ -1,7 +1,7 @@
 import React from 'react'
 import { useOutletContext, useParams } from 'react-router-dom'
 
-import { RestaurantForm } from './components'
+import { About, Halls, Manager, Menus, RestaurantForm } from './'
 
 import { EditRestaurantContext } from 'core/context'
 import { api, getObjKeyName } from 'core/utils'
@@ -44,7 +44,16 @@ export default function EditRestaurantPage() {
       value={{ id, initial, data, setInitial, error, setError }}
     >
       {id && <Tabs buttons={navigation} />}
-      <RestaurantForm tabIndex={activeTab} />
+      <RestaurantForm>
+        {[
+          <About />,
+          // , <Halls />, <Menus />, <Manager />
+        ].map((Component, i) => (
+          <div key={i} hidden={activeTab !== i}>
+            {Component}
+          </div>
+        ))}
+      </RestaurantForm>
     </EditRestaurantContext.Provider>
   )
 }

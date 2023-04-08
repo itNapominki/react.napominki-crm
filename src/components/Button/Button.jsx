@@ -6,12 +6,10 @@ export default function Button(data) {
 
   return (
     <button
-      className={classNames(styles.button, [className, mode ? '_' + mode : ''])}
+      className={classNames(styles.button, [className, mode && '_' + mode])}
       {...props}
     >
-      <div className={styles.inner}>
-        <div className={styles.text}>{text}</div>
-      </div>
+      <span className={styles.inner}>{text}</span>
     </button>
   )
 }

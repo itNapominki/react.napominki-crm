@@ -1,3 +1,3 @@
-export default function handleRemove(setList, index) {
-  setList((prev) => prev.filter((_, i) => index != i))
+export default function handleRemove(setInfo, index) {
+  setInfo((prev) => prev.filter((_, i) => index != i))
 }

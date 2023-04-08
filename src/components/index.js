@@ -12,7 +12,7 @@ export { default as Separator } from './Separator/Separator'
 export { default as SliderArrow } from './SliderArrow/SliderArrow'
 export { default as Spinner } from './Spinner/Spinner'
 export { default as Tabs } from './Tabs/Tabs'
-export { default as Textarea } from './general/Textarea/Textarea'
+export { default as Textarea } from './Textarea/Textarea'
 
 export { default as AdminDataCard } from './AdminDataCard/AdminDataCard'
 export { default as AdminDataTable } from './AdminDataTable/AdminDataTable'

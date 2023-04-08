@@ -1,9 +1,18 @@
 import styles from './Input.module.scss'
 import React from 'react'
-
 import Inputmask from 'inputmask'
 
-export default function Input({ type = 'text', mask, onInput, ...props }) {
+import { classNames } from 'core/utils'
+
+export default function Input({
+  className,
+  type = 'text',
+  mask,
+  onInput,
+  ...props
+}) {
+  // console.log('Render Input')
+
   const inputRef = React.useRef()
 
   React.useEffect(() => {
@@ -18,8 +27,9 @@ export default function Input({ type = 'text', mask, onInput, ...props }) {
   return (
     <input
       ref={inputRef}
+      type={type}
       onInput={onInput && ((e) => onInput(e.target.value))}
-      className={styles.fluid}
+      className={classNames(styles.fluid, [className])}
       {...props}
     />
   )

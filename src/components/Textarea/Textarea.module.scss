@@ -1,0 +1,19 @@
+textarea {
+  border: none;
+  background: none;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+
+.fluid {
+  @include input;
+
+  @include desktop(
+    (
+      'padding-top': 12px,
+      'padding-bottom': 12px,
+      'height': 100px,
+    )
+  );
+}

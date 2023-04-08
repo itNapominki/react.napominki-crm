@@ -1,0 +1,18 @@
+.row {
+  @include desktop(
+    (
+      'display': flex,
+    )
+  );
+}
+
+.inputTitle {
+  @include desktop(
+    (
+      'flex-shrink': 0,
+
+      'width': 350px,
+      'margin-right': 10px,
+    )
+  );
+}

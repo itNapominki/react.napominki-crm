@@ -1,5 +1,5 @@
-export default function handleInput(setList, value, i) {
-  setList((prev) =>
+export default function handleInput(setShedule, value, i) {
+  setShedule((prev) =>
     prev.map((elem, index) => {
       if (i === index) {
         return {

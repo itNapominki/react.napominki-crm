@@ -1,0 +1,27 @@
+.row {
+  @include desktop(
+    (
+      'display': flex,
+    )
+  );
+}
+
+.name {
+  @include desktop(
+    (
+      'flex-grow': 1,
+      'margin-right': 10px,
+    )
+  );
+}
+
+.distance {
+  @include desktop(
+    (
+      'flex-shrink': 0,
+      'width': 150px,
+
+      'text-align': center,
+    )
+  );
+}

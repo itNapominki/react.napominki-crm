@@ -1,49 +1,30 @@
 import React from 'react'
 
-const stringify = (obj) => JSON.stringify(obj)
-const checkOption = (arr, obj) => {
-  return arr.map((option) => stringify(option)).indexOf(stringify(obj))
-}
-
-export default function useMultiple(defaultValue = [], options = [], callback) {
-  const [value, setValue] = React.useState(defaultValue)
-  const [visible, setVisible] = React.useState(false)
+export default function useMultiple(value, options, onChange) {
+  const [multipleValue, setMultipleValue] = React.useState(value)
 
   React.useEffect(() => {
-    if (callback) {
-      return callback(value)
-    }
-  }, [value])
+    onChange(multipleValue)
+  }, [multipleValue])
 
-  React.useEffect(() => {
-    setValue(defaultValue)
-  }, [defaultValue])
+  function handleChooseOption(value, i) {
+    return setMultipleValue((prev) => {
+      const indexes = prev.map((value) =>
+        options.map(({ value }) => value).indexOf(value)
+      )
 
-  const droplist = options.map((option, i) => {
-    return {
-      ...option,
-      onClick: (e) => handleChooseOption(option, i, e),
-    }
-  })
-
-  function handleChooseOption(option, index, e) {
-    setValue((prev) => {
-      let indexes = prev.map((item) => {
-        return checkOption(options, item)
-      })
-
-      if (indexes.includes(index)) {
-        return prev.filter((elem) => stringify(elem) != stringify(option))
+      if (indexes.includes(i)) {
+        return prev.filter((el) => el != value)
       }
 
-      indexes.push(index)
+      indexes.push(i)
       indexes.sort((a, b) => a - b)
 
-      const position = indexes.indexOf(index)
+      const position = indexes.indexOf(i)
 
-      return [...prev.slice(0, position), option, ...prev.slice(position)]
+      return [...prev.slice(0, position), value, ...prev.slice(position)]
     })
   }
 
-  return [value, droplist, visible, setVisible]
+  return handleChooseOption
 }

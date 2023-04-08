@@ -12,7 +12,7 @@ const options = Object.keys(USER_ROLES).map((ROLE) => ({
 export default function Role() {
   const { initial } = React.useContext(EditUserContext)
 
-  const [value, setValue] = useInitial(initial, 'role')
+  const [value, setValue] = useInitial(initial, 'role', options[0].value)
 
   return (
     <AdminForm.Control

@@ -1,3 +1,3 @@
-export default function handleAdd(setList) {
-  setList((prev) => [...prev, { days: [], time: '' }])
+export default function handleAdd(setShedule) {
+  setShedule((prev) => [...prev, { days: [], time: '' }])
 }

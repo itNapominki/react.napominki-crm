@@ -1,5 +1,5 @@
-export default function handleInput(setList, value, index) {
-  setList((prev) =>
+export default function handleInput(setInfo, value, index) {
+  setInfo((prev) =>
     prev.map((item, i) => {
       if (i === index) {
         item = value
