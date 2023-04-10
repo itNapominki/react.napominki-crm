@@ -12,7 +12,9 @@ export default function useInitial(initial, key, defaultValue) {
         data = data[key]
       }
 
-      setValue(data)
+      if (data) {
+        setValue(data)
+      }
     }
   }, [initial])
 

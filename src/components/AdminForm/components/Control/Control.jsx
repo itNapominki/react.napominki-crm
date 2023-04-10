@@ -6,13 +6,13 @@ import { classNames } from 'core/utils'
 
 export default React.memo(function Control({
   action,
-  containerTag = 'label',
   className,
   children,
   label,
   error,
   style,
   type,
+  containerTag = type === 'SELECT' ? 'div' : 'label',
   ...props
 }) {
   const Container = containerTag

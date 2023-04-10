@@ -48,3 +48,28 @@
     )
   );
 }
+
+.search {
+  @include desktop(
+    (
+      'display': flex,
+    )
+  );
+
+  :global(input) {
+    @include desktop(
+      (
+        'padding': 10px,
+        'margin': 0 16px 10px,
+
+        'display': block,
+
+        'width': 100%,
+        'box-sizing': border-box,
+
+        'border': 2px solid get-theme-color('input'),
+        'border-radius': $input-radius,
+      )
+    );
+  }
+}

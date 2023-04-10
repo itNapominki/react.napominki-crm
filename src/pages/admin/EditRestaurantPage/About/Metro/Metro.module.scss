@@ -1,7 +1,30 @@
-.row {
+.station {
   @include desktop(
     (
+      'position': relative,
       'display': flex,
+    )
+  );
+}
+
+.dottedButton {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 0,
+      'right': 0,
+    )
+  );
+}
+
+.droplist {
+  @include desktop(
+    (
+      'position': absolute,
+
+      'top': 20px,
+      'right': 0,
     )
   );
 }

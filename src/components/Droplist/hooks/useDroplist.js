@@ -1,26 +1,18 @@
 import React from 'react'
 
-export default function useDroplist({
-  visible,
-  setVisible,
-  closeOnChange,
-  droplistRef,
-}) {
+export default function useDroplist({ visible, setVisible }) {
   React.useEffect(() => {
     if (visible) {
       setTimeout(() => {
-        document.addEventListener('click', closeDroplist)
+        document.addEventListener('click', closeOutsideClick)
       }, 0)
     }
 
-    return () => document.removeEventListener('click', closeDroplist)
+    return () => document.removeEventListener('click', closeOutsideClick)
   }, [visible])
 
-  function closeDroplist(e) {
-    const clickInside =
-      [...droplistRef.current.children].indexOf(e.target) !== -1
-
-    if (!closeOnChange && clickInside) {
+  function closeOutsideClick(e) {
+    if (e.target.closest('.js-droplist')) {
       return
     }
 

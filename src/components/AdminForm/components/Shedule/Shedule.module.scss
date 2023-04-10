@@ -10,8 +10,7 @@
 .select {
   @include desktop(
     (
-      'flex-shrink': 0,
-
+      'flex-grow': 1,
       'width': 220px,
       'margin-right': 10px,
     )
@@ -21,6 +20,9 @@
 .input {
   @include desktop(
     (
+      'flex-shrink': 0,
+      'width': 120px,
+
       'text-align': center,
     )
   );

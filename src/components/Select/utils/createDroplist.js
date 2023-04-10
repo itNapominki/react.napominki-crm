@@ -1,12 +1,8 @@
-export default function createDroplist(
-  options,
-  multiple,
-  handleChooseOption,
-  onChange
-) {
-  return options.map((option, i) => ({
-    ...option,
-    onClick: () =>
-      multiple ? handleChooseOption(option.value, i) : onChange(option.value),
-  }))
+export default function createDroplist(options, onChange) {
+  return options.map((option, i) => {
+    return {
+      ...option,
+      onClick: () => onChange(option.value, i),
+    }
+  })
 }

@@ -2,11 +2,16 @@ import styles from './Metro.module.scss'
 import React from 'react'
 
 import { AdminForm } from 'components'
-import { Station } from '.'
+import { StationDistance, StationDroplist, StationSelect } from '.'
 
 import { EditRestaurantContext } from 'core/context'
 import { useInitial } from 'hooks'
-import { handleAdd } from './handlers'
+import {
+  handleAdd,
+  handleInput,
+  handleRemove,
+  handleSelectChange,
+} from './handlers'
 
 export default function Metro() {
   const {
@@ -26,27 +31,26 @@ export default function Metro() {
         title="Связанные метро"
         button={{ text: 'Добавить', onClick: () => handleAdd(setRelated) }}
       >
-        {related?.map((station, i) => {
+        {related?.map(({ title, distance }, i) => {
           const name = `clientInfo.relatedMetro[${i}]`
 
           return (
             <div className="col col-6" key={i}>
-              <div className={styles.row}>
-                <AdminForm.Control
-                  type="SELECT"
-                  className={styles.name}
-                  options={[]}
-                  value={station.title}
-                  onChange={() => console.log(1)}
+              <div className={styles.station}>
+                <StationDroplist onRemove={() => handleRemove(setRelated, i)} />
+                <StationSelect
+                  name={name + '.title'}
+                  title={title}
+                  onChange={(value) => handleSelectChange(value, setRelated, i)}
+                  errors={errors}
                 />
-                <AdminForm.Control type="number" className={styles.distance} />
+                <StationDistance
+                  name={name + '.title'}
+                  distance={distance}
+                  onInput={(value) => handleInput(value, setRelated, i)}
+                  errors={errors}
+                />
               </div>
-            </div>
-          )
-
-          return (
-            <div key={i} className="col col-4">
-              <Station station={station} name={name} errors={errors} />
             </div>
           )
         })}
