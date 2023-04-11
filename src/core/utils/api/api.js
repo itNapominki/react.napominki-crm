@@ -13,6 +13,7 @@ class Api {
       object: MODELS.OBJECT.API_URL,
       location: MODELS.LOCATION.API_URL,
       menu: MODELS.MENU.API_URL,
+      settings: '/settings',
     }
 
     this.auth = auth
@@ -34,7 +35,7 @@ class Api {
   async update({ model, id, data, params }) {
     const token = this.#token
 
-    return await axios.put(this.apiUrl[model] + '/' + id, data, {
+    return await axios.put(this.apiUrl[model] + '/' + (id ? id : ''), data, {
       params,
       headers: {
         Authorization: 'Bearer ' + token,

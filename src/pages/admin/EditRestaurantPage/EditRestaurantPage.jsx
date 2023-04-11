@@ -16,10 +16,17 @@ export default function EditRestaurantPage() {
     getObjKeyName(() => USER_ROLES.REDAKTOR),
   ])
 
-  const { id } = useParams()
+  const params = useParams()
+  const [id, setId] = React.useState(params.id)
 
   const [initial, setInitial] = React.useState()
   const [activeTab, navigation] = useNavigation()
+
+  React.useEffect(() => {
+    if (params.id) {
+      setId(params.id)
+    }
+  }, [params])
 
   React.useEffect(() => {
     if (id) {
@@ -29,9 +36,6 @@ export default function EditRestaurantPage() {
     }
   }, [])
 
-  React.useEffect(() => setData(initial), [initial])
-
-  const [data, setData] = React.useState()
   const [error, setError] = React.useState({})
 
   if (error.message) {
@@ -41,14 +45,11 @@ export default function EditRestaurantPage() {
 
   return (
     <EditRestaurantContext.Provider
-      value={{ id, initial, data, setInitial, error, setError }}
+      value={{ id, initial, setInitial, error, setError }}
     >
       {id && <Tabs buttons={navigation} />}
       <RestaurantForm>
-        {[
-          <About />,
-          // , <Halls />, <Menus />, <Manager />
-        ].map((Component, i) => (
+        {[<About />, <Halls />, <Menus />, <Manager />].map((Component, i) => (
           <div key={i} hidden={activeTab !== i}>
             {Component}
           </div>

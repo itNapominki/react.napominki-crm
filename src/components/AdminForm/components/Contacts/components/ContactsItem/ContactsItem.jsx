@@ -1,6 +1,6 @@
 import styles from './ContactsItem.module.scss'
 import React from 'react'
-import { DottedButton, Droplist, Input } from 'components'
+import { DottedButton, Droplist, AdminForm } from 'components'
 import { useErrors } from 'hooks'
 
 export default function ContactsItem({
@@ -37,7 +37,7 @@ export default function ContactsItem({
         />
       )}
       <div className="row">
-        <Input
+        <AdminForm.Control
           label="Контактное лицо"
           name={name + '.fullname'}
           value={contact.fullname}
@@ -45,7 +45,7 @@ export default function ContactsItem({
           className="col col-4"
           error={fullnameError}
         />
-        <Input
+        <AdminForm.Control
           label="Должность"
           name={name + '.position'}
           value={contact.position}
@@ -53,7 +53,7 @@ export default function ContactsItem({
           className="col col-4"
           error={positionError}
         />
-        <Input
+        <AdminForm.Control
           label="Телефон"
           name={name + '.phone'}
           value={contact.phone}

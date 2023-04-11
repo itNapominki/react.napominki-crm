@@ -1,0 +1,22 @@
+import React from 'react'
+import { AdminForm } from 'components'
+import { EditRestaurantContext } from 'core/context'
+import { useInitial } from 'hooks'
+
+export default function Comment() {
+  const { initial } = React.useContext(EditRestaurantContext)
+
+  const [value, setValue] = useInitial(initial, 'managerInfo.comment', '')
+
+  return (
+    <AdminForm.Group title="Комментарий">
+      <AdminForm.Control
+        type="TEXTAREA"
+        name="managerInfo.comment"
+        value={value}
+        onInput={setValue}
+        className="col col-12"
+      />
+    </AdminForm.Group>
+  )
+}

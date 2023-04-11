@@ -45,7 +45,7 @@ export default function Metro() {
                   errors={errors}
                 />
                 <StationDistance
-                  name={name + '.title'}
+                  name={name + '.distance'}
                   distance={distance}
                   onInput={(value) => handleInput(value, setRelated, i)}
                   errors={errors}

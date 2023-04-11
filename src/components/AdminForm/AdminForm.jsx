@@ -106,7 +106,7 @@ export default function AdminForm({
       {(title || id) && (
         <React.Fragment>
           <div className={styles.title}>{title}</div>
-          {id && (
+          {id && deleteButton && (
             <div
               className={styles.removeButton}
               onClick={handleDelete({
@@ -124,12 +124,14 @@ export default function AdminForm({
       {children}
       <div className={`${styles.actions} row`}>
         <Button text="Сохранить" className="col col-2" />
-        <Button
-          mode="light"
-          text="Отменить"
-          className="col col-2"
-          onClick={handleCancel(onCancel)}
-        />
+        {onCancel && (
+          <Button
+            mode="light"
+            text="Отменить"
+            className="col col-2"
+            onClick={handleCancel(onCancel)}
+          />
+        )}
       </div>
     </form>
   )

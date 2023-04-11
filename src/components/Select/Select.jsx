@@ -30,7 +30,7 @@ export default React.memo(
     const [opened, setOpened] = React.useState(false)
     const handleChooseOption = multiple && useMultiple(value, options, onChange)
 
-    const selected = getSelected(multiple, options, value)
+    const selected = getSelected(multiple, options, value, search)
 
     const handleChange = multiple ? handleChooseOption : onChange
 
@@ -45,15 +45,16 @@ export default React.memo(
       })
     }
 
+    const selectedOption = options.find((option) => option.value === value)
+    const selectedText = multiple
+      ? value.join(', ')
+      : selectedOption
+      ? selectedOption.text
+      : value
+
     return (
       <div className={classNames(styles.container)}>
-        <SelectFluid
-          name={name}
-          onChange={onChange}
-          options={options}
-          value={value}
-          setOpened={setOpened}
-        />
+        <SelectFluid value={selectedText} setOpened={setOpened} />
 
         <Droplist
           className={styles.droplist}

@@ -22,7 +22,7 @@ export default function StationSelect({ name, title, onChange, errors }) {
       options={stations.map(({ title }) => ({ text: title, value: title }))}
       value={title}
       onChange={onChange}
-      error={error}
+      error={{ text: error, down: true }}
       className={styles.name}
     />
   )

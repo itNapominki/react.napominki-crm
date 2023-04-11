@@ -6,7 +6,7 @@ import {
   RelatedRestaurants,
   Shedule,
   Whatsapp,
-} from './components'
+} from '.'
 
 export default function Manager() {
   console.log('render EditRestaurant ManagerInfo')
@@ -15,12 +15,7 @@ export default function Manager() {
     <React.Fragment>
       <MainGroup />
       <Shedule />
-
-      {/* 
-      
-      <RelatedRestaurants />
-      
-       */}
+      {/* <RelatedRestaurants /> */}
       <Contacts />
       <Whatsapp />
       <Comment />

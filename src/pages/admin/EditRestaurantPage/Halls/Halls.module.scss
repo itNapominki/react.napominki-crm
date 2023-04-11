@@ -1,1 +1,31 @@
+.container {
+  @include desktop(
+    (
+      'margin-bottom': 32px,
+    )
+  );
+}
 
+.topRow {
+  @include desktop(
+    (
+      'display': flex,
+      'justify-content': space-between,
+      'align-items': flex-start,
+    )
+  );
+}
+
+.title {
+  @include h2;
+}
+
+.removeButton {
+  @include link(get-theme-color('error'));
+
+  @include desktop(
+    (
+      'font-size': 12px,
+    )
+  );
+}

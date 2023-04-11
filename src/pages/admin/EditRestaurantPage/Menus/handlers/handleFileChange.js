@@ -1,11 +1,9 @@
-export default function handleFileChange(setMenus, file, i) {
+export default function handleFileChange(setMenus, value, i) {
   setMenus((prev) =>
-    prev.map((menu, index) => {
-      if (i === index) {
-        return {
-          ...menu,
-          file,
-        }
+    prev.map((menu, j) => {
+      if (i === j) {
+        menu.id = value.value
+        menu.title = value.text
       }
 
       return menu

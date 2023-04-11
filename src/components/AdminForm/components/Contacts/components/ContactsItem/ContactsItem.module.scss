@@ -1,3 +1,6 @@
+// @value someClass from "./xxx.module.css";
+// @import '../../../Control/Control.module.scss';
+
 .container {
   @include desktop(
     (
@@ -5,17 +8,13 @@
     )
   );
 
-  :global .input {
-    &:nth-child(3) {
-      .input__top {
-        @include desktop(
-          (
-            'padding-right': 32px,
-          )
-        );
-      }
-    }
-  }
+  // .top {
+  //   @include desktop(
+  //     (
+  //       'padding-right': 32px,
+  //     )
+  //   );
+  // }
 }
 
 .burgerButton {

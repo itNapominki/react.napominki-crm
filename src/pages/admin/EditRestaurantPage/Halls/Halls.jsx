@@ -1,9 +1,17 @@
 import React from 'react'
 
 import { AdminForm } from 'components'
-import { Hall } from './components'
+import { Hall } from './'
 
-import { handleAdd } from './handlers'
+import {
+  handleAdd,
+  handleFilesChange,
+  handleInput,
+  handleInputList,
+  handleImageRemove,
+  handleRemove,
+} from './handlers'
+
 import { useInitial } from 'hooks'
 import { EditRestaurantContext } from 'core/context'
 
@@ -17,9 +25,7 @@ export default function Halls() {
     error: { errors },
   } = React.useContext(EditRestaurantContext)
 
-  const initialState = useInitial(initial, 'halls', [])
-  const [halls, setHalls] = React.useState([])
-  React.useEffect(() => setHalls(initialState), [initialState])
+  const [halls, setHalls] = useInitial(initial, 'halls', [])
 
   return (
     <div className={styles.container}>
@@ -34,9 +40,18 @@ export default function Halls() {
             <Hall
               key={i}
               hall={hall}
-              setHalls={setHalls}
-              errors={errors}
               name={`halls[${i}]`}
+              title={hall.title ? hall.title : `Новый зал ${i + 1}`}
+              handleFilesChange={(e, setGallery) =>
+                handleFilesChange(e, setGallery, setHalls, i)
+              }
+              handleInput={(key, value) => handleInput(setHalls, key, value, i)}
+              handleInputList={(info) => handleInputList(setHalls, info, i)}
+              handleImageRemove={(j, setGallery) =>
+                handleImageRemove(j, setGallery, i, setHalls)
+              }
+              handleRemove={() => handleRemove(setHalls, i)}
+              errors={errors}
             />
           ))}
         </div>

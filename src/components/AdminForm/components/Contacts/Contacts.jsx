@@ -7,13 +7,11 @@ import { handleAdd, handleInput, handleRemove } from './handlers'
 export default function Contacts({
   buttonText = 'Добавить контакт',
   title = 'Контакты',
-  errors,
-  initial,
+  contacts,
+  setContacts,
   name,
+  errors,
 }) {
-  const [contacts, setContacts] = React.useState([])
-  React.useEffect(() => setContacts(initial), [initial])
-
   return (
     <AdminForm.Group
       className="admin-form-contacts"

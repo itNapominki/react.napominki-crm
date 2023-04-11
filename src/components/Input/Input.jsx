@@ -28,7 +28,7 @@ export default function Input({
     <input
       ref={inputRef}
       type={type}
-      onInput={onInput && ((e) => onInput(e.target.value))}
+      onInput={onInput ? (e) => onInput(e.target.value) : null}
       className={classNames(styles.fluid, [className])}
       {...props}
     />

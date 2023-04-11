@@ -1,6 +1,0 @@
-export { default as Delivery } from './Delivery/Delivery'
-export { default as Food } from './Food/Food'
-export { default as Id } from './Id/Id'
-export { default as Prepay } from './Prepay/Prepay'
-export { default as Priority } from './Priority/Priority'
-export { default as Status } from './Status/Status'

@@ -10,22 +10,17 @@ import { MODELS } from 'core/constants'
 const ROOT_PAGE = ROUTES.ADMIN.CHILDREN.RESTAURANTS.PATH
 
 export default function RestaurantForm({ children }) {
-  const { id, data, setInitial, setError } = React.useContext(
-    EditRestaurantContext
-  )
+  const { id, setError } = React.useContext(EditRestaurantContext)
 
   const navigate = useNavigate()
 
   const goHome = () => navigate(ROOT_PAGE)
   const onSave = (data) =>
-    !id || id != data.id
+    id != data.id
       ? navigate(
-          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', data.id),
-          {
-            state: { data },
-          }
+          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', data.id)
         )
-      : setInitial(data)
+      : setError({})
 
   const formTitle = (id ? 'Редактирование' : 'Добавление') + ' ресторана'
 
@@ -34,7 +29,6 @@ export default function RestaurantForm({ children }) {
   return (
     <AdminForm
       id={id}
-      dataObj={data}
       model={MODELS.RESTAURANT.VALUE}
       title={formTitle}
       onCancel={{ callback: goHome }}

@@ -10,12 +10,12 @@ export default function StationDistance({ errors, name, onInput, distance }) {
 
   return (
     <AdminForm.Control
-      type="number"
       label="Расстояние"
       name={name}
       value={distance}
       onInput={onInput}
-      error={error}
+      error={{ text: error, down: true }}
+      mask={['9 км. 999 м.']}
       className={styles.distance}
     />
   )

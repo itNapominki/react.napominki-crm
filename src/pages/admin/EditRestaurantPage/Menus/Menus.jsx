@@ -1,6 +1,7 @@
 import React from 'react'
+
 import { AdminForm } from 'components'
-import { Menu } from './components'
+import { Menu } from './'
 
 import {
   handleAdd,
@@ -25,15 +26,19 @@ export default function Menus() {
   const [options, setOptions] = React.useState([])
 
   React.useEffect(() => {
-    api
-      .getAll({ model: MODELS.MENU.VALUE, value: [] })
-      .then(({ data }) => setOptions(data))
+    api.getAll({ model: MODELS.MENU.VALUE, value: [] }).then(({ data }) =>
+      setOptions(
+        data.map(({ title, id }) => {
+          return {
+            text: title,
+            value: id,
+          }
+        })
+      )
+    )
   }, [])
 
-  const initialState = useInitial(initial, 'menus')
-  const [menus, setMenus] = React.useState([])
-
-  React.useEffect(() => setMenus(initialState), [initialState])
+  const [menus, setMenus] = useInitial(initial, 'menus')
 
   return (
     <AdminForm.Group
@@ -43,13 +48,10 @@ export default function Menus() {
       }}
     >
       {menus?.map((menu, i) => {
-        function onInput(key, value) {
-          handleInput(key, value, setMenus, i)
-        }
-
-        function onFileChange(file) {
-          if (menu.file.id != file.id) {
-            handleFileChange(setMenus, file, i)
+        function onFileChange(id) {
+          const value = options.find(({ value }) => value === id)
+          if (menu.id != id) {
+            handleFileChange(setMenus, value, i)
           }
         }
 
@@ -59,7 +61,7 @@ export default function Menus() {
               name={`menus[${i}]`}
               menu={menu}
               options={options}
-              handleInput={onInput}
+              handleInput={(key, value) => handleInput(key, value, setMenus, i)}
               handleFileChange={onFileChange}
               handleRemove={() => handleRemove(setMenus, i)}
               errors={errors}

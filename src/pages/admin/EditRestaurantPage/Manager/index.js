@@ -1,0 +1,6 @@
+export { default as Comment } from './Comment'
+export { default as Contacts } from './Contacts'
+export { default as MainGroup } from './MainGroup/MainGroup'
+export { default as RelatedRestaurants } from './components/RelatedRestaurants/RelatedRestaurants'
+export { default as Shedule } from './Shedule'
+export { default as Whatsapp } from './Whatsapp'
