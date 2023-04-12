@@ -18,6 +18,4 @@ export { default as AdminDataCard } from './AdminDataCard/AdminDataCard'
 export { default as AdminDataTable } from './AdminDataTable/AdminDataTable'
 export { default as AdminForm } from './AdminForm/AdminForm'
 
-export { default as ClientHeader } from './client/ClientHeader/ClientHeader'
-export { default as ClientLayout } from './client/ClientLayout/ClientLayout'
 export { default as ClientMap } from './ClientMap/ClientMap'

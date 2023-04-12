@@ -1,4 +1,4 @@
-.page {
+.offset {
   @media (max-width: 1660px) {
     @include desktop(
       (
@@ -15,20 +15,13 @@
 .header {
   @include desktop(
     (
-      'padding': 20px 0,
+      'padding-top': 20px,
+      'padding-bottom': 20px,
       'margin-bottom': 40px,
 
       'background': #fff,
     )
   );
-
-  @media (max-width: 1660px) {
-    @include desktop(
-      (
-        'padding-left': 230px,
-      )
-    );
-  }
 }
 
 .row {
@@ -60,6 +53,14 @@
       'text-align': center,
     )
   );
+
+  &:first-child {
+    @include desktop(
+      (
+        'margin-top': 40px,
+      )
+    );
+  }
 }
 
 .navigation {

@@ -1,1 +1,1 @@
-export { default as droplist } from './droplist'
+export { default as createDroplist } from './createDroplist'

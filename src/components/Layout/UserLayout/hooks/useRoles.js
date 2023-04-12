@@ -16,7 +16,7 @@ export default function useRoles(user) {
       return setAllowed(null)
     }
 
-    setAllowed(user && roles.indexOf(user.role) !== -1)
+    setAllowed(user && roles.indexOf(user.role) !== -1 ? true : false)
   }, [roles, user])
 
   function useSetRoles(array) {

@@ -16,9 +16,8 @@ export default function RestaurantModal({ id, onClose }) {
     offer.restaurants.find((rest) => rest.id === id)
   )
   const [halls, setHalls] = React.useState(added ? added.halls : [])
-  const [menus, setMenus] = React.useState(added ? added.menus : [])
 
-  const [data] = useGetData(id, added, setMenus)
+  const [data, menus, setMenus] = useGetData(id, added)
 
   return (
     <Modal.Container onClose={onClose}>
@@ -27,8 +26,21 @@ export default function RestaurantModal({ id, onClose }) {
         headerLeft={
           <HeaderLeft
             added={added}
-            onAdd={() => handle.add(data, halls, menus, setAdded)}
-            onUpdate={() => handle.update(id, halls, menus)}
+            onAdd={() =>
+              handle.add(
+                data,
+                halls,
+                menus.filter(({ added }) => added),
+                setAdded
+              )
+            }
+            onUpdate={() =>
+              handle.update(
+                id,
+                halls,
+                menus.filter(({ added }) => added)
+              )
+            }
             onDelete={() => handle.remove(id, setAdded)}
           />
         }

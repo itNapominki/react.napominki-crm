@@ -1,10 +1,16 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
+
 import { AdminForm } from 'components'
 
-import { api } from 'core/utils'
+import { api, getObjKeyName } from 'core/utils'
 import { useErrors } from 'hooks'
+import { USER_ROLES } from 'core/constants'
 
 export default function SettingsPage() {
+  const { setRoles } = useOutletContext()
+  setRoles([getObjKeyName(() => USER_ROLES.ADMIN)])
+
   const [offerCount, setOfferCount] = React.useState('')
 
   const [error, setError] = React.useState({})

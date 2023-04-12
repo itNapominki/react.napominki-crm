@@ -1,7 +1,7 @@
 import styles from './Tools.module.scss'
 import React from 'react'
 
-import { Droplist, Input } from 'components'
+import { Droplist, AdminForm } from 'components'
 
 import { ManagerOfferContext } from 'core/context'
 
@@ -11,14 +11,14 @@ export default function Search() {
 
   return (
     <div className={styles.search}>
-      <Input
-        label="Поиск по ресторанам"
-        bigLabel
+      <AdminForm.Control
+        label={{ text: 'Поиск по ресторанам', size: 'big' }}
         onInput={setSearch}
         onFocus={() => searched.length > 0 && setSearchedVisible(true)}
       />
       <Droplist
         visible={searchedVisible}
+        setVisible={setSearchedVisible}
         items={searched}
         className={styles.search__droplist}
       />

@@ -1,15 +1,15 @@
-import styles from './ClientHeader.module.scss'
+import styles from './ClientLayout.module.scss'
 import React from 'react'
 
 import { Messengers } from './'
 
-export default function ClientHeader({ manager }) {
+export default function ClientHeader({ manager = {} }) {
   const { firstName, phone, messengers } = manager
 
   return (
-    <div className={styles.container}>
+    <div className={styles.header}>
       <div className="wrapper">
-        <div className={styles.row}>
+        <div className={styles.header__row}>
           <div className={styles.logo}>
             <img src="/logo.png" alt="" />
           </div>

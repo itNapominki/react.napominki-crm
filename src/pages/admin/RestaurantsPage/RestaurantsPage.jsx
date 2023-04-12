@@ -1,11 +1,11 @@
 import React from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
 import { AdminDataCard, AdminDataTable } from 'components'
 
 import { useScrollLoad } from 'hooks'
-import { addressToString, getObjKeyName } from 'core/utils'
-import { droplist } from './utils'
+import { getObjKeyName } from 'core/utils'
+import { createDroplist } from './utils'
 import { USER_ROLES } from 'core/constants'
 import { ROUTES } from 'router/routes'
 
@@ -15,6 +15,8 @@ export default function RestaurantsPage() {
     getObjKeyName(() => USER_ROLES.ADMIN),
     getObjKeyName(() => USER_ROLES.REDAKTOR),
   ])
+
+  const navigate = useNavigate()
 
   const [data, setData, fetching] = useScrollLoad('restaurant', {
     attributes: ['id', 'title', 'address', 'isPublished'],
@@ -51,21 +53,12 @@ export default function RestaurantsPage() {
         title="Рестораны"
         rows={data.map((restaurant) => {
           const { id, isPublished, address } = restaurant
-          const { city, county, district, street, house } = address
-
-          const addressString = addressToString({
-            city,
-            county,
-            district,
-            street,
-            house,
-          })
 
           return {
             ...restaurant,
             isPublished: isPublished ? 'Опубликован' : 'Не опубликован',
-            address: addressString,
-            droplist: droplist(setData, id, isPublished),
+            address,
+            droplist: createDroplist(setData, id, isPublished, navigate),
           }
         })}
         cols={cols}

@@ -1,2 +1,2 @@
 export { default as userReducer } from './userReducer'
-export { default as managerOfferReducer } from './managerOfferReducer'
+export { default as managerReducer } from './managerReducer'

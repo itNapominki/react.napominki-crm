@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
 import { Tabs } from 'components'
-import { Container } from '../index'
 import { Header, Navigation } from './'
 
 import { useRoles } from './hooks'
@@ -14,10 +13,10 @@ export default function UserLayout({ navigation }) {
   const [allowed, setRoles] = useRoles(user)
 
   return (
-    <Container>
+    <React.Fragment>
       <Header user={user} />
       {user && <Navigation role={user && user.role} />}
-      <div className={styles.page}>
+      <div className={user && styles.offset}>
         <div className="wrapper">
           {allowed === false ? (
             <div className={styles.forbidden}>Нет доступа</div>
@@ -29,6 +28,6 @@ export default function UserLayout({ navigation }) {
           )}
         </div>
       </div>
-    </Container>
+    </React.Fragment>
   )
 }

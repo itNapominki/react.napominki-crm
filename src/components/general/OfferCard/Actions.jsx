@@ -1,5 +1,6 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { ManagerOfferContext } from 'core/context'
 
@@ -17,9 +18,7 @@ export default function Actions({ mode, id, cardUrl }) {
           </button>
         </React.Fragment>
       ) : (
-        <a href={cardUrl} target="_blank">
-          Смотреть подробно
-        </a>
+        <Link to={cardUrl}>Смотреть подробно</Link>
       )}
     </div>
   )

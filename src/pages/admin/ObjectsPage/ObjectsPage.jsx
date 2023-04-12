@@ -5,7 +5,7 @@ import { AdminDataCard, AdminDataTable } from 'components'
 
 import { useScrollLoad } from 'hooks'
 import { useObjectTypes } from './hooks'
-import { droplist } from './utils'
+import { createDroplist } from './utils'
 import { getObjKeyName } from 'core/utils'
 import { USER_ROLES } from 'core/constants'
 import { ROUTES } from 'router/routes'
@@ -56,7 +56,7 @@ export default function ObjectsPage() {
               rows={type.objects.map((object) => {
                 return {
                   ...object,
-                  droplist: droplist(setData, object.id, navigate),
+                  droplist: createDroplist(setData, object.id, navigate),
                 }
               })}
               cols={cols}

@@ -5,7 +5,7 @@ export default async function handleSave({
   model,
   onSave,
   onError,
-  id = null,
+  id = undefined,
 }) {
   const settings = { model, data }
 

@@ -1,39 +1,45 @@
 import styles from './RestaurantPage.module.scss'
 import React from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useSearchParams, useOutletContext } from 'react-router-dom'
 
-import { ClientLayout, ClientMap } from 'components'
+import { ClientMap } from 'components'
 import { Halls, Main, Menus, Offer } from './components'
 
 import { ClientRestaurantContext } from 'core/context'
-import { api, decrypt } from 'core/utils'
+import { api } from 'core/utils'
 import { MODELS } from 'core/constants'
 
 export default function RestaurantPage() {
   const { id } = useParams()
-  const { hash } = useLocation()
-  const decrypted = hash && JSON.parse(decrypt(hash.replace('#', '')))
+  const [searchParams] = useSearchParams()
+  const { manager } = useOutletContext()
+
+  const menus = searchParams.get('menus')
+  const halls = searchParams.get('halls')
 
   const [restaurant, setRestaurant] = React.useState()
-  const [manager, setManager] = React.useState({})
 
   React.useEffect(() => {
-    api
-      .getOne({ model: MODELS.RESTAURANT.VALUE, id })
-      .then(({ data }) => setRestaurant(data))
+    api.getOne({ model: MODELS.RESTAURANT.VALUE, id }).then(({ data }) => {
+      if (halls) {
+        data.halls = data.halls.filter(
+          (_, i) => halls.split(',').map(Number).indexOf(i) !== -1
+        )
+      }
 
-    if (decrypted.managerId) {
-      api
-        .getOne({ model: MODELS.USER.VALUE, id: decrypted.managerId })
-        .then(({ data }) => setManager(data))
-    }
+      if (menus) {
+        data.menus = data.menus.filter(
+          ({ id }) => menus.split(',').map(Number).indexOf(id) !== -1
+        )
+      }
+
+      setRestaurant(data)
+    })
   }, [])
 
   return (
-    <ClientRestaurantContext.Provider
-      value={{ restaurant, decrypted, manager }}
-    >
-      <ClientLayout manager={manager} className={styles.container}>
+    <ClientRestaurantContext.Provider value={{ restaurant, manager }}>
+      <div className={styles.container}>
         {restaurant && (
           <React.Fragment>
             <Main />
@@ -50,11 +56,11 @@ export default function RestaurantPage() {
             />
             <Offer
               title="Чтобы выбрать этот филиал, напишите своему менеджеру"
-              messengers={manager.messengers}
+              manager={manager}
             />
           </React.Fragment>
         )}
-      </ClientLayout>
+      </div>
     </ClientRestaurantContext.Provider>
   )
 }

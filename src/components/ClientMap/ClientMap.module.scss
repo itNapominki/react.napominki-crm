@@ -7,7 +7,7 @@
 
   @include mobile(
     (
-      'height': 80vh,
+      'height': calc(100vw - 40px),
     )
   );
 }

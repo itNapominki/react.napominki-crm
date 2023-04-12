@@ -5,7 +5,7 @@ import { AdminDataCard, AdminDataTable } from 'components'
 
 import { useScrollLoad } from 'hooks'
 import { useUserRoles } from './hooks'
-import { droplist } from './utils'
+import { createDroplist } from './utils'
 import { MODELS, USER_ROLES } from 'core/constants'
 import { getObjKeyName } from 'core/utils'
 import { ROUTES } from 'router/routes'
@@ -48,14 +48,14 @@ export default function UsersPage() {
       }}
     >
       {roles.length > 0 &&
-        roles.map((role, i) => (
+        roles.map((role) => (
           <React.Fragment key={role.slug}>
             <AdminDataTable
               title={role.title}
               rows={role.users.map((user) => {
                 return {
                   ...user,
-                  droplist: droplist(setData, user.id, navigate),
+                  droplist: createDroplist(setData, user.id, navigate),
                 }
               })}
               cols={cols}

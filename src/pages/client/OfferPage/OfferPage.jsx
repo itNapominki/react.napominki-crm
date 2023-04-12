@@ -1,19 +1,14 @@
 import styles from './OfferPage.module.scss'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 
-import { ClientLayout, ClientMap, Spinner } from 'components'
+import { ClientMap, Spinner } from 'components'
 import { OfferCard } from 'components/general'
 
 import { ClientOfferContext } from 'core/context'
-import { useGetData } from './hooks'
-import { decrypt } from 'core/utils'
 
 export default function OfferPage() {
-  const { hash } = useLocation()
-  const decrypted = JSON.parse(decrypt(hash.replace('#', '')))
-
-  const [restaurants, manager] = useGetData(decrypted)
+  const { restaurants, manager } = useOutletContext()
 
   const points = restaurants?.map(({ id, point }) => ({
     id,
@@ -21,26 +16,24 @@ export default function OfferPage() {
   }))
 
   return (
-    <ClientOfferContext.Provider value={{ restaurants, decrypted, manager }}>
-      <ClientLayout manager={manager}>
-        <div className={styles.title}>Эти заведения вам подходят:</div>
+    <ClientOfferContext.Provider value={{ restaurants, manager }}>
+      <div className={styles.title}>Эти заведения вам подходят:</div>
 
-        <Spinner show={!restaurants} />
+      <Spinner show={!restaurants} />
 
-        {restaurants && (
-          <React.Fragment>
-            <ClientMap className={styles.map} points={points} />
+      {restaurants && (
+        <React.Fragment>
+          <ClientMap className={styles.map} points={points} />
 
-            {restaurants.map((restaurant) => (
-              <OfferCard
-                key={restaurant.id}
-                hall={restaurant}
-                className={styles.card}
-              />
-            ))}
-          </React.Fragment>
-        )}
-      </ClientLayout>
+          {restaurants.map((restaurant) => (
+            <OfferCard
+              key={restaurant.id}
+              hall={restaurant}
+              className={styles.card}
+            />
+          ))}
+        </React.Fragment>
+      )}
     </ClientOfferContext.Provider>
   )
 }

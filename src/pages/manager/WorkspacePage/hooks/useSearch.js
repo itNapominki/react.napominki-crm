@@ -13,7 +13,7 @@ export default function useSearch(search, setMapSettings, setModalFor) {
         .getAll({
           model: MODELS.RESTAURANT.VALUE,
           params: {
-            search: { keys: ['title', 'cardTitle'], value: search },
+            search: { keys: ['title', 'cardTitle', 'address'], value: search },
             attributes: ['id', 'cardTitle', 'title', 'point', 'address'],
             limit: 10,
           },

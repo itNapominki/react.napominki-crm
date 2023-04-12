@@ -6,12 +6,12 @@ export default function Preview({ path, cardUrl }) {
 
   return (
     <Image
-      href={cardUrl}
+      href={cardUrl ? cardUrl : undefined}
       className={styles.preview}
       style={{
         backgroundImage: `url(${process.env.REACT_APP_SERVER_URL + path})`,
       }}
-      target={cardUrl && '_blank'}
+      target={cardUrl ? '_blank' : undefined}
     />
   )
 }

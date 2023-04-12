@@ -4,16 +4,18 @@ import { classNames } from 'core/utils'
 
 import { Actions, Info, List, Preview, Sort } from './'
 
-import { ClientOfferContext } from 'core/context'
-import { getUrl } from './utils'
+import { ROUTES } from 'router/routes'
 
 export default function OfferCard({ className, hall, mode = 'CLIENT' }) {
   const { id, preview, ...data } = hall
 
-  const { decrypted } =
-    mode === 'CLIENT' && React.useContext(ClientOfferContext)
-
-  const cardUrl = mode === 'CLIENT' ? getUrl(decrypted, id) : null
+  const cardUrl =
+    mode === 'CLIENT'
+      ? [
+          ROUTES.OFFER.CHILDREN.RESTAURANT.PATH.replace(':id', hall.id),
+          hall.queryParams,
+        ].join('?')
+      : null
 
   return (
     <div className={classNames(styles.container, [className])}>

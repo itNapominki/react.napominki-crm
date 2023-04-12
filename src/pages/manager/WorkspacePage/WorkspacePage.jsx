@@ -2,7 +2,7 @@ import styles from './WorkspacePage.module.scss'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Layout } from 'components'
+import { Header } from 'components/Layout/UserLayout'
 import { Map, Offer, RestaurantModal, Tools } from './components'
 
 import { ManagerOfferContext } from 'core/context'
@@ -53,17 +53,18 @@ export default function WorkspacePage() {
         setSearchedVisible,
       }}
     >
-      <Layout>
-        <div className="wrapper">
-          <Tools />
-          <Map />
-          <Offer />
-        </div>
+      {/* <Layout.UserLayout> */}
+      <Header user={user} offset={false} />
+      <div className="wrapper">
+        <Tools />
+        <Map />
+        <Offer />
+      </div>
 
-        {modalFor && (
-          <RestaurantModal id={modalFor} onClose={() => setModalFor(null)} />
-        )}
-      </Layout>
+      {modalFor && (
+        <RestaurantModal id={modalFor} onClose={() => setModalFor(null)} />
+      )}
+      {/* </Layout.UserLayout> */}
     </ManagerOfferContext.Provider>
   )
 }

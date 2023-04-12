@@ -2,7 +2,7 @@ import { api } from 'core/utils'
 import { ROUTES } from 'router/routes'
 import { MODELS } from 'core/constants'
 
-export default function useDroplist(setData, id, navigate) {
+export default function createDroplist(setData, id, navigate) {
   return [
     {
       text: 'Редактировать',

@@ -1,7 +1,11 @@
 export default function handleAddMenu(id, setMenus) {
   setMenus((prev) =>
-    prev.find((menuId) => menuId === id)
-      ? prev.filter((menuId) => menuId !== id)
-      : [...prev, id]
+    prev.map((menu) => {
+      if (menu.id === id) {
+        menu.added = !menu.added
+      }
+
+      return menu
+    })
   )
 }

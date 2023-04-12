@@ -38,7 +38,11 @@ export default function useHandlers(user) {
           cardTitle,
           address,
           halls,
-          menus,
+          menus: menus.map(({ id, deposit, persons }) => ({
+            id,
+            deposit,
+            persons,
+          })),
           clientInfo: { relatedMetro },
         },
       ],
@@ -77,7 +81,12 @@ export default function useHandlers(user) {
       restaurants: prev.restaurants.map((restaurant) => {
         if (restaurant.id === id) {
           restaurant.halls = halls
-          restaurant.menus = menus
+
+          restaurant.menus = menus.map(({ id, deposit, persons }) => ({
+            id,
+            deposit,
+            persons,
+          }))
         }
 
         return restaurant

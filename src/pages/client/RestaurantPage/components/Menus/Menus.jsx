@@ -7,16 +7,22 @@ import { Menu } from './'
 
 import { ClientRestaurantContext } from 'core/context'
 import 'swiper/css/scrollbar'
+import { api } from 'core/utils'
+import { MODELS } from 'core/constants'
 
 export default function Menus() {
-  const {
-    restaurant: { menus },
-    decrypted,
-  } = React.useContext(ClientRestaurantContext)
+  const { restaurant } = React.useContext(ClientRestaurantContext)
 
-  const shown = decrypted
-    ? menus.filter(({ file }) => decrypted.menus.find((id) => id === file.id))
-    : menus
+  const [menus, setMenus] = React.useState([])
+
+  React.useEffect(() => {
+    api
+      .getAll({
+        model: MODELS.MENU.VALUE,
+        params: { where: { id: restaurant.menus.map(({ id }) => id) } },
+      })
+      .then(({ data }) => setMenus(data))
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -29,9 +35,9 @@ export default function Menus() {
           mousewheel={true}
           modules={[Mousewheel, Scrollbar]}
         >
-          {shown.map(({ file }) => (
-            <SwiperSlide key={file.id}>
-              <Menu data={file} />
+          {menus.map(({ id, title, path }) => (
+            <SwiperSlide key={id}>
+              <Menu title={title} path={path} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,16 +1,14 @@
-import React from 'react'
 import { ROUTES } from 'router/routes'
 import { api } from 'core/utils'
 import { MODELS } from 'core/constants'
 
-export default function useDroplist(setData, id, isPublished) {
+export default function createDroplist(setData, id, isPublished, navigate) {
   return [
     {
       text: 'Редактировать',
       onClick: () =>
-        window.open(
-          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', id),
-          '_blank'
+        navigate(
+          ROUTES.ADMIN.CHILDREN.RESTAURANTS_UPDATE.PATH.replace(':id', id)
         ),
     },
     {
@@ -23,12 +21,22 @@ export default function useDroplist(setData, id, isPublished) {
             data: { isPublished: !isPublished },
           })
           .then(({ data }) => alert(data.message))
+          .then(() =>
+            setData((prev) =>
+              prev.map((restaurant) => {
+                if (restaurant.id === id) {
+                  restaurant.isPublished = !isPublished
+                }
+
+                return restaurant
+              })
+            )
+          )
           .catch(({ response }) => alert(response.data.message)),
     },
     {
       text: 'Смотреть карточку',
-      onClick: () =>
-        window.open(ROUTES.RESTAURANT.PATH.replace(':id', id), '_blank'),
+      onClick: () => navigate(ROUTES.RESTAURANT.PATH.replace(':id', id)),
     },
     {
       text: 'Удалить',

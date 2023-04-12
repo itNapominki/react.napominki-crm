@@ -3,18 +3,18 @@ import React from 'react'
 
 import { AddButton } from 'components'
 
-export default function Menu({ added, menu, onAddClick }) {
-  const { file, deposit, persons } = menu
+export default function Menu({ menu, onAddClick }) {
+  const { added, title, path, deposit, persons } = menu
 
   return (
     <div className={styles.menu}>
       <img src="/menu-pdf.svg" alt="" />
       <a
-        href={process.env.REACT_APP_SERVER_URL + file.path}
+        href={process.env.REACT_APP_SERVER_URL + path}
         className={styles.menu__title}
         target="_blank"
       >
-        {file.title}
+        {title}
       </a>
       <div className={styles.menu__info}>
         <span>от {deposit} руб.</span>

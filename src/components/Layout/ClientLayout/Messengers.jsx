@@ -1,4 +1,4 @@
-import styles from './ClientHeader.module.scss'
+import styles from './ClientLayout.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 

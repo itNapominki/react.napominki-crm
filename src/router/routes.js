@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import LazyPage from './LazyPage'
 
 import { OfferPage, RestaurantPage } from 'pages/client'
@@ -30,15 +30,24 @@ const UserLayout = React.lazy(() =>
   import('components/Layout/UserLayout/UserLayout')
 )
 
-export const ROUTES = {
-  RESTAURANT: {
-    PATH: '/restaurant/:id',
-    COMPONENT: <RestaurantPage />,
-  },
+const ClientLayout = React.lazy(() =>
+  import('components/Layout/ClientLayout/ClientLayout')
+)
 
+export const ROUTES = {
   OFFER: {
     PATH: '/offer',
-    COMPONENT: <OfferPage />,
+    COMPONENT: <LazyPage Component={<ClientLayout />} />,
+    CHILDREN: {
+      MAIN: {
+        PATH: '/offer',
+        COMPONENT: <OfferPage />,
+      },
+      RESTAURANT: {
+        PATH: '/offer/restaurant/:id',
+        COMPONENT: <RestaurantPage />,
+      },
+    },
   },
 
   WORKSPACE: {

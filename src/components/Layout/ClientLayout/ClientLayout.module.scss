@@ -1,4 +1,4 @@
-.container {
+.header {
   @include desktop(
     (
       'padding': 20px 0,
@@ -13,21 +13,21 @@
       'margin': 20px,
     )
   );
-}
 
-.row {
-  @include desktop(
-    (
-      'display': flex,
-      'align-items': center,
-    )
-  );
+  &__row {
+    @include desktop(
+      (
+        'display': flex,
+        'align-items': center,
+      )
+    );
 
-  @include mobile(
-    (
-      'display': block,
-    )
-  );
+    @include mobile(
+      (
+        'display': block,
+      )
+    );
+  }
 }
 
 .logo {
