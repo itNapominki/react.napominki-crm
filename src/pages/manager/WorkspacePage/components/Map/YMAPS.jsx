@@ -15,7 +15,7 @@ export default React.memo(function YMAPS({
   useScript(
     'https://api-maps.yandex.ru/2.1/?apikey=' +
       process.env.REACT_APP_YMAPS_API_KEY +
-      '&lang=ru_RU',
+      '&modules=regions~metro&lang=ru_RU',
     onLoad
   )
 
@@ -65,6 +65,21 @@ export default React.memo(function YMAPS({
               value.split(',').indexOf(object.properties.type) !== -1
             )
           })
+        })
+
+        checkDataChanges($container, 'data-searched', (value) => {
+          const searched = new ymaps.Placemark(
+            value.split(','),
+            {},
+            {
+              iconLayout: 'default#image',
+              iconImageHref: '/marker-searched.png',
+              iconImageSize: [21, 30],
+              iconImageOffset: [-5, -30],
+            }
+          )
+
+          map.geoObjects.add(searched)
         })
 
         checkDataChanges($container, 'data-settings', (value) => {

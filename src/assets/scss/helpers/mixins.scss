@@ -24,9 +24,16 @@
       'padding': 0 20px,
 
       'background': get-theme-color('input'),
+      'border': 1px solid rgba(get-theme-color('tabs-text'), 0.5),
       'border-radius': $input-radius,
 
       'text-align': inherit,
+    )
+  );
+
+  @include mobile(
+    (
+      'border-width': 1px,
     )
   );
 }

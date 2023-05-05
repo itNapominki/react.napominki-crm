@@ -50,7 +50,7 @@ export default function Navigation({ role }) {
           key={TEXT}
           to={PATH}
           className={classNames(styles.navigation__item, [
-            pathname === PATH && styles.navigation__item_active,
+            pathname.includes(PATH) && styles.navigation__item_active,
           ])}
         >
           <div className={styles.navigation__itemIcon}>

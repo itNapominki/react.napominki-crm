@@ -16,6 +16,43 @@
         'cursor': pointer,
       )
     );
+
+    :global(.__button) {
+      @include desktop(
+        (
+          'position': absolute,
+
+          'top': 16px,
+          'right': 16px,
+
+          'width': 40px,
+          'height': 40px,
+
+          'background': get-theme-color('primary'),
+          'border-radius': 50%,
+
+          'text-align': center,
+
+          'transition': $transition-time,
+        )
+      );
+
+      &:hover {
+        background: darken(get-theme-color('primary'), 5%);
+      }
+
+      svg {
+        @include desktop(
+          (
+            'width': 18px,
+            'height': 100%,
+
+            'fill': none,
+            'stroke': #fff,
+          )
+        );
+      }
+    }
   }
 
   :global(.__spinner) {

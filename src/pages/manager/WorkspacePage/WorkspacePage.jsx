@@ -27,11 +27,8 @@ export default function WorkspacePage() {
 
   const [mapSettings, setMapSettings] = React.useState({})
 
-  const [searched, searchedVisible, setSearchedVisible] = useSearch(
-    search,
-    setMapSettings,
-    setModalFor
-  )
+  const [searched, searchedVisible, setSearchedVisible, searchedCoords] =
+    useSearch(search, setMapSettings, setModalFor)
 
   return (
     <ManagerOfferContext.Provider
@@ -47,6 +44,7 @@ export default function WorkspacePage() {
         setFilterVisible,
         setSearch,
         searched,
+        searchedCoords,
         mapSettings,
         setMapSettings,
         searchedVisible,

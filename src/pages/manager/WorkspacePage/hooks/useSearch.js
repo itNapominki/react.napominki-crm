@@ -5,6 +5,7 @@ import { api } from 'core/utils'
 
 export default function useSearch(search, setMapSettings, setModalFor) {
   const [searched, setSearched] = React.useState([])
+  const [searchedCoords, setSearchedCoords] = React.useState('')
   const [searchedVisible, setSearchedVisible] = React.useState()
 
   React.useEffect(() => {
@@ -13,6 +14,7 @@ export default function useSearch(search, setMapSettings, setModalFor) {
         .getAll({
           model: MODELS.RESTAURANT.VALUE,
           params: {
+            where: { isPublished: true },
             search: { keys: ['title', 'cardTitle', 'address'], value: search },
             attributes: ['id', 'cardTitle', 'title', 'point', 'address'],
             limit: 10,
@@ -42,9 +44,11 @@ export default function useSearch(search, setMapSettings, setModalFor) {
 
         setModalFor(id)
         setSearchedVisible(false)
+
+        setSearchedCoords(point.coordinates.join(','))
       },
     }))
   }
 
-  return [searched, searchedVisible, setSearchedVisible]
+  return [searched, searchedVisible, setSearchedVisible, searchedCoords]
 }

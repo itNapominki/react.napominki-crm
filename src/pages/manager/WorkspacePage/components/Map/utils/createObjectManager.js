@@ -4,7 +4,7 @@ export default function createObjectManager(ymaps) {
     {
       paddingTemplate: 'myCallback_%b',
       splitRequests: false,
-      clusterize: true,
+      // clusterize: true,
     }
   )
 }

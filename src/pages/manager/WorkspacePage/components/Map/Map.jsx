@@ -13,6 +13,7 @@ export default function Map() {
     setRadiusFilter,
     setFilterVisible,
     mapSettings,
+    searchedCoords,
   } = React.useContext(ManagerOfferContext)
 
   return (
@@ -21,6 +22,7 @@ export default function Map() {
         id="map"
         className={styles.container}
         data-settings={JSON.stringify(mapSettings)}
+        data-searched={searchedCoords}
         data-visible-objects={visibleObjects}
         data-radius-filter={JSON.stringify(radiusFilter)}
       >

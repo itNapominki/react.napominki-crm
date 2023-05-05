@@ -13,7 +13,7 @@ export default function Shedule() {
 
   return (
     <AdminForm.Shedule
-      title="Режим работы (для клиента)"
+      title="Режим работы (реальный)"
       name="managerInfo.shedule"
       shedule={shedule}
       setShedule={setShedule}

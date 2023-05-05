@@ -26,7 +26,7 @@ export default function Menus() {
   const [options, setOptions] = React.useState([])
 
   React.useEffect(() => {
-    api.getAll({ model: MODELS.MENU.VALUE, value: [] }).then(({ data }) =>
+    api.getAll({ model: MODELS.MENU.VALUE, value: [] }).then(({ data }) => {
       setOptions(
         data.map(({ title, id }) => {
           return {
@@ -35,7 +35,18 @@ export default function Menus() {
           }
         })
       )
-    )
+
+      if (!menus) {
+        setMenus(
+          data.map(({ title, id }) => ({
+            id,
+            title,
+            persons: 0,
+            deposit: 0,
+          }))
+        )
+      }
+    })
   }, [])
 
   const [menus, setMenus] = useInitial(initial, 'menus')

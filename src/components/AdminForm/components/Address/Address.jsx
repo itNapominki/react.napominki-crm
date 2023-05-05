@@ -35,7 +35,9 @@ export default function Address({
       <AdminForm.Control
         label="Координаты"
         name="point.coordinates"
-        value={coordinates}
+        value={
+          typeof coordinates === 'string' ? coordinates : coordinates.join(', ')
+        }
         onInput={setCoordinates}
         error={coordinatesError}
         mask={['9[9][.9{1,6}], 9[9][.9{1,6}]']}
