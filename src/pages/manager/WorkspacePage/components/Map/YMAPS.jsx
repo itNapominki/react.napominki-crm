@@ -11,6 +11,7 @@ export default React.memo(function YMAPS({
   setFilterVisible,
 }) {
   const circleRef = React.useRef()
+  const searchedRef = React.useRef()
 
   useScript(
     'https://api-maps.yandex.ru/2.1/?apikey=' +
@@ -67,24 +68,28 @@ export default React.memo(function YMAPS({
           })
         })
 
-        checkDataChanges($container, 'data-searched', (value) => {
-          const searched = new ymaps.Placemark(
-            value.split(','),
-            {},
-            {
-              iconLayout: 'default#image',
-              iconImageHref: '/marker-searched.png',
-              iconImageSize: [21, 30],
-              iconImageOffset: [-5, -30],
-            }
-          )
-
-          map.geoObjects.add(searched)
-        })
-
         checkDataChanges($container, 'data-settings', (value) => {
           const { center, zoom } = JSON.parse(value)
           map.setCenter(center, zoom)
+
+          const searched = $container.dataset.searched
+
+          if (searched) {
+            map.geoObjects.remove(searchedRef.current)
+
+            searchedRef.current = new ymaps.Placemark(
+              searched.split(','),
+              {},
+              {
+                iconLayout: 'default#image',
+                iconImageHref: '/marker-searched.png',
+                iconImageSize: [21, 30],
+                iconImageOffset: [-5, -30],
+              }
+            )
+
+            map.geoObjects.add(searchedRef.current)
+          }
         })
 
         checkDataChanges($container, 'data-radius-filter', (value) => {

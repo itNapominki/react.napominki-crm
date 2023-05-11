@@ -19,7 +19,7 @@ export default function Address({
     const url = 'https://yandex.ru/maps/?text={' + address + '}'
     return window.open(url, '_blank')
   }
-
+  console.log(coordinates)
   return (
     <AdminForm.Group title="Адрес">
       <AdminForm.Control
@@ -40,7 +40,7 @@ export default function Address({
         }
         onInput={setCoordinates}
         error={coordinatesError}
-        mask={['9[9][.9{1,6}], 9[9][.9{1,6}]']}
+        // mask={['9[9][.9{1,6}], 9[9][.9{1,6}]']}
         className="col col-3"
         action={{
           text: 'Открыть карту',

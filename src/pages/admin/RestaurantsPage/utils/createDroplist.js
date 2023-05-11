@@ -36,7 +36,8 @@ export default function createDroplist(setData, id, isPublished, navigate) {
     },
     {
       text: 'Смотреть карточку',
-      onClick: () => navigate(ROUTES.RESTAURANT.PATH.replace(':id', id)),
+      onClick: () =>
+        navigate(ROUTES.OFFER.CHILDREN.RESTAURANT.PATH.replace(':id', id)),
     },
     {
       text: 'Удалить',

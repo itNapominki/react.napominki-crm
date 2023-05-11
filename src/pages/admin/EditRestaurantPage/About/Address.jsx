@@ -12,9 +12,12 @@ export default function Address() {
   const [address, setAddress] = useInitial(initial, 'address', '')
   const [coordinates, setCoordinates] = useInitial(
     initial,
-    'point.coordinates',
+    'point',
+    // 'point.coordinates',
     ''
   )
+
+  return console.log(coordinates)
 
   return (
     <AdminForm.Address
