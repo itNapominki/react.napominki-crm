@@ -5,7 +5,7 @@ import { HandySvg } from 'handy-svg'
 
 import { Separator } from 'components'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 import iconClose from 'assets/sprites/close.svg'
 

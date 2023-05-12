@@ -10,8 +10,8 @@ import idIcon from 'assets/sprites/id.svg'
 import markerIcon from 'assets/sprites/marker.svg'
 import cafeIcon from 'assets/sprites/cafe.svg'
 
-import { EditRelatedRestaurantsContext } from 'core/context'
-import { addressToString } from 'core/utils'
+import { EditRelatedRestaurantsContext } from 'context'
+import { addressToString } from 'utils'
 
 export default React.memo(function Restaurant({ restaurant }) {
   const { id, title, address } = restaurant

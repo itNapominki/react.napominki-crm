@@ -3,7 +3,7 @@ import axios from './axios'
 import auth from './auth'
 import files from './files'
 
-import { MODELS } from 'core/constants'
+import { MODELS } from 'constants'
 
 class Api {
   constructor() {

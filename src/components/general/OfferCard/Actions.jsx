@@ -2,7 +2,7 @@ import styles from './OfferCard.module.scss'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 
 export default function Actions({ mode, id, cardUrl }) {
   const { handle, setOffer, setModalFor } =

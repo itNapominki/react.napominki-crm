@@ -5,7 +5,7 @@ import { useOutletContext } from 'react-router-dom'
 import { ClientMap, Spinner } from 'components'
 import { OfferCard } from 'components/general'
 
-import { ClientOfferContext } from 'core/context'
+import { ClientOfferContext } from 'context'
 
 export default function OfferPage() {
   const { restaurants, manager } = useOutletContext()

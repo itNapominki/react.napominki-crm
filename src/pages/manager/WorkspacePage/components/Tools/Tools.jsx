@@ -4,7 +4,7 @@ import React from 'react'
 import { FilterModal } from './components'
 import { Button, Search } from './'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 
 import iconFilter from 'assets/sprites/filter.svg'
 

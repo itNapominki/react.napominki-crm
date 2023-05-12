@@ -4,7 +4,7 @@ import React from 'react'
 import { Modal } from 'components/general'
 import { Radius, VisibleObjects } from './'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 import { handleFilterObjects } from './handlers'
 
 export default function FilterModal({ onClose }) {

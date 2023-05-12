@@ -1,8 +1,8 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditUserContext } from 'core/context'
+import { EditUserContext } from 'context'
 import { useInitial } from 'hooks'
-import { USER_ROLES } from 'core/constants'
+import { USER_ROLES } from 'constants'
 
 const options = Object.keys(USER_ROLES).map((ROLE) => ({
   text: USER_ROLES[ROLE].SINGLE_VALUE,

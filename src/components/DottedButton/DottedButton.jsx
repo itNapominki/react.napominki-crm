@@ -1,6 +1,6 @@
 import './DottedButton.scss'
 import React from 'react'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function DottedButton(data) {
   const { className, ...props } = data

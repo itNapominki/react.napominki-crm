@@ -13,7 +13,7 @@ import {
 } from './handlers'
 
 import { useInitial } from 'hooks'
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 
 import styles from './Halls.module.scss'
 

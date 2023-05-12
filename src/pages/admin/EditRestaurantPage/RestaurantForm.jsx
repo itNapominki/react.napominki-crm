@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { AdminForm } from 'components'
 
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 import { ROUTES } from 'router/routes'
-import { MODELS } from 'core/constants'
+import { MODELS } from 'constants'
 
 const ROOT_PAGE = ROUTES.ADMIN.CHILDREN.RESTAURANTS.PATH
 

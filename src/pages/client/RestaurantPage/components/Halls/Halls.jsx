@@ -5,7 +5,7 @@ import { Separator, Tabs } from 'components'
 import { Hall } from './'
 import { Offer } from '../'
 
-import { ClientRestaurantContext } from 'core/context'
+import { ClientRestaurantContext } from 'context'
 
 export default function Halls() {
   const {

@@ -1,7 +1,7 @@
 import styles from './Control.module.scss'
 import React from 'react'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function Top({ label, error }) {
   const hasTop = label || (error && !error.down) ? true : false

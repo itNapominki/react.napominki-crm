@@ -6,8 +6,8 @@ import { AdminDataCard, AdminDataTable } from 'components'
 import { useScrollLoad } from 'hooks'
 import { useUserRoles } from './hooks'
 import { createDroplist } from './utils'
-import { MODELS, USER_ROLES } from 'core/constants'
-import { getObjKeyName } from 'core/utils'
+import { MODELS, USER_ROLES } from 'constants'
+import { getObjKeyName } from 'utils'
 import { ROUTES } from 'router/routes'
 
 export default function UsersPage() {

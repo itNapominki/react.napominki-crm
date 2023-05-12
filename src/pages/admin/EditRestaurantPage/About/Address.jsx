@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 import { useInitial } from 'hooks'
 
 export default function Address() {
@@ -12,12 +12,9 @@ export default function Address() {
   const [address, setAddress] = useInitial(initial, 'address', '')
   const [coordinates, setCoordinates] = useInitial(
     initial,
-    'point',
-    // 'point.coordinates',
+    'point.coordinates',
     ''
   )
-
-  return console.log(coordinates)
 
   return (
     <AdminForm.Address

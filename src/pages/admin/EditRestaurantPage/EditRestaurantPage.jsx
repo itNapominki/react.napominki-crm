@@ -3,9 +3,9 @@ import { useOutletContext, useParams } from 'react-router-dom'
 
 import { About, Halls, Manager, Menus, RestaurantForm } from './'
 
-import { EditRestaurantContext } from 'core/context'
-import { api, getObjKeyName } from 'core/utils'
-import { USER_ROLES, MODELS } from 'core/constants'
+import { EditRestaurantContext } from 'context'
+import { api, getObjKeyName } from 'utils'
+import { USER_ROLES, MODELS } from 'constants'
 import { useNavigation } from './hooks'
 import { Tabs } from 'components'
 

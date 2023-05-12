@@ -2,7 +2,7 @@ import './SliderArrow.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { useWindowDimensions } from 'hooks'
 
 import sliderArrowIcon from 'assets/sprites/slider-arrow.svg'

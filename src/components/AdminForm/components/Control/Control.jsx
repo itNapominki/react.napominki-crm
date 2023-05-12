@@ -2,7 +2,7 @@ import styles from './Control.module.scss'
 import React from 'react'
 
 import { Bottom, Fluid, Top } from './'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default React.memo(function Control({
   action,

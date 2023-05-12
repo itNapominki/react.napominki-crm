@@ -1,8 +1,8 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditObjectContext } from 'core/context'
+import { EditObjectContext } from 'context'
 import { useInitial } from 'hooks'
-import { OBJECT_TYPES } from 'core/constants'
+import { OBJECT_TYPES } from 'constants'
 
 const options = Object.keys(OBJECT_TYPES).map((TYPE) => ({
   text: OBJECT_TYPES[TYPE].SINGLE_VALUE,

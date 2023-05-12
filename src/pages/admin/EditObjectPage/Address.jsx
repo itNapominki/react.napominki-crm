@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditObjectContext } from 'core/context'
+import { EditObjectContext } from 'context'
 import { useInitial } from 'hooks'
 
 export default function Address() {

@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { AdminForm } from 'components'
 import { Auth, Contacts, MainGroup } from './'
 
-import { EditUserContext } from 'core/context'
+import { EditUserContext } from 'context'
 import { ROUTES } from 'router/routes'
-import { MODELS } from 'core/constants'
+import { MODELS } from 'constants'
 
 export default function UserForm() {
   const { id, data, setError } = React.useContext(EditUserContext)

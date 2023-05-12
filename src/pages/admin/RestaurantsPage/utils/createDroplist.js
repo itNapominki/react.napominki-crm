@@ -1,6 +1,6 @@
 import { ROUTES } from 'router/routes'
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 
 export default function createDroplist(setData, id, isPublished, navigate) {
   return [

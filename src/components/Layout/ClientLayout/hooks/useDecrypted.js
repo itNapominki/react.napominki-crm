@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { api, decrypt } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api, decrypt } from 'utils'
+import { MODELS } from 'constants'
 
 export default function useDecrypted() {
   const { hash, pathname } = useLocation()

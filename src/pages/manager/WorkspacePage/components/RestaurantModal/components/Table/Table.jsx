@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Group, Whatsapp } from './'
 
-import { ManagerRestaurantContext } from 'core/context'
+import { ManagerRestaurantContext } from 'context'
 import { getShedule } from './utils'
 
 export default function Table() {

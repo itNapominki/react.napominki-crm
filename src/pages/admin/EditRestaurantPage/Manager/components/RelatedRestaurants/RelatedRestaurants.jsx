@@ -3,10 +3,7 @@ import React from 'react'
 import { AdminForm } from 'components'
 import { Restaurant, SettingsModal } from './components'
 
-import {
-  EditRestaurantContext,
-  EditRelatedRestaurantsContext,
-} from 'core/context'
+import { EditRestaurantContext, EditRelatedRestaurantsContext } from 'context'
 import { useInitial } from 'hooks'
 
 export default function RelatedRestaurant() {

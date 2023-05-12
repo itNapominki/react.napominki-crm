@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Features, Info, Shedule } from './'
 
-import { ClientRestaurantContext } from 'core/context'
+import { ClientRestaurantContext } from 'context'
 
 export default function Main() {
   const {

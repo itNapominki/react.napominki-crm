@@ -2,9 +2,9 @@ import styles from './Offer.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 import { ROUTES } from 'router/routes'
-import { classNames, encrypt } from 'core/utils'
+import { classNames, encrypt } from 'utils'
 import { handleCopy } from './handlers'
 
 import iconCopy from 'assets/sprites/copy.svg'

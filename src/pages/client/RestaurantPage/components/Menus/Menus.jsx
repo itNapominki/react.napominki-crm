@@ -5,10 +5,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Scrollbar } from 'swiper'
 import { Menu } from './'
 
-import { ClientRestaurantContext } from 'core/context'
+import { ClientRestaurantContext } from 'context'
 import 'swiper/css/scrollbar'
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 
 export default function Menus() {
   const { restaurant } = React.useContext(ClientRestaurantContext)

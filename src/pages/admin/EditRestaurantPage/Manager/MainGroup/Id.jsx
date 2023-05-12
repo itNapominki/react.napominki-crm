@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm } from 'components'
 import { useErrors } from 'hooks'
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 
 export default function Id() {
   const {

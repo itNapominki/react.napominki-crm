@@ -4,7 +4,7 @@ import React from 'react'
 import { Input } from 'components'
 import { Group } from './'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 import { handleAdd, handleInput } from './handlers/radiusFilter'
 
 export default function Radius() {

@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Droplist, AdminForm } from 'components'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 
 export default function Search() {
   const { setSearch, searched, searchedVisible, setSearchedVisible } =

@@ -3,9 +3,9 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { setUser } from 'core/store'
+import { setUser } from 'store'
 import { Button } from 'components'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { ROUTES } from 'router/routes'
 
 export default function UserHeader({ user }) {

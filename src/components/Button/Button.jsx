@@ -1,5 +1,5 @@
 import styles from './Button.module.scss'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function Button(data) {
   const { text, className, mode, ...props } = data

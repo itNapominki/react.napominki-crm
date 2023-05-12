@@ -4,7 +4,7 @@ import React from 'react'
 import { AdminForm } from 'components'
 import { AddImage } from './'
 
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 import { useErrors, useInitial } from 'hooks'
 
 export default function Heading() {

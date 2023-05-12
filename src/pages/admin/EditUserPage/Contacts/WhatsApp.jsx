@@ -1,6 +1,6 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditUserContext } from 'core/context'
+import { EditUserContext } from 'context'
 import { useInitial } from 'hooks'
 
 export default function WhatsApp() {

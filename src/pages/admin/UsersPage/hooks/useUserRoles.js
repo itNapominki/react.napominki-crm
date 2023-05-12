@@ -1,5 +1,5 @@
 import React from 'react'
-import { USER_ROLES } from 'core/constants'
+import { USER_ROLES } from 'constants'
 
 export default function useUserRoles(data) {
   const [roles, setRoles] = React.useState([])

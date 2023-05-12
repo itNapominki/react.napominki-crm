@@ -11,7 +11,7 @@ import {
   Shedule,
 } from './components'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { handleCancel, handleDelete, handleSave } from './handlers'
 
 export default function AdminForm({

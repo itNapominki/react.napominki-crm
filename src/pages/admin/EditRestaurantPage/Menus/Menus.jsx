@@ -10,10 +10,10 @@ import {
   handleRemove,
 } from './handlers'
 
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 import { useInitial } from 'hooks'
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 
 export default function Menus() {
   console.log('render EditRestaurant Menus')

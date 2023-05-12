@@ -19,7 +19,7 @@ export default function Address({
     const url = 'https://yandex.ru/maps/?text={' + address + '}'
     return window.open(url, '_blank')
   }
-  console.log(coordinates)
+
   return (
     <AdminForm.Group title="Адрес">
       <AdminForm.Control
@@ -33,7 +33,7 @@ export default function Address({
         className="col col-9"
       />
       <AdminForm.Control
-        label="Координаты"
+        label="Координаты (XX.XXXXXX, XX.XXXXXX)"
         name="point.coordinates"
         value={
           typeof coordinates === 'string' ? coordinates : coordinates.join(', ')

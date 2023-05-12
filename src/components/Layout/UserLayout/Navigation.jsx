@@ -4,8 +4,8 @@ import { HandySvg } from 'handy-svg'
 import { Link, useLocation } from 'react-router-dom'
 
 import { ROUTES } from 'router/routes'
-import { USER_ROLES } from 'core/constants'
-import { classNames, getObjKeyName } from 'core/utils'
+import { USER_ROLES } from 'constants'
+import { classNames, getObjKeyName } from 'utils'
 
 import iconUsers from 'assets/sprites/users.svg'
 import iconRestaurant from 'assets/sprites/cafe.svg'

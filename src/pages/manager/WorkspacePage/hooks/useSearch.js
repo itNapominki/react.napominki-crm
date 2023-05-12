@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { MODELS } from 'core/constants'
-import { api } from 'core/utils'
+import { MODELS } from 'constants'
+import { api } from 'utils'
 
 export default function useSearch(search, setMapSettings, setModalFor) {
   const [searched, setSearched] = React.useState([])

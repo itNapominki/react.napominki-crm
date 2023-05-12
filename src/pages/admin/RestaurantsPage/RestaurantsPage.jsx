@@ -4,9 +4,9 @@ import { useNavigate, useOutletContext } from 'react-router-dom'
 import { AdminDataCard, AdminDataTable } from 'components'
 
 import { useScrollLoad } from 'hooks'
-import { getObjKeyName } from 'core/utils'
+import { getObjKeyName } from 'utils'
 import { createDroplist } from './utils'
-import { USER_ROLES } from 'core/constants'
+import { USER_ROLES } from 'constants'
 import { ROUTES } from 'router/routes'
 
 export default function RestaurantsPage() {

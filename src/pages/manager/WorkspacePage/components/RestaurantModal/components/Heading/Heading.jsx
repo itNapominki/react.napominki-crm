@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Features } from './'
 
-import { ManagerRestaurantContext } from 'core/context'
+import { ManagerRestaurantContext } from 'context'
 
 export default function Heading() {
   const {

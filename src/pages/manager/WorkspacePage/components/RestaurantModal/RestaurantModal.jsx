@@ -5,7 +5,7 @@ import { Spinner } from 'components'
 import { Modal } from 'components/general'
 import { About, Halls, Heading, HeaderLeft, Menus, Table } from './components'
 
-import { ManagerRestaurantContext, ManagerOfferContext } from 'core/context'
+import { ManagerRestaurantContext, ManagerOfferContext } from 'context'
 import { handleAddHall, handleAddMenu } from './handlers'
 import { useGetData } from './hooks'
 

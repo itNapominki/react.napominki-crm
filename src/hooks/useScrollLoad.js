@@ -1,5 +1,5 @@
 import React from 'react'
-import { api } from 'core/utils'
+import { api } from 'utils'
 
 export default function useScrollLoad(model, params, $node = false) {
   const [data, setData] = React.useState([])

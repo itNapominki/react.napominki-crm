@@ -4,7 +4,7 @@ import React from 'react'
 import { AdminForm } from 'components'
 import { StationDistance, StationDroplist, StationSelect } from '.'
 
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 import { useInitial } from 'hooks'
 import {
   handleAdd,

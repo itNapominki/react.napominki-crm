@@ -4,7 +4,7 @@ import React from 'react'
 import { OfferCard } from 'components/general'
 import { Info } from './'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 
 export default function Offer() {
   const {

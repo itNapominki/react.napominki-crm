@@ -2,7 +2,7 @@ import styles from './ClientMap.module.scss'
 import React from 'react'
 
 import { useScript } from 'hooks'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function ClientMap({ className, points }) {
   if (points.length === 0) {

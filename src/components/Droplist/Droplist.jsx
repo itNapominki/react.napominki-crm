@@ -3,7 +3,7 @@ import React from 'react'
 
 import { DroplistItem } from './'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { useDroplist } from './hooks'
 
 export default React.memo(

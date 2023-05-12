@@ -1,7 +1,7 @@
 import styles from './Droplist.module.scss'
 import React from 'react'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function DroplistItem({
   item,

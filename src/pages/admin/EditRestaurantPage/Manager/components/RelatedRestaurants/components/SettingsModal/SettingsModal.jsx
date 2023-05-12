@@ -3,11 +3,11 @@ import { Modal } from 'components/general'
 import { Input, Separator, Spinner } from 'components'
 import { Group } from './components'
 import { useScrollLoad } from 'hooks'
-import { MODELS, OBJECT_TYPES } from 'core/constants'
+import { MODELS, OBJECT_TYPES } from 'constants'
 
-import { EditRelatedRestaurantsContext } from 'core/context'
+import { EditRelatedRestaurantsContext } from 'context'
 import { useModalRef } from './hooks'
-import { api } from 'core/utils'
+import { api } from 'utils'
 
 export default function SettingsModal({ toggleModal }) {
   const { relatedRestaurants } = React.useContext(EditRelatedRestaurantsContext)

@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux'
 import { Header } from 'components/Layout/UserLayout'
 import { Map, Offer, RestaurantModal, Tools } from './components'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 import { useHandlers, useSearch } from './hooks'
-import { OBJECT_TYPES } from 'core/constants'
+import { OBJECT_TYPES } from 'constants'
 
 export default function WorkspacePage() {
   console.log('render WorkspacePage')

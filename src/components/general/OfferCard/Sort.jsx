@@ -2,7 +2,7 @@ import styles from './OfferCard.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { ManagerOfferContext } from 'core/context'
+import { ManagerOfferContext } from 'context'
 
 import iconChevron from 'assets/sprites/chevron-outlined.svg'
 

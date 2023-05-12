@@ -2,7 +2,7 @@ import styles from './AddButton.module.scss'
 import React from 'react'
 import { HandySvg } from 'handy-svg'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 import iconCheck from 'assets/sprites/check.svg'
 

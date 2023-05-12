@@ -1,8 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { USER_ROLES } from 'core/constants'
+import { USER_ROLES } from 'constants'
 import { ROUTES } from 'router/routes'
-import { getObjKeyName } from 'core/utils'
+import { getObjKeyName } from 'utils'
 
 export default function useRedirect(role) {
   const navigate = useNavigate()

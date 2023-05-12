@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Menu } from './'
 
-import { ManagerRestaurantContext } from 'core/context'
+import { ManagerRestaurantContext } from 'context'
 
 export default function Menus() {
   const { menus, handleAddMenu } = React.useContext(ManagerRestaurantContext)

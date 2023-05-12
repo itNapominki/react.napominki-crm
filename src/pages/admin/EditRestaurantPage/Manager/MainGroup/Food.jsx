@@ -3,7 +3,7 @@ import React from 'react'
 import { AdminForm } from 'components'
 
 import { useErrors, useInitial } from 'hooks'
-import { EditRestaurantContext } from 'core/context'
+import { EditRestaurantContext } from 'context'
 
 export default function Food() {
   const { initial, errors } = React.useContext(EditRestaurantContext)

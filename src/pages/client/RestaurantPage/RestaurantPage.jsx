@@ -5,9 +5,9 @@ import { useParams, useSearchParams, useOutletContext } from 'react-router-dom'
 import { ClientMap } from 'components'
 import { Halls, Main, Menus, Offer } from './components'
 
-import { ClientRestaurantContext } from 'core/context'
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { ClientRestaurantContext } from 'context'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 
 export default function RestaurantPage() {
   const { id } = useParams()

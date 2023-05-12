@@ -1,4 +1,4 @@
-import { api } from 'core/utils'
+import { api } from 'utils'
 
 export default async function handleSave({
   data,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { OBJECT_TYPES } from 'core/constants'
+import { OBJECT_TYPES } from 'constants'
 
 export default function useObjectTypes(data) {
   const [types, setTypes] = React.useState([])

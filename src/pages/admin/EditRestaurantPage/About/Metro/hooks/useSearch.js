@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { MODELS, OBJECT_TYPES } from 'core/constants'
-import { api, getObjKeyName } from 'core/utils'
+import { MODELS, OBJECT_TYPES } from 'constants'
+import { api, getObjKeyName } from 'utils'
 
 export default function useSearch(search) {
   const [searched, setSearched] = React.useState([])

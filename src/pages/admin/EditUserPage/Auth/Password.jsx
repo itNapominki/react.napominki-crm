@@ -1,7 +1,7 @@
 import React from 'react'
 import { AdminForm } from 'components'
-import { EditUserContext } from 'core/context'
-import { generatePassword } from 'core/utils'
+import { EditUserContext } from 'context'
+import { generatePassword } from 'utils'
 import { useErrors } from 'hooks'
 
 export default function Password() {

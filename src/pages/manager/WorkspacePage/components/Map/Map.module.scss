@@ -5,4 +5,10 @@
       'height': 600px,
     )
   );
+
+  @include mobile(
+    (
+      'height': calc(100vw - 40px),
+    )
+  );
 }

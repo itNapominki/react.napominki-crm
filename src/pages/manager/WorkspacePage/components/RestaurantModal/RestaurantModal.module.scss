@@ -1,5 +1,5 @@
 .container {
-  :global .separator {
+  :global(.separator) {
     @include desktop(
       (
         'margin': 24px 0,

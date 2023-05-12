@@ -1,7 +1,7 @@
 import styles from './Group.module.scss'
 import React from 'react'
 import { Separator } from 'components'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function Group({ className, button, children, title }) {
   return (

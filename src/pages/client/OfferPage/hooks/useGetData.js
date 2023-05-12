@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 
 export default function useGetData(decrypted) {
   const RESTAURANT_IDS = decrypted.restaurants.map(({ id }) => id)

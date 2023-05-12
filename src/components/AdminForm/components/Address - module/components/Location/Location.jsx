@@ -2,8 +2,8 @@ import React from 'react'
 
 import { GroupedSelect } from './components'
 
-import { api } from 'core/utils'
-import { MODELS } from 'core/constants'
+import { api } from 'utils'
+import { MODELS } from 'constants'
 import { useInitial } from './hooks'
 
 export default function Location({ initial, setAddress }) {

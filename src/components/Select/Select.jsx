@@ -4,7 +4,7 @@ import React from 'react'
 import { Droplist } from 'components'
 import { SelectFluid, SelectSearch, SelectValue } from './'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { useDroplist, useMultiple } from './hooks'
 import { createDroplist, getSelected } from './utils'
 

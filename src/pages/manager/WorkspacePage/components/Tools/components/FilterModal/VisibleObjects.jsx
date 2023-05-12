@@ -3,8 +3,8 @@ import React from 'react'
 
 import { Group } from './'
 
-import { OBJECT_TYPES } from 'core/constants'
-import { classNames } from 'core/utils'
+import { OBJECT_TYPES } from 'constants'
+import { classNames } from 'utils'
 
 export default function Show({ visibleObjects, onFilter }) {
   const checkActive = (key) => visibleObjects.indexOf(key) != -1

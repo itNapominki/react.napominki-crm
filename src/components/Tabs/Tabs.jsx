@@ -1,6 +1,6 @@
 import './Tabs.scss'
 import React from 'react'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 export default function Tabs({ initial = 0, buttons, children, className }) {
   const [activeIndex, setActiveIndex] = React.useState(initial)

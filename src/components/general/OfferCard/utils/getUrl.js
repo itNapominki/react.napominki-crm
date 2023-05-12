@@ -1,5 +1,5 @@
 import { ROUTES } from 'router/routes'
-import { encrypt } from 'core/utils'
+import { encrypt } from 'utils'
 
 export default function getUrl(decrypted, id) {
   const { halls, menus } = decrypted.restaurants.find(

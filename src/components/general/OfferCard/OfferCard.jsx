@@ -1,6 +1,6 @@
 import styles from './OfferCard.module.scss'
 import React from 'react'
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 
 import { Actions, Info, List, Preview, Sort } from './'
 

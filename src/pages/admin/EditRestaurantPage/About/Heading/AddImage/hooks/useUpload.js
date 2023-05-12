@@ -1,5 +1,5 @@
 import React from 'react'
-import { api } from 'core/utils'
+import { api } from 'utils'
 
 export default function useUpload() {
   const [uploaded, setUploaded] = React.useState(true)

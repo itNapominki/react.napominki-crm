@@ -5,7 +5,7 @@ import { Separator } from 'components'
 import Comment from './Comment'
 import List from './List'
 
-import { ManagerRestaurantContext } from 'core/context'
+import { ManagerRestaurantContext } from 'context'
 
 export default function About() {
   const {

@@ -3,9 +3,9 @@ import { useOutletContext, useParams } from 'react-router-dom'
 
 import { ObjectForm } from './'
 
-import { EditObjectContext } from 'core/context'
-import { api, getObjKeyName } from 'core/utils'
-import { USER_ROLES, MODELS } from 'core/constants'
+import { EditObjectContext } from 'context'
+import { api, getObjKeyName } from 'utils'
+import { USER_ROLES, MODELS } from 'constants'
 
 export default function EditObjectPage() {
   const { setRoles } = useOutletContext()

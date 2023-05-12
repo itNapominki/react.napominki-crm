@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setUser } from 'core/store'
-import { api } from 'core/utils'
+import { setUser } from 'store'
+import { api } from 'utils'
 
 export default function Container({ children }) {
   const dispatch = useDispatch()

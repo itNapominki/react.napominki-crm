@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 import { ClientHeader } from './'
 
-import { classNames } from 'core/utils'
+import { classNames } from 'utils'
 import { useDecrypted } from './hooks/indexs'
 
 export default function ClientLayout({ className }) {

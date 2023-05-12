@@ -4,7 +4,7 @@ import React from 'react'
 import { Separator } from 'components'
 import { Hall } from './components'
 
-import { ManagerRestaurantContext } from 'core/context'
+import { ManagerRestaurantContext } from 'context'
 
 export default function Halls() {
   const {
