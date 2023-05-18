@@ -17,6 +17,7 @@ export default function Radius() {
   return (
     <Group title="Фильтр по радиусу">
       <Input
+        type="tel"
         value={radius || ''}
         mask={['9{1,10} м.']}
         onInput={(value) => handleInput(setRadiusFilter, value)}
