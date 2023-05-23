@@ -17,7 +17,14 @@ export default function Hall({
 }) {
   const [info, setInfo] = React.useState(hall.info)
 
-  React.useEffect(() => handleInputList(info), [info])
+  React.useEffect(() => {
+    if (info === undefined) {
+      return setInfo([])
+    }
+
+    handleInputList(info)
+  }, [info])
+  
   React.useEffect(() => {
     if (hall.info !== info) {
       setInfo(hall.info)
