@@ -10,7 +10,7 @@ import { handleAdd, handleInput } from './handlers/radiusFilter'
 export default function Radius() {
   const {
     setFilterVisible,
-    radiusFilter: { radius },
+    radiusFilter: { radius = '' },
     setRadiusFilter,
   } = React.useContext(ManagerOfferContext)
 
@@ -18,7 +18,7 @@ export default function Radius() {
     <Group title="Фильтр по радиусу">
       <Input
         type="tel"
-        value={radius || ''}
+        value={radius}
         mask={['9{1,10} м.']}
         onInput={(value) => handleInput(setRadiusFilter, value)}
       />
