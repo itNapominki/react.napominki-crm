@@ -15,11 +15,11 @@ export default function Radius() {
   } = React.useContext(ManagerOfferContext)
 
   return (
-    <Group title="Фильтр по радиусу">
+    <Group title="Фильтр по радиусу, м.">
       <Input
         type="tel"
         value={radius}
-        mask={['9{1,10} м.']}
+        // mask={['9{1,10} м.']}
         onInput={(value) => handleInput(setRadiusFilter, value)}
       />
       <div className={styles.radiusButtons}>
