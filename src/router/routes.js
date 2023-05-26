@@ -50,9 +50,15 @@ export const ROUTES = {
     },
   },
 
-  WORKSPACE: {
-    PATH: '/workspace',
-    COMPONENT: <WorkspacePage />,
+  MANAGER: {
+    PATH: '/manager',
+    COMPONENT: <LazyPage Component={<UserLayout showSideNav={false} />} />,
+    CHILDREN: {
+      WORKSPACE: {
+        PATH: '/manager/workspace',
+        COMPONENT: <WorkspacePage />,
+      },
+    },
   },
 
   AUTH: {

@@ -22,10 +22,21 @@
 
 .title {
   @include h2;
+  margin-right: auto;
 }
 
 .clear {
   @include link(get-theme-color('error'));
+}
+
+.short {
+  @include link;
+
+  @include desktop(
+    (
+      margin-right: 20px,
+    )
+  );
 }
 
 .url {
@@ -85,8 +96,6 @@
   }
 
   &__link {
-    @include link;
-
     @include desktop(
       (
         'width': calc(100% - 40px),
@@ -94,10 +103,16 @@
     );
 
     a {
+      @include link;
       display: block;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: inherit;
+      max-width: fit-content;
+      // color: inherit;
+      // text-decoration: underline;
+      // &::before {
+      // display: none;
+      // }
     }
   }
 }

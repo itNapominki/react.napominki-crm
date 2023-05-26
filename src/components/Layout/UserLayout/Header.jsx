@@ -24,7 +24,7 @@ export default function UserHeader({ user }) {
     user && (
       <div
         className={classNames(styles.header, [
-          pathname !== ROUTES.WORKSPACE.PATH && styles.offset,
+          pathname !== ROUTES.MANAGER.CHILDREN.WORKSPACE.PATH && styles.offset,
         ])}
       >
         <div className="wrapper">

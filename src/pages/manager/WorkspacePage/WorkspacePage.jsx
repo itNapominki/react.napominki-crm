@@ -1,18 +1,21 @@
 import styles from './WorkspacePage.module.scss'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useOutletContext } from 'react-router-dom'
 
-import { Header } from 'components/Layout/UserLayout'
 import { Map, Offer, RestaurantModal, Tools } from './components'
 
 import { ManagerOfferContext } from 'context'
 import { useHandlers, useSearch } from './hooks'
 import { OBJECT_TYPES } from 'constants'
+import { USER_ROLES } from 'constants'
+import { getObjKeyName } from 'utils'
 
 export default function WorkspacePage() {
-  console.log('render WorkspacePage')
-
-  const user = useSelector((state) => state.user.value)
+  const { setRoles, user } = useOutletContext()
+  setRoles([
+    getObjKeyName(() => USER_ROLES.ADMIN),
+    getObjKeyName(() => USER_ROLES.MANAGER),
+  ])
 
   const [modalFor, setModalFor] = React.useState()
   const [offer, handle] = useHandlers(user)
@@ -51,18 +54,13 @@ export default function WorkspacePage() {
         setSearchedVisible,
       }}
     >
-      {/* <Layout.UserLayout> */}
-      <Header user={user} offset={false} />
-      <div className="wrapper">
-        <Tools />
-        <Map />
-        <Offer />
-      </div>
+      <Tools />
+      <Map />
+      <Offer />
 
       {modalFor && (
         <RestaurantModal id={modalFor} onClose={() => setModalFor(null)} />
       )}
-      {/* </Layout.UserLayout> */}
     </ManagerOfferContext.Provider>
   )
 }
