@@ -5,7 +5,7 @@ import { HandySvg } from 'handy-svg'
 import { ManagerOfferContext } from 'context'
 import { ROUTES } from 'router/routes'
 import { classNames, encrypt } from 'utils'
-import { handleShort } from './handlers'
+import { handleCopy, handleShort } from './handlers'
 
 import iconCopy from 'assets/sprites/copy.svg'
 

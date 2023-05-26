@@ -17,7 +17,7 @@ export default function useRedirect(role) {
     }
 
     if (role === getObjKeyName(() => USER_ROLES.MANAGER)) {
-      return navigate(ROUTES.WORKSPACE.PATH)
+      return navigate(ROUTES.MANAGER.CHILDREN.WORKSPACE.PATH)
     }
   }
 }
