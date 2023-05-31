@@ -1,0 +1,15 @@
+.container {
+    @include desktop(
+      (
+        'margin-top': 20px,
+        'height': 600px,
+      )
+    );
+  
+    @include mobile(
+      (
+        'height': calc(100vw - 40px),
+      )
+    );
+  }
+  

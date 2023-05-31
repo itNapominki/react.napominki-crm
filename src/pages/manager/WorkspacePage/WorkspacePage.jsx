@@ -2,7 +2,7 @@ import styles from './WorkspacePage.module.scss'
 import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
-import { Map, Offer, RestaurantModal, Tools } from './components'
+import { Map, MapOsmLeaflet, Offer, RestaurantModal, Tools } from './components'
 
 import { ManagerOfferContext } from 'context'
 import { useHandlers, useSearch } from './hooks'
@@ -55,7 +55,9 @@ export default function WorkspacePage() {
       }}
     >
       <Tools />
-      <Map />
+      
+      <Map />  
+      <MapOsmLeaflet/>    
       <Offer />
 
       {modalFor && (

@@ -14,7 +14,7 @@ export default function Map() {
     setFilterVisible,
     mapSettings,
     searchedCoords,
-  } = React.useContext(ManagerOfferContext)
+  } = React.useContext(ManagerOfferContext)  
 
   return (
     <React.Fragment>

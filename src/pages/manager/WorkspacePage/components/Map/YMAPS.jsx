@@ -48,11 +48,12 @@ export default React.memo(function YMAPS({
         map.margin.setDefaultMargin(100)
 
         const searchControl = createSearchControl(ymaps, map)
+        
         map.controls.add(searchControl)
 
         const objectManager = createObjectManager(ymaps)
         map.geoObjects.add(objectManager)
-
+        
         clusterPieChart(objectManager)
 
         objectManager.objects.events.add('click', (e) =>
@@ -61,6 +62,7 @@ export default React.memo(function YMAPS({
 
         checkDataChanges($container, 'data-visible-objects', (value) => {
           objectManager.setFilter((object) => {
+            
             return (
               object.properties.type === 'RESTAURANT' ||
               value.split(',').indexOf(object.properties.type) !== -1

@@ -16,7 +16,7 @@ const className = (messenger) => {
 
 export default function Messengers({ messengers = [] }) {
   const getShow = (messenger) => messengers[messenger].length > 0
-
+  
   const array = Object.keys(messengers)
   const show = array.filter((messenger) => getShow(messenger)).length > 0
 
