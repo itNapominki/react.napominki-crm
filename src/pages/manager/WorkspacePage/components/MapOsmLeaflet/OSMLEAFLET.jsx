@@ -22,12 +22,12 @@ export default function OSMLEAFLET(props) {
   console.log("render osm");
 
   // запрос данных по ресторанам
-  const restaurantData = loadingData("restaurant", {
+  const restaurantData = loadingData("restaurant", { limit: 10000,
     attributes: ["id", "title", "address", "isPublished", "point"],
     order: [["title", "ASC"]],
   });
   // запрос данных по остальным объектам
-  const objectData = loadingData("object", {
+  const objectData = loadingData("object", {limit: 10000,
     order: [
       ["type", "ASC"],
       ["title", "ASC"],

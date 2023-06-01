@@ -54,8 +54,7 @@ class Api {
   }
 
   async getAll({ model, params = {} }) {
-    const token = this.#token
-
+    const token = this.#token    
     return await axios.get(this.apiUrl[model], {
       params,
       headers: {

@@ -2,6 +2,7 @@ import React from "react";
 import { api } from "utils";
 
 export default function loadingData(model, params, $node = false) {
+  
   const [data, setData] = React.useState([]);
   const [fetching, setFetching] = React.useState(true);
 
