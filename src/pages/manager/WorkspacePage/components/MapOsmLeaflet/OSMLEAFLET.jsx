@@ -9,9 +9,23 @@ import {
   useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { loadingData } from "./utils";
+import { filtringData, initialData, loadingData } from "./utils";
+import React, { memo, useEffect, useMemo, useState } from "react";
 
-export default function OSMLEAFLET(props) {
+//import { loadingData } from "./utils";
+
+// export default React.memo(function YMAPS({
+//   setModalFor,
+//   setRadiusFilter,
+//   setFilterVisible,
+// })
+
+//export default function
+
+export default React.memo(function OSMLEAFLET({ datVisibleObjects }) {
+ 
+  
+
   const position = [55.767193, 37.608239];
 
   const icon = L.icon({
@@ -19,26 +33,29 @@ export default function OSMLEAFLET(props) {
     iconSize: [38, 38],
   });
   const locationSelection = [55.768193, 37.609239];
-  console.log("render osm");
 
   // запрос данных по ресторанам
-  const restaurantData = loadingData("restaurant", { limit: 10000,
+  const loadRestaurantData = loadingData("restaurant", {
+    limit: 10000,
     attributes: ["id", "title", "address", "isPublished", "point"],
     order: [["title", "ASC"]],
   });
-  // запрос данных по остальным объектам
-  const objectData = loadingData("object", {limit: 10000,
+
+  //запрос данных по остальным объектам
+  const loadObjectData = loadingData("object", {
+    limit: 10000,
     order: [
       ["type", "ASC"],
       ["title", "ASC"],
     ],
   });
 
-  console.log(restaurantData[0].rows);
-  console.log(objectData[0].rows);
+  //фильтрация объектов (кладбища.ю морги, крематорий)
+  const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
+  const object =
+    filterObjectData == undefined ? loadObjectData : filterObjectData;
 
-  console.log("render");
-
+  console.log("render osm");
   return (
     <div
       style={{
@@ -52,7 +69,7 @@ export default function OSMLEAFLET(props) {
       <MapContainer
         style={{ height: "100%", width: "100%" }}
         center={position}
-        zoom={13}
+        zoom={10}
         scrollWheelZoom={true}
       >
         <TileLayer
@@ -60,7 +77,7 @@ export default function OSMLEAFLET(props) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {restaurantData[0].rows?.map((i) => (
+        {loadRestaurantData?.map((i) => (
           <div key={Math.random()}>
             <Marker
               position={i.point.coordinates}
@@ -79,7 +96,7 @@ export default function OSMLEAFLET(props) {
           </div>
         ))}
 
-        {objectData[0].rows?.map((i) => (
+        {object?.map((i) => (
           <div key={Math.random()}>
             <Marker
               position={i.point.coordinates}
@@ -115,4 +132,4 @@ export default function OSMLEAFLET(props) {
       </MapContainer>
     </div>
   );
-}
+});

@@ -3,7 +3,7 @@ import { api } from "utils";
 
 export default function loadingData(model, params, $node = false) {
   
-  const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState(null);
   const [fetching, setFetching] = React.useState(true);
 
   React.useEffect(() => {
@@ -17,8 +17,9 @@ export default function loadingData(model, params, $node = false) {
               //page: currentPage,
             },
           })
-          .then(({ data }) => {
-            setData(data);
+          .then(({ data }) => {   
+                           
+            setData(data.rows);
           })
 
           .finally(() => setFetching(false));
@@ -27,6 +28,6 @@ export default function loadingData(model, params, $node = false) {
       getData();
     }
   }, [fetching]);
-
-  return [data];
+  
+  return data;
 }
