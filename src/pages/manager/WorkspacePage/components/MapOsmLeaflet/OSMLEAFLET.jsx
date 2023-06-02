@@ -1,5 +1,3 @@
-//import React from "react";
-import "./OSMLEAFLET.css";
 import {
   AttributionControl,
   MapContainer,
@@ -11,21 +9,12 @@ import {
 import "leaflet/dist/leaflet.css";
 import { filtringData, initialData, loadingData } from "./utils";
 import React, { memo, useEffect, useMemo, useState } from "react";
+import MyMarker from "./MyMarker";
 
-//import { loadingData } from "./utils";
-
-// export default React.memo(function YMAPS({
-//   setModalFor,
-//   setRadiusFilter,
-//   setFilterVisible,
-// })
-
-//export default function
-
-export default React.memo(function OSMLEAFLET({ datVisibleObjects }) {
- 
-  
-
+export default React.memo(function OSMLEAFLET({
+  datVisibleObjects,
+  setModalFor,
+}) {
   const position = [55.767193, 37.608239];
 
   const icon = L.icon({
@@ -37,7 +26,7 @@ export default React.memo(function OSMLEAFLET({ datVisibleObjects }) {
   // запрос данных по ресторанам
   const loadRestaurantData = loadingData("restaurant", {
     limit: 10000,
-    attributes: ["id", "title", "address", "isPublished", "point"],
+    attributes: ["id", "title", "address", "isPublished", "point", "priority"],
     order: [["title", "ASC"]],
   });
 
@@ -50,7 +39,7 @@ export default React.memo(function OSMLEAFLET({ datVisibleObjects }) {
     ],
   });
 
-  //фильтрация объектов (кладбища.ю морги, крематорий)
+  //фильтрация объектов (кладбища, морги, крематорий)
   const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
   const object =
     filterObjectData == undefined ? loadObjectData : filterObjectData;
@@ -79,56 +68,28 @@ export default React.memo(function OSMLEAFLET({ datVisibleObjects }) {
 
         {loadRestaurantData?.map((i) => (
           <div key={Math.random()}>
-            <Marker
-              position={i.point.coordinates}
-              icon={L.divIcon({
-                className: "custom-div-icon",
-                html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class=marcer-number'></i>`,
-                //html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class='marcer-number'>${ isHandleWidgetT && givStateNumber(i.client)}</i>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],
-              })}
-            >
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
+            <MyMarker
+              coordinates={i.point.coordinates}
+              all={i}
+              type={i.type}
+              setModalFor={setModalFor}
+              id={i.id}
+              priority={i.priority}
+            ></MyMarker>
           </div>
         ))}
-
         {object?.map((i) => (
           <div key={Math.random()}>
-            <Marker
-              position={i.point.coordinates}
-              icon={L.divIcon({
-                className: "custom-div-icon",
-                html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class=marcer-number'></i>`,
-                //html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class='marcer-number'>${ isHandleWidgetT && givStateNumber(i.client)}</i>`,
-                iconSize: [30, 42],
-                iconAnchor: [15, 42],
-              })}
-            >
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
+            <MyMarker
+              coordinates={i.point.coordinates}
+              all={i}
+              type={i.type}
+              title={i.title}
+              address={i.address}
+              id={i.id}
+            ></MyMarker>
           </div>
         ))}
-
-        {/* <Marker
-            position={locationSelection}
-            icon={L.divIcon({
-              className: "custom-div-icon",
-              html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class=marcer-number'></i>`,
-              //html: `<div class='marker-pin'><div class='marker-pin-in'></div></div> <i class='marcer-number'>${ isHandleWidgetT && givStateNumber(i.client)}</i>`,
-              iconSize: [30, 42],
-              iconAnchor: [15, 42],
-            })}
-          >
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker> */}
       </MapContainer>
     </div>
   );

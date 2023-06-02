@@ -4,7 +4,6 @@ import React from "react";
 import { ManagerOfferContext } from "context";
 import { loadingData } from "./utils";
 import { OSMLEAFLET } from ".";
-//import OSMLEAFLET from "./OSMLEAFLET";
 
 export default function MapOsmLeaflet() {
   const {
@@ -20,14 +19,15 @@ export default function MapOsmLeaflet() {
   return (
     <React.Fragment>
       <div
-        //id="map"
         className={styles.container}
         data-settings={JSON.stringify(mapSettings)}
         data-searched={searchedCoords}
-        
         data-radius-filter={JSON.stringify(radiusFilter)}
       >
-        <OSMLEAFLET datVisibleObjects={visibleObjects} ></OSMLEAFLET>
+        <OSMLEAFLET
+          datVisibleObjects={visibleObjects}
+          setModalFor={setModalFor}
+        ></OSMLEAFLET>
       </div>
     </React.Fragment>
   );
