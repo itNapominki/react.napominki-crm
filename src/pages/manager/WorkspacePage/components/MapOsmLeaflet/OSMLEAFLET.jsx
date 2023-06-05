@@ -10,18 +10,53 @@ import "leaflet/dist/leaflet.css";
 import { filtringData, initialData, loadingData } from "./utils";
 import React, { memo, useEffect, useMemo, useState } from "react";
 import MyMarker from "./MyMarker";
+import searchMarcer from "../../../../../assets/icon/marker-pin.svg";
+import { LeafletRoutingMachine } from "./components";
 
-export default React.memo(function OSMLEAFLET({
+//export default React.memo(function OSMLEAFLET({
+export default function OSMLEAFLET({
   datVisibleObjects,
   setModalFor,
+  selectPosition, 
+  setFirstMarker, 
+  setSecondMarker, 
+  firstMarker, 
+  secondMarker 
+
 }) {
+
+  const [centrMap, setCentrMap] = useState([55.767193, 37.608239]);
+
+  useEffect(()=> {
+
+   if (selectPosition != null) {
+setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
+   }
+      
+      
+
+    
+    
+  }, [selectPosition])
+
+  // установка центра при первой загрузке
   const position = [55.767193, 37.608239];
 
+  
+
+  // постановка маркера после поиска
+  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+
+  //const testCentr = selectPosition == null ? position : [+selectPosition?.lat, +selectPosition?.lon];
+
+  //console.log(selectPosition);
+  
+  // стилизация маркера поиска
   const icon = L.icon({
-    iconUrl: "./placeholder.png",
-    iconSize: [38, 38],
+    iconUrl: searchMarcer,
+    iconSize: [46, 60],
+    iconAnchor: [23, 60],
   });
-  const locationSelection = [55.768193, 37.609239];
 
   // запрос данных по ресторанам
   const loadRestaurantData = loadingData("restaurant", {
@@ -30,7 +65,7 @@ export default React.memo(function OSMLEAFLET({
     order: [["title", "ASC"]],
   });
 
-  //запрос данных по остальным объектам
+  // запрос данных по остальным объектам
   const loadObjectData = loadingData("object", {
     limit: 10000,
     order: [
@@ -39,11 +74,11 @@ export default React.memo(function OSMLEAFLET({
     ],
   });
 
-  //фильтрация объектов (кладбища, морги, крематорий)
+  // фильтрация объектов (кладбища, морги, крематорий)
   const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
   const object =
     filterObjectData == undefined ? loadObjectData : filterObjectData;
-
+    //console.log(testCentr);
   console.log("render osm");
   return (
     <div
@@ -57,7 +92,7 @@ export default React.memo(function OSMLEAFLET({
     >
       <MapContainer
         style={{ height: "100%", width: "100%" }}
-        center={position}
+        center={centrMap}
         zoom={10}
         scrollWheelZoom={true}
       >
@@ -65,6 +100,11 @@ export default React.memo(function OSMLEAFLET({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {selectPosition && (
+          <Marker position={locationSelection} icon={icon}>
+            <Popup>Точка поиска</Popup>
+          </Marker>
+        )}
 
         {loadRestaurantData?.map((i) => (
           <div key={Math.random()}>
@@ -90,7 +130,14 @@ export default React.memo(function OSMLEAFLET({
             ></MyMarker>
           </div>
         ))}
+
+<LeafletRoutingMachine
+          setFirstMarker={setFirstMarker}
+          setSecondMarker={setSecondMarker}
+          firstMarker={firstMarker}
+          secondMarker={secondMarker}
+        />
       </MapContainer>
     </div>
   );
-});
+};

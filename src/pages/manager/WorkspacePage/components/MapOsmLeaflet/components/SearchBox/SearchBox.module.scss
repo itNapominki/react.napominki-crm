@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  left: 70px;
+  //background-color: #ffdb4d;
+  width: 400px;
+}
+
+.lists {
+  background-color: #ffdb4d;
+}
+.title {
+  margin: 5px;
+}
+
+.list {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.button {
+  background-color: #ffdb4d;
+  padding: 0px 20px;
+  width: 120px;
+  height: 26px;
+}
+
+.input {
+  margin-bottom: 5px;
+
+  width: 100%;
+  height: 26px;
+}
