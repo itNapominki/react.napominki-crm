@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import marcer from "../../../../../../../assets/icon/marker-metro.svg";
 import styles from "./SearchBox.module.scss";
+import { FormRadio } from "..";
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
-const params = {
-  q: "",
-  format: "json",
-  addressdetails: "addressdetails",
-};
+// const params = {
+//   q: "",
+//   format: "json",
+//   addressdetails: "addressdetails",
+// };
 
 export default function SearchBox(props) {
   const { selectPosition, setSelectPosition } = props;
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);
   const [isVisibleListAdress, setVisibleListAdress ] = useState(false);
+
+  // сортировака по территории поиска МСК СПБ Вся Россия
+  const [selectedOption, setSelectedOption] = useState("");
 
   // обработчмк - передать координаты точки + скрыть список
   function handleSetPosition(item) {
@@ -24,9 +28,8 @@ export default function SearchBox(props) {
 
 
   return (
-    <div className={styles.wrapper}>
-      {" "}
-      <h3 className={styles.title}>Найти место на карте</h3>
+    <div className={styles.wrapper}>      
+      <h3 className={styles.title}>Найти место на карте</h3> <FormRadio selectedOption={selectedOption} setSelectedOption={setSelectedOption}></FormRadio> 
       <div style={{ display: "flex" }}>
         <input
           className={styles.input}
@@ -43,7 +46,7 @@ export default function SearchBox(props) {
           onClick={() => {
             // Search
             const params = {
-              q: searchText,
+              q: `${selectedOption}" "${searchText}`,
               format: "json",
               addressdetails: 1,
               polygon_geojson: 0,

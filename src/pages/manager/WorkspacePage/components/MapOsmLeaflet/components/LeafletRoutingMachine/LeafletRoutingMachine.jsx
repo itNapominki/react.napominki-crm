@@ -24,10 +24,9 @@ export default function LeafletRoutingMachine(props) {
     shadowSize: [41, 41]
   });
 
-  // постановка первого маркера для визуализации маршрута (его нужно удалить так как маркеры маршрута будут установлены свои)
+  // постановка первого маркера для визуализации маршрута + установка маркера в центр карты (его нужно удалить так как маркеры маршрута будут установлены свои)
   useEffect(() => {
     let marker1 = {};
-
     if (firstMarker != undefined) {
       marker1 = L.marker([firstMarker?.lat, firstMarker?.lon], {
         icon: redCircleIcon,
@@ -35,35 +34,32 @@ export default function LeafletRoutingMachine(props) {
       //map.on("click", function (e) {
       //L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
       //});
+
+      // установка на центр первого маркера апи построении маршрута
+      map.setView([firstMarker?.lat, firstMarker?.lon]);
     }
   }, [firstMarker, secondMarker]);
 
   useEffect(() => {
     if (secondMarker != null && secondMarker != undefined) {
       L.Routing.control({
-        waypoints: [
-          //L.latLng(55.906583, 37.410333),
-          L.latLng(+firstMarker?.lat, +firstMarker?.lon, {icon: redCircleIcon}),
-          //L.latLng(e.latlng.lat, e.latlng.lng),
+        waypoints: [          
+          L.latLng(+firstMarker?.lat, +firstMarker?.lon, {icon: redCircleIcon}),          
           L.latLng(+secondMarker?.lat, +secondMarker?.lon, {icon: redCircleIcon}),
         ],
 
-        //////////
+        //кастомизация маркера
         createMarker: function(i, wp, nWps) {
-          if (i === 0 || i === nWps - 1) {
-            // here change the starting and ending icons
+          if (i === 0 || i === nWps - 1) {            
             return L.marker(wp.latLng, {
-              icon: redCircleIcon // here pass the custom marker icon instance
+              icon: redCircleIcon 
             });
-          } else {
-            // here change all the others
+          } else {            
             return L.marker(wp.latLng, {
               icon: redCircleIcon
             });
           }
-        },
-
-        //////////
+        },        
         lineOptions: {
           styles: [
             {

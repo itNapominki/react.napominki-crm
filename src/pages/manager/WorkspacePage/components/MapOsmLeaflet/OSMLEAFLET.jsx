@@ -15,8 +15,8 @@ import MyMarker from "./MyMarker";
 import searchMarcer from "../../../../../assets/icon/marker-pin.svg";
 import { LeafletRoutingMachine } from "./components";
 
-//export default React.memo(function OSMLEAFLET({
-export default function OSMLEAFLET({
+export default React.memo(function OSMLEAFLET({
+//export default function OSMLEAFLET({
   datVisibleObjects,
   setModalFor,
   selectPosition,
@@ -27,14 +27,7 @@ export default function OSMLEAFLET({
   radiusFilter,
 }) {
   const [centrMap, setCentrMap] = useState([55.767193, 37.608239]);
-
   const [circle, setCircle] = useState(null);
-
-  useEffect(() => {
-    if (selectPosition != null) {
-      setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
-    }
-  }, [selectPosition]);
 
   // установка центра при первой загрузке
   const position = [55.767193, 37.608239];
@@ -74,7 +67,7 @@ export default function OSMLEAFLET({
   useEffect(() => {
     if (radiusFilter.status != "CREATING") {
       setCircle(null);
-    }    
+    }
   }, [radiusFilter]);
 
   // контейнер который слушает местоположение нажатия для постановки кругового фильтра
@@ -94,6 +87,17 @@ export default function OSMLEAFLET({
         },
       });
       return false;
+    }
+  };
+
+  // установка маркера на центр при поиске адреса
+  const RecenterAutomatically = () => {
+    if (selectPosition != null) {
+      const map = useMap();
+      useEffect(() => {
+        map.setView([+selectPosition.lat, +selectPosition.lon]);
+      }, [selectPosition]);
+      return null;
     }
   };
 
@@ -119,6 +123,7 @@ export default function OSMLEAFLET({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <MapEvents />
+        <RecenterAutomatically></RecenterAutomatically>
         {circle}
         {selectPosition && (
           <Marker position={locationSelection} icon={icon}>
@@ -158,4 +163,4 @@ export default function OSMLEAFLET({
       </MapContainer>
     </div>
   );
-}
+})

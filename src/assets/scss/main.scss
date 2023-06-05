@@ -7,3 +7,11 @@
 @import 'base/base.scss';
 
 @import 'pages/RestaurantPage.scss';
+
+.leaflet-attribution-flag {
+    display: none !important;
+}
+
+.leaflet-right .leaflet-routing-container.leaflet-routing-container-hide {
+    display: none;
+}
