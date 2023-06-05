@@ -5,6 +5,8 @@ import {
   Popup,
   TileLayer,
   useMap,
+  useMapEvents,
+  Circle,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { filtringData, initialData, loadingData } from "./utils";
@@ -17,40 +19,29 @@ import { LeafletRoutingMachine } from "./components";
 export default function OSMLEAFLET({
   datVisibleObjects,
   setModalFor,
-  selectPosition, 
-  setFirstMarker, 
-  setSecondMarker, 
-  firstMarker, 
-  secondMarker 
-
+  selectPosition,
+  setFirstMarker,
+  setSecondMarker,
+  firstMarker,
+  secondMarker,
+  radiusFilter,
 }) {
-
   const [centrMap, setCentrMap] = useState([55.767193, 37.608239]);
 
-  useEffect(()=> {
+  const [circle, setCircle] = useState(null);
 
-   if (selectPosition != null) {
-setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
-   }
-      
-      
-
-    
-    
-  }, [selectPosition])
+  useEffect(() => {
+    if (selectPosition != null) {
+      setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
+    }
+  }, [selectPosition]);
 
   // установка центра при первой загрузке
   const position = [55.767193, 37.608239];
 
-  
-
   // постановка маркера после поиска
   const locationSelection = [selectPosition?.lat, selectPosition?.lon];
 
-  //const testCentr = selectPosition == null ? position : [+selectPosition?.lat, +selectPosition?.lon];
-
-  //console.log(selectPosition);
-  
   // стилизация маркера поиска
   const icon = L.icon({
     iconUrl: searchMarcer,
@@ -78,7 +69,34 @@ setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
   const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
   const object =
     filterObjectData == undefined ? loadObjectData : filterObjectData;
-    //console.log(testCentr);
+
+  // убираем круговой фильтр
+  useEffect(() => {
+    if (radiusFilter.status != "CREATING") {
+      setCircle(null);
+    }    
+  }, [radiusFilter]);
+
+  // контейнер который слушает местоположение нажатия для постановки кругового фильтра
+  const MapEvents = () => {
+    if (radiusFilter.status === "CREATING") {
+      useMapEvents({
+        click(e) {
+          const newCircle = (
+            <Circle
+              center={[e.latlng.lat, e.latlng.lng]}
+              pathOptions={{ fillColor: "blue" }}
+              radius={radiusFilter.radius}
+            />
+          );
+
+          setCircle(newCircle);
+        },
+      });
+      return false;
+    }
+  };
+
   console.log("render osm");
   return (
     <div
@@ -99,13 +117,14 @@ setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        />{" "}
+        <MapEvents />
+        {circle}
         {selectPosition && (
           <Marker position={locationSelection} icon={icon}>
             <Popup>Точка поиска</Popup>
           </Marker>
         )}
-
         {loadRestaurantData?.map((i) => (
           <div key={Math.random()}>
             <MyMarker
@@ -130,8 +149,7 @@ setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
             ></MyMarker>
           </div>
         ))}
-
-<LeafletRoutingMachine
+        <LeafletRoutingMachine
           setFirstMarker={setFirstMarker}
           setSecondMarker={setSecondMarker}
           firstMarker={firstMarker}
@@ -140,4 +158,4 @@ setCentrMap([+selectPosition?.lat, +selectPosition?.lon]);
       </MapContainer>
     </div>
   );
-};
+}

@@ -6,6 +6,14 @@ export default function FormRouting(props) {
   const [searchTextInpuA, setSearchTextInpuA] = useState("");
   const [searchTextInpuB, setSearchTextInpuB] = useState("");
   const [listPlace, setListPlace] = useState([]);
+  const [isVisibleListAdress, setVisibleListAdress] = useState(false);
+  //const [isVisiblelFirstMarker, setVisiblelFirstMarker ] = useState(false);
+
+  // обработчмк - передать координаты точки + скрыть список
+  function handleSetPosition(item) {
+    setVisibleListAdress(false);
+    selectPositionAllMarcer(item);
+  }
 
   const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
   const params = {
@@ -30,8 +38,9 @@ export default function FormRouting(props) {
     fetch(`${NOMINATIM_BASE_URL}${queryString}`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(JSON.parse(result));
+        //console.log(JSON.parse(result));
         setListPlace(JSON.parse(result));
+        setVisibleListAdress(true);
       })
       .catch((err) => console.log("err: ", err));
   }
@@ -39,7 +48,7 @@ export default function FormRouting(props) {
   // установка позиции
   /** в начале устанавливаем первую точку, потом обновляем только вторую */
   function selectPositionAllMarcer(item) {
-    console.log(item);
+    //console.log(item);
     if (firstMarker == null) {
       setFirstMarker(item);
     } else {
@@ -62,6 +71,7 @@ export default function FormRouting(props) {
           />
 
           <button
+            type="button"
             className={styles.button}
             onClick={() => handleSearch(searchTextInpuA)}
           >
@@ -80,29 +90,31 @@ export default function FormRouting(props) {
           />
 
           <button
+            type="button"
             className={styles.button}
             onClick={() => handleSearch(searchTextInpuB)}
           >
+            {" "}
             Точка В
           </button>
         </div>
       </div>
 
       <div className={styles.lists}>
-        {listPlace.map((item) => {
-          return (
-            <div className={styles.list} key={item?.place_id}>
-              <div
-                button
-                onClick={() => {
-                  selectPositionAllMarcer(item);
-                }}
-              >
-                <div style={{ fontSize: 12 }}>{item?.display_name}</div>
+        {isVisibleListAdress &&
+          listPlace.map((item) => {
+            return (
+              <div className={styles.list} key={item?.place_id}>
+                <div
+                  onClick={() => {
+                    handleSetPosition(item);
+                  }}
+                >
+                  <div style={{ fontSize: 12 }}>{item?.display_name}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

@@ -13,6 +13,15 @@ export default function SearchBox(props) {
   const { selectPosition, setSelectPosition } = props;
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);
+  const [isVisibleListAdress, setVisibleListAdress ] = useState(false);
+
+  // обработчмк - передать координаты точки + скрыть список
+  function handleSetPosition(item) {
+    setSelectPosition(item);
+    setVisibleListAdress(false);
+  }
+
+
 
   return (
     <div className={styles.wrapper}>
@@ -49,6 +58,7 @@ export default function SearchBox(props) {
               .then((result) => {
                 console.log(JSON.parse(result));
                 setListPlace(JSON.parse(result));
+                setVisibleListAdress(true);
               })
               .catch((err) => console.log("err: ", err));
           }}
@@ -57,13 +67,13 @@ export default function SearchBox(props) {
         </button>
       </div>
       <div className={styles.lists}>
-        {listPlace.map((item) => {
+        {isVisibleListAdress && listPlace.map((item) => {
           return (
             <div key={item?.place_id}>
               <div
-                button
+                
                 onClick={() => {
-                  setSelectPosition(item);
+                  handleSetPosition(item);
                   //console.log(item);
                 }}
               >

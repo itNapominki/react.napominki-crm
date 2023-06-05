@@ -46,6 +46,8 @@ export default function MapOsmLeaflet() {
         setSecondMarker={setSecondMarker}
         firstMarker={firstMarker}
         secondMarker={secondMarker}
+        // передача радиуса фильтра
+        radiusFilter={radiusFilter}
         ></OSMLEAFLET>
         <SearchBox
           selectPosition={selectPosition}

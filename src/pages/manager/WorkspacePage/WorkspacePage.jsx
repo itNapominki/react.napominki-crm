@@ -56,7 +56,7 @@ export default function WorkspacePage() {
     >
       <Tools />
       
-      <Map />  
+      {/* <Map />   */}
       <MapOsmLeaflet/>    
       <Offer />
 
