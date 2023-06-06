@@ -14,7 +14,7 @@ export default function SearchBox(props) {
   const { selectPosition, setSelectPosition } = props;
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);
-  const [isVisibleListAdress, setVisibleListAdress ] = useState(false);
+  const [isVisibleListAdress, setVisibleListAdress] = useState(false);
 
   // сортировака по территории поиска МСК СПБ Вся Россия
   const [selectedOption, setSelectedOption] = useState("");
@@ -25,11 +25,13 @@ export default function SearchBox(props) {
     setVisibleListAdress(false);
   }
 
-
-
   return (
-    <div className={styles.wrapper}>      
-      <h3 className={styles.title}>Найти место на карте</h3> <FormRadio selectedOption={selectedOption} setSelectedOption={setSelectedOption}></FormRadio> 
+    <div className={styles.wrapper}>
+      <h3 className={styles.title}>Найти место на карте</h3>{" "}
+      <FormRadio
+        selectedOption={selectedOption}
+        setSelectedOption={setSelectedOption}
+      ></FormRadio>
       <div style={{ display: "flex" }}>
         <input
           className={styles.input}
@@ -70,25 +72,25 @@ export default function SearchBox(props) {
         </button>
       </div>
       <div className={styles.lists}>
-        {isVisibleListAdress && listPlace.map((item) => {
-          return (
-            <div key={item?.place_id}>
-              <div
-                
-                onClick={() => {
-                  handleSetPosition(item);
-                  //console.log(item);
-                }}
-              >
-                <div className={styles.list}>
-                  {item?.address.road} {item?.address.house_number}{" "}
-                  {item?.address.commercial} {item?.address.city}{" "}
-                  {item?.address.state}
+        {isVisibleListAdress &&
+          listPlace.map((item) => {
+            return (
+              <div key={item?.place_id}>
+                <div
+                  onClick={() => {
+                    handleSetPosition(item);
+                    //console.log(item);
+                  }}
+                >
+                  <div className={styles.list}>
+                    {item?.address.road} {item?.address.house_number}{" "}
+                    {item?.address.commercial} {item?.address.city}{" "}
+                    {item?.address.state}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

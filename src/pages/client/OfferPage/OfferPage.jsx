@@ -2,7 +2,7 @@ import styles from './OfferPage.module.scss'
 import React from 'react'
 import { useOutletContext } from 'react-router-dom'
 
-import { ClientMap, Spinner } from 'components'
+import { ClientMap, ClientMapFromOSM, Spinner } from 'components'
 import { OfferCard } from 'components/general'
 
 import { ClientOfferContext } from 'context'
@@ -24,6 +24,7 @@ export default function OfferPage() {
       {restaurants && (
         <React.Fragment>
           <ClientMap className={styles.map} points={points} />
+          <ClientMapFromOSM className={styles.map} points={points}></ClientMapFromOSM>
 
           {restaurants.map((restaurant) => (
             <OfferCard

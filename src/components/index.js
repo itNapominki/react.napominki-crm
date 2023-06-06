@@ -19,3 +19,4 @@ export { default as AdminDataTable } from './AdminDataTable/AdminDataTable'
 export { default as AdminForm } from './AdminForm/AdminForm'
 
 export { default as ClientMap } from './ClientMap/ClientMap'
+export { default as ClientMapFromOSM } from './ClientMapFromOSM/ClientMapFromOSM'
