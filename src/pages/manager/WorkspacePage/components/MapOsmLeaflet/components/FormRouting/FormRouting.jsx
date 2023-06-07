@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import styles from "./FormRouting.module.scss";
 
 export default function FormRouting(props) {
-  const { setFirstMarker, setSecondMarker, firstMarker, secondMarker } = props;
+  const { setFirstMarker, setSecondMarker, firstMarker, secondMarker, timeAndDistanceAboutRoute } = props;
   const [searchTextInpuA, setSearchTextInpuA] = useState("");
   const [searchTextInpuB, setSearchTextInpuB] = useState("");
   const [listPlace, setListPlace] = useState([]);
   const [isVisibleListAdress, setVisibleListAdress] = useState(false);
-  //const [isVisiblelFirstMarker, setVisiblelFirstMarker ] = useState(false);
-
-  // обработчмк - передать координаты точки + скрыть список
+  // задержка повторного назатия для того что бы OSM не нарушить ограничения (не чаще 1 раз в секунду запрос)
+  const [isDisabled, setIsDisabled] = useState(false);
+  
+  // обработчик - передать координаты точки + скрыть список
   function handleSetPosition(item) {
     setVisibleListAdress(false);
     selectPositionAllMarcer(item);
@@ -23,6 +24,8 @@ export default function FormRouting(props) {
   };
 
   function handleSearch(searchText) {
+    setIsDisabled(true);
+    setTimeout(() => setIsDisabled(false), 1500);
     // Search
     const params = {
       q: searchText,
@@ -74,6 +77,7 @@ export default function FormRouting(props) {
             type="button"
             className={styles.button}
             onClick={() => handleSearch(searchTextInpuA)}
+            disabled={isDisabled}
           >
             Точка А
           </button>
@@ -93,8 +97,8 @@ export default function FormRouting(props) {
             type="button"
             className={styles.button}
             onClick={() => handleSearch(searchTextInpuB)}
-          >
-            {" "}
+            disabled={isDisabled}
+          >            
             Точка В
           </button>
         </div>
@@ -115,7 +119,8 @@ export default function FormRouting(props) {
               </div>
             );
           })}
-      </div>
+      </div> 
+      <div>Время: {Math.floor(timeAndDistanceAboutRoute.time/60)} час, Расстояние: {Math.floor(timeAndDistanceAboutRoute.distance)} км</div>
     </div>
   );
 }

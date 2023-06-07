@@ -25,10 +25,11 @@ export default React.memo(function OSMLEAFLET({
   firstMarker,
   secondMarker,
   radiusFilter,
+  seTtimeAndDistanceAboutRoute
 }) {
   const [centrMap, setCentrMap] = useState([55.767193, 37.608239]);
   const [circle, setCircle] = useState(null);
-
+  
   // установка центра при первой загрузке
   const position = [55.767193, 37.608239];
 
@@ -155,6 +156,7 @@ export default React.memo(function OSMLEAFLET({
           </div>
         ))}
         <LeafletRoutingMachine
+        seTtimeAndDistanceAboutRoute={seTtimeAndDistanceAboutRoute}
           setFirstMarker={setFirstMarker}
           setSecondMarker={setSecondMarker}
           firstMarker={firstMarker}

@@ -1,5 +1,6 @@
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
 
+// поиск объекта на карте OSM и возврат вариантов точных адресов с координатами
 export default function handleSearchWithoutSettings(searchText) {
   // Search
   const params = {

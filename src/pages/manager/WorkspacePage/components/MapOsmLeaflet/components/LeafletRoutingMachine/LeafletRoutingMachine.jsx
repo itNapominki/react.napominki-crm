@@ -7,7 +7,7 @@ import { useMap } from "react-leaflet";
 import marcer2 from "../../../../../../../assets/icon/marker-metro.svg";
 
 export default function LeafletRoutingMachine(props) {
-  const { setFirstMarker, setSecondMarker, firstMarker, secondMarker } = props;
+  const { setFirstMarker, setSecondMarker, firstMarker, secondMarker, seTtimeAndDistanceAboutRoute } = props;
 
   const map = useMap();
   let DefaultIcon = L.icon({
@@ -42,7 +42,7 @@ export default function LeafletRoutingMachine(props) {
 
   useEffect(() => {
     if (secondMarker != null && secondMarker != undefined) {
-      L.Routing.control({
+      const route = L.Routing.control({
         waypoints: [          
           L.latLng(+firstMarker?.lat, +firstMarker?.lon, {icon: redCircleIcon}),          
           L.latLng(+secondMarker?.lat, +secondMarker?.lon, {icon: redCircleIcon}),
@@ -84,7 +84,22 @@ export default function LeafletRoutingMachine(props) {
         //     }, 1000 * i);
         //   });
         // })
+
+        .on('routesfound', function(event) {
+          const routeInfo = document.getElementById('route-info');
+          const distance = event.routes[0].summary.totalDistance / 1000; // расстояние в километрах
+          const time = event.routes[0].summary.totalTime / 60; // время в минутах
+          //routeInfo.innerHTML = `Расстояние: ${distance} км, Время: ${time} мин`;
+          seTtimeAndDistanceAboutRoute({time: time, distance: distance})
+          console.log(distance);
+          console.log(time);
+        })
         .addTo(map);
+        return () => {
+          // удаляем объект маршрута и карту при размонтировании компонента         
+          route.remove();
+        };
+        
     }
   }, [secondMarker]);
 

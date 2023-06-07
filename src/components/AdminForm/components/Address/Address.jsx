@@ -13,7 +13,7 @@ export default function Address({
 }) {
   console.log("render Address");
   // формируем список предлагаемых адресов
-  const [listsAdress, setListsAdress] = useState(null); 
+  const [listsAdress, setListsAdress] = useState(null);
 
   const addressError = useErrors(errors, "address");
   const coordinatesError = useErrors(errors, "point.coordinates");
@@ -26,22 +26,30 @@ export default function Address({
 
   // запрос данных с OSM город, улица, дом
   function handleSearch() {
-   handleSearchWithoutSettings(address).then(data => {
-    setListsAdress(data);    
-   } )
+    handleSearchWithoutSettings(address).then((data) => {
+      setListsAdress(data);
+    });
   }
 
   // установка значений в input адрес и координаты
   function handleInsertionValuesInInputs(item) {
-    console.log(item)
+    console.log(item);
     setAddress(item.display_name);
     setCoordinates(`${item.lat}, ${item.lon}`);
     setListsAdress(null);
   }
 
   // формируем саму строчку для выбора
-  const listSelectingAddresses = (item) => <div style={{cursor: 'pointer'}} key={item.osm_id} onClick={() => handleInsertionValuesInInputs(item)} >{item.display_name}</div>
-  
+  const listSelectingAddresses = (item) => (
+    <div
+      style={{ cursor: "pointer" }}
+      key={item.osm_id}
+      onClick={() => handleInsertionValuesInInputs(item)}
+    >
+      {item.display_name}
+    </div>
+  );
+
   return (
     <>
       <AdminForm.Group title="Адрес">
@@ -82,7 +90,7 @@ export default function Address({
           onInput={setAddress}
           error={addressError}
           placeholder="Город, улица, дом"
-          className="col col-9"          
+          className="col col-9"
         />
         <AdminForm.Control
           label="Координаты (XX.XXXXXX, XX.XXXXXX)"
@@ -100,8 +108,25 @@ export default function Address({
             text: "Запрос координат",
             onClick: (e) => handleSearch(e),
           }}
-        />{listsAdress?.map(i => listSelectingAddresses(i))}
-      </AdminForm.Group> 
+        />
+        <button
+          style={{
+            marginRight: "10px",
+            marginLeft: "auto",
+            paddingBottom: "4px",
+            color: "#2847c1",
+            cursor: "pointer",
+            transition: "0.3s",
+            fontSize: "12px",
+            marginTop: "-30px",
+            fontSize: "12px",
+          }}
+          onClick={handleOpenMap}
+        >
+          Открыть карту
+        </button>
+        {listsAdress?.map((i) => listSelectingAddresses(i))}
+      </AdminForm.Group>
     </>
   );
 }

@@ -15,7 +15,8 @@ export default function SearchBox(props) {
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);
   const [isVisibleListAdress, setVisibleListAdress] = useState(false);
-
+// задержка повторного назатия для того что бы OSM не нарушить ограничения (не чаще 1 раз в секунду запрос)
+const [isDisabled, setIsDisabled] = useState(false);
   // сортировака по территории поиска МСК СПБ Вся Россия
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -44,8 +45,11 @@ export default function SearchBox(props) {
         />
 
         <button
+          disabled={isDisabled}
           className={styles.button}
           onClick={() => {
+            setIsDisabled(true);
+            setTimeout(() => setIsDisabled(false), 1500);
             // Search
             const params = {
               q: `${selectedOption}" "${searchText}`,

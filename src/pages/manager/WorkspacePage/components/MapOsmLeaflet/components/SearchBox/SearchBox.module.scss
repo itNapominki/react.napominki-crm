@@ -4,9 +4,32 @@
   position: absolute;
   z-index: 2;
   top: 0px;
-  left: 70px;
-  //background-color: #ffdb4d;
-  width: 400px;
+  left: 70px;  
+  
+
+  position: absolute;
+  top: 0px;
+  
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+
+  @include desktop(
+    (
+      
+      'top': 0px,
+      'width': 35%
+    )
+  );
+
+  @include mobile(
+    (
+      'width': 70%,
+      'left': 47px,
+           
+    )
+  );
+
 }
 
 .lists {

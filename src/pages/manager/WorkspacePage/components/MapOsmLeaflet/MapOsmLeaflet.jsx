@@ -14,6 +14,8 @@ export default function MapOsmLeaflet() {
    // модуль роутинга
    const [firstMarker, setFirstMarker] = useState(null);
    const [secondMarker, setSecondMarker] = useState(null);
+   // информация о маршруте 
+   const [timeAndDistanceAboutRoute, seTtimeAndDistanceAboutRoute ] = useState({time: "не опрелено", distance: "не опрелено"});
 
   const {
     visibleObjects,
@@ -35,6 +37,8 @@ export default function MapOsmLeaflet() {
         data-radius-filter={JSON.stringify(radiusFilter)}
       >
         <OSMLEAFLET
+        // информация о самом маршруте 
+        seTtimeAndDistanceAboutRoute={seTtimeAndDistanceAboutRoute} 
           // позиция маркера который ищут
           selectPosition={selectPosition}
           // [] с атрибутами фильтрации METRO и.т. далее
@@ -53,10 +57,14 @@ export default function MapOsmLeaflet() {
           selectPosition={selectPosition}
           setSelectPosition={setSelectPosition}
         />
-        <FormRouting setFirstMarker={setFirstMarker}
+        <FormRouting
+        timeAndDistanceAboutRoute={timeAndDistanceAboutRoute}
+        seTtimeAndDistanceAboutRoute={seTtimeAndDistanceAboutRoute}        
+        setFirstMarker={setFirstMarker}
         setSecondMarker={setSecondMarker}
         firstMarker={firstMarker}
-        secondMarker={secondMarker}></FormRouting>
+        secondMarker={secondMarker}>          
+        </FormRouting>
       </div>
     </React.Fragment>
   );
