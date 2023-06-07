@@ -15,7 +15,7 @@ export default function MapOsmLeaflet() {
    const [firstMarker, setFirstMarker] = useState(null);
    const [secondMarker, setSecondMarker] = useState(null);
    // информация о маршруте 
-   const [timeAndDistanceAboutRoute, seTtimeAndDistanceAboutRoute ] = useState({time: "не опрелено", distance: "не опрелено"});
+   const [timeAndDistanceAboutRoute, seTtimeAndDistanceAboutRoute ] = useState({time: null, distance: null});
 
   const {
     visibleObjects,

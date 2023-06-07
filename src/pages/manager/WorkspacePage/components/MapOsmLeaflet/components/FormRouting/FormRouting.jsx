@@ -16,6 +16,8 @@ export default function FormRouting(props) {
     selectPositionAllMarcer(item);
   }
 
+  console.log(timeAndDistanceAboutRoute);
+
   const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
   const params = {
     q: "",
@@ -120,7 +122,7 @@ export default function FormRouting(props) {
             );
           })}
       </div> 
-      <div>Время: {Math.floor(timeAndDistanceAboutRoute.time/60)} час, Расстояние: {Math.floor(timeAndDistanceAboutRoute.distance)} км</div>
+        {timeAndDistanceAboutRoute.time == null ? '' : <div>Время: {Math.floor(timeAndDistanceAboutRoute.time/60)} часов {Math.floor(timeAndDistanceAboutRoute.time%60)} минут , Расстояние: {Math.floor(timeAndDistanceAboutRoute.distance)} км</div>} 
     </div>
   );
 }

@@ -90,9 +90,9 @@ export default function LeafletRoutingMachine(props) {
           const distance = event.routes[0].summary.totalDistance / 1000; // расстояние в километрах
           const time = event.routes[0].summary.totalTime / 60; // время в минутах
           //routeInfo.innerHTML = `Расстояние: ${distance} км, Время: ${time} мин`;
-          seTtimeAndDistanceAboutRoute({time: time, distance: distance})
-          console.log(distance);
-          console.log(time);
+          if(time != null && time != 0) {
+            seTtimeAndDistanceAboutRoute({time: time, distance: distance})
+          }         
         })
         .addTo(map);
         return () => {
