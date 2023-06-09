@@ -2,7 +2,7 @@ import styles from './RestaurantPage.module.scss'
 import React from 'react'
 import { useParams, useSearchParams, useOutletContext } from 'react-router-dom'
 
-import { ClientMap } from 'components'
+import { ClientMap, ClientMapFromOSM } from 'components'
 import { Halls, Main, Menus, Offer } from './components'
 
 import { ClientRestaurantContext } from 'context'
@@ -54,6 +54,12 @@ export default function RestaurantPage() {
               ]}
               className={styles.map}
             />
+            <ClientMapFromOSM className={styles.map} points={[
+                {
+                  id: restaurant.id,
+                  coordinates: restaurant.point.coordinates,
+                },
+              ]}></ClientMapFromOSM>
             <Offer
               title="Чтобы выбрать этот филиал, напишите своему менеджеру"
               manager={manager}
