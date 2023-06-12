@@ -57,12 +57,10 @@ export default React.memo(function OSMLEAFLET({
       ["type", "ASC"],
       ["title", "ASC"],
     ],
-  });
+  });  
 
   // фильтрация объектов (кладбища, морги, крематорий)
   const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
-  const object =
-    filterObjectData == undefined ? loadObjectData : filterObjectData;
 
   // убираем круговой фильтр
   useEffect(() => {
@@ -143,7 +141,7 @@ export default React.memo(function OSMLEAFLET({
             ></MyMarker>
           </div>
         ))}
-        {object?.map((i) => (
+        {filterObjectData?.map((i) => (
           <div key={Math.random()}>
             <MyMarker
               coordinates={i.point.coordinates}

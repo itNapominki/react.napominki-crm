@@ -52,7 +52,7 @@ export default function Address({
 
   return (
     <>
-      <AdminForm.Group title="Адрес">
+      {/* <AdminForm.Group title="Адрес">
         <AdminForm.Control
           type="text"
           label="Адрес"
@@ -80,7 +80,7 @@ export default function Address({
             onClick: handleOpenMap,
           }}
         />
-      </AdminForm.Group>
+      </AdminForm.Group> */}
       <AdminForm.Group title="Адрес (автоматический ввод с данных OSM)">
         <AdminForm.Control
           type="text"

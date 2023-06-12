@@ -21,9 +21,8 @@ export default function WorkspacePage() {
   const [offer, handle] = useHandlers(user)
 
   const [filterVisible, setFilterVisible] = React.useState(false)
-  const [visibleObjects, setVisibleObjects] = React.useState(
-    Object.keys(OBJECT_TYPES)
-  )
+  const [visibleObjects, setVisibleObjects] = React.useState([]); // Object.keys(OBJECT_TYPES) инициализация активных кнопок
+  
   const [radiusFilter, setRadiusFilter] = React.useState({})
 
   const [search, setSearch] = React.useState('')

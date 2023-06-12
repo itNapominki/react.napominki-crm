@@ -23,7 +23,7 @@ export default function OfferPage() {
 
       {restaurants && (
         <React.Fragment>
-          <ClientMap className={styles.map} points={points} />
+          {/* <ClientMap className={styles.map} points={points} /> */}
           <ClientMapFromOSM className={styles.map} points={points}></ClientMapFromOSM>
 
           {restaurants.map((restaurant) => (

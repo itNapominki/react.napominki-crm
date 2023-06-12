@@ -16,8 +16,6 @@ export default function FormRouting(props) {
     selectPositionAllMarcer(item);
   }
 
-  console.log(timeAndDistanceAboutRoute);
-
   const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
   const params = {
     q: "",

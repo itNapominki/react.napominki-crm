@@ -45,7 +45,7 @@ export default function RestaurantPage() {
             <Main />
             <Halls />
             <Menus />
-            <ClientMap
+            {/* <ClientMap
               points={[
                 {
                   id: restaurant.id,
@@ -53,7 +53,7 @@ export default function RestaurantPage() {
                 },
               ]}
               className={styles.map}
-            />
+            /> */}
             <ClientMapFromOSM className={styles.map} points={[
                 {
                   id: restaurant.id,
