@@ -1,10 +1,12 @@
 import styles from './Control.module.scss'
 import React from 'react'
 
-import { Bottom, Fluid, Top } from './'
+import { Bottom, Fluid, Top, ListsResultSearch } from './'
 import { classNames } from 'utils'
 
 export default React.memo(function Control({
+  actionGiveAdressOsm,
+  actionGoToYandexMap,
   action,
   className,
   children,
@@ -24,9 +26,10 @@ export default React.memo(function Control({
     >
       <Top label={label} error={error} />
 
-      {children ? children : <Fluid type={type} props={props} />}
+      {children ? children : <Fluid type={type} props={props} />}      
 
-      <Bottom action={action} error={error} />
+      <Bottom action={actionGiveAdressOsm} error={error} />
+      <Bottom action={actionGoToYandexMap} error={error} />
     </Container>
   )
 })

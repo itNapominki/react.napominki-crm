@@ -1,0 +1,21 @@
+.wrapper {
+  background-color: #f2f3f9;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 0.078125vw solid rgba(77, 81, 108, 0.5);
+  border-radius: 0.15625vw;  
+}
+
+.list {
+    padding: 2px 5px 2px 5px;
+    cursor: pointer;
+}
+
+
+.list:nth-child(2n) {
+    background-color: #cacddb75;
+}
+
+.list:hover {
+    background-color: #bcbdc2;
+}

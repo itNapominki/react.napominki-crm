@@ -3,6 +3,7 @@ import { AdminForm } from "components";
 import { Input } from "components";
 import { useErrors } from "hooks";
 import { handleSearchWithoutSettings } from "utils";
+import { ListsResultSearch } from "..";
 
 export default function Address({
   address,
@@ -38,17 +39,6 @@ export default function Address({
     setCoordinates(`${item.lat}, ${item.lon}`);
     setListsAdress(null);
   }
-
-  // формируем саму строчку для выбора
-  const listSelectingAddresses = (item) => (
-    <div
-      style={{ cursor: "pointer" }}
-      key={item.osm_id}
-      onClick={() => handleInsertionValuesInInputs(item)}
-    >
-      {item.display_name}
-    </div>
-  );
 
   return (
     <>
@@ -104,28 +94,16 @@ export default function Address({
           error={coordinatesError}
           // mask={['9[9][.9{1,6}], 9[9][.9{1,6}]']}
           className="col col-3"
-          action={{
-            text: "Запрос координат",
+          actionGiveAdressOsm={{
+            text: "Запрос координат OSM",
             onClick: (e) => handleSearch(e),
           }}
-        />
-        <button
-          style={{
-            marginRight: "10px",
-            marginLeft: "auto",
-            paddingBottom: "4px",
-            color: "#2847c1",
-            cursor: "pointer",
-            transition: "0.3s",
-            fontSize: "12px",
-            marginTop: "-30px",
-            fontSize: "12px",
+          actionGoToYandexMap={{
+            text: "Открыть Я.карту",
+            onClick: (e) => handleOpenMap(e),
           }}
-          onClick={handleOpenMap}
-        >
-          Открыть карту
-        </button>
-        {listsAdress?.map((i) => listSelectingAddresses(i))}
+        /> 
+        <ListsResultSearch lists={listsAdress} handle={handleInsertionValuesInInputs} ></ListsResultSearch>        
       </AdminForm.Group>
     </>
   );

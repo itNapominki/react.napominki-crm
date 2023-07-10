@@ -10,6 +10,8 @@ export default function Table() {
   const {
     data: {
       id,
+      idFromCompany,
+      numberOfFloors,
       status,
       priority,
       food,
@@ -25,7 +27,9 @@ export default function Table() {
     <div className={styles.container}>
       <Group
         rows={[
-          ['ID заведения', id],
+          // ['ID заведения', id],
+          ['ID (операционная таблица)', idFromCompany],
+          ['Количество этажей', numberOfFloors],
           ['Статус ресторана', status],
           ['Приоритет загрузки', priority],
           ['Продукты', food],

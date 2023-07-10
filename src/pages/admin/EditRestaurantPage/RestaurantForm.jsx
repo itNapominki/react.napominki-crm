@@ -36,7 +36,7 @@ export default function RestaurantForm({ children }) {
       onError={setError}
       deleteButton={deleteButton}
     >
-      {children}
+      {children}      
     </AdminForm>
   )
 }

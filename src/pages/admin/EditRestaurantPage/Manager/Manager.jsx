@@ -18,7 +18,7 @@ export default function Manager() {
       {/* <RelatedRestaurants /> */}
       <Contacts />
       <Whatsapp />
-      <Comment />
+      <Comment />      
     </React.Fragment>
   )
 }

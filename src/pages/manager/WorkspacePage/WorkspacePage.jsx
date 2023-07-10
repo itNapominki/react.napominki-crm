@@ -15,6 +15,7 @@ export default function WorkspacePage() {
   setRoles([
     getObjKeyName(() => USER_ROLES.ADMIN),
     getObjKeyName(() => USER_ROLES.MANAGER),
+    getObjKeyName(() => USER_ROLES.REDAKTOR),
   ])
 
   const [modalFor, setModalFor] = React.useState()

@@ -61,6 +61,8 @@ export default React.memo(function OSMLEAFLET({
 
   // фильтрация объектов (кладбища, морги, крематорий)
   const filterObjectData = filtringData(loadObjectData, datVisibleObjects);
+  // отфильтровываем не опубликованные рестораны
+  const isPublishedRestaurantData = loadRestaurantData?.filter(i => i.isPublished !== false);  
 
   // убираем круговой фильтр
   useEffect(() => {
@@ -129,7 +131,7 @@ export default React.memo(function OSMLEAFLET({
             <Popup>Точка поиска</Popup>
           </Marker>
         )}
-        {loadRestaurantData?.map((i) => (
+        {isPublishedRestaurantData?.map((i) => (
           <div key={Math.random()}>
             <MyMarker
               coordinates={i.point.coordinates}
